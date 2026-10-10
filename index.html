@@ -123,7 +123,7 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .quiz-card:hover { transform:translateY(-6px); box-shadow:0 25px 50px rgba(0,0,0,0.6), 0 0 60px rgba(255,100,0,0.3); border-color:rgba(255,160,0,0.6); }
 .quiz-card::before { content:''; position:absolute; top:-50%; right:-50%; width:200%; height:200%; background:radial-gradient(circle, var(--accent,#ff6b00) 0%, transparent 55%); opacity:0.18; pointer-events:none; animation: batGlow 6s infinite alternate; }
 @keyframes batGlow { 0%{opacity:0.12;} 100%{opacity:0.28;} }
-.quiz-emoji { font-size:56px; display:block; margin-bottom:12px; filter:drop-shadow(0 0 15px rgba(255,140,0,0.6)); position:relative; z-index:1; animation: emojiFloat 3s ease-in-out infinite; }
+.quiz-emoji { font-size:56px; display:block; margin-bottom:12px; line-height:1; filter:drop-shadow(0 0 15px rgba(255,140,0,0.6)); position:relative; z-index:1; animation: emojiFloat 3s ease-in-out infinite; }
 @keyframes emojiFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 .quiz-card h3 { font-size:22px; margin-bottom:6px; color:#ffb86b; position:relative; z-index:1; }
 .quiz-card .quiz-category { font-size:11px; color:#c9a0dc; margin-bottom:10px; position:relative; z-index:1; text-transform:uppercase; letter-spacing:1px; }
@@ -159,7 +159,7 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .achievement.unlocked { background:linear-gradient(160deg,rgba(255,140,0,0.18),rgba(199,44,0,0.15)); border-color:rgba(255,180,80,0.6); box-shadow:0 10px 35px rgba(255,140,0,0.3), inset 0 0 30px rgba(255,140,0,0.08); }
 .achievement.unlocked::after { content:'✓'; position:absolute; top:8px; right:12px; color:#8bc34a; font-size:18px; }
 .achievement.locked { opacity:0.4; filter:grayscale(0.8); }
-.achievement-icon { font-size:48px; margin-bottom:12px; filter:drop-shadow(0 0 12px rgba(255,140,0,0.6)); }
+.achievement-icon { font-size:48px; margin-bottom:12px; line-height:1; filter:drop-shadow(0 0 12px rgba(255,140,0,0.6)); }
 .achievement h4 { font-size:16px; margin-bottom:6px; color:#ffb86b; }
 .achievement p { font-size:12px; color:#c9a0dc; }
 .achievement .progress { margin-top:8px; height:5px; background:rgba(0,0,0,0.4); border-radius:3px; overflow:hidden; }
@@ -606,7 +606,7 @@ const QUIZZES = {
     }
   },
   christmasRus: {
-    id:'christmasRus', name:'Рождество Христово', emoji:'⛪', category:'russian',
+    id:'christmasRus', name:'Рождество Христово', emoji:'⭐', category:'russian',
     description:'Православное Рождество 7 января',
     accent:'#ffc107',
     questions: {
@@ -631,8 +631,8 @@ const QUIZZES = {
       ]
     }
   },
-  christmasRus2: {
-    id:'christmasRus2', name:'Крещение Господне', emoji:'💧', category:'russian',
+  epiphany: {
+    id:'epiphany', name:'Крещение Господне', emoji:'💧', category:'russian',
     description:'Праздник 19 января',
     accent:'#03a9f4',
     questions: {
@@ -714,7 +714,7 @@ const QUIZZES = {
     }
   },
   victory: {
-    id:'victory', name:'День Победы', emoji:'🎖', category:'russian',
+    id:'victory', name:'День Победы', emoji:'🎖️', category:'russian',
     description:'9 мая — великий праздник России',
     accent:'#f44336',
     questions: {
@@ -742,7 +742,7 @@ const QUIZZES = {
     }
   },
   defenderDay: {
-    id:'defenderDay', name:'23 февраля', emoji:'🪖', category:'russian',
+    id:'defenderDay', name:'23 февраля', emoji:'🎖️', category:'russian',
     description:'День защитника Отечества',
     accent:'#607d8b',
     questions: {
@@ -754,15 +754,15 @@ const QUIZZES = {
       medium: [
         {q:'Как раньше назывался праздник 23 февраля?', answers:['День Красной Армии','День защитника','День воина','День Победы'], correct:0},
         {q:'В каком году появился праздник?', answers:['1918','1920','1925','1945'], correct:0},
-        {q:'Что празднуется 23 февраля?', answers:['Создание РККА','Победу','Оборот Москвы','Конец войны'], correct:0}
+        {q:'Что празднуется 23 февраля?', answers:['Создание РККА','Победу','Оборону Москвы','Конец войны'], correct:0}
       ],
       hard: [
         {q:'Кто был первым наркомом по военным делам?', answers:['Троцкий','Ленин','Сталин','Фрунзе'], correct:0},
         {q:'Как называлась армия в 1918 году?', answers:['Красная','Советская','Русская','Царская'], correct:0},
         {q:'Когда 23 февраля стал выходным?', answers:['1922','1925','1945','2002'], correct:3},
         {q:'Какой указ сделал 23 февраля нерабочим днём?', answers:['Президентский','Правительственный','Государственный','Царский'], correct:0},
-        {q:'Какой праздник отмечают в других странах 23 февраля?', answers:['День армии','День победы','День мира','Нет такого'], correct:0},
-        {q:'Что дают за службу в армии?', answers:['Медали','Диплом','Сертификат','Грамоту'], correct:0}
+        {q:'Что дают за службу в армии?', answers:['Медали','Диплом','Сертификат','Грамоту'], correct:0},
+        {q:'Какой род войск самый многочисленный?', answers:['Сухопутные','ВМФ','ВВС','Космические'], correct:0}
       ]
     }
   },
@@ -814,13 +814,13 @@ const QUIZZES = {
         {q:'Сколько рабочих погибло на Хеймаркетской площади?', answers:['2','4','8','10'], correct:2},
         {q:'В каком году 1 мая стало официальным в России?', answers:['1890','1900','1917','1920'], correct:2},
         {q:'Как называлась площадь в Чикаго?', answers:['Хеймаркет','Таймс-сквер','Трафальгар','Центральная'], correct:0},
-        {q:'Что произошло в Чикаго 4 мая 1886?', answers:['Бомба','Пожар','Парад','Мирный митинг'], correct:0},
+        {q:'Что произошло в Чикаго 4 мая 1886?', answers:['Взрыв бомбы','Пожар','Парад','Мирный митинг'], correct:0},
         {q:'Сколько человек было казнено после событий в Чикаго?', answers:['2','4','6','8'], correct:1}
       ]
     }
   },
-  victory2: {
-    id:'victory2', name:'День России', emoji:'🇷🇺', category:'russian',
+  russiaDay: {
+    id:'russiaDay', name:'День России', emoji:'🇷🇺', category:'russian',
     description:'12 июня',
     accent:'#2196f3',
     questions: {
@@ -867,7 +867,7 @@ const QUIZZES = {
         {q:'Что построили в честь победы 1612 года?', answers:['Казанский собор','Храм Христа','Успенский собор','Исаакиевский'], correct:0},
         {q:'Какое ополчение освободило Москву?', answers:['Второе','Первое','Третье','Все'], correct:0},
         {q:'Какой праздник заменил День народного единства?', answers:['7 ноября','1 мая','12 июня','9 мая'], correct:0},
-        {q:'Сколько лет было Смутное время?', answers:['10','15','20','25'], correct:1}
+        {q:'Сколько лет длилось Смутное время?', answers:['10','15','20','25'], correct:1}
       ]
     }
   },
@@ -945,14 +945,14 @@ const QUIZZES = {
         {q:'В какой день Елизавета подписала указ?', answers:['25 января','12 января','1 сентября','14 февраля'], correct:0},
         {q:'Кто был первым куратором университета?', answers:['Шувалов','Ломоносов','Бецкой','Разумовский'], correct:0},
         {q:'Сколько факультетов было в первом университете?', answers:['2','3','4','5'], correct:1},
-        {q:'Что традиционно делают студенты в Татьянин день?', answers:['Празднуют','Учатся','Экзамен','Каникулы'], correct:0},
+        {q:'Что традиционно делают студенты в Татьянин день?', answers:['Празднуют','Учатся','Сдают экзамен','Уходят на каникулы'], correct:0},
         {q:'Как называется церковь при МГУ?', answers:['Татьянинская','Университетская','Студенческая','Мученическая'], correct:0},
-        {q:'Что изобрели в этом университете?', answers:['Многое','Ничего','Только науку','Один патент'], correct:0}
+        {q:'В каком году Татьянин день стал официальным Днём студента в России?', answers:['1995','2000','2005','2010'], correct:2}
       ]
     }
   },
   family: {
-    id:'family', name:'День семьи', emoji:'👨‍👩‍👧‍👦', category:'russian',
+    id:'family', name:'День семьи', emoji:'💑', category:'russian',
     description:'8 июля — День семьи, любви и верности',
     accent:'#4caf50',
     questions: {
@@ -962,7 +962,7 @@ const QUIZZES = {
         {q:'Какой цветок символизирует праздник?', answers:['Ромашка','Роза','Лилия','Тюльпан'], correct:0}
       ],
       medium: [
-        {q:'В честь кого учреждён праздник?', answers:['Пётр и Феврония','Ромео и Джульетта','Адам и Ева','Они же'], correct:0},
+        {q:'В честь кого учреждён праздник?', answers:['Пётр и Феврония','Ромео и Джульетта','Адам и Ева','Тристан и Изольда'], correct:0},
         {q:'В каком году учреждён праздник?', answers:['2000','2005','2008','2010'], correct:2},
         {q:'Где жили Пётр и Феврония?', answers:['Муром','Москва','Псков','Новгород'], correct:0},
         {q:'В каком веке жили Пётр и Феврония?', answers:['XII','XIII','XIV','XV'], correct:1}
@@ -1137,7 +1137,7 @@ const QUIZZES = {
         {q:'В каком году праздник впервые упомянут?', answers:['1392','1500','1600','1700'], correct:0},
         {q:'Что послужило поводом появления праздника?', answers:['Смена календаря','Война','Коронация','Победа'], correct:0},
         {q:'Какой король ввёл новый календарь?', answers:['Карл IX','Людовик','Генрих','Франциск'], correct:0},
-        {q:'Что произошло 1 апреля 1989 года?', answers:['Летели над Москвой','Война','Коронация','Мир'], correct:0},
+        {q:'Что произошло 1 апреля 1989 года?', answers:['Полёт над Москвой','Война','Коронация','Мир'], correct:0},
         {q:'В какой стране 1 апреля — государственный праздник?', answers:['Италия','Россия','Франция','Германия'], correct:0}
       ]
     }
@@ -1169,7 +1169,7 @@ const QUIZZES = {
     }
   },
   workers: {
-    id:'workers', name:'День труда', emoji:'⚒', category:'international',
+    id:'workers', name:'День труда', emoji:'⚒️', category:'international',
     description:'1 мая — международный праздник',
     accent:'#f44336',
     questions: {
@@ -1189,7 +1189,7 @@ const QUIZZES = {
         {q:'Сколько было казнено?', answers:['2','4','6','8'], correct:1},
         {q:'Как называется площадь в Чикаго?', answers:['Хеймаркет','Таймс-сквер','Трафальгар','Центральная'], correct:0},
         {q:'В каком году конгресс II Интернационала признал 1 мая?', answers:['1889','1890','1900','1910'], correct:0},
-        {q:'Что произошло 4 мая 1886?', answers:['Бомба','Пожар','Парад','Мирный митинг'], correct:0},
+        {q:'Что произошло 4 мая 1886?', answers:['Взрыв бомбы','Пожар','Парад','Мирный митинг'], correct:0},
         {q:'Как называют 1 мая в США?', answers:['День лояльности','День труда','День рабочих','День весны'], correct:0}
       ]
     }
@@ -1272,6 +1272,32 @@ const QUIZZES = {
       ]
     }
   },
+  motherDay: {
+    id:'motherDay', name:'День матери', emoji:'💐', category:'international',
+    description:'Праздник мам',
+    accent:'#e91e63',
+    questions: {
+      easy: [
+        {q:'Кого поздравляют в День матери?', answers:['Мам','Пап','Детей','Бабушке'], correct:0},
+        {q:'Что дарят мамам?', answers:['Цветы','Игрушки','Книги','Инструменты'], correct:0},
+        {q:'Какого числа в России?', answers:['Последнее воскресенье ноября','1 марта','8 марта','1 мая'], correct:0}
+      ],
+      medium: [
+        {q:'В какой стране впервые?', answers:['США','Англия','Франция','Германия'], correct:0},
+        {q:'В каком году в России?', answers:['1998','2000','2005','2010'], correct:0},
+        {q:'Как отмечают?', answers:['Дарят подарки','Работают','Постятся','Учатся'], correct:0},
+        {q:'Кто учредил в России?', answers:['Ельцин','Путин','Медведев','Горбачёв'], correct:0}
+      ],
+      hard: [
+        {q:'Кто основала День матери в США?', answers:['Анна Джарвис','Клара Цеткин','Мэри Кюри','Элеонора Рузвельт'], correct:0},
+        {q:'В каком году официально в США?', answers:['1900','1914','1920','1930'], correct:1},
+        {q:'Сколько стран отмечают?', answers:['~50','~80','~100','~150'], correct:2},
+        {q:'Сколько открыток отправляют?', answers:['~10 млн','~50 млн','~100 млн','~200 млн'], correct:2},
+        {q:'Как называется в Англии?', answers:['Mothering Sunday','Mother Day','Mum Day','Family Day'], correct:0},
+        {q:'Когда в Англии?', answers:['4-е воскресенье поста','1 мая','8 марта','Май'], correct:0}
+      ]
+    }
+  },
   /* ===== РЕЛИГИОЗНЫЕ ===== */
   dayOfDead: {
     id:'dayOfDead', name:'День Мёртвых', emoji:'💀', category:'religious',
@@ -1317,7 +1343,7 @@ const QUIZZES = {
       ],
       hard: [
         {q:'В честь чего праздник?', answers:['Освящение Храма','Исход','Победы','Чуда'], correct:0},
-        {q:'Сколько лет длилось чудо с маслом?', answers:['4 дня','6 дней','8 дней','10 дней'], correct:2},
+        {q:'Сколько дней длилось чудо с маслом?', answers:['4 дня','6 дней','8 дней','10 дней'], correct:2},
         {q:'Кто был врагом?', answers:['Греки','Римляне','Персы','Египтяне'], correct:0},
         {q:'Как звали вождя восстания?', answers:['Маттафия','Моисей','Давид','Соломон'], correct:0},
         {q:'Какой язык использует слово "Ханука"?', answers:['Иврит','Арамейский','Греческий','Латынь'], correct:0},
@@ -1534,7 +1560,6 @@ const QUIZZES = {
       ]
     }
   },
-  /* ===== ДОПОЛНИТЕЛЬНЫЕ ===== */
   ocktoberfest: {
     id:'ocktoberfest', name:'Октоберфест', emoji:'🍻', category:'fun',
     description:'Немецкий пивной фестиваль',
@@ -1562,7 +1587,7 @@ const QUIZZES = {
     }
   },
   blackFriday: {
-    id:'blackFriday', name:'Чёрная пятница', emoji:'🛍', category:'fun',
+    id:'blackFriday', name:'Чёрная пятница', emoji:'🛍️', category:'fun',
     description:'День грандиозных скидок',
     accent:'#212121',
     questions: {
@@ -1584,32 +1609,6 @@ const QUIZZES = {
         {q:'Сколько тратят в день?', answers:['~1 млрд','~5 млрд','~10 млрд','~50 млрд'], correct:2},
         {q:'Какой самый популярный товар?', answers:['Электроника','Одежда','Еда','Игрушки'], correct:0},
         {q:'Когда Киберпонедельник?', answers:['Понедельник после','Пятница','Вторник','Среда'], correct:0}
-      ]
-    }
-  },
-  pride: {
-    id:'pride', name:'День матери', emoji:'👩', category:'international',
-    description:'Праздник мам',
-    accent:'#e91e63',
-    questions: {
-      easy: [
-        {q:'Кого поздравляют в День матери?', answers:['Мам','Пап','Детей','Бабушке'], correct:0},
-        {q:'Что дарят мамам?', answers:['Цветы','Игрушки','Книги','Инструменты'], correct:0},
-        {q:'Какого числа в России?', answers:['Последнее воскресенье ноября','1 марта','8 марта','1 мая'], correct:0}
-      ],
-      medium: [
-        {q:'В какой стране впервые?', answers:['США','Англия','Франция','Германия'], correct:0},
-        {q:'В каком году в России?', answers:['1998','2000','2005','2010'], correct:0},
-        {q:'Как отмечают?', answers:['Дарят подарки','Работают','Постятся','Учатся'], correct:0},
-        {q:'Кто учредил в России?', answers:['Ельцин','Путин','Медведев','Горбачёв'], correct:0}
-      ],
-      hard: [
-        {q:'Кто основала День матери в США?', answers:['Анна Джарвис','Клара Цеткин','Мэри Кюри','Элеонора Рузвельт'], correct:0},
-        {q:'В каком году официально в США?', answers:['1900','1914','1920','1930'], correct:1},
-        {q:'Сколько стран отмечают?', answers:['~50','~80','~100','~150'], correct:2},
-        {q:'Сколько открыток отправляют?', answers:['~10 млн','~50 млн','~100 млн','~200 млн'], correct:2},
-        {q:'Как называется в Англии?', answers:['Mothering Sunday','Mother Day','Mum Day','Family Day'], correct:0},
-        {q:'Когда в Англии?', answers:['4-е воскресенье поста','1 мая','8 марта','Май'], correct:0}
       ]
     }
   }
@@ -1634,8 +1633,8 @@ const ACHIEVEMENTS = [
   {id:'first_game', icon:'🎯', name:'Первый шаг', desc:'Пройдите первую викторину', check:u => u.gamesPlayed>=1, progress:u => [Math.min(u.gamesPlayed,1), 1]},
   {id:'five_games', icon:'🔥', name:'В ударе', desc:'Пройдите 5 викторин', check:u => u.gamesPlayed>=5, progress:u => [Math.min(u.gamesPlayed,5), 5]},
   {id:'ten_games', icon:'🏅', name:'Опытный игрок', desc:'Пройдите 10 викторин', check:u => u.gamesPlayed>=10, progress:u => [Math.min(u.gamesPlayed,10), 10]},
-  {id:'twenty_five', icon:'🎖', name:'Ветеран', desc:'Пройдите 25 викторин', check:u => u.gamesPlayed>=25, progress:u => [Math.min(u.gamesPlayed,25), 25]},
-  {id:'fifty', icon:'🎗', name:'Легенда', desc:'Пройдите 50 викторин', check:u => u.gamesPlayed>=50, progress:u => [Math.min(u.gamesPlayed,50), 50]},
+  {id:'twenty_five', icon:'🎖️', name:'Ветеран', desc:'Пройдите 25 викторин', check:u => u.gamesPlayed>=25, progress:u => [Math.min(u.gamesPlayed,25), 25]},
+  {id:'fifty', icon:'🎗️', name:'Легенда', desc:'Пройдите 50 викторин', check:u => u.gamesPlayed>=50, progress:u => [Math.min(u.gamesPlayed,50), 50]},
   {id:'perfect', icon:'💯', name:'Идеально!', desc:'Пройдите викторину без ошибок', check:u => u.perfectGames>=1, progress:u => [Math.min(u.perfectGames,1), 1]},
   {id:'five_perfect', icon:'⭐', name:'Перфекционист', desc:'5 викторин без ошибок', check:u => u.perfectGames>=5, progress:u => [Math.min(u.perfectGames,5), 5]},
   {id:'ten_perfect', icon:'🌟', name:'Гений', desc:'10 викторин без ошибок', check:u => u.perfectGames>=10, progress:u => [Math.min(u.perfectGames,10), 10]},
@@ -1647,7 +1646,7 @@ const ACHIEVEMENTS = [
   {id:'friends_3', icon:'👥', name:'Компания', desc:'Добавьте 3 друзей', check:u => (u.friends||[]).length>=3, progress:u => [Math.min((u.friends||[]).length,3), 3]},
   {id:'friends_10', icon:'🎊', name:'Тусовка', desc:'Добавьте 10 друзей', check:u => (u.friends||[]).length>=10, progress:u => [Math.min((u.friends||[]).length,10), 10]},
   {id:'social', icon:'💬', name:'Болтун', desc:'Отправьте 10 сообщений', check:u => (u.messagesSent||0)>=10, progress:u => [Math.min(u.messagesSent||0,10), 10]},
-  {id:'social_100', icon:'🗣', name:'Говорун', desc:'Отправьте 100 сообщений', check:u => (u.messagesSent||0)>=100, progress:u => [Math.min(u.messagesSent||0,100), 100]},
+  {id:'social_100', icon:'🗣️', name:'Говорун', desc:'Отправьте 100 сообщений', check:u => (u.messagesSent||0)>=100, progress:u => [Math.min(u.messagesSent||0,100), 100]},
   {id:'streak_3', icon:'🔥', name:'На огне', desc:'3 дня подряд', check:u => (u.streak||0)>=3, progress:u => [Math.min(u.streak||0,3), 3]},
   {id:'streak_7', icon:'🌋', name:'Несокрушимый', desc:'7 дней подряд', check:u => (u.streak||0)>=7, progress:u => [Math.min(u.streak||0,7), 7]},
   {id:'streak_30', icon:'💎', name:'Бриллиант', desc:'30 дней подряд', check:u => (u.streak||0)>=30, progress:u => [Math.min(u.streak||0,30), 30]},
@@ -1666,7 +1665,7 @@ const ACHIEVEMENTS = [
     return [['russian','western','international','religious','fun'].filter(c => cats.has(c)).length, 5];
   }},
   {id:'hard_win', icon:'💪', name:'Смельчак', desc:'Пройдите викторину на сложном', check:u => (u.hardWins||0)>=1, progress:u => [Math.min(u.hardWins||0,1), 1]},
-  {id:'hard_10', icon:'🏋', name:'Тяжелоатлет', desc:'10 сложных викторин', check:u => (u.hardWins||0)>=10, progress:u => [Math.min(u.hardWins||0,10), 10]},
+  {id:'hard_10', icon:'🏋️', name:'Тяжелоатлет', desc:'10 сложных викторин', check:u => (u.hardWins||0)>=10, progress:u => [Math.min(u.hardWins||0,10), 10]},
   {id:'link_invite', icon:'🔗', name:'Связист', desc:'Пригласите по ссылке', check:u => (u.linkInvites||0)>=1, progress:u => [Math.min(u.linkInvites||0,1), 1]},
   {id:'link_10', icon:'🌐', name:'Сетевой', desc:'10 приглашений по ссылке', check:u => (u.linkInvites||0)>=10, progress:u => [Math.min(u.linkInvites||0,10), 10]},
   {id:'score_1000', icon:'💰', name:'Богач', desc:'Наберите 1000 очков', check:u => (u.totalScore||0)>=1000, progress:u => [Math.min(u.totalScore||0,1000), 1000]},
@@ -2080,7 +2079,6 @@ function renderQuizzes() {
     );
   }
 
-  // Сортируем: сначала пройденные, потом по названию
   quizzes.sort((a, b) => {
     const aDone = Object.keys(currentUser.completed || {}).some(k => k.startsWith(a.id + '_'));
     const bDone = Object.keys(currentUser.completed || {}).some(k => k.startsWith(b.id + '_'));
