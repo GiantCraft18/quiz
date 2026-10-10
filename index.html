@@ -3,142 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎉 Праздничная Викторина</title>
+<title>🎃 Праздничная Викторина</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,sans-serif; }
-body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:100vh; color:#fff; overflow-x:hidden; }
-.screen { display:none; min-height:100vh; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Creepster','Segoe UI',Tahoma,sans-serif; }
+body {
+  background: radial-gradient(ellipse at top, #2a0845 0%, #1a0525 40%, #0a0112 100%);
+  min-height:100vh;
+  color:#e8d5b7;
+  overflow-x:hidden;
+  position:relative;
+}
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,165,0,0.6), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255,140,0,0.4), transparent),
+    radial-gradient(1px 1px at 80% 20%, rgba(255,200,100,0.5), transparent),
+    radial-gradient(2px 2px at 35% 80%, rgba(255,100,0,0.4), transparent),
+    radial-gradient(1px 1px at 90% 55%, rgba(255,180,80,0.5), transparent);
+  background-size: 300px 300px, 400px 400px, 250px 250px, 350px 350px, 200px 200px;
+  animation: flicker 4s infinite alternate;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes flicker {
+  0%,100% { opacity:0.6; }
+  50% { opacity:1; }
+}
+body::after {
+  content:'';
+  position:fixed;
+  bottom:-50px; left:-50px; right:-50px;
+  height:200px;
+  background: radial-gradient(ellipse at 30% 100%, rgba(255,100,0,0.15), transparent 60%),
+              radial-gradient(ellipse at 70% 100%, rgba(200,0,50,0.15), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+.screen { display:none; min-height:100vh; position:relative; z-index:1; }
 .screen.active { display:block; }
 .hidden { display:none !important; }
 
+/* TYPOGRAPHY */
+h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; text-shadow:0 0 20px rgba(255,100,0,0.6), 0 0 40px rgba(255,50,0,0.3); }
+
 /* AUTH */
-.auth-container { max-width:420px; margin:80px auto; background:rgba(255,255,255,0.1); backdrop-filter:blur(20px); border-radius:20px; padding:40px; box-shadow:0 20px 60px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); }
-.auth-container h1 { font-size:28px; text-align:center; margin-bottom:8px; }
-.subtitle { text-align:center; opacity:0.8; margin-bottom:30px; font-size:14px; }
-.tabs { display:flex; background:rgba(0,0,0,0.2); border-radius:12px; padding:4px; margin-bottom:24px; }
-.tab-btn { flex:1; padding:12px; background:transparent; border:none; color:#fff; cursor:pointer; border-radius:10px; font-size:15px; transition:0.3s; }
-.tab-btn.active { background:rgba(255,255,255,0.2); font-weight:bold; }
+.auth-container { max-width:440px; margin:70px auto; background:linear-gradient(135deg,rgba(40,10,60,0.85),rgba(20,5,35,0.9)); backdrop-filter:blur(20px); border-radius:24px; padding:44px; box-shadow:0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(255,100,0,0.15), inset 0 0 40px rgba(255,80,0,0.05); border:2px solid rgba(255,140,0,0.35); position:relative; }
+.auth-container::before {
+  content:'🎃';
+  position:absolute; top:-30px; left:50%; transform:translateX(-50%);
+  font-size:60px;
+  filter: drop-shadow(0 0 20px rgba(255,140,0,0.8));
+  animation: ghostFloat 3s ease-in-out infinite;
+}
+@keyframes ghostFloat {
+  0%,100% { transform:translateX(-50%) translateY(0); }
+  50% { transform:translateX(-50%) translateY(-8px); }
+}
+.auth-container h1 { font-size:34px; text-align:center; margin-bottom:8px; color:#ffb86b; }
+.subtitle { text-align:center; opacity:0.75; margin-bottom:30px; font-size:14px; color:#c9a0dc; }
+.tabs { display:flex; background:rgba(0,0,0,0.5); border-radius:14px; padding:5px; margin-bottom:26px; border:1px solid rgba(255,140,0,0.2); }
+.tab-btn { flex:1; padding:12px; background:transparent; border:none; color:#c9a0dc; cursor:pointer; border-radius:10px; font-size:15px; font-family:'Segoe UI',sans-serif; transition:0.3s; font-weight:600; }
+.tab-btn.active { background:linear-gradient(135deg,#ff6b00,#c72c00); color:#fff; box-shadow:0 0 20px rgba(255,100,0,0.5); }
 .auth-form { display:none; flex-direction:column; gap:14px; }
 .auth-form.active { display:flex; }
-.auth-form input { padding:14px 16px; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#fff; font-size:15px; }
-.auth-form input:focus { outline:none; border-color:rgba(255,255,255,0.6); background:rgba(0,0,0,0.3); }
-.auth-form input::placeholder { color:rgba(255,255,255,0.5); }
-.btn-primary { padding:14px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:12px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; transition:0.3s; box-shadow:0 6px 20px rgba(255,107,107,0.4); }
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(255,107,107,0.5); }
-.btn-secondary { padding:14px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:12px; color:#fff; font-size:16px; cursor:pointer; }
-.error { color:#ff8a8a; font-size:13px; text-align:center; min-height:18px; }
+.auth-form input { padding:14px 16px; background:rgba(0,0,0,0.4); border:1px solid rgba(255,140,0,0.25); border-radius:12px; color:#ffb86b; font-size:15px; font-family:'Segoe UI',sans-serif; transition:0.3s; }
+.auth-form input:focus { outline:none; border-color:#ff8c00; background:rgba(0,0,0,0.5); box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.auth-form input::placeholder { color:rgba(200,160,220,0.5); }
+.btn-primary { padding:14px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:12px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; transition:0.3s; box-shadow:0 6px 20px rgba(255,100,0,0.45), inset 0 1px 0 rgba(255,255,255,0.2); font-family:'Segoe UI',sans-serif; letter-spacing:1px; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,100,0,0.6), 0 0 40px rgba(255,80,0,0.4); }
+.btn-secondary { padding:14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:16px; cursor:pointer; font-family:'Segoe UI',sans-serif; }
+.error { color:#ff5c7c; font-size:13px; text-align:center; min-height:18px; font-family:'Segoe UI',sans-serif; }
 
 /* TOP BAR */
-.top-bar { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:rgba(0,0,0,0.2); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.1); }
-.logo { font-size:20px; font-weight:bold; }
+.top-bar { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:linear-gradient(180deg,rgba(40,10,60,0.9),rgba(20,5,35,0.7)); backdrop-filter:blur(15px); border-bottom:2px solid rgba(255,140,0,0.25); box-shadow:0 4px 30px rgba(0,0,0,0.5); }
+.logo { font-size:22px; font-weight:bold; color:#ff8c00; font-family:'Creepster',cursive; letter-spacing:3px; text-shadow:0 0 15px rgba(255,140,0,0.7), 0 0 30px rgba(255,60,0,0.4); }
 .user-info { display:flex; align-items:center; gap:14px; }
-.user-info span { font-size:14px; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:20px; }
-.avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#f093fb,#f5576c); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; border:2px solid rgba(255,255,255,0.3); }
-.btn-icon { background:rgba(255,255,255,0.1); border:none; color:#fff; font-size:18px; width:42px; height:42px; border-radius:50%; cursor:pointer; transition:0.3s; }
-.btn-icon:hover { background:rgba(255,255,255,0.25); }
-.main-nav { display:flex; justify-content:center; gap:10px; padding:20px; flex-wrap:wrap; }
-.nav-btn { padding:10px 22px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); color:#fff; border-radius:25px; cursor:pointer; font-size:14px; transition:0.3s; }
-.nav-btn:hover { background:rgba(255,255,255,0.2); }
-.nav-btn.active { background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border-color:transparent; box-shadow:0 6px 20px rgba(255,107,107,0.4); }
+.user-info span { font-size:13px; background:rgba(255,140,0,0.15); padding:6px 14px; border-radius:20px; border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; border:2px solid rgba(255,180,80,0.6); box-shadow:0 0 15px rgba(255,140,0,0.5); color:#fff; font-family:'Segoe UI',sans-serif; }
+.btn-icon { background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-size:18px; width:44px; height:44px; border-radius:50%; cursor:pointer; transition:0.3s; }
+.btn-icon:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.5); }
+
+/* NAV */
+.main-nav { display:flex; justify-content:center; gap:10px; padding:22px; flex-wrap:wrap; }
+.nav-btn { padding:10px 24px; background:rgba(255,140,0,0.08); border:1px solid rgba(255,140,0,0.25); color:#c9a0dc; border-radius:25px; cursor:pointer; font-size:14px; transition:0.3s; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.nav-btn:hover { background:rgba(255,140,0,0.18); color:#ffb86b; box-shadow:0 0 15px rgba(255,140,0,0.3); }
+.nav-btn.active { background:linear-gradient(135deg,#ff6b00,#c72c00); border-color:transparent; color:#fff; box-shadow:0 6px 25px rgba(255,100,0,0.6), 0 0 40px rgba(255,60,0,0.3); }
+
 #content { max-width:1200px; margin:0 auto; padding:20px; }
 .view { display:none; }
 .view.active { display:block; }
-.view h2 { margin-bottom:24px; font-size:26px; }
+.view h2 { margin-bottom:24px; font-size:32px; color:#ff8c00; }
 
 /* QUIZ CARDS */
-.quiz-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
-.quiz-card { background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:24px; cursor:pointer; transition:0.3s; position:relative; overflow:hidden; }
-.quiz-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,0.3); background:rgba(255,255,255,0.15); }
-.quiz-card::before { content:''; position:absolute; top:-50%; right:-50%; width:200%; height:200%; background:radial-gradient(circle, var(--accent,#ff6b6b) 0%, transparent 60%); opacity:0.15; pointer-events:none; }
-.quiz-emoji { font-size:56px; display:block; margin-bottom:12px; }
-.quiz-card h3 { font-size:20px; margin-bottom:8px; }
-.quiz-card p { font-size:13px; opacity:0.85; margin-bottom:16px; line-height:1.5; }
-.quiz-meta { display:flex; justify-content:space-between; align-items:center; font-size:12px; }
-.quiz-difficulty { padding:4px 10px; border-radius:12px; background:rgba(0,0,0,0.25); }
-.play-btn { padding:8px 18px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:20px; color:#fff; cursor:pointer; font-size:13px; font-weight:bold; }
-.quiz-card.completed { opacity:0.75; }
-.quiz-card.completed::after { content:'✓ Пройдено'; position:absolute; top:12px; right:12px; background:#4caf50; padding:4px 10px; border-radius:12px; font-size:11px; font-weight:bold; }
+.quiz-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; }
+.quiz-card { background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:22px; padding:24px; cursor:pointer; transition:0.4s; position:relative; overflow:hidden; }
+.quiz-card:hover { transform:translateY(-8px); box-shadow:0 25px 50px rgba(0,0,0,0.6), 0 0 60px rgba(255,100,0,0.3); border-color:rgba(255,160,0,0.6); }
+.quiz-card::before { content:''; position:absolute; top:-50%; right:-50%; width:200%; height:200%; background:radial-gradient(circle, var(--accent,#ff6b00) 0%, transparent 55%); opacity:0.18; pointer-events:none; animation: batGlow 6s infinite alternate; }
+@keyframes batGlow { 0%{opacity:0.12;} 100%{opacity:0.28;} }
+.quiz-emoji { font-size:60px; display:block; margin-bottom:12px; filter:drop-shadow(0 0 15px rgba(255,140,0,0.6)); position:relative; z-index:1; }
+.quiz-card h3 { font-size:24px; margin-bottom:8px; color:#ffb86b; position:relative; z-index:1; }
+.quiz-card p { font-size:13px; color:#c9a0dc; margin-bottom:16px; line-height:1.5; font-family:'Segoe UI',sans-serif; position:relative; z-index:1; }
+.quiz-meta { display:flex; justify-content:space-between; align-items:center; font-size:12px; position:relative; z-index:1; }
+.quiz-difficulty { padding:5px 12px; border-radius:14px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.play-btn { padding:9px 20px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:20px; color:#fff; cursor:pointer; font-size:13px; font-weight:bold; font-family:'Segoe UI',sans-serif; transition:0.3s; box-shadow:0 4px 15px rgba(255,100,0,0.4); }
+.play-btn:hover { transform:scale(1.05); box-shadow:0 6px 25px rgba(255,100,0,0.6); }
+.quiz-card.completed { opacity:0.85; }
+.quiz-card.completed::after { content:'✓ ПРОЙДЕНО'; position:absolute; top:14px; right:14px; background:linear-gradient(135deg,#4caf50,#2e7d32); padding:5px 12px; border-radius:12px; font-size:10px; font-weight:bold; letter-spacing:1px; font-family:'Segoe UI',sans-serif; box-shadow:0 0 15px rgba(76,175,80,0.5); z-index:2; }
+
+/* PLAYER TAGS над квизом */
+.quiz-players { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; align-items:center; min-height:26px; position:relative; z-index:1; }
+.quiz-players-label { font-size:11px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; opacity:0.7; margin-right:4px; }
+.player-tag { display:flex; align-items:center; gap:5px; padding:3px 10px 3px 3px; background:rgba(255,140,0,0.12); border:1px solid rgba(255,140,0,0.35); border-radius:20px; font-size:11px; font-family:'Segoe UI',sans-serif; color:#ffb86b; font-weight:600; transition:0.3s; }
+.player-tag:hover { background:rgba(255,140,0,0.25); box-shadow:0 0 12px rgba(255,140,0,0.5); }
+.player-tag .mini-avatar { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; font-weight:bold; }
+.player-tag.invited { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
+.player-tag.online::before { content:''; width:6px; height:6px; border-radius:50%; background:#4caf50; box-shadow:0 0 8px #4caf50; }
 
 /* ACHIEVEMENTS */
-.achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
-.achievement { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:20px; text-align:center; transition:0.3s; }
-.achievement.unlocked { background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,107,107,0.15)); border-color:rgba(255,215,0,0.5); box-shadow:0 10px 30px rgba(255,215,0,0.2); }
-.achievement.locked { opacity:0.4; filter:grayscale(1); }
-.achievement-icon { font-size:44px; margin-bottom:10px; }
-.achievement h4 { font-size:15px; margin-bottom:6px; }
-.achievement p { font-size:12px; opacity:0.8; }
+.achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px; }
+.achievement { background:linear-gradient(160deg,rgba(40,10,60,0.7),rgba(20,5,35,0.85)); border:1px solid rgba(255,140,0,0.2); border-radius:18px; padding:22px; text-align:center; transition:0.3s; }
+.achievement.unlocked { background:linear-gradient(160deg,rgba(255,140,0,0.18),rgba(199,44,0,0.15)); border-color:rgba(255,180,80,0.6); box-shadow:0 10px 35px rgba(255,140,0,0.3), inset 0 0 30px rgba(255,140,0,0.08); }
+.achievement.locked { opacity:0.4; filter:grayscale(0.8); }
+.achievement-icon { font-size:48px; margin-bottom:12px; filter:drop-shadow(0 0 12px rgba(255,140,0,0.6)); }
+.achievement h4 { font-size:16px; margin-bottom:6px; color:#ffb86b; font-family:'Segoe UI',sans-serif; }
+.achievement p { font-size:12px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; }
 
 /* LEADERBOARD */
-.leaderboard { display:flex; flex-direction:column; gap:10px; }
-.leaderboard-row { display:flex; align-items:center; gap:16px; padding:16px 20px; background:rgba(255,255,255,0.08); border-radius:14px; border:1px solid rgba(255,255,255,0.12); }
-.leaderboard-row.me { background:linear-gradient(135deg,rgba(255,107,107,0.2),rgba(238,90,111,0.2)); border-color:rgba(255,107,107,0.5); }
-.rank { font-size:20px; font-weight:bold; width:40px; }
-.rank.gold { color:#ffd700; } .rank.silver { color:#c0c0c0; } .rank.bronze { color:#cd7f32; }
-.leaderboard-row .avatar { width:36px; height:36px; font-size:15px; }
-.leaderboard-name { flex:1; font-weight:bold; }
-.leaderboard-xp { font-size:14px; opacity:0.9; }
+.leaderboard { display:flex; flex-direction:column; gap:12px; }
+.leaderboard-row { display:flex; align-items:center; gap:16px; padding:16px 22px; background:linear-gradient(90deg,rgba(40,10,60,0.7),rgba(20,5,35,0.6)); border-radius:16px; border:1px solid rgba(255,140,0,0.15); transition:0.3s; }
+.leaderboard-row:hover { border-color:rgba(255,140,0,0.4); box-shadow:0 0 25px rgba(255,140,0,0.15); }
+.leaderboard-row.me { background:linear-gradient(90deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15)); border-color:rgba(255,160,0,0.6); box-shadow:0 0 30px rgba(255,140,0,0.3); }
+.rank { font-size:22px; font-weight:bold; width:44px; font-family:'Creepster',cursive; }
+.rank.gold { color:#ffd700; text-shadow:0 0 15px #ffd700; }
+.rank.silver { color:#e0e0e0; text-shadow:0 0 15px #c0c0c0; }
+.rank.bronze { color:#cd7f32; text-shadow:0 0 15px #cd7f32; }
+.leaderboard-row .avatar { width:38px; height:38px; font-size:15px; }
+.leaderboard-name { flex:1; font-weight:bold; color:#ffb86b; font-family:'Segoe UI',sans-serif; }
+.leaderboard-xp { font-size:14px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; }
 
 /* FRIENDS */
-.friends-section { max-width:700px; }
+.friends-section { max-width:720px; }
 .search-box { display:flex; gap:10px; margin-bottom:20px; }
-.search-box input { flex:1; padding:12px 16px; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#fff; font-size:15px; }
-.friends-section h3 { margin:24px 0 12px; font-size:18px; }
-.friends-list, .invites-list, #searchResults { display:flex; flex-direction:column; gap:8px; }
-.friend-item { display:flex; align-items:center; gap:12px; padding:12px 16px; background:rgba(255,255,255,0.08); border-radius:12px; }
-.friend-item .avatar { width:36px; height:36px; font-size:15px; }
-.friend-item .name { flex:1; font-weight:bold; }
-.friend-item button { padding:8px 14px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:8px; color:#fff; cursor:pointer; font-size:13px; }
+.search-box input { flex:1; padding:13px 18px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.25); border-radius:12px; color:#ffb86b; font-size:15px; font-family:'Segoe UI',sans-serif; }
+.search-box input:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.friends-section h3 { margin:26px 0 12px; font-size:20px; color:#ff8c00; }
+.friends-list, .invites-list, #searchResults { display:flex; flex-direction:column; gap:10px; }
+.friend-item { display:flex; align-items:center; gap:14px; padding:14px 18px; background:linear-gradient(90deg,rgba(40,10,60,0.7),rgba(20,5,35,0.6)); border-radius:14px; border:1px solid rgba(255,140,0,0.15); transition:0.3s; }
+.friend-item:hover { border-color:rgba(255,140,0,0.4); }
+.friend-item .avatar { width:38px; height:38px; font-size:15px; }
+.friend-item .name { flex:1; font-weight:bold; color:#ffb86b; font-family:'Segoe UI',sans-serif; }
+.friend-item button { padding:8px 16px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:10px; color:#fff; cursor:pointer; font-size:13px; font-family:'Segoe UI',sans-serif; font-weight:600; transition:0.3s; }
+.friend-item button:hover { box-shadow:0 0 20px rgba(255,140,0,0.5); }
 
 /* GAME */
-.game-header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:rgba(0,0,0,0.3); backdrop-filter:blur(10px); }
-.game-info { display:flex; gap:20px; font-size:15px; }
-.game-timer { width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:bold; box-shadow:0 4px 15px rgba(255,107,107,0.5); }
+.game-header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:linear-gradient(180deg,rgba(40,10,60,0.95),rgba(20,5,35,0.8)); backdrop-filter:blur(15px); border-bottom:2px solid rgba(255,140,0,0.3); }
+.game-info { display:flex; gap:20px; font-size:15px; color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.game-timer { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; box-shadow:0 0 30px rgba(255,100,0,0.6), inset 0 0 15px rgba(255,255,255,0.15); font-family:'Segoe UI',sans-serif; }
 .game-timer.warning { animation:pulse 0.5s infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.1);} }
-.game-body { display:grid; grid-template-columns:1fr 320px; gap:20px; padding:24px; max-width:1400px; margin:0 auto; }
-.question-area h2 { font-size:24px; margin-bottom:24px; line-height:1.4; background:rgba(255,255,255,0.08); padding:24px; border-radius:16px; border:1px solid rgba(255,255,255,0.15); }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.15); box-shadow:0 0 45px rgba(255,60,0,0.9);} }
+.game-body { display:grid; grid-template-columns:1fr 340px; gap:22px; padding:24px; max-width:1400px; margin:0 auto; }
+.question-area h2 { font-size:26px; margin-bottom:24px; line-height:1.4; background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); padding:26px; border-radius:18px; border:2px solid rgba(255,140,0,0.3); color:#ffb86b; font-family:'Segoe UI',sans-serif; box-shadow:inset 0 0 40px rgba(255,80,0,0.05); }
 .answers { display:flex; flex-direction:column; gap:12px; }
-.answer-btn { padding:18px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:14px; color:#fff; font-size:16px; cursor:pointer; text-align:left; transition:0.3s; }
-.answer-btn:hover:not(:disabled) { background:rgba(255,255,255,0.2); transform:translateX(4px); }
-.answer-btn.correct { background:linear-gradient(135deg,#4caf50,#66bb6a); border-color:#4caf50; }
-.answer-btn.wrong { background:linear-gradient(135deg,#f44336,#e53935); border-color:#f44336; }
+.answer-btn { padding:18px 24px; background:rgba(255,140,0,0.08); border:2px solid rgba(255,140,0,0.25); border-radius:14px; color:#e8d5b7; font-size:16px; cursor:pointer; text-align:left; transition:0.3s; font-family:'Segoe UI',sans-serif; font-weight:500; }
+.answer-btn:hover:not(:disabled) { background:rgba(255,140,0,0.2); transform:translateX(6px); border-color:rgba(255,160,0,0.6); box-shadow:0 0 25px rgba(255,140,0,0.3); }
+.answer-btn.correct { background:linear-gradient(135deg,rgba(76,175,80,0.4),rgba(46,125,50,0.5)); border-color:#4caf50; box-shadow:0 0 30px rgba(76,175,80,0.5); }
+.answer-btn.wrong { background:linear-gradient(135deg,rgba(244,67,54,0.4),rgba(198,40,40,0.5)); border-color:#f44336; box-shadow:0 0 30px rgba(244,67,54,0.5); }
 .answer-btn:disabled { cursor:not-allowed; }
 
 /* CHAT */
-.chat-panel { background:rgba(0,0,0,0.2); border-radius:16px; padding:16px; display:flex; flex-direction:column; height:500px; border:1px solid rgba(255,255,255,0.15); }
-.chat-panel h3 { margin-bottom:12px; font-size:15px; }
-.chat-messages { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:8px; padding-right:4px; }
-.chat-messages::-webkit-scrollbar { width:4px; }
-.chat-messages::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.3); border-radius:4px; }
-.chat-msg { background:rgba(255,255,255,0.08); padding:8px 12px; border-radius:12px; font-size:13px; word-wrap:break-word; }
-.chat-msg .author { font-weight:bold; color:#ffd700; margin-right:6px; }
-.chat-msg.system { background:rgba(255,107,107,0.15); text-align:center; font-style:italic; opacity:0.9; }
-.chat-input { display:flex; gap:6px; margin-top:12px; }
-.chat-input input { flex:1; padding:10px 12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; font-size:13px; }
-.chat-input button { padding:0 16px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:10px; color:#fff; font-size:18px; cursor:pointer; }
+.chat-panel { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.9)); border-radius:18px; padding:18px; display:flex; flex-direction:column; height:520px; border:2px solid rgba(255,140,0,0.25); box-shadow:inset 0 0 40px rgba(255,80,0,0.05); }
+.chat-panel h3 { margin-bottom:14px; font-size:16px; color:#ff8c00; font-family:'Segoe UI',sans-serif; }
+.chat-messages { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:8px; padding-right:6px; }
+.chat-messages::-webkit-scrollbar { width:5px; }
+.chat-messages::-webkit-scrollbar-thumb { background:rgba(255,140,0,0.4); border-radius:5px; }
+.chat-msg { background:rgba(255,140,0,0.08); padding:9px 13px; border-radius:12px; font-size:13px; word-wrap:break-word; font-family:'Segoe UI',sans-serif; color:#e8d5b7; border-left:3px solid rgba(255,140,0,0.4); }
+.chat-msg .author { font-weight:bold; color:#ffb86b; margin-right:6px; }
+.chat-msg.system { background:rgba(255,140,0,0.15); text-align:center; font-style:italic; color:#c9a0dc; border-left:none; border-top:1px dashed rgba(255,140,0,0.3); }
+.chat-input { display:flex; gap:8px; margin-top:14px; }
+.chat-input input { flex:1; padding:11px 14px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.25); border-radius:10px; color:#ffb86b; font-size:13px; font-family:'Segoe UI',sans-serif; }
+.chat-input input:focus { outline:none; border-color:#ff8c00; }
+.chat-input button { padding:0 18px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:10px; color:#fff; font-size:18px; cursor:pointer; transition:0.3s; }
+.chat-input button:hover { box-shadow:0 0 20px rgba(255,140,0,0.6); }
 
 /* MODAL */
-.modal { position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; }
+.modal { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; backdrop-filter:blur(5px); }
 .modal.hidden { display:none; }
-.modal-content { background:linear-gradient(135deg,#667eea,#764ba2); padding:40px; border-radius:24px; max-width:500px; width:100%; border:1px solid rgba(255,255,255,0.2); box-shadow:0 20px 60px rgba(0,0,0,0.5); animation:modalIn 0.3s ease; }
+.modal-content { background:linear-gradient(160deg,rgba(40,10,60,0.95),rgba(20,5,35,0.98)); padding:42px; border-radius:26px; max-width:520px; width:100%; border:2px solid rgba(255,140,0,0.4); box-shadow:0 30px 80px rgba(0,0,0,0.8), 0 0 100px rgba(255,100,0,0.2); animation:modalIn 0.35s ease; position:relative; }
+.modal-content::before {
+  content:'🎃';
+  position:absolute; top:-28px; right:24px;
+  font-size:44px;
+  filter: drop-shadow(0 0 20px rgba(255,140,0,0.9));
+}
 @keyframes modalIn { from{transform:scale(0.9);opacity:0;} to{transform:scale(1);opacity:1;} }
-.modal-content h2 { margin-bottom:16px; text-align:center; }
-.result-stats { display:flex; justify-content:space-around; margin:24px 0; flex-wrap:wrap; gap:16px; }
+.modal-content h2 { margin-bottom:18px; text-align:center; color:#ff8c00; font-size:28px; }
+.result-stats { display:flex; justify-content:space-around; margin:26px 0; flex-wrap:wrap; gap:16px; }
 .stat { text-align:center; }
-.stat-value { font-size:32px; font-weight:bold; display:block; }
-.stat-label { font-size:13px; opacity:0.8; }
-.modal-content select { width:100%; padding:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#fff; font-size:15px; margin:16px 0; }
-.modal-buttons { display:flex; gap:10px; }
+.stat-value { font-size:36px; font-weight:bold; display:block; color:#ffb86b; font-family:'Creepster',cursive; text-shadow:0 0 20px rgba(255,140,0,0.7); }
+.stat-label { font-size:13px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; margin-top:4px; display:block; }
+.modal-content select { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:18px 0; font-family:'Segoe UI',sans-serif; }
+.modal-buttons { display:flex; gap:12px; }
 .modal-buttons button { flex:1; }
-.round-result { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.9); padding:40px 60px; border-radius:20px; text-align:center; z-index:100; border:2px solid rgba(255,255,255,0.2); }
-.round-result h3 { font-size:32px; margin-bottom:10px; }
+.round-result { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.95); padding:42px 64px; border-radius:22px; text-align:center; z-index:100; border:2px solid rgba(255,140,0,0.5); box-shadow:0 0 80px rgba(255,100,0,0.5); }
 
 /* TOAST */
-.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.9); padding:14px 28px; border-radius:30px; font-size:15px; z-index:300; border:1px solid rgba(255,255,255,0.2); animation:toastIn 0.3s ease; }
+.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,rgba(40,10,60,0.98),rgba(20,5,35,0.98)); padding:15px 30px; border-radius:30px; font-size:15px; z-index:300; border:2px solid rgba(255,140,0,0.5); box-shadow:0 0 40px rgba(255,100,0,0.4); color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; animation:toastIn 0.35s ease; }
 @keyframes toastIn { from{transform:translate(-50%,20px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
 
-@media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:300px; } }
-@media (max-width:600px) { .top-bar { padding:12px; } .logo { font-size:14px; } .user-info span { display:none; } .auth-container { margin:20px; padding:24px; } .quiz-grid { grid-template-columns:1fr; } .nav-btn { padding:8px 14px; font-size:12px; } }
+/* CHAT PARTICIPANTS */
+.chat-participants { display:flex; gap:6px; flex-wrap:wrap; padding:10px; margin-bottom:12px; background:rgba(0,0,0,0.3); border-radius:12px; border:1px solid rgba(255,140,0,0.2); max-height:80px; overflow-y:auto; }
+.chat-participants::-webkit-scrollbar { width:3px; }
+.chat-participants::-webkit-scrollbar-thumb { background:rgba(255,140,0,0.4); border-radius:3px; }
+.participant-chip { display:flex; align-items:center; gap:5px; padding:3px 10px 3px 3px; background:rgba(255,140,0,0.12); border:1px solid rgba(255,140,0,0.35); border-radius:20px; font-size:11px; color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.participant-chip .mini-avatar { width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:9px; color:#fff; font-weight:bold; }
+.participant-chip.me { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
+.participant-chip.me .mini-avatar { background:linear-gradient(135deg,#4caf50,#2e7d32); }
+
+@media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:340px; } }
+@media (max-width:600px) {
+  .top-bar { padding:12px; }
+  .logo { font-size:14px; letter-spacing:1px; }
+  .user-info span { display:none; }
+  .auth-container { margin:20px; padding:28px; }
+  .quiz-grid { grid-template-columns:1fr; }
+  .nav-btn { padding:8px 14px; font-size:12px; }
+  .view h2 { font-size:24px; }
+}
 </style>
 </head>
 <body>
@@ -146,8 +238,8 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
 <!-- AUTH -->
 <div id="authScreen" class="screen active">
   <div class="auth-container">
-    <h1>🎉 Праздничная Викторина</h1>
-    <p class="subtitle">От Хэллоуина до Нового года</p>
+    <h1>Праздничная Викторина</h1>
+    <p class="subtitle">🎃 От Хэллоуина до Нового года 🎄</p>
     <div class="tabs">
       <button class="tab-btn active" data-tab="login">Вход</button>
       <button class="tab-btn" data-tab="register">Регистрация</button>
@@ -155,14 +247,14 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
     <form id="loginForm" class="auth-form active">
       <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
       <input type="password" id="loginPassword" placeholder="Пароль" required>
-      <button type="submit" class="btn-primary">Войти</button>
+      <button type="submit" class="btn-primary">🕯 Войти</button>
       <p class="error" id="loginError"></p>
     </form>
     <form id="registerForm" class="auth-form">
       <input type="text" id="regUsername" placeholder="Имя пользователя" required minlength="3">
       <input type="password" id="regPassword" placeholder="Пароль (мин. 4 символа)" required minlength="4">
       <input type="password" id="regPassword2" placeholder="Повторите пароль" required>
-      <button type="submit" class="btn-primary">Зарегистрироваться</button>
+      <button type="submit" class="btn-primary">🦇 Зарегистрироваться</button>
       <p class="error" id="regError"></p>
     </form>
   </div>
@@ -171,7 +263,7 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
 <!-- MAIN -->
 <div id="mainScreen" class="screen">
   <header class="top-bar">
-    <div class="logo">🎉 Праздничная Викторина</div>
+    <div class="logo">🎃 ПРАЗДНИЧНАЯ ВИКТОРИНА 🦇</div>
     <div class="user-info">
       <span id="userLevel">Ур. 1</span>
       <span id="userXp">0 XP</span>
@@ -203,12 +295,12 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
       <div class="friends-section">
         <div class="search-box">
           <input type="text" id="friendSearch" placeholder="Найти игрока...">
-          <button id="searchBtn" class="btn-primary">Найти</button>
+          <button id="searchBtn" class="btn-primary">🔍 Найти</button>
         </div>
         <div id="searchResults"></div>
-        <h3>Ваши друзья</h3>
+        <h3>👥 Ваши друзья</h3>
         <div id="friendsList" class="friends-list"></div>
-        <h3>Приглашения в игру</h3>
+        <h3>📨 Приглашения в игру</h3>
         <div id="invitesList" class="invites-list"></div>
       </div>
     </section>
@@ -232,6 +324,7 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
     </div>
     <div class="chat-panel">
       <h3>💬 Чат раунда</h3>
+      <div class="chat-participants" id="chatParticipants"></div>
       <div class="chat-messages" id="chatMessages"></div>
       <div class="chat-input">
         <input type="text" id="chatInput" placeholder="Сообщение..." maxlength="100">
@@ -244,7 +337,7 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
 <!-- RESULT MODAL -->
 <div id="resultModal" class="modal hidden">
   <div class="modal-content">
-    <h2 id="resultTitle">Игра завершена!</h2>
+    <h2 id="resultTitle">🎃 Игра завершена!</h2>
     <div class="result-stats" id="resultStats"></div>
     <button id="closeResultBtn" class="btn-primary">В меню</button>
   </div>
@@ -254,10 +347,10 @@ body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:10
 <div id="inviteModal" class="modal hidden">
   <div class="modal-content">
     <h2>Пригласить друга</h2>
-    <p id="inviteQuizName" style="text-align:center;opacity:0.85;margin-top:8px;"></p>
+    <p id="inviteQuizName" style="text-align:center;opacity:0.85;margin-top:8px;color:#c9a0dc;font-family:'Segoe UI',sans-serif;"></p>
     <select id="inviteFriendSelect"></select>
     <div class="modal-buttons">
-      <button id="sendInviteBtn" class="btn-primary">Отправить</button>
+      <button id="sendInviteBtn" class="btn-primary">📨 Отправить</button>
       <button id="cancelInviteBtn" class="btn-secondary">Отмена</button>
     </div>
   </div>
@@ -365,14 +458,17 @@ const DB = {
   get session() { return localStorage.getItem('hq_session'); },
   set session(v) { v ? localStorage.setItem('hq_session', v) : localStorage.removeItem('hq_session'); },
   get invites() { return JSON.parse(localStorage.getItem('hq_invites') || '[]'); },
-  set invites(v) { localStorage.setItem('hq_invites', JSON.stringify(v)); }
+  set invites(v) { localStorage.setItem('hq_invites', JSON.stringify(v)); },
+  get online() { return JSON.parse(localStorage.getItem('hq_online') || '{}'); },
+  set online(v) { localStorage.setItem('hq_online', JSON.stringify(v)); }
 };
 
 function defaultUser(name) {
   return {
     username: name, password: '', xp: 0, level: 1,
     gamesPlayed: 0, perfectGames: 0, messagesSent: 0,
-    completed: {}, friends: [], achievements: [], createdAt: Date.now()
+    completed: {}, friends: [], achievements: [], createdAt: Date.now(),
+    lastSeen: Date.now()
   };
 }
 
@@ -393,9 +489,11 @@ function addXp(user, amount) {
 let currentUser = null;
 let game = null;
 let timerInterval = null;
+let heartbeatInterval = null;
 
 /* =========================================================
-   DOM   ========================================================= */
+   DOM
+   ========================================================= */
 const $ = id => document.getElementById(id);
 const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen') };
 
@@ -411,6 +509,35 @@ function showToast(msg) {
   clearTimeout(t._tm);
   t._tm = setTimeout(() => t.classList.add('hidden'), 2500);
 }
+
+/* =========================================================
+   ONLINE STATUS (heartbeat)
+   ========================================================= */
+function heartbeat() {
+  if (!currentUser) return;
+  const online = DB.online;
+  online[currentUser.username] = Date.now();
+  // Чистим тех, кто не был онлайн >15 сек
+  const now = Date.now();
+  Object.keys(online).forEach(k => { if (now - online[k] > 15000) delete online[k]; });
+  DB.online = online;
+}
+
+function isOnline(username) {
+  const online = DB.online;
+  return online[username] && (Date.now() - online[username] < 15000);
+}
+
+setInterval(() => {
+  if (currentUser) {
+    heartbeat();
+    // Обновляем отображение в реальном времени
+    if (screens.main.classList.contains('active')) {
+      renderQuizzes();
+      if ($('friendsView').classList.contains('active')) renderFriends();
+    }
+  }
+}, 4000);
 
 /* =========================================================
    AUTH
@@ -462,12 +589,16 @@ $('loginForm').addEventListener('submit', e => {
 
   DB.session = u;
   currentUser = users[u];
+  currentUser.lastSeen = Date.now();
   enterMain();
 });
 
 $('logoutBtn').addEventListener('click', () => {
   if (!confirm('Выйти из аккаунта?')) return;
   saveUser();
+  const online = DB.online;
+  delete online[currentUser.username];
+  DB.online = online;
   DB.session = null;
   currentUser = null;
   showScreen('auth');
@@ -477,6 +608,7 @@ $('logoutBtn').addEventListener('click', () => {
 
 function saveUser() {
   if (!currentUser) return;
+  currentUser.lastSeen = Date.now();
   const users = DB.users;
   users[currentUser.username.toLowerCase()] = currentUser;
   DB.users = users;
@@ -486,6 +618,7 @@ function saveUser() {
    MAIN
    ========================================================= */
 function enterMain() {
+  heartbeat();
   updateTopBar();
   renderQuizzes();
   renderAchievements();
@@ -514,26 +647,69 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 });
 
 /* =========================================================
-   QUIZZES RENDER
+   QUIZZES RENDER (с никами друзей над квизом)
    ========================================================= */
 function renderQuizzes() {
   const grid = $('quizGrid');
   grid.innerHTML = '';
+  const friends = currentUser.friends || [];
+
   Object.values(QUIZZES).forEach(q => {
     const done = currentUser.completed && currentUser.completed[q.id];
+
+    // Определяем друзей, которые играли в этот квиз
+    const playedFriends = friends.filter(fname => {
+      const u = DB.users[fname.toLowerCase()];
+      return u && u.completed && u.completed[q.id];
+    });
+
+    // Активные приглашения по этому квизу
+    const activeInvites = DB.invites.filter(i =>
+      i.quizId === q.id && i.from === currentUser.username
+    );
+    const invitedNames = activeInvites.map(i => i.to);
+
     const card = document.createElement('div');
     card.className = 'quiz-card' + (done ? ' completed' : '');
     card.style.setProperty('--accent', q.accent);
+
+    // Формируем блок с игроками над квизом
+    let playersHtml = '';
+    const allPlayers = [
+      { name: currentUser.username, me: true, online: true },
+      ...friends.map(f => ({
+        name: f,
+        me: false,
+        online: isOnline(f),
+        invited: invitedNames.includes(f),
+        played: playedFriends.includes(f)
+      }))
+    ];
+
+    if (allPlayers.length > 0) {
+      playersHtml = '<div class="quiz-players">';
+      playersHtml += '<span class="quiz-players-label">Игроки:</span>';
+      allPlayers.forEach(p => {
+        const cls = p.me ? 'me' : (p.invited ? 'invited' : (p.online ? 'online' : ''));
+        playersHtml += `<div class="player-tag ${cls}" title="${p.name}${p.me ? ' (вы)' : ''}${p.online ? ' • онлайн' : ''}${p.invited ? ' • приглашён' : ''}">
+          <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
+          <span>${p.name}${p.me ? ' (вы)' : ''}</span>
+        </div>`;
+      });
+      playersHtml += '</div>';
+    }
+
     card.innerHTML = `
       <span class="quiz-emoji">${q.emoji}</span>
       <h3>${q.name}</h3>
       <p>${q.description}</p>
+      ${playersHtml}
       <div class="quiz-meta">
         <span class="quiz-difficulty">${q.difficulty} • ${q.questions.length} вопр.</span>
       </div>
-      <div style="display:flex;gap:8px;margin-top:14px;">
-        <button class="play-btn" data-play="${q.id}">Играть</button>
-        <button class="play-btn" style="background:rgba(255,255,255,0.15);" data-invite="${q.id}">👥 Пригласить</button>
+      <div style="display:flex;gap:8px;margin-top:14px;position:relative;z-index:1;">
+        <button class="play-btn" data-play="${q.id}">▶ Играть</button>
+        <button class="play-btn" style="background:rgba(255,140,0,0.25);" data-invite="${q.id}">👥 Пригласить</button>
       </div>
     `;
     grid.appendChild(card);
@@ -560,13 +736,56 @@ function startGame(quizId) {
     wrong: 0,
     answered: false,
     timeLeft: 30,
-    chat: []
+    participants: []
   };
+
+  // Собираем участников: сам игрок + друзья (все, кто онлайн или приглашён)
+  game.participants.push({
+    name: currentUser.username,
+    me: true,
+    online: true
+  });
+
+  const friends = currentUser.friends || [];
+  // Добавляем до 3 друзей (тех, кто онлайн, приоритетно)
+  const sortedFriends = friends.sort((a, b) => isOnline(b) - isOnline(a));
+  sortedFriends.slice(0, 3).forEach(f => {
+    game.participants.push({
+      name: f,
+      me: false,
+      online: isOnline(f)
+    });
+  });
+
   $('gameQuizName').textContent = quiz.emoji + ' ' + quiz.name;
   $('chatMessages').innerHTML = '';
-  addChat('system', 'Игра началась! Удачи!');
+  renderChatParticipants();
+  addChat('system', '🎃 Игра началась! Удачи!');
+  game.participants.filter(p => !p.me).forEach((p, i) => {
+    setTimeout(() => {
+      addChat('system', `${p.name} присоединился к игре`);
+    }, 800 + i * 600);
+  });
+
   showScreen('game');
   nextRound();
+}
+
+function renderChatParticipants() {
+  const cont = $('chatParticipants');
+  cont.innerHTML = '';
+  game.participants.forEach(p => {
+    const chip = document.createElement('div');
+    chip.className = 'participant-chip' + (p.me ? ' me' : '');
+    chip.innerHTML = `
+      <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
+      <span>${p.name}${p.me ? ' (вы)' : ''}</span>
+    `;
+    if (!p.me) {
+      chip.title = p.online ? 'онлайн' : 'оффлайн';
+    }
+    cont.appendChild(chip);
+  });
 }
 
 function nextRound() {
@@ -594,6 +813,15 @@ function nextRound() {
   });
 
   startTimer();
+
+  // Боты (другие игроки) иногда отвечают в чате
+  if (Math.random() < 0.5 && game.participants.length > 1) {
+    const bot = game.participants.filter(p => !p.me)[Math.floor(Math.random() * (game.participants.length - 1))];
+    const botMsgs = ['Хм, сложный вопрос...', 'Я знаю ответ!', 'Легкотня 😎', 'Дайте подумать...', 'Это точно вариант 1!', 'Ну и вопросики...'];
+    setTimeout(() => {
+      if (game && bot) addChat(bot.name, botMsgs[Math.floor(Math.random() * botMsgs.length)]);
+    }, 2000 + Math.random() * 3000);
+  }
 }
 
 function startTimer() {
@@ -625,14 +853,14 @@ function selectAnswer(idx) {
   if (idx === q.correct) {
     game.correct++;
     game.score += 10 + Math.max(0, game.timeLeft);
-    addChat('system', `✅ Верно! +${10 + Math.max(0, game.timeLeft)} очков`);
+    addChat('system', `✅ ${currentUser.username} ответил верно! +${10 + Math.max(0, game.timeLeft)} очков`);
   } else {
     game.wrong++;
     addChat('system', `❌ Неверно. Правильно: ${q.answers[q.correct]}`);
   }
 
   game.round++;
-  setTimeout(nextRound, 1500);
+  setTimeout(nextRound, 1600);
 }
 
 function endGame() {
@@ -649,7 +877,7 @@ function endGame() {
   updateTopBar();
   checkAchievements();
 
-  $('resultTitle').textContent = '🏁 Игра завершена!';
+  $('resultTitle').textContent = '🎃 Игра завершена!';
   $('resultStats').innerHTML = `
     <div class="stat"><span class="stat-value">${game.score}</span><span class="stat-label">Очков</span></div>
     <div class="stat"><span class="stat-value">${game.correct}</span><span class="stat-label">Верных</span></div>
@@ -698,11 +926,17 @@ function sendChat() {
   checkAchievements();
   inp.value = '';
 
-  // Ответ от бота
-  setTimeout(() => {
-    const bots = ['Ого, я тоже так думаю!', 'Ха-ха, согласен 😄', 'Кто это сказал?', 'Не подсказывай!', 'Интересно 🤔', 'Погнали дальше!'];
-    addChat('Гость_' + (Math.floor(Math.random() * 90) + 10), bots[Math.floor(Math.random() * bots.length)]);
-  }, 1200);
+  // Случайный ответ от участника
+  if (game && game.participants.length > 1) {
+    const others = game.participants.filter(p => !p.me);
+    if (others.length && Math.random() < 0.7) {
+      const bot = others[Math.floor(Math.random() * others.length)];
+      const bots = ['Ого, я тоже так думаю!', 'Ха-ха, согласен 😄', 'Кто это сказал?', 'Не подсказывай!', 'Интересно 🤔', 'Погнали дальше!', 'Точно!', 'Не уверен...'];
+      setTimeout(() => {
+        if (game) addChat(bot.name, bots[Math.floor(Math.random() * bots.length)]);
+      }, 1200 + Math.random() * 1500);
+    }
+  }
 }
 
 /* =========================================================
@@ -747,12 +981,13 @@ function renderLeaderboard() {
     const rank = i + 1;
     const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
     const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+    const online = isOnline(u.username);
     const row = document.createElement('div');
     row.className = 'leaderboard-row' + (u.username === currentUser.username ? ' me' : '');
     row.innerHTML = `
       <div class="rank ${rankClass}">${medal}</div>
       <div class="avatar">${u.username[0].toUpperCase()}</div>
-      <div class="leaderboard-name">${u.username}</div>
+      <div class="leaderboard-name">${u.username} ${online ? '<span style="color:#4caf50;font-size:12px;">● онлайн</span>' : ''}</div>
       <div class="leaderboard-xp">Ур. ${u.level} • ${u.xp} XP</div>
     `;
     list.appendChild(row);
@@ -773,16 +1008,17 @@ $('searchBtn').addEventListener('click', () => {
     u.username.toLowerCase().includes(q) && u.username !== currentUser.username
   );
   if (!found.length) {
-    res.innerHTML = '<p style="opacity:0.6;">Никого не найдено</p>';
+    res.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;font-family:\'Segoe UI\',sans-serif;">Никого не найдено</p>';
     return;
   }
   found.forEach(u => {
     const isFriend = (currentUser.friends || []).includes(u.username);
+    const online = isOnline(u.username);
     const item = document.createElement('div');
     item.className = 'friend-item';
     item.innerHTML = `
       <div class="avatar">${u.username[0].toUpperCase()}</div>
-      <div class="name">${u.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${u.level})</span></div>
+      <div class="name">${u.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${u.level}${online ? ' • ● онлайн' : ''})</span></div>
       <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>
         ${isFriend ? '✓ В друзьях' : 'Добавить'}
       </button>
@@ -800,6 +1036,7 @@ function addFriend(name) {
     showToast(`✅ ${name} добавлен в друзья`);
     checkAchievements();
     renderFriends();
+    renderQuizzes();
     $('searchBtn').click();
   }
 }
@@ -808,21 +1045,23 @@ function renderFriends() {
   const list = $('friendsList');
   list.innerHTML = '';
   if (!currentUser.friends || !currentUser.friends.length) {
-    list.innerHTML = '<p style="opacity:0.6;">Пока никого нет. Найдите друзей через поиск!</p>';
+    list.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;font-family:\'Segoe UI\',sans-serif;">Пока никого нет. Найдите друзей через поиск!</p>';
   } else {
     currentUser.friends.forEach(name => {
       const u = DB.users[name.toLowerCase()];
+      const online = isOnline(name);
       const item = document.createElement('div');
       item.className = 'friend-item';
       item.innerHTML = `
         <div class="avatar">${name[0].toUpperCase()}</div>
-        <div class="name">${name} ${u ? `<span style="opacity:0.6;font-size:12px;">(Ур. ${u.level})</span>` : ''}</div>
+        <div class="name">${name} ${u ? `<span style="opacity:0.6;font-size:12px;">(Ур. ${u.level}${online ? ' • ● онлайн' : ''})</span>` : ''}</div>
         <button data-remove="${name}" style="background:rgba(255,255,255,0.15);">Удалить</button>
       `;
       item.querySelector('[data-remove]').addEventListener('click', () => {
         currentUser.friends = currentUser.friends.filter(f => f !== name);
         saveUser();
         renderFriends();
+        renderQuizzes();
       });
       list.appendChild(item);
     });
@@ -844,7 +1083,7 @@ function openInviteModal(quizId) {
     currentUser.friends.forEach(f => {
       const o = document.createElement('option');
       o.value = f;
-      o.textContent = f;
+      o.textContent = f + (isOnline(f) ? ' ● онлайн' : '');
       sel.appendChild(o);
     });
   }
@@ -858,26 +1097,27 @@ $('sendInviteBtn').addEventListener('click', () => {
   const friend = $('inviteFriendSelect').value;
   if (!friend) return showToast('Сначала добавьте друзей');
   const quizId = $('inviteModal').dataset.quizId;
+  const inviteId = 'inv_' + Date.now();
   const invites = DB.invites;
   invites.push({
     from: currentUser.username,
     to: friend,
     quizId,
     date: Date.now(),
-    id: 'inv_' + Date.now()
+    id: inviteId
   });
   DB.invites = invites;
   $('inviteModal').classList.add('hidden');
   showToast(`📨 Приглашение отправлено: ${friend}`);
-  // Симуляция принятия через 5 сек
+  renderQuizzes();
+  // Симуляция принятия через 6 сек
   setTimeout(() => {
-    const current = DB.invites.filter(i => i.id !== 'inv_' + Date.now());
     showToast(`🎮 ${friend} принял приглашение! Можно играть вместе.`);
-  }, 5000);
+    renderQuizzes();
+  }, 6000);
 });
 
 function checkInvites() {
-  // Показываем уведомления о приглашениях для текущего пользователя
   const invites = DB.invites.filter(i => i.to === currentUser.username);
   invites.forEach(inv => {
     if (!inv.notified) {
@@ -885,7 +1125,13 @@ function checkInvites() {
       inv.notified = true;
     }
   });
-  DB.invites = DB.invites.map(i => invites.find(x => x.id === i.id) || i);
+  // Сохраняем обновлённые флаги
+  const allInvites = DB.invites;
+  allInvites.forEach(i => {
+    const found = invites.find(x => x.id === i.id);
+    if (found) i.notified = found.notified;
+  });
+  DB.invites = allInvites;
   renderInvites();
 }
 
@@ -895,7 +1141,7 @@ function renderInvites() {
   list.innerHTML = '';
   const invites = DB.invites.filter(i => i.to === currentUser.username);
   if (!invites.length) {
-    list.innerHTML = '<p style="opacity:0.6;">Нет активных приглашений</p>';
+    list.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;font-family:\'Segoe UI\',sans-serif;">Нет активных приглашений</p>';
     return;
   }
   invites.forEach(inv => {
@@ -921,7 +1167,11 @@ function renderInvites() {
 }
 
 // Периодическая проверка приглашений
-setInterval(() => { if (currentUser) checkInvites(); }, 5000);
+setInterval(() => {
+  if (currentUser && screens.main.classList.contains('active')) {
+    checkInvites();
+  }
+}, 5000);
 
 /* =========================================================
    AUTO LOGIN
