@@ -8,14 +8,10 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Creepster','Segoe UI',Tahoma,sans-serif; }
 body {
   background: radial-gradient(ellipse at top, #2a0845 0%, #1a0525 40%, #0a0112 100%);
-  min-height:100vh;
-  color:#e8d5b7;
-  overflow-x:hidden;
-  position:relative;
+  min-height:100vh; color:#e8d5b7; overflow-x:hidden; position:relative;
 }
 body::before {
-  content:'';
-  position:fixed; inset:0;
+  content:''; position:fixed; inset:0;
   background-image:
     radial-gradient(2px 2px at 20% 30%, rgba(255,165,0,0.6), transparent),
     radial-gradient(2px 2px at 60% 70%, rgba(255,140,0,0.4), transparent),
@@ -23,44 +19,29 @@ body::before {
     radial-gradient(2px 2px at 35% 80%, rgba(255,100,0,0.4), transparent),
     radial-gradient(1px 1px at 90% 55%, rgba(255,180,80,0.5), transparent);
   background-size: 300px 300px, 400px 400px, 250px 250px, 350px 350px, 200px 200px;
-  animation: flicker 4s infinite alternate;
-  pointer-events:none;
-  z-index:0;
+  animation: flicker 4s infinite alternate; pointer-events:none; z-index:0;
 }
-@keyframes flicker {
-  0%,100% { opacity:0.6; }
-  50% { opacity:1; }
-}
+@keyframes flicker { 0%,100% { opacity:0.6; } 50% { opacity:1; } }
 body::after {
-  content:'';
-  position:fixed;
-  bottom:-50px; left:-50px; right:-50px;
-  height:200px;
+  content:''; position:fixed; bottom:-50px; left:-50px; right:-50px; height:200px;
   background: radial-gradient(ellipse at 30% 100%, rgba(255,100,0,0.15), transparent 60%),
               radial-gradient(ellipse at 70% 100%, rgba(200,0,50,0.15), transparent 60%);
-  pointer-events:none;
-  z-index:0;
+  pointer-events:none; z-index:0;
 }
 .screen { display:none; min-height:100vh; position:relative; z-index:1; }
 .screen.active { display:block; }
 .hidden { display:none !important; }
 
-/* TYPOGRAPHY */
 h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; text-shadow:0 0 20px rgba(255,100,0,0.6), 0 0 40px rgba(255,50,0,0.3); }
 
 /* AUTH */
-.auth-container { max-width:440px; margin:70px auto; background:linear-gradient(135deg,rgba(40,10,60,0.85),rgba(20,5,35,0.9)); backdrop-filter:blur(20px); border-radius:24px; padding:44px; box-shadow:0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(255,100,0,0.15), inset 0 0 40px rgba(255,80,0,0.05); border:2px solid rgba(255,140,0,0.35); position:relative; }
+.auth-container { max-width:460px; margin:60px auto; background:linear-gradient(135deg,rgba(40,10,60,0.85),rgba(20,5,35,0.9)); backdrop-filter:blur(20px); border-radius:24px; padding:44px; box-shadow:0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(255,100,0,0.15), inset 0 0 40px rgba(255,80,0,0.05); border:2px solid rgba(255,140,0,0.35); position:relative; }
 .auth-container::before {
-  content:'🎃';
-  position:absolute; top:-30px; left:50%; transform:translateX(-50%);
-  font-size:60px;
-  filter: drop-shadow(0 0 20px rgba(255,140,0,0.8));
+  content:'🎃'; position:absolute; top:-30px; left:50%; transform:translateX(-50%);
+  font-size:60px; filter: drop-shadow(0 0 20px rgba(255,140,0,0.8));
   animation: ghostFloat 3s ease-in-out infinite;
 }
-@keyframes ghostFloat {
-  0%,100% { transform:translateX(-50%) translateY(0); }
-  50% { transform:translateX(-50%) translateY(-8px); }
-}
+@keyframes ghostFloat { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(-8px); } }
 .auth-container h1 { font-size:34px; text-align:center; margin-bottom:8px; color:#ffb86b; }
 .subtitle { text-align:center; opacity:0.75; margin-bottom:30px; font-size:14px; color:#c9a0dc; }
 .tabs { display:flex; background:rgba(0,0,0,0.5); border-radius:14px; padding:5px; margin-bottom:26px; border:1px solid rgba(255,140,0,0.2); }
@@ -97,23 +78,31 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
 .view h2 { margin-bottom:24px; font-size:32px; color:#ff8c00; }
 
 /* QUIZ CARDS */
-.quiz-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; }
-.quiz-card { background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:22px; padding:24px; cursor:pointer; transition:0.4s; position:relative; overflow:hidden; }
-.quiz-card:hover { transform:translateY(-8px); box-shadow:0 25px 50px rgba(0,0,0,0.6), 0 0 60px rgba(255,100,0,0.3); border-color:rgba(255,160,0,0.6); }
+.quiz-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:22px; }
+.quiz-card { background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:22px; padding:24px; transition:0.4s; position:relative; overflow:hidden; }
+.quiz-card:hover { transform:translateY(-6px); box-shadow:0 25px 50px rgba(0,0,0,0.6), 0 0 60px rgba(255,100,0,0.3); border-color:rgba(255,160,0,0.6); }
 .quiz-card::before { content:''; position:absolute; top:-50%; right:-50%; width:200%; height:200%; background:radial-gradient(circle, var(--accent,#ff6b00) 0%, transparent 55%); opacity:0.18; pointer-events:none; animation: batGlow 6s infinite alternate; }
 @keyframes batGlow { 0%{opacity:0.12;} 100%{opacity:0.28;} }
-.quiz-emoji { font-size:60px; display:block; margin-bottom:12px; filter:drop-shadow(0 0 15px rgba(255,140,0,0.6)); position:relative; z-index:1; }
+.quiz-emoji { font-size:56px; display:block; margin-bottom:12px; filter:drop-shadow(0 0 15px rgba(255,140,0,0.6)); position:relative; z-index:1; }
 .quiz-card h3 { font-size:24px; margin-bottom:8px; color:#ffb86b; position:relative; z-index:1; }
-.quiz-card p { font-size:13px; color:#c9a0dc; margin-bottom:16px; line-height:1.5; font-family:'Segoe UI',sans-serif; position:relative; z-index:1; }
-.quiz-meta { display:flex; justify-content:space-between; align-items:center; font-size:12px; position:relative; z-index:1; }
-.quiz-difficulty { padding:5px 12px; border-radius:14px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.quiz-card p { font-size:13px; color:#c9a0dc; margin-bottom:14px; line-height:1.5; font-family:'Segoe UI',sans-serif; position:relative; z-index:1; }
+.quiz-meta { display:flex; justify-content:space-between; align-items:center; font-size:12px; position:relative; z-index:1; margin-bottom:14px; }
+
+/* Выбор сложности */
+.difficulty-selector { display:flex; gap:6px; margin-bottom:14px; position:relative; z-index:1; }
+.diff-btn { flex:1; padding:8px 6px; background:rgba(0,0,0,0.35); border:1px solid rgba(255,140,0,0.2); border-radius:10px; color:#c9a0dc; cursor:pointer; font-size:11px; font-family:'Segoe UI',sans-serif; font-weight:600; transition:0.3s; text-align:center; }
+.diff-btn:hover { background:rgba(255,140,0,0.15); color:#ffb86b; }
+.diff-btn.active[data-diff="easy"] { background:linear-gradient(135deg,#4caf50,#2e7d32); color:#fff; border-color:transparent; box-shadow:0 0 15px rgba(76,175,80,0.5); }
+.diff-btn.active[data-diff="medium"] { background:linear-gradient(135deg,#ff9800,#e65100); color:#fff; border-color:transparent; box-shadow:0 0 15px rgba(255,152,0,0.5); }
+.diff-btn.active[data-diff="hard"] { background:linear-gradient(135deg,#f44336,#b71c1c); color:#fff; border-color:transparent; box-shadow:0 0 15px rgba(244,67,54,0.5); }
+
 .play-btn { padding:9px 20px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:20px; color:#fff; cursor:pointer; font-size:13px; font-weight:bold; font-family:'Segoe UI',sans-serif; transition:0.3s; box-shadow:0 4px 15px rgba(255,100,0,0.4); }
 .play-btn:hover { transform:scale(1.05); box-shadow:0 6px 25px rgba(255,100,0,0.6); }
-.quiz-card.completed { opacity:0.85; }
+.quiz-actions { display:flex; gap:8px; flex-wrap:wrap; position:relative; z-index:1; }
 .quiz-card.completed::after { content:'✓ ПРОЙДЕНО'; position:absolute; top:14px; right:14px; background:linear-gradient(135deg,#4caf50,#2e7d32); padding:5px 12px; border-radius:12px; font-size:10px; font-weight:bold; letter-spacing:1px; font-family:'Segoe UI',sans-serif; box-shadow:0 0 15px rgba(76,175,80,0.5); z-index:2; }
 
 /* PLAYER TAGS над квизом */
-.quiz-players { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; align-items:center; min-height:26px; position:relative; z-index:1; }
+.quiz-players { display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap; align-items:center; min-height:26px; position:relative; z-index:1; }
 .quiz-players-label { font-size:11px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; opacity:0.7; margin-right:4px; }
 .player-tag { display:flex; align-items:center; gap:5px; padding:3px 10px 3px 3px; background:rgba(255,140,0,0.12); border:1px solid rgba(255,140,0,0.35); border-radius:20px; font-size:11px; font-family:'Segoe UI',sans-serif; color:#ffb86b; font-weight:600; transition:0.3s; }
 .player-tag:hover { background:rgba(255,140,0,0.25); box-shadow:0 0 12px rgba(255,140,0,0.5); }
@@ -144,9 +133,9 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
 .leaderboard-xp { font-size:14px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; }
 
 /* FRIENDS */
-.friends-section { max-width:720px; }
-.search-box { display:flex; gap:10px; margin-bottom:20px; }
-.search-box input { flex:1; padding:13px 18px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.25); border-radius:12px; color:#ffb86b; font-size:15px; font-family:'Segoe UI',sans-serif; }
+.friends-section { max-width:760px; }
+.search-box { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.search-box input { flex:1; min-width:200px; padding:13px 18px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.25); border-radius:12px; color:#ffb86b; font-size:15px; font-family:'Segoe UI',sans-serif; }
 .search-box input:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
 .friends-section h3 { margin:26px 0 12px; font-size:20px; color:#ff8c00; }
 .friends-list, .invites-list, #searchResults { display:flex; flex-direction:column; gap:10px; }
@@ -157,9 +146,19 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
 .friend-item button { padding:8px 16px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:10px; color:#fff; cursor:pointer; font-size:13px; font-family:'Segoe UI',sans-serif; font-weight:600; transition:0.3s; }
 .friend-item button:hover { box-shadow:0 0 20px rgba(255,140,0,0.5); }
 
+/* LINK BOX */
+.link-box { display:flex; gap:10px; margin:16px 0; padding:14px; background:rgba(0,0,0,0.4); border:1px dashed rgba(255,140,0,0.4); border-radius:12px; align-items:center; flex-wrap:wrap; }
+.link-box input { flex:1; min-width:200px; padding:10px 12px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.25); border-radius:8px; color:#ffb86b; font-size:12px; font-family:monospace; }
+.copy-btn { padding:10px 18px; background:linear-gradient(135deg,#4caf50,#2e7d32); border:none; border-radius:8px; color:#fff; cursor:pointer; font-size:13px; font-family:'Segoe UI',sans-serif; font-weight:600; transition:0.3s; }
+.copy-btn:hover { box-shadow:0 0 20px rgba(76,175,80,0.5); }
+
 /* GAME */
 .game-header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:linear-gradient(180deg,rgba(40,10,60,0.95),rgba(20,5,35,0.8)); backdrop-filter:blur(15px); border-bottom:2px solid rgba(255,140,0,0.3); }
-.game-info { display:flex; gap:20px; font-size:15px; color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; }
+.game-info { display:flex; gap:20px; font-size:15px; color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; flex-wrap:wrap; justify-content:center; }
+.game-info .diff-badge { padding:3px 10px; border-radius:12px; font-size:12px; }
+.game-info .diff-badge.easy { background:rgba(76,175,80,0.25); color:#8bc34a; border:1px solid rgba(76,175,80,0.5); }
+.game-info .diff-badge.medium { background:rgba(255,152,0,0.25); color:#ffb74d; border:1px solid rgba(255,152,0,0.5); }
+.game-info .diff-badge.hard { background:rgba(244,67,54,0.25); color:#ef5350; border:1px solid rgba(244,67,54,0.5); }
 .game-timer { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:bold; box-shadow:0 0 30px rgba(255,100,0,0.6), inset 0 0 15px rgba(255,255,255,0.15); font-family:'Segoe UI',sans-serif; }
 .game-timer.warning { animation:pulse 0.5s infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.15); box-shadow:0 0 45px rgba(255,60,0,0.9);} }
@@ -190,26 +189,24 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
 /* MODAL */
 .modal { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; backdrop-filter:blur(5px); }
 .modal.hidden { display:none; }
-.modal-content { background:linear-gradient(160deg,rgba(40,10,60,0.95),rgba(20,5,35,0.98)); padding:42px; border-radius:26px; max-width:520px; width:100%; border:2px solid rgba(255,140,0,0.4); box-shadow:0 30px 80px rgba(0,0,0,0.8), 0 0 100px rgba(255,100,0,0.2); animation:modalIn 0.35s ease; position:relative; }
-.modal-content::before {
-  content:'🎃';
-  position:absolute; top:-28px; right:24px;
-  font-size:44px;
-  filter: drop-shadow(0 0 20px rgba(255,140,0,0.9));
-}
+.modal-content { background:linear-gradient(160deg,rgba(40,10,60,0.95),rgba(20,5,35,0.98)); padding:42px; border-radius:26px; max-width:540px; width:100%; border:2px solid rgba(255,140,0,0.4); box-shadow:0 30px 80px rgba(0,0,0,0.8), 0 0 100px rgba(255,100,0,0.2); animation:modalIn 0.35s ease; position:relative; max-height:90vh; overflow-y:auto; }
+.modal-content::before { content:'🎃'; position:absolute; top:-28px; right:24px; font-size:44px; filter: drop-shadow(0 0 20px rgba(255,140,0,0.9)); }
 @keyframes modalIn { from{transform:scale(0.9);opacity:0;} to{transform:scale(1);opacity:1;} }
 .modal-content h2 { margin-bottom:18px; text-align:center; color:#ff8c00; font-size:28px; }
 .result-stats { display:flex; justify-content:space-around; margin:26px 0; flex-wrap:wrap; gap:16px; }
 .stat { text-align:center; }
 .stat-value { font-size:36px; font-weight:bold; display:block; color:#ffb86b; font-family:'Creepster',cursive; text-shadow:0 0 20px rgba(255,140,0,0.7); }
 .stat-label { font-size:13px; color:#c9a0dc; font-family:'Segoe UI',sans-serif; margin-top:4px; display:block; }
-.modal-content select { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:18px 0; font-family:'Segoe UI',sans-serif; }
-.modal-buttons { display:flex; gap:12px; }
+.modal-content select, .modal-content input[type=text] { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:14px 0; font-family:'Segoe UI',sans-serif; }
+.modal-content input[type=text]:focus, .modal-content select:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.modal-buttons { display:flex; gap:12px; margin-top:8px; }
 .modal-buttons button { flex:1; }
-.round-result { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.95); padding:42px 64px; border-radius:22px; text-align:center; z-index:100; border:2px solid rgba(255,140,0,0.5); box-shadow:0 0 80px rgba(255,100,0,0.5); }
+.modal-tabs { display:flex; gap:8px; margin-bottom:20px; background:rgba(0,0,0,0.4); padding:5px; border-radius:12px; }
+.modal-tab { flex:1; padding:10px; background:transparent; border:none; color:#c9a0dc; cursor:pointer; border-radius:9px; font-size:13px; font-family:'Segoe UI',sans-serif; font-weight:600; transition:0.3s; }
+.modal-tab.active { background:linear-gradient(135deg,#ff6b00,#c72c00); color:#fff; }
 
 /* TOAST */
-.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,rgba(40,10,60,0.98),rgba(20,5,35,0.98)); padding:15px 30px; border-radius:30px; font-size:15px; z-index:300; border:2px solid rgba(255,140,0,0.5); box-shadow:0 0 40px rgba(255,100,0,0.4); color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; animation:toastIn 0.35s ease; }
+.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,rgba(40,10,60,0.98),rgba(20,5,35,0.98)); padding:15px 30px; border-radius:30px; font-size:15px; z-index:300; border:2px solid rgba(255,140,0,0.5); box-shadow:0 0 40px rgba(255,100,0,0.4); color:#ffb86b; font-family:'Segoe UI',sans-serif; font-weight:600; animation:toastIn 0.35s ease; max-width:90%; text-align:center; }
 @keyframes toastIn { from{transform:translate(-50%,20px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
 
 /* CHAT PARTICIPANTS */
@@ -221,21 +218,35 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
 .participant-chip.me { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
 .participant-chip.me .mini-avatar { background:linear-gradient(135deg,#4caf50,#2e7d32); }
 
+/* LOBBY (ожидание по ссылке) */
+.lobby-box { background:linear-gradient(160deg,rgba(40,10,60,0.95),rgba(20,5,35,0.98)); border:2px solid rgba(255,140,0,0.4); border-radius:24px; padding:40px; max-width:600px; margin:60px auto; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,0.7), 0 0 100px rgba(255,100,0,0.25); }
+.lobby-box h2 { font-size:30px; margin-bottom:16px; color:#ff8c00; }
+.lobby-box p { font-family:'Segoe UI',sans-serif; color:#c9a0dc; margin-bottom:12px; font-size:15px; }
+.lobby-players { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:24px 0; min-height:60px; }
+.lobby-players .player-tag { font-size:14px; padding:8px 16px 8px 8px; }
+.lobby-players .player-tag .mini-avatar { width:28px; height:28px; font-size:13px; }
+
+/* PASTE LINK BOX */
+.paste-box { background:rgba(0,0,0,0.4); border:2px dashed rgba(255,140,0,0.4); border-radius:16px; padding:20px; margin:20px 0; }
+.paste-box p { font-size:13px; margin-bottom:10px; }
+
 @media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:340px; } }
 @media (max-width:600px) {
   .top-bar { padding:12px; }
-  .logo { font-size:14px; letter-spacing:1px; }
+  .logo { font-size:13px; letter-spacing:1px; }
   .user-info span { display:none; }
-  .auth-container { margin:20px; padding:28px; }
+  .auth-container { margin:16px; padding:26px; }
   .quiz-grid { grid-template-columns:1fr; }
   .nav-btn { padding:8px 14px; font-size:12px; }
-  .view h2 { font-size:24px; }
+  .view h2 { font-size:22px; }
+  .modal-content { padding:24px; }
+  .lobby-box { margin:30px 16px; padding:24px; }
 }
 </style>
 </head>
 <body>
 
-<!-- AUTH -->
+<!-- ========== AUTH ========== -->
 <div id="authScreen" class="screen active">
   <div class="auth-container">
     <h1>Праздничная Викторина</h1>
@@ -260,7 +271,7 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- ========== MAIN ========== -->
 <div id="mainScreen" class="screen">
   <header class="top-bar">
     <div class="logo">🎃 ПРАЗДНИЧНАЯ ВИКТОРИНА 🦇</div>
@@ -291,11 +302,11 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
       <div class="leaderboard" id="leaderboardList"></div>
     </section>
     <section id="friendsView" class="view">
-      <h2>Друзья и приглашения</h2>
+      <h2>Друзья</h2>
       <div class="friends-section">
         <div class="search-box">
-          <input type="text" id="friendSearch" placeholder="Найти игрока...">
-          <button id="searchBtn" class="btn-primary">🔍 Найти</button>
+          <input type="text" id="friendSearch" placeholder="Введите никнейм друга и нажмите Enter...">
+          <button id="searchBtn" class="btn-primary">🔍 Добавить</button>
         </div>
         <div id="searchResults"></div>
         <h3>👥 Ваши друзья</h3>
@@ -307,13 +318,27 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
   </main>
 </div>
 
-<!-- GAME -->
+<!-- ========== LOBBY (по ссылке) ========== -->
+<div id="lobbyScreen" class="screen">
+  <div class="lobby-box">
+    <h2>🎃 Лобби игры</h2>
+    <p id="lobbyQuizInfo"></p>
+    <p id="lobbyDifficulty"></p>
+    <p style="margin-top:16px;">Ожидаем игроков...</p>
+    <div class="lobby-players" id="lobbyPlayers"></div>
+    <button id="startLobbyGameBtn" class="btn-primary" style="width:100%;margin-top:20px;">▶ Начать игру</button>
+    <button id="leaveLobbyBtn" class="btn-secondary" style="width:100%;margin-top:10px;">← Покинуть лобби</button>
+  </div>
+</div>
+
+<!-- ========== GAME ========== -->
 <div id="gameScreen" class="screen">
   <header class="game-header">
     <button id="leaveGameBtn" class="btn-icon">←</button>
     <div class="game-info">
       <span id="gameQuizName"></span>
       <span id="gameRound">Раунд 1/5</span>
+      <span id="gameDifficultyBadge" class="diff-badge"></span>
     </div>
     <div class="game-timer" id="gameTimer">30</div>
   </header>
@@ -334,25 +359,50 @@ h1, h2, h3 { font-family:'Creepster','Segoe UI',cursive; letter-spacing:2px; tex
   </div>
 </div>
 
-<!-- RESULT MODAL -->
+<!-- ========== RESULT MODAL ========== -->
 <div id="resultModal" class="modal hidden">
   <div class="modal-content">
     <h2 id="resultTitle">🎃 Игра завершена!</h2>
     <div class="result-stats" id="resultStats"></div>
-    <button id="closeResultBtn" class="btn-primary">В меню</button>
+    <button id="closeResultBtn" class="btn-primary" style="width:100%;">В меню</button>
   </div>
 </div>
 
-<!-- INVITE MODAL -->
+<!-- ========== INVITE MODAL ========== -->
 <div id="inviteModal" class="modal hidden">
   <div class="modal-content">
-    <h2>Пригласить друга</h2>
-    <p id="inviteQuizName" style="text-align:center;opacity:0.85;margin-top:8px;color:#c9a0dc;font-family:'Segoe UI',sans-serif;"></p>
-    <select id="inviteFriendSelect"></select>
-    <div class="modal-buttons">
-      <button id="sendInviteBtn" class="btn-primary">📨 Отправить</button>
-      <button id="cancelInviteBtn" class="btn-secondary">Отмена</button>
+    <h2>Пригласить в игру</h2>
+    <p id="inviteQuizName" style="text-align:center;opacity:0.85;margin-top:8px;color:#c9a0dc;font-family:'Segoe UI',sans-serif;font-size:13px;"></p>
+
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-itab="link">🔗 Ссылка</button>
+      <button class="modal-tab" data-itab="friends">👥 Друзья</button>
+      <button class="modal-tab" data-itab="nick">🔍 По никнейму</button>
     </div>
+
+    <!-- Ссылка -->
+    <div id="inviteLinkPanel" class="invite-panel">
+      <p style="font-family:'Segoe UI',sans-serif;color:#c9a0dc;font-size:13px;text-align:center;margin-bottom:12px;">Скопируйте ссылку и отправьте её в мессенджер:</p>
+      <div class="link-box">
+        <input type="text" id="inviteLinkInput" readonly>
+        <button class="copy-btn" id="copyLinkBtn">📋 Копировать</button>
+      </div>
+      <p style="font-family:'Segoe UI',sans-serif;color:#c9a0dc;font-size:12px;text-align:center;">Игрок откроет ссылку — и сразу присоединится к лобби</p>
+    </div>
+
+    <!-- Друзья -->
+    <div id="inviteFriendsPanel" class="invite-panel hidden">
+      <select id="inviteFriendSelect"></select>
+      <button id="sendInviteBtn" class="btn-primary" style="width:100%;">📨 Отправить приглашение</button>
+    </div>
+
+    <!-- По никнейму -->
+    <div id="inviteNickPanel" class="invite-panel hidden">
+      <input type="text" id="inviteNickInput" placeholder="Введите никнейм...">
+      <button id="inviteByNickBtn" class="btn-primary" style="width:100%;">🎮 Пригласить по никнейму</button>
+    </div>
+
+    <button id="cancelInviteBtn" class="btn-secondary" style="width:100%;margin-top:12px;">Отмена</button>
   </div>
 </div>
 
@@ -366,72 +416,169 @@ const QUIZZES = {
   halloween: {
     id:'halloween', name:'Хэллоуин', emoji:'🎃',
     description:'Проверь свои знания о самом жутком празднике года!',
-    difficulty:'Легко', accent:'#ff6b00',
-    questions:[
-      {q:'Какого числа отмечается Хэллоуин?', answers:['30 октября','31 октября','1 ноября','28 октября'], correct:1},
-      {q:'Что дети говорят, стучась в двери?', answers:['Сладость или гадость!','Дайте конфет!','Угостите!','Откройте!'], correct:0},
-      {q:'Какой овощ используется для фонаря Джека?', answers:['Арбуз','Тыква','Дыня','Кабачок'], correct:1},
-      {q:'Из какой страны родом традиция Хэллоуина?', answers:['США','Ирландия','Мексика','Англия'], correct:1},
-      {q:'Как называется праздник в Мексике, связанный с Хэллоуином?', answers:['Карнавал','День Мёртвых','Фиеста','Сомбреро'], correct:1}
-    ]
+    accent:'#ff6b00',
+    questions: {
+      easy: [
+        {q:'Какого числа отмечается Хэллоуин?', answers:['30 октября','31 октября','1 ноября','28 октября'], correct:1},
+        {q:'Какой овощ используется для фонаря Джека?', answers:['Арбуз','Тыква','Дыня','Кабачок'], correct:1},
+        {q:'Что дети говорят, стучась в двери?', answers:['Сладость или гадость!','Дайте конфет!','Угостите!','Откройте!'], correct:0},
+        {q:'Какое животное традиционно сопровождает ведьм?', answers:['Собака','Кошка','Сова','Ворон'], correct:1}
+      ],
+      medium: [
+        {q:'Из какой страны родом традиция Хэллоуина?', answers:['США','Ирландия','Мексика','Англия'], correct:1},
+        {q:'Как называется праздник в Мексике, связанный с Хэллоуином?', answers:['Карнавал','День Мёртвых','Фиеста','Сомбреро'], correct:1},
+        {q:'Какого цвета традиционный костюм тыквы?', answers:['Оранжевый с чёрным','Красный','Зелёный','Синий'], correct:0},
+        {q:'Какая игра на Хэллоуин связана с яблоками?', answers:['Ловля яблок','Прыжки','Метание','Поиск'], correct:0},
+        {q:'Что символизирует паук на Хэллоуин?', answers:['Удачу','Деньги','Болезнь','Холод'], correct:0}
+      ],
+      hard: [
+        {q:'Как изначально назывался Хэллоуин в кельтской традиции?', answers:['Самайн','Белтейн','Имболк','Лугнасад'], correct:0},
+        {q:'Какое древнее племя считается родоначальником Хэллоуина?', answers:['Римляне','Кельты','Викинги','Греки'], correct:1},
+        {q:'Какой цвет не является традиционным для Хэллоуина?', answers:['Оранжевый','Чёрный','Фиолетовый','Синий'], correct:3},
+        {q:'Как называется обычай "trick-or-treat" на русском буквально?', answers:['Шутка или угощение','Игра или конфета','Хитрость или дар','Сладость или злость'], correct:0},
+        {q:'Когда Хэллоуин начали праздновать в США массово?', answers:['XVIII век','XIX век','XX век','XVII век'], correct:1},
+        {q:'Что означает свеча внутри тыквы?', answers:['Огонь в честь духов','Свет в доме','Тепло','Просто декор'], correct:0}
+      ]
+    }
   },
   dayOfDead: {
     id:'dayOfDead', name:'День Мёртвых', emoji:'💀',
     description:'Мексиканский праздник памяти и радости о жизни!',
-    difficulty:'Средне', accent:'#e91e63',
-    questions:[
-      {q:'Как называется День Мёртвых на испанском?', answers:['Día de los Muertos','Día de la Vida','Fiesta Muerta','Calaveras'], correct:0},
-      {q:'Сколько дней длится праздник?', answers:['1 день','2 дня','3 дня','5 дней'], correct:1},
-      {q:'Какие цветы символизируют праздник?', answers:['Розы','Бархатцы','Лилии','Тюльпаны'], correct:1},
-      {q:'Что делают люди на кладбищах в этот праздник?', answers:['Молчат','Убирают','Празднуют','Спят'], correct:2}
-    ]
+    accent:'#e91e63',
+    questions: {
+      easy: [
+        {q:'В какой стране отмечают День Мёртвых?', answers:['Испания','Мексика','Италия','Бразилия'], correct:1},
+        {q:'Какие цветы символизируют праздник?', answers:['Розы','Бархатцы','Лилии','Тюльпаны'], correct:1},
+        {q:'Как называются сахарные черепа на празднике?', answers:['Калаверас','Мучачос','Тапас','Сомбреро'], correct:0}
+      ],
+      medium: [
+        {q:'Как называется День Мёртвых на испанском?', answers:['Día de los Muertos','Día de la Vida','Fiesta Muerta','Calaveras'], correct:0},
+        {q:'Сколько дней длится праздник?', answers:['1 день','2 дня','3 дня','5 дней'], correct:1},
+        {q:'Что делают люди на кладбищах в этот праздник?', answers:['Молчат','Убирают','Празднуют','Спят'], correct:2},
+        {q:'Какое блюдо традиционно готовят?', answers:['Паэлья','Моле','Тако','Эмпанада'], correct:1}
+      ],
+      hard: [
+        {q:'Какому святому посвящён первый день праздника?', answers:['Св. Иоанну','Св. Всех Святых','Св. Михаилу','Св. Петру'], correct:1},
+        {q:'Что такое "офренда"?', answers:['Церковь','Алтарь-подношение','Песня','Танец'], correct:1},
+        {q:'Какого числа второй день праздника?', answers:['1 ноября','2 ноября','3 ноября','31 октября'], correct:1},
+        {q:'Какое животное встречается на алтарях чаще всего?', answers:['Собака','Кошка','Обезьяна','Ящерица'], correct:0},
+        {q:'Что делают со "съедобными черепами" в конце?', answers:['Съедают','Выбрасывают','Дают детям','Сохраняют'], correct:0},
+        {q:'Откуда пришла традиция Дня Мёртвых?', answers:['Испания','Коренное население Мексики','Африка','Китай'], correct:1}
+      ]
+    }
   },
   thanksgiving: {
     id:'thanksgiving', name:'День Благодарения', emoji:'🦃',
     description:'Американский праздник урожая и семьи',
-    difficulty:'Легко', accent:'#ff9800',
-    questions:[
-      {q:'В каком месяце отмечают День Благодарения в США?', answers:['Октябрь','Ноябрь','Декабрь','Сентябрь'], correct:1},
-      {q:'Какая птица традиционно готовится?', answers:['Курица','Индейка','Утка','Гусь'], correct:1},
-      {q:'Кто участвовал в первом празднике?', answers:['Пираты','Пилигримы и индейцы','Ковбои','Рыцари'], correct:1},
-      {q:'Какой пирог традиционно пекут?', answers:['Тыквенный','Яблочный','Вишнёвый','Шоколадный'], correct:0}
-    ]
+    accent:'#ff9800',
+    questions: {
+      easy: [
+        {q:'В каком месяце отмечают День Благодарения в США?', answers:['Октябрь','Ноябрь','Декабрь','Сентябрь'], correct:1},
+        {q:'Какая птица традиционно готовится?', answers:['Курица','Индейка','Утка','Гусь'], correct:1},
+        {q:'Какой пирог традиционно пекут?', answers:['Тыквенный','Яблочный','Вишнёвый','Шоколадный'], correct:0}
+      ],
+      medium: [
+        {q:'Кто участвовал в первом празднике?', answers:['Пираты','Пилигримы и индейцы','Ковбои','Рыцари'], correct:1},
+        {q:'В каком году был первый День Благодарения?', answers:['1600','1621','1700','1750'], correct:1},
+        {q:'Какая ягода используется в традиционном соусе?', answers:['Малина','Клюква','Черника','Крыжовник'], correct:1},
+        {q:'Какая традиция следует после обеда?', answers:['Прогулка','Просмотр футбола','Сон','Концерт'], correct:1}
+      ],
+      hard: [
+        {q:'Какое имя было у вождя индейцев племени вампаноаг?', answers:['Массасойт','Скванто','Покахонтас','Героним'], correct:0},
+        {q:'Сколько индеек съедают в США в этот день?', answers:['~10 млн','~46 млн','~100 млн','~200 млн'], correct:1},
+        {q:'Кто ввёл День Благодарения как национальный праздник?', answers:['Джордж Вашингтон','Авраам Линкольн','Томас Джефферсон','Франклин Рузвельт'], correct:1},
+        {q:'В каком году президент официально перенёс дату празднования?', answers:['1863','1939','1945','1950'], correct:1},
+        {q:'Как называется специальная кастрюля для индейки?', answers:['Гриль','Ростер','Сковорода','Котел'], correct:1},
+        {q:'Какое племя помогло пилигримам выжить?', answers:['Вампаноаг','Ирокезы','Сиу','Чероки'], correct:0}
+      ]
+    }
   },
   christmas: {
     id:'christmas', name:'Рождество', emoji:'🎄',
     description:'Светлый праздник с множеством традиций!',
-    difficulty:'Легко', accent:'#4caf50',
-    questions:[
-      {q:'Какого числа католическое Рождество?', answers:['24 декабря','25 декабря','1 января','7 января'], correct:1},
-      {q:'Что традиционно вешают на ёлку?', answers:['Фрукты','Игрушки и гирлянды','Одежду','Книги'], correct:1},
-      {q:'Как зовут главного дарителя подарков в США?', answers:['Дед Мороз','Санта-Клаус','Святой Николай','Морозко'], correct:1},
-      {q:'Какого цвета омела приносит удачу?', answers:['Красного','Зелёного','Белого','Синего'], correct:1},
-      {q:'Что поют на Рождество?', answers:['Рок','Колядки','Рэп','Опера'], correct:1}
-    ]
+    accent:'#4caf50',
+    questions: {
+      easy: [
+        {q:'Какого числа католическое Рождество?', answers:['24 декабря','25 декабря','1 января','7 января'], correct:1},
+        {q:'Как зовут главного дарителя подарков в США?', answers:['Дед Мороз','Санта-Клаус','Святой Николай','Морозко'], correct:1},
+        {q:'Что традиционно вешают на ёлку?', answers:['Фрукты','Игрушки и гирлянды','Одежду','Книги'], correct:1},
+        {q:'Что поют на Рождество?', answers:['Рок','Колядки','Рэп','Опера'], correct:1}
+      ],
+      medium: [
+        {q:'Сколько оленей у Санта-Клауса?', answers:['6','7','8','9'], correct:2},
+        {q:'Как зовут главного оленя с красным носом?', answers:['Рудольф','Дансер','Прэнсер','Купид'], correct:0},
+        {q:'Какого цвета омела приносит удачу?', answers:['Красного','Зелёного','Белого','Синего'], correct:1},
+        {q:'Откуда Санта попадает в дом?', answers:['Через дверь','Через окно','Через дымоход','Через подвал'], correct:2},
+        {q:'Какая страна подарила традицию рождественской ёлки?', answers:['Германия','Франция','Англия','Италия'], correct:0}
+      ],
+      hard: [
+        {q:'Как называют 12 дней после Рождества?', answers:['Коляды','Святки','Адвент','Пост'], correct:1},
+        {q:'В какой стране придумали рождественские открытки?', answers:['Англия','Германия','США','Франция'], correct:0},
+        {q:'Как называется традиционный британский рождественский пирог?', answers:['Пудинг','Пай','Торт','Кекс'], correct:0},
+        {q:'Какое растение традиционно стоит в доме под Рождество?', answers:['Пуансеттия','Кактус','Орхидея','Роза'], correct:0},
+        {q:'Сколько блюд традиционно на рождественском столе в России?', answers:['7','12','13','20'], correct:1},
+        {q:'Как на самом деле звали святого, чьё имя носит Санта?', answers:['Николай','Пётр','Иоанн','Павел'], correct:0}
+      ]
+    }
   },
   newYear: {
     id:'newYear', name:'Новый год', emoji:'🎆',
     description:'Самый волшебный праздник! Проверь знания!',
-    difficulty:'Легко', accent:'#2196f3',
-    questions:[
-      {q:'Во сколько начинают бить куранты?', answers:['21:00','22:00','00:00','01:00'], correct:2},
-      {q:'Что загадывают под бой курантов?', answers:['Желание','Тосты','Песни','Стихи'], correct:0},
-      {q:'Что традиционно пьют в новогоднюю ночь?', answers:['Воду','Шампанское','Сок','Чай'], correct:1},
-      {q:'В какой стране придумали традицию с оливье?', answers:['Франция','СССР','Италия','Испания'], correct:1},
-      {q:'Какое дерево украшают на Новый год в России?', answers:['Дуб','Ёлка','Берёза','Сосна'], correct:1}
-    ]
+    accent:'#2196f3',
+    questions: {
+      easy: [
+        {q:'Во сколько начинают бить куранты?', answers:['21:00','22:00','00:00','01:00'], correct:2},
+        {q:'Что загадывают под бой курантов?', answers:['Желание','Тосты','Песни','Стихи'], correct:0},
+        {q:'Что традиционно пьют в новогоднюю ночь?', answers:['Воду','Шампанское','Сок','Чай'], correct:1},
+        {q:'Какое дерево украшают на Новый год в России?', answers:['Дуб','Ёлка','Берёза','Сосна'], correct:1}
+      ],
+      medium: [
+        {q:'В какой стране придумали традицию с оливье?', answers:['Франция','СССР','Италия','Испания'], correct:1},
+        {q:'Какого цвета традиционно Дед Мороз в России?', answers:['Красный','Синий','Зелёный','Белый'], correct:0},
+        {q:'Как зовут внучку Деда Мороза?', answers:['Снежинка','Снегурочка','Метелица','Зимушка'], correct:1},
+        {q:'Сколько ударов курантов символизируют Новый год?', answers:['10','11','12','13'], correct:2},
+        {q:'Что традиционно кладут под ёлку?', answers:['Еду','Подарки','Цветы','Открытки'], correct:1}
+      ],
+      hard: [
+        {q:'В какой стране встречают Новый год первыми?', answers:['Япония','Новая Зеландия','Австралия','Россия'], correct:1},
+        {q:'Сколько стран официально празднуют Новый год 1 января?', answers:['~100','~150','~180','~200'], correct:2},
+        {q:'Как называется новогодний персонаж в Италии?', answers:['Баббо Натале','Ла Бефана','Пэр Ноэль','Юлебукк'], correct:1},
+        {q:'Какое животное в китайском календаре на 2024 год?', answers:['Дракон','Кролик','Тигр','Змея'], correct:0},
+        {q:'Что традиционно едят в Испании под бой курантов?', answers:['Конфеты','Виноград','Печенье','Орехи'], correct:1},
+        {q:'Как называется главная площадь Москвы, где встречают Новый год?', answers:['Красная','Манежная','Пушкинская','Лубянская'], correct:0}
+      ]
+    }
   },
   valentine: {
     id:'valentine', name:'День Валентина', emoji:'💕',
     description:'Праздник всех влюблённых!',
-    difficulty:'Легко', accent:'#e91e63',
-    questions:[
-      {q:'Какого числа День Валентина?', answers:['13 февраля','14 февраля','15 февраля','1 февраля'], correct:1},
-      {q:'Какой символ праздника?', answers:['Роза','Сердце','Кольцо','Лента'], correct:1},
-      {q:'Кто такой Валентин?', answers:['Король','Святой','Воин','Поэт'], correct:1},
-      {q:'Что традиционно дарят?', answers:['Конфеты и цветы','Книги','Технику','Одежду'], correct:0}
-    ]
+    accent:'#e91e63',
+    questions: {
+      easy: [
+        {q:'Какого числа День Валентина?', answers:['13 февраля','14 февраля','15 февраля','1 февраля'], correct:1},
+        {q:'Какой символ праздника?', answers:['Роза','Сердце','Кольцо','Лента'], correct:1},
+        {q:'Что традиционно дарят?', answers:['Конфеты и цветы','Книги','Технику','Одежду'], correct:0}
+      ],
+      medium: [
+        {q:'Кто такой Валентин?', answers:['Король','Святой','Воин','Поэт'], correct:1},
+        {q:'Какая страна считается родиной праздника?', answers:['Франция','Италия','Англия','Испания'], correct:1},
+        {q:'Сколько открыток отправляется в День Валентина только в США?', answers:['~10 млн','~50 млн','~150 млн','~1 млрд'], correct:2}
+      ],
+      hard: [
+        {q:'В каком году впервые выпустили валентинки массово?', answers:['1840-е','1860-е','1880-е','1900-е'], correct:0},
+        {q:'Как называется валентинка на японском?', answers:['Кокоро','Балентайн','Хонмей','Гири'], correct:1},
+        {q:'В какой стране День Валентина отмечают 14 июля?', answers:['Япония','Бразилия','Китай','Индия'], correct:1},
+        {q:'Какое лекарственное растение символизирует верность?', answers:['Мята','Вербена','Ромашка','Полынь'], correct:1},
+        {q:'Какой камень считается талисманом влюблённых?', answers:['Алмаз','Аметист','Изумруд','Рубин'], correct:1}
+      ]
+    }
   }
+};
+
+const DIFFICULTIES = {
+  easy: { name:'Легко', icon:'🟢', timer:30, pointsPerQ:10, xpMultiplier:1 },
+  medium: { name:'Средне', icon:'🟡', timer:20, pointsPerQ:20, xpMultiplier:1.5 },
+  hard: { name:'Сложно', icon:'🔴', timer:15, pointsPerQ:30, xpMultiplier:2 }
 };
 
 const ACHIEVEMENTS = [
@@ -446,7 +593,9 @@ const ACHIEVEMENTS = [
   {id:'friends_3', icon:'👥', name:'Компания', desc:'Добавьте 3 друзей', check:u => (u.friends||[]).length>=3},
   {id:'social', icon:'💬', name:'Болтун', desc:'Отправьте 10 сообщений', check:u => (u.messagesSent||0)>=10},
   {id:'halloween_master', icon:'🎃', name:'Повелитель тыкв', desc:'Пройдите викторину о Хэллоуине', check:u => u.completed && u.completed.halloween},
-  {id:'newyear_master', icon:'🎁', name:'Новогодний', desc:'Пройдите викторину о Новом годе', check:u => u.completed && u.completed.newYear}
+  {id:'newyear_master', icon:'🎁', name:'Новогодний', desc:'Пройдите викторину о Новом годе', check:u => u.completed && u.completed.newYear},
+  {id:'hard_win', icon:'💪', name:'Смельчак', desc:'Пройдите викторину на сложном', check:u => (u.hardWins||0)>=1},
+  {id:'link_invite', icon:'🔗', name:'Связист', desc:'Пригласите по ссылке', check:u => (u.linkInvites||0)>=1}
 ];
 
 /* =========================================================
@@ -460,13 +609,16 @@ const DB = {
   get invites() { return JSON.parse(localStorage.getItem('hq_invites') || '[]'); },
   set invites(v) { localStorage.setItem('hq_invites', JSON.stringify(v)); },
   get online() { return JSON.parse(localStorage.getItem('hq_online') || '{}'); },
-  set online(v) { localStorage.setItem('hq_online', JSON.stringify(v)); }
+  set online(v) { localStorage.setItem('hq_online', JSON.stringify(v)); },
+  get lobbies() { return JSON.parse(localStorage.getItem('hq_lobbies') || '{}'); },
+  set lobbies(v) { localStorage.setItem('hq_lobbies', JSON.stringify(v)); }
 };
 
 function defaultUser(name) {
   return {
     username: name, password: '', xp: 0, level: 1,
     gamesPlayed: 0, perfectGames: 0, messagesSent: 0,
+    hardWins: 0, linkInvites: 0,
     completed: {}, friends: [], achievements: [], createdAt: Date.now(),
     lastSeen: Date.now()
   };
@@ -489,13 +641,15 @@ function addXp(user, amount) {
 let currentUser = null;
 let game = null;
 let timerInterval = null;
-let heartbeatInterval = null;
+let selectedDifficulty = { halloween:'easy', dayOfDead:'easy', thanksgiving:'easy', christmas:'easy', newYear:'easy', valentine:'easy' };
+let pendingInvite = null; // { quizId, difficulty, from } при клике по ссылке
+let currentLobby = null;  // id лобби
 
 /* =========================================================
    DOM
    ========================================================= */
 const $ = id => document.getElementById(id);
-const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen') };
+const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen'), lobby: $('lobbyScreen') };
 
 function showScreen(name) {
   Object.values(screens).forEach(s => s.classList.remove('active'));
@@ -507,17 +661,16 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.remove('hidden');
   clearTimeout(t._tm);
-  t._tm = setTimeout(() => t.classList.add('hidden'), 2500);
+  t._tm = setTimeout(() => t.classList.add('hidden'), 2800);
 }
 
 /* =========================================================
-   ONLINE STATUS (heartbeat)
+   ONLINE STATUS
    ========================================================= */
 function heartbeat() {
   if (!currentUser) return;
   const online = DB.online;
   online[currentUser.username] = Date.now();
-  // Чистим тех, кто не был онлайн >15 сек
   const now = Date.now();
   Object.keys(online).forEach(k => { if (now - online[k] > 15000) delete online[k]; });
   DB.online = online;
@@ -531,11 +684,12 @@ function isOnline(username) {
 setInterval(() => {
   if (currentUser) {
     heartbeat();
-    // Обновляем отображение в реальном времени
     if (screens.main.classList.contains('active')) {
       renderQuizzes();
       if ($('friendsView').classList.contains('active')) renderFriends();
     }
+    if (currentLobby) updateLobby();
+    checkInvites();
   }
 }, 4000);
 
@@ -625,7 +779,10 @@ function enterMain() {
   renderLeaderboard();
   renderFriends();
   showScreen('main');
-  checkInvites();
+  // Если есть приглашение из URL — показать
+  if (pendingInvite) {
+    showJoinPrompt();
+  }
 }
 
 function updateTopBar() {
@@ -647,7 +804,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 });
 
 /* =========================================================
-   QUIZZES RENDER (с никами друзей над квизом)
+   QUIZZES RENDER (с выбором сложности)
    ========================================================= */
 function renderQuizzes() {
   const grid = $('quizGrid');
@@ -655,15 +812,15 @@ function renderQuizzes() {
   const friends = currentUser.friends || [];
 
   Object.values(QUIZZES).forEach(q => {
-    const done = currentUser.completed && currentUser.completed[q.id];
+    const currentDiff = selectedDifficulty[q.id] || 'easy';
+    const done = currentUser.completed && currentUser.completed[`${q.id}_${currentDiff}`];
+    const diffInfo = DIFFICULTIES[currentDiff];
 
-    // Определяем друзей, которые играли в этот квиз
     const playedFriends = friends.filter(fname => {
       const u = DB.users[fname.toLowerCase()];
-      return u && u.completed && u.completed[q.id];
+      return u && u.completed && u.completed[`${q.id}_${currentDiff}`];
     });
 
-    // Активные приглашения по этому квизу
     const activeInvites = DB.invites.filter(i =>
       i.quizId === q.id && i.from === currentUser.username
     );
@@ -673,14 +830,11 @@ function renderQuizzes() {
     card.className = 'quiz-card' + (done ? ' completed' : '');
     card.style.setProperty('--accent', q.accent);
 
-    // Формируем блок с игроками над квизом
     let playersHtml = '';
     const allPlayers = [
       { name: currentUser.username, me: true, online: true },
       ...friends.map(f => ({
-        name: f,
-        me: false,
-        online: isOnline(f),
+        name: f, me: false, online: isOnline(f),
         invited: invitedNames.includes(f),
         played: playedFriends.includes(f)
       }))
@@ -699,71 +853,88 @@ function renderQuizzes() {
       playersHtml += '</div>';
     }
 
+    const diffButtonsHtml = Object.entries(DIFFICULTIES).map(([key, d]) => `
+      <button class="diff-btn ${key === currentDiff ? 'active' : ''}" data-diff="${key}" data-quiz="${q.id}">
+        ${d.icon} ${d.name}
+      </button>
+    `).join('');
+
     card.innerHTML = `
       <span class="quiz-emoji">${q.emoji}</span>
       <h3>${q.name}</h3>
       <p>${q.description}</p>
       ${playersHtml}
+      <div class="difficulty-selector">${diffButtonsHtml}</div>
       <div class="quiz-meta">
-        <span class="quiz-difficulty">${q.difficulty} • ${q.questions.length} вопр.</span>
+        <span class="quiz-difficulty">${diffInfo.icon} ${diffInfo.name} • ${q.questions[currentDiff].length} вопр. • ${diffInfo.timer}с</span>
       </div>
-      <div style="display:flex;gap:8px;margin-top:14px;position:relative;z-index:1;">
+      <div class="quiz-actions">
         <button class="play-btn" data-play="${q.id}">▶ Играть</button>
-        <button class="play-btn" style="background:rgba(255,140,0,0.25);" data-invite="${q.id}">👥 Пригласить</button>
+        <button class="play-btn" style="background:rgba(255,140,0,0.25);" data-invite="${q.id}">🔗 Пригласить</button>
       </div>
     `;
     grid.appendChild(card);
   });
 }
 
+// Делегирование
 $('quizGrid').addEventListener('click', e => {
+  const diffBtn = e.target.closest('.diff-btn');
   const playBtn = e.target.closest('[data-play]');
   const invBtn = e.target.closest('[data-invite]');
-  if (playBtn) startGame(playBtn.dataset.play);
+
+  if (diffBtn) {
+    const { diff, quiz } = diffBtn.dataset;
+    selectedDifficulty[quiz] = diff;
+    renderQuizzes();
+    return;
+  }
+  if (playBtn) startGame(playBtn.dataset.play, selectedDifficulty[playBtn.dataset.play]);
   if (invBtn) openInviteModal(invBtn.dataset.invite);
 });
 
 /* =========================================================
    GAME LOGIC
    ========================================================= */
-function startGame(quizId) {
+function startGame(quizId, difficulty = 'easy', lobbyPlayers = null) {
   const quiz = QUIZZES[quizId];
+  const diff = DIFFICULTIES[difficulty];
+  const questions = quiz.questions[difficulty];
+
   game = {
-    quizId, quiz,
-    round: 0,
-    score: 0,
-    correct: 0,
-    wrong: 0,
-    answered: false,
-    timeLeft: 30,
+    quizId, quiz, difficulty, questions,
+    round: 0, score: 0, correct: 0, wrong: 0,
+    answered: false, timeLeft: diff.timer,
     participants: []
   };
 
-  // Собираем участников: сам игрок + друзья (все, кто онлайн или приглашён)
-  game.participants.push({
-    name: currentUser.username,
-    me: true,
-    online: true
-  });
-
-  const friends = currentUser.friends || [];
-  // Добавляем до 3 друзей (тех, кто онлайн, приоритетно)
-  const sortedFriends = friends.sort((a, b) => isOnline(b) - isOnline(a));
-  sortedFriends.slice(0, 3).forEach(f => {
-    game.participants.push({
-      name: f,
-      me: false,
-      online: isOnline(f)
+  // Участники
+  if (lobbyPlayers && lobbyPlayers.length) {
+    lobbyPlayers.forEach(name => {
+      game.participants.push({
+        name, me: name === currentUser.username,
+        online: isOnline(name) || name === currentUser.username
+      });
     });
-  });
+  } else {
+    game.participants.push({ name: currentUser.username, me: true, online: true });
+    const friends = (currentUser.friends || []).sort((a, b) => isOnline(b) - isOnline(a));
+    friends.slice(0, 3).forEach(f => {
+      game.participants.push({ name: f, me: false, online: isOnline(f) });
+    });
+  }
 
   $('gameQuizName').textContent = quiz.emoji + ' ' + quiz.name;
+  const badge = $('gameDifficultyBadge');
+  badge.className = 'diff-badge ' + difficulty;
+  badge.textContent = diff.icon + ' ' + diff.name;
+
   $('chatMessages').innerHTML = '';
   renderChatParticipants();
-  addChat('system', '🎃 Игра началась! Удачи!');
+  addChat('system', `🎃 Игра началась! Сложность: ${diff.name}. Удачи!`);
   game.participants.filter(p => !p.me).forEach((p, i) => {
     setTimeout(() => {
-      addChat('system', `${p.name} присоединился к игре`);
+      if (game) addChat('system', `${p.name} присоединился к игре`);
     }, 800 + i * 600);
   });
 
@@ -781,22 +952,18 @@ function renderChatParticipants() {
       <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
       <span>${p.name}${p.me ? ' (вы)' : ''}</span>
     `;
-    if (!p.me) {
-      chip.title = p.online ? 'онлайн' : 'оффлайн';
-    }
+    if (!p.me) chip.title = p.online ? 'онлайн' : 'оффлайн';
     cont.appendChild(chip);
   });
 }
 
 function nextRound() {
-  if (game.round >= game.quiz.questions.length) {
-    endGame();
-    return;
-  }
-  const q = game.quiz.questions[game.round];
+  if (game.round >= game.questions.length) { endGame(); return; }
+  const q = game.questions[game.round];
+  const diff = DIFFICULTIES[game.difficulty];
   game.answered = false;
-  game.timeLeft = 30;
-  $('gameRound').textContent = `Раунд ${game.round + 1}/${game.quiz.questions.length}`;
+  game.timeLeft = diff.timer;
+  $('gameRound').textContent = `Раунд ${game.round + 1}/${game.questions.length}`;
   $('questionText').textContent = q.q;
   $('gameTimer').textContent = game.timeLeft;
   $('gameTimer').classList.remove('warning');
@@ -814,13 +981,16 @@ function nextRound() {
 
   startTimer();
 
-  // Боты (другие игроки) иногда отвечают в чате
-  if (Math.random() < 0.5 && game.participants.length > 1) {
-    const bot = game.participants.filter(p => !p.me)[Math.floor(Math.random() * (game.participants.length - 1))];
-    const botMsgs = ['Хм, сложный вопрос...', 'Я знаю ответ!', 'Легкотня 😎', 'Дайте подумать...', 'Это точно вариант 1!', 'Ну и вопросики...'];
-    setTimeout(() => {
-      if (game && bot) addChat(bot.name, botMsgs[Math.floor(Math.random() * botMsgs.length)]);
-    }, 2000 + Math.random() * 3000);
+  // Боты иногда пишут в чат
+  if (Math.random() < 0.55 && game.participants.length > 1) {
+    const bots = game.participants.filter(p => !p.me);
+    if (bots.length) {
+      const bot = bots[Math.floor(Math.random() * bots.length)];
+      const botMsgs = ['Хм, сложный вопрос...','Я знаю ответ!','Легкотня 😎','Дайте подумать...','Это точно вариант 1!','Ну и вопросики...','Уверен в этом!'];
+      setTimeout(() => {
+        if (game) addChat(bot.name, botMsgs[Math.floor(Math.random() * botMsgs.length)]);
+      }, 2000 + Math.random() * 3000);
+    }
   }
 }
 
@@ -842,7 +1012,8 @@ function selectAnswer(idx) {
   game.answered = true;
   clearInterval(timerInterval);
 
-  const q = game.quiz.questions[game.round];
+  const q = game.questions[game.round];
+  const diff = DIFFICULTIES[game.difficulty];
   const btns = document.querySelectorAll('.answer-btn');
   btns.forEach((b, i) => {
     b.disabled = true;
@@ -851,9 +1022,10 @@ function selectAnswer(idx) {
   });
 
   if (idx === q.correct) {
+    const points = diff.pointsPerQ + Math.max(0, game.timeLeft);
     game.correct++;
-    game.score += 10 + Math.max(0, game.timeLeft);
-    addChat('system', `✅ ${currentUser.username} ответил верно! +${10 + Math.max(0, game.timeLeft)} очков`);
+    game.score += points;
+    addChat('system', `✅ ${currentUser.username} ответил верно! +${points} очков`);
   } else {
     game.wrong++;
     addChat('system', `❌ Неверно. Правильно: ${q.answers[q.correct]}`);
@@ -865,14 +1037,19 @@ function selectAnswer(idx) {
 
 function endGame() {
   clearInterval(timerInterval);
+  const key = `${game.quizId}_${game.difficulty}`;
   currentUser.gamesPlayed++;
   if (game.wrong === 0) currentUser.perfectGames++;
   if (!currentUser.completed) currentUser.completed = {};
-  const prevBest = currentUser.completed[game.quizId]?.score || 0;
+  const prevBest = currentUser.completed[key]?.score || 0;
   if (game.score > prevBest) {
-    currentUser.completed[game.quizId] = { score: game.score, date: Date.now() };
+    currentUser.completed[key] = { score: game.score, date: Date.now(), difficulty: game.difficulty };
   }
-  addXp(currentUser, game.score);
+  if (game.difficulty === 'hard' && game.wrong <= 2) {
+    currentUser.hardWins = (currentUser.hardWins || 0) + 1;
+  }
+  const xpGain = Math.round(game.score * DIFFICULTIES[game.difficulty].xpMultiplier);
+  addXp(currentUser, xpGain);
   saveUser();
   updateTopBar();
   checkAchievements();
@@ -882,6 +1059,7 @@ function endGame() {
     <div class="stat"><span class="stat-value">${game.score}</span><span class="stat-label">Очков</span></div>
     <div class="stat"><span class="stat-value">${game.correct}</span><span class="stat-label">Верных</span></div>
     <div class="stat"><span class="stat-value">${game.wrong}</span><span class="stat-label">Ошибок</span></div>
+    <div class="stat"><span class="stat-value">+${xpGain}</span><span class="stat-label">XP</span></div>
   `;
   $('resultModal').classList.remove('hidden');
 }
@@ -926,12 +1104,11 @@ function sendChat() {
   checkAchievements();
   inp.value = '';
 
-  // Случайный ответ от участника
   if (game && game.participants.length > 1) {
     const others = game.participants.filter(p => !p.me);
     if (others.length && Math.random() < 0.7) {
       const bot = others[Math.floor(Math.random() * others.length)];
-      const bots = ['Ого, я тоже так думаю!', 'Ха-ха, согласен 😄', 'Кто это сказал?', 'Не подсказывай!', 'Интересно 🤔', 'Погнали дальше!', 'Точно!', 'Не уверен...'];
+      const bots = ['Ого, я тоже так думаю!','Ха-ха, согласен 😄','Кто это сказал?','Не подсказывай!','Интересно 🤔','Погнали дальше!','Точно!','Не уверен...'];
       setTimeout(() => {
         if (game) addChat(bot.name, bots[Math.floor(Math.random() * bots.length)]);
       }, 1200 + Math.random() * 1500);
@@ -996,37 +1173,49 @@ function renderLeaderboard() {
 }
 
 /* =========================================================
-   FRIENDS
+   FRIENDS (по никнейму)
    ========================================================= */
-$('searchBtn').addEventListener('click', () => {
-  const q = $('friendSearch').value.trim().toLowerCase();
+$('searchBtn').addEventListener('click', addFriendByNick);
+$('friendSearch').addEventListener('keydown', e => { if (e.key === 'Enter') addFriendByNick(); });
+
+function addFriendByNick() {
+  const nick = $('friendSearch').value.trim();
   const res = $('searchResults');
   res.innerHTML = '';
-  if (!q) return;
+  if (!nick) return;
+
   const users = DB.users;
-  const found = Object.values(users).filter(u =>
-    u.username.toLowerCase().includes(q) && u.username !== currentUser.username
-  );
-  if (!found.length) {
-    res.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;font-family:\'Segoe UI\',sans-serif;">Никого не найдено</p>';
+  const target = users[nick.toLowerCase()];
+
+  if (!target) {
+    res.innerHTML = `<div class="friend-item" style="border-color:rgba(244,67,54,0.5);">
+      <div class="name" style="color:#ff5c7c;">❌ Игрок "${nick}" не найден</div>
+    </div>`;
     return;
   }
-  found.forEach(u => {
-    const isFriend = (currentUser.friends || []).includes(u.username);
-    const online = isOnline(u.username);
-    const item = document.createElement('div');
-    item.className = 'friend-item';
-    item.innerHTML = `
-      <div class="avatar">${u.username[0].toUpperCase()}</div>
-      <div class="name">${u.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${u.level}${online ? ' • ● онлайн' : ''})</span></div>
-      <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>
-        ${isFriend ? '✓ В друзьях' : 'Добавить'}
-      </button>
-    `;
-    if (!isFriend) item.querySelector('button').addEventListener('click', () => addFriend(u.username));
-    res.appendChild(item);
-  });
-});
+  if (target.username === currentUser.username) {
+    res.innerHTML = `<div class="friend-item" style="border-color:rgba(255,152,0,0.5);">
+      <div class="name" style="color:#ffb74d;">⚠ Это вы сами 😄</div>
+    </div>`;
+    return;
+  }
+
+  const isFriend = (currentUser.friends || []).includes(target.username);
+  const online = isOnline(target.username);
+  const item = document.createElement('div');
+  item.className = 'friend-item';
+  item.innerHTML = `
+    <div class="avatar">${target.username[0].toUpperCase()}</div>
+    <div class="name">${target.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${target.level}${online ? ' • ● онлайн' : ''})</span></div>
+    <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>
+      ${isFriend ? '✓ В друзьях' : '➕ Добавить'}
+    </button>
+  `;
+  if (!isFriend) {
+    item.querySelector('button').addEventListener('click', () => addFriend(target.username));
+  }
+  res.appendChild(item);
+}
 
 function addFriend(name) {
   if (!currentUser.friends) currentUser.friends = [];
@@ -1037,7 +1226,8 @@ function addFriend(name) {
     checkAchievements();
     renderFriends();
     renderQuizzes();
-    $('searchBtn').click();
+    $('friendSearch').value = '';
+    $('searchResults').innerHTML = '';
   }
 }
 
@@ -1045,7 +1235,7 @@ function renderFriends() {
   const list = $('friendsList');
   list.innerHTML = '';
   if (!currentUser.friends || !currentUser.friends.length) {
-    list.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;font-family:\'Segoe UI\',sans-serif;">Пока никого нет. Найдите друзей через поиск!</p>';
+    list.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;font-family:\'Segoe UI\',sans-serif;">Пока никого нет. Введите никнейм друга выше!</p>';
   } else {
     currentUser.friends.forEach(name => {
       const u = DB.users[name.toLowerCase()];
@@ -1070,11 +1260,31 @@ function renderFriends() {
 }
 
 /* =========================================================
-   INVITES
+   INVITE MODAL (3 способа)
    ========================================================= */
+document.querySelectorAll('.modal-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.invite-panel').forEach(p => p.classList.add('hidden'));
+    const map = { link: 'inviteLinkPanel', friends: 'inviteFriendsPanel', nick: 'inviteNickPanel' };
+    $(map[tab.dataset.itab]).classList.remove('hidden');
+  });
+});
+
 function openInviteModal(quizId) {
   const quiz = QUIZZES[quizId];
-  $('inviteQuizName').textContent = `Викторина: ${quiz.emoji} ${quiz.name}`;
+  const diff = selectedDifficulty[quizId] || 'easy';
+  $('inviteQuizName').textContent = `${quiz.emoji} ${quiz.name} • ${DIFFICULTIES[diff].icon} ${DIFFICULTIES[diff].name}`;
+
+  // Ссылка
+  const linkData = btoa(JSON.stringify({
+    q: quizId, d: diff, from: currentUser.username, t: Date.now()
+  }));
+  const link = `${location.origin}${location.pathname}#join=${linkData}`;
+  $('inviteLinkInput').value = link;
+
+  // Список друзей
   const sel = $('inviteFriendSelect');
   sel.innerHTML = '';
   if (!currentUser.friends || !currentUser.friends.length) {
@@ -1087,45 +1297,230 @@ function openInviteModal(quizId) {
       sel.appendChild(o);
     });
   }
+
+  $('inviteNickInput').value = '';
   $('inviteModal').dataset.quizId = quizId;
   $('inviteModal').classList.remove('hidden');
+
+  // Стартуем на вкладке "Ссылка"
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.modal-tab[data-itab="link"]').classList.add('active');
+  document.querySelectorAll('.invite-panel').forEach(p => p.classList.add('hidden'));
+  $('inviteLinkPanel').classList.remove('hidden');
 }
 
 $('cancelInviteBtn').addEventListener('click', () => $('inviteModal').classList.add('hidden'));
 
+// Копировать ссылку
+$('copyLinkBtn').addEventListener('click', () => {
+  const inp = $('inviteLinkInput');
+  inp.select();
+  try {
+    navigator.clipboard.writeText(inp.value);
+    showToast('📋 Ссылка скопирована!');
+  } catch {
+    document.execCommand('copy');
+    showToast('📋 Ссылка скопирована!');
+  }
+  currentUser.linkInvites = (currentUser.linkInvites || 0) + 1;
+  saveUser();
+  checkAchievements();
+});
+
+// Отправить другу
 $('sendInviteBtn').addEventListener('click', () => {
   const friend = $('inviteFriendSelect').value;
   if (!friend) return showToast('Сначала добавьте друзей');
+  sendInviteTo(friend);
+  $('inviteModal').classList.add('hidden');
+});
+
+// Отправить по никнейму
+$('inviteByNickBtn').addEventListener('click', () => {
+  const nick = $('inviteNickInput').value.trim();
+  if (!nick) return showToast('Введите никнейм');
+  const users = DB.users;
+  const target = users[nick.toLowerCase()];
+  if (!target) return showToast(`❌ Игрок "${nick}" не найден`);
+  if (target.username === currentUser.username) return showToast('Нельзя пригласить самого себя');
+  sendInviteTo(target.username);
+  $('inviteModal').classList.add('hidden');
+});
+
+function sendInviteTo(friendName) {
   const quizId = $('inviteModal').dataset.quizId;
-  const inviteId = 'inv_' + Date.now();
+  const diff = selectedDifficulty[quizId] || 'easy';
+  const inviteId = 'inv_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
   const invites = DB.invites;
   invites.push({
     from: currentUser.username,
-    to: friend,
+    to: friendName,
     quizId,
+    difficulty: diff,
     date: Date.now(),
     id: inviteId
   });
   DB.invites = invites;
-  $('inviteModal').classList.add('hidden');
-  showToast(`📨 Приглашение отправлено: ${friend}`);
+  showToast(`📨 Приглашение отправлено: ${friendName}`);
   renderQuizzes();
-  // Симуляция принятия через 6 сек
   setTimeout(() => {
-    showToast(`🎮 ${friend} принял приглашение! Можно играть вместе.`);
+    showToast(`🎮 ${friendName} принял приглашение!`);
     renderQuizzes();
   }, 6000);
+}
+
+/* =========================================================
+   LINK JOIN (по URL #join=...)
+   ========================================================= */
+function checkUrlJoin() {
+  const hash = location.hash;
+  if (!hash.startsWith('#join=')) return false;
+  try {
+    const data = JSON.parse(atob(hash.slice(6)));
+    // Проверка на свежесть (24 часа)
+    if (Date.now() - data.t > 24 * 60 * 60 * 1000) {
+      showToast('⏰ Ссылка устарела');
+      history.replaceState(null, '', location.pathname);
+      return false;
+    }
+    if (!QUIZZES[data.q]) {
+      showToast('❌ Неверная ссылка');
+      history.replaceState(null, '', location.pathname);
+      return false;
+    }
+    pendingInvite = data;
+    return true;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}
+
+function showJoinPrompt() {
+  if (!pendingInvite) return;
+  const quiz = QUIZZES[pendingInvite.q];
+  const diff = DIFFICULTIES[pendingInvite.d];
+  const from = pendingInvite.from;
+
+  if (currentUser.username === from) {
+    showToast('😄 Это ваша собственная ссылка');
+    pendingInvite = null;
+    history.replaceState(null, '', location.pathname);
+    return;
+  }
+
+  const ok = confirm(`🎃 ${from} приглашает вас в "${quiz.name}" (${diff.icon} ${diff.name}).\n\nПрисоединиться?`);
+  if (ok) {
+    // Создаём лобби с двумя игроками
+    startLobby(pendingInvite.q, pendingInvite.d, [from, currentUser.username]);
+  } else {
+    pendingInvite = null;
+  }
+  history.replaceState(null, '', location.pathname);
+}
+
+/* =========================================================
+   LOBBY (совместная игра по ссылке)
+   ========================================================= */
+function startLobby(quizId, difficulty, players) {
+  const lobbyId = 'lobby_' + Date.now();
+  const lobbies = DB.lobbies;
+  lobbies[lobbyId] = {
+    id: lobbyId,
+    quizId, difficulty,
+    host: players[0],
+    players: players.map(p => ({ name: p, joinedAt: Date.now() })),
+    createdAt: Date.now(),
+    status: 'waiting'
+  };
+  DB.lobbies = lobbies;
+  currentLobby = lobbyId;
+
+  const quiz = QUIZZES[quizId];
+  const diff = DIFFICULTIES[difficulty];
+  $('lobbyQuizInfo').textContent = `${quiz.emoji} ${quiz.name}`;
+  $('lobbyDifficulty').textContent = `${diff.icon} Сложность: ${diff.name} • ${quiz.questions[difficulty].length} вопросов • ${diff.timer} сек`;
+  updateLobby();
+  showScreen('lobby');
+}
+
+function updateLobby() {
+  if (!currentLobby) return;
+  const lobbies = DB.lobbies;
+  const lobby = lobbies[currentLobby];
+  if (!lobby) { leaveLobby(); return; }
+
+  const cont = $('lobbyPlayers');
+  cont.innerHTML = '';
+  lobby.players.forEach(p => {
+    const tag = document.createElement('div');
+    tag.className = 'player-tag online';
+    tag.innerHTML = `
+      <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
+      <span>${p.name}${p.name === currentUser.username ? ' (вы)' : ''}${p.name === lobby.host ? ' 👑' : ''}</span>
+    `;
+    cont.appendChild(tag);
+  });
+
+  // Показываем кнопку "Начать" только если ты хост, и есть хотя бы 1 игрок кроме тебя
+  const isHost = lobby.host === currentUser.username;
+  const btn = $('startLobbyGameBtn');
+  btn.style.display = isHost ? 'block' : 'none';
+  if (isHost) {
+    btn.textContent = `▶ Начать игру (${lobby.players.length})`;
+  }
+
+  // Проверка флага "started"
+  if (lobby.status === 'started' && !game) {
+    // Все игроки начинают
+    startGame(lobby.quizId, lobby.difficulty, lobby.players.map(p => p.name));
+  }
+}
+
+$('startLobbyGameBtn').addEventListener('click', () => {
+  if (!currentLobby) return;
+  const lobbies = DB.lobbies;
+  const lobby = lobbies[currentLobby];
+  if (!lobby) return;
+  lobby.status = 'started';
+  DB.lobbies = lobbies;
+  startGame(lobby.quizId, lobby.difficulty, lobby.players.map(p => p.name));
 });
 
+$('leaveLobbyBtn').addEventListener('click', () => {
+  leaveLobby();
+});
+
+function leaveLobby() {
+  if (currentLobby) {
+    const lobbies = DB.lobbies;
+    const lobby = lobbies[currentLobby];
+    if (lobby) {
+      lobby.players = lobby.players.filter(p => p.name !== currentUser.username);
+      if (lobby.players.length === 0) {
+        delete lobbies[currentLobby];
+      } else if (lobby.host === currentUser.username && lobby.players.length > 0) {
+        lobby.host = lobby.players[0].name;
+      }
+      DB.lobbies = lobbies;
+    }
+  }
+  currentLobby = null;
+  showScreen('main');
+  renderQuizzes();
+}
+
+/* =========================================================
+   INVITES (входящие)
+   ========================================================= */
 function checkInvites() {
   const invites = DB.invites.filter(i => i.to === currentUser.username);
   invites.forEach(inv => {
     if (!inv.notified) {
-      showToast(`📨 ${inv.from} приглашает вас в "${QUIZZES[inv.quizId]?.name}"`);
+      showToast(`📨 ${inv.from} приглашает в "${QUIZZES[inv.quizId]?.name}"`);
       inv.notified = true;
     }
   });
-  // Сохраняем обновлённые флаги
   const allInvites = DB.invites;
   allInvites.forEach(i => {
     const found = invites.find(x => x.id === i.id);
@@ -1146,17 +1541,18 @@ function renderInvites() {
   }
   invites.forEach(inv => {
     const quiz = QUIZZES[inv.quizId];
+    const diff = DIFFICULTIES[inv.difficulty || 'easy'];
     const item = document.createElement('div');
     item.className = 'friend-item';
     item.innerHTML = `
       <div class="avatar">${inv.from[0].toUpperCase()}</div>
-      <div class="name">${inv.from} → ${quiz?.emoji || '🎯'} ${quiz?.name || ''}</div>
+      <div class="name">${inv.from} → ${quiz?.emoji || '🎯'} ${quiz?.name || ''} <span style="opacity:0.6;font-size:12px;">(${diff.icon} ${diff.name})</span></div>
       <button data-accept="${inv.id}">Принять</button>
       <button data-decline="${inv.id}" style="background:rgba(255,255,255,0.15);">✕</button>
     `;
     item.querySelector('[data-accept]').addEventListener('click', () => {
       DB.invites = DB.invites.filter(i => i.id !== inv.id);
-      startGame(inv.quizId);
+      startLobby(inv.quizId, inv.difficulty || 'easy', [inv.from, currentUser.username]);
     });
     item.querySelector('[data-decline]').addEventListener('click', () => {
       DB.invites = DB.invites.filter(i => i.id !== inv.id);
@@ -1166,23 +1562,21 @@ function renderInvites() {
   });
 }
 
-// Периодическая проверка приглашений
-setInterval(() => {
-  if (currentUser && screens.main.classList.contains('active')) {
-    checkInvites();
-  }
-}, 5000);
-
 /* =========================================================
-   AUTO LOGIN
+   AUTO LOGIN + URL JOIN
    ========================================================= */
 (function init() {
+  const hasUrlJoin = checkUrlJoin();
+
   const session = DB.session;
   if (session && DB.users[session]) {
     currentUser = DB.users[session];
     enterMain();
   } else {
     showScreen('auth');
+    if (hasUrlJoin) {
+      showToast('🔗 Войдите, чтобы присоединиться к игре');
+    }
   }
 })();
 </script>
