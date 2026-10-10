@@ -29,11 +29,14 @@ body::after {
               radial-gradient(ellipse at 70% 100%, rgba(200,0,50,0.15), transparent 60%);
   pointer-events:none; z-index:0;
 }
+body.no-animations * { animation:none !important; transition:none !important; }
+body.no-animations::before { animation:none !important; }
 .bat { position:fixed; font-size:28px; pointer-events:none; z-index:1; opacity:0.35; filter: drop-shadow(0 0 10px rgba(255,140,0,0.5)); animation: flyBat linear infinite; }
 @keyframes flyBat { 0% { transform: translate(-100px, 0) rotate(0deg); } 50% { transform: translate(50vw, -80px) rotate(20deg); } 100% { transform: translate(110vw, 30px) rotate(0deg); } }
 .bat:nth-child(1) { top:10%; animation-duration: 22s; animation-delay: 0s; }
 .bat:nth-child(2) { top:40%; animation-duration: 28s; animation-delay: 5s; }
 .bat:nth-child(3) { top:70%; animation-duration: 25s; animation-delay: 12s; }
+body.no-animations .bat { display:none; }
 
 .screen { display:none; min-height:100vh; position:relative; z-index:2; }
 .screen.active { display:block; animation: fadeIn 0.4s ease; }
@@ -270,8 +273,8 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 @keyframes statIn { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
 .stat-value { font-size:36px; font-weight:bold; display:block; color:#ffb86b; font-family:'Creepster',cursive; text-shadow:0 0 20px rgba(255,140,0,0.7); }
 .stat-label { font-size:13px; color:#c9a0dc; margin-top:4px; display:block; }
-.modal-content select, .modal-content input[type=text] { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:14px 0; }
-.modal-content input[type=text]:focus, .modal-content select:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.modal-content select, .modal-content input[type=text], .modal-content input[type=password] { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:8px 0; }
+.modal-content input[type=text]:focus, .modal-content select:focus, .modal-content input[type=password]:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
 .modal-buttons { display:flex; gap:12px; margin-top:8px; }
 .modal-buttons button { flex:1; }
 .modal-tabs { display:flex; gap:8px; margin-bottom:20px; background:rgba(0,0,0,0.4); padding:5px; border-radius:12px; }
@@ -287,8 +290,7 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .lobby-box h2 { font-size:30px; margin-bottom:16px; color:#ff8c00; }
 .lobby-box p { color:#c9a0dc; margin-bottom:12px; font-size:15px; }
 .lobby-players { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:24px 0; min-height:60px; }
-.lobby-players .player-tag { font-size:14px; padding:8px 16px 8px 8px; animation: lobbyIn 0.4s ease backwards; }
-@keyframes lobbyIn { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
+.lobby-players .player-tag { font-size:14px; padding:8px 16px 8px 8px; }
 .lobby-players .player-tag .mini-avatar { width:28px; height:28px; font-size:13px; }
 
 /* CONFETTI */
@@ -306,7 +308,7 @@ body.theme-newyear .logo { color:#64b5f6; text-shadow: 0 0 15px rgba(100,181,246
 body.theme-cosmic { background: radial-gradient(ellipse at top, #1a0033 0%, #0d001a 40%, #000 100%); }
 body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,0.7); }
 
-/* ========== СТАТИСТИКА ========== */
+/* СТАТИСТИКА */
 .stats-dashboard { display:flex; flex-direction:column; gap:20px; }
 .stats-section { background:linear-gradient(160deg,rgba(40,10,60,0.75),rgba(20,5,35,0.9)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:24px; }
 .stats-section h3 { margin-bottom:18px; font-size:20px; color:#ff8c00; display:flex; align-items:center; gap:10px; }
@@ -318,7 +320,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .stat-card .stat-name { font-size:12px; color:#c9a0dc; margin-top:6px; display:block; text-transform:uppercase; letter-spacing:0.5px; }
 .stat-card .stat-sub { font-size:11px; color:#8bc34a; margin-top:3px; }
 
-/* Прогресс по категориям */
 .cat-progress-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px dashed rgba(255,140,0,0.15); }
 .cat-progress-row:last-child { border-bottom:none; }
 .cat-progress-row .cat-icon { font-size:22px; width:32px; text-align:center; }
@@ -327,7 +328,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .cat-bar { flex:2; height:8px; background:rgba(0,0,0,0.4); border-radius:4px; overflow:hidden; min-width:100px; }
 .cat-bar-fill { height:100%; background:linear-gradient(90deg,#ff6b00,#ffb86b); border-radius:4px; transition:width 0.8s ease; box-shadow:0 0 10px rgba(255,140,0,0.5); }
 
-/* Активность за неделю */
 .activity-chart { display:flex; align-items:flex-end; justify-content:space-around; gap:8px; height:140px; padding:10px 0; }
 .activity-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end; }
 .activity-bar-wrap { flex:1; display:flex; align-items:flex-end; width:100%; justify-content:center; }
@@ -337,7 +337,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .activity-day-label { font-size:11px; color:#c9a0dc; text-transform:uppercase; }
 .activity-day-label.today { color:#ffd700; font-weight:bold; }
 
-/* Топ-3 лучших */
 .top-result { display:flex; align-items:center; gap:14px; padding:14px 16px; background:linear-gradient(90deg,rgba(255,215,0,0.1),rgba(255,140,0,0.08)); border:1px solid rgba(255,215,0,0.4); border-radius:14px; margin-bottom:10px; }
 .top-result.rank-1 { border-color:rgba(255,215,0,0.6); background:linear-gradient(90deg,rgba(255,215,0,0.2),rgba(255,140,0,0.1)); }
 .top-result.rank-2 { border-color:rgba(224,224,224,0.4); background:linear-gradient(90deg,rgba(224,224,224,0.1),rgba(255,140,0,0.06)); }
@@ -349,7 +348,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .top-result .top-meta { font-size:12px; color:#c9a0dc; margin-top:2px; }
 .top-result .top-score { font-size:24px; font-weight:bold; color:#ffd700; font-family:'Creepster',cursive; text-shadow:0 0 15px rgba(255,215,0,0.6); }
 
-/* Разбивка по сложностям */
 .diff-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
 .diff-stat { padding:18px; border-radius:14px; text-align:center; border:2px solid; }
 .diff-stat.easy { background:linear-gradient(160deg,rgba(76,175,80,0.15),rgba(46,125,50,0.08)); border-color:rgba(76,175,80,0.5); }
@@ -362,13 +360,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .diff-stat .diff-count { font-size:32px; font-weight:bold; color:#fff; font-family:'Creepster',cursive; display:block; line-height:1; text-shadow:0 0 15px rgba(255,255,255,0.3); }
 .diff-stat .diff-sub { font-size:11px; color:#c9a0dc; margin-top:6px; }
 
-/* Достижения прогресс */
-.ach-progress { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
-.ach-progress-bar { flex:1; height:14px; background:rgba(0,0,0,0.4); border-radius:7px; overflow:hidden; border:1px solid rgba(255,140,0,0.3); }
-.ach-progress-fill { height:100%; background:linear-gradient(90deg,#ff6b00,#ffd700); border-radius:7px; transition:width 0.8s ease; box-shadow:0 0 15px rgba(255,215,0,0.5); }
-.ach-progress-label { font-size:14px; color:#ffb86b; font-weight:bold; min-width:70px; text-align:right; }
-
-/* Последние игры */
 .recent-games { display:flex; flex-direction:column; gap:8px; max-height:320px; overflow-y:auto; padding-right:6px; }
 .recent-games::-webkit-scrollbar { width:5px; }
 .recent-games::-webkit-scrollbar-thumb { background:rgba(255,140,0,0.4); border-radius:5px; }
@@ -383,7 +374,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .recent-game .rg-score { font-size:16px; font-weight:bold; color:#ffd700; }
 .recent-game .rg-date { font-size:10px; color:#8a7aa0; margin-left:8px; }
 
-/* Сравнение с другими */
 .compare-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed rgba(255,140,0,0.15); font-size:13px; }
 .compare-row:last-child { border-bottom:none; }
 .compare-row .cmp-label { color:#c9a0dc; }
@@ -392,6 +382,90 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .cmp-hint.above { background:rgba(76,175,80,0.2); color:#8bc34a; }
 .cmp-hint.below { background:rgba(244,67,54,0.2); color:#ef5350; }
 .cmp-hint.equal { background:rgba(255,255,255,0.1); color:#c9a0dc; }
+
+/* ========== НАСТРОЙКИ ========== */
+.settings-layout { max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
+.settings-card { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:26px; transition:0.3s; }
+.settings-card:hover { border-color:rgba(255,140,0,0.4); }
+.settings-card h3 { margin-bottom:18px; font-size:22px; color:#ff8c00; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:1px dashed rgba(255,140,0,0.2); }
+.settings-card h3 .settings-icon { font-size:26px; line-height:1; }
+
+.setting-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px dashed rgba(255,140,0,0.12); flex-wrap:wrap; }
+.setting-row:last-child { border-bottom:none; }
+.setting-info { flex:1; min-width:200px; }
+.setting-info .setting-title { font-size:15px; color:#ffb86b; font-weight:700; margin-bottom:4px; }
+.setting-info .setting-desc { font-size:12px; color:#c9a0dc; line-height:1.5; }
+.setting-control { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+/* Переключатель (switch) */
+.switch { position:relative; display:inline-block; width:56px; height:30px; flex-shrink:0; }
+.switch input { opacity:0; width:0; height:0; }
+.switch .slider { position:absolute; cursor:pointer; inset:0; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:30px; transition:0.3s; }
+.switch .slider:before { content:''; position:absolute; height:22px; width:22px; left:3px; bottom:3px; background:linear-gradient(135deg,#c9a0dc,#8a7aa0); border-radius:50%; transition:0.3s; box-shadow:0 2px 6px rgba(0,0,0,0.4); }
+.switch input:checked + .slider { background:linear-gradient(135deg,#ff6b00,#c72c00); border-color:transparent; box-shadow:0 0 20px rgba(255,100,0,0.5); }
+.switch input:checked + .slider:before { transform:translateX(26px); background:linear-gradient(135deg,#fff,#ffb86b); }
+.switch input:focus + .slider { box-shadow:0 0 20px rgba(255,140,0,0.6); }
+
+/* Кнопки выбора темы */
+.theme-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; }
+.theme-preview { padding:16px; border-radius:14px; border:2px solid rgba(255,140,0,0.25); cursor:pointer; transition:0.3s; text-align:center; position:relative; overflow:hidden; background:rgba(0,0,0,0.3); }
+.theme-preview:hover { transform:translateY(-3px); border-color:rgba(255,160,0,0.6); }
+.theme-preview.active { border-color:#ff6b00; box-shadow:0 0 25px rgba(255,100,0,0.5); }
+.theme-preview.active::after { content:'✓'; position:absolute; top:8px; right:12px; color:#8bc34a; font-size:18px; font-weight:bold; }
+.theme-preview .theme-preview-swatch { width:100%; height:40px; border-radius:8px; margin-bottom:10px; }
+.theme-preview .theme-preview-name { font-size:13px; color:#ffb86b; font-weight:600; }
+.theme-preview.halloween .theme-preview-swatch { background:linear-gradient(135deg,#2a0845,#ff6b00); }
+.theme-preview.christmas .theme-preview-swatch { background:linear-gradient(135deg,#0a2e1a,#ff5252); }
+.theme-preview.newyear .theme-preview-swatch { background:linear-gradient(135deg,#0a1d40,#64b5f6); }
+.theme-preview.cosmic .theme-preview-swatch { background:linear-gradient(135deg,#1a0033,#e1bee7); }
+
+/* Аватары */
+.avatar-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(60px,1fr)); gap:10px; }
+.avatar-option { width:100%; aspect-ratio:1; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer; border:2px solid rgba(255,140,0,0.3); background:rgba(0,0,0,0.3); transition:0.3s; position:relative; }
+.avatar-option:hover { transform:scale(1.1); border-color:rgba(255,160,0,0.7); }
+.avatar-option.active { border-color:#ff6b00; box-shadow:0 0 20px rgba(255,100,0,0.6); background:rgba(255,100,0,0.2); }
+.avatar-option.active::after { content:'✓'; position:absolute; bottom:-2px; right:-2px; background:#4caf50; color:#fff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; }
+
+/* Громкость */
+.volume-control { display:flex; align-items:center; gap:12px; flex:1; min-width:200px; }
+.volume-control input[type=range] { flex:1; -webkit-appearance:none; appearance:none; height:8px; border-radius:4px; background:rgba(0,0,0,0.5); outline:none; border:1px solid rgba(255,140,0,0.3); }
+.volume-control input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); cursor:pointer; box-shadow:0 0 15px rgba(255,100,0,0.6); }
+.volume-control input[type=range]::-moz-range-thumb { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); cursor:pointer; border:none; box-shadow:0 0 15px rgba(255,100,0,0.6); }
+.volume-value { font-size:13px; color:#ffb86b; font-weight:bold; min-width:45px; text-align:right; }
+
+/* Профиль */
+.profile-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; flex-wrap:wrap; }
+.profile-big-avatar { width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:40px; border:3px solid rgba(255,180,80,0.6); box-shadow:0 0 30px rgba(255,140,0,0.5); color:#fff; flex-shrink:0; }
+.profile-info-block { flex:1; min-width:200px; }
+.profile-info-block .profile-name { font-size:24px; font-family:'Creepster',cursive; color:#ffb86b; margin-bottom:4px; }
+.profile-info-block .profile-meta { font-size:13px; color:#c9a0dc; }
+.profile-info-block .profile-meta span { display:inline-block; margin-right:14px; margin-top:4px; }
+
+/* Кнопки действий */
+.settings-btn { padding:10px 20px; background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.4); border-radius:12px; color:#ffb86b; cursor:pointer; font-size:14px; font-weight:600; transition:0.3s; display:inline-flex; align-items:center; gap:8px; }
+.settings-btn:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.4); transform:translateY(-2px); }
+.settings-btn.danger { background:rgba(244,67,54,0.15); border-color:rgba(244,67,54,0.5); color:#ef5350; }
+.settings-btn.danger:hover { background:rgba(244,67,54,0.3); box-shadow:0 0 20px rgba(244,67,54,0.5); }
+.settings-btn.success { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
+.settings-btn.success:hover { background:rgba(76,175,80,0.3); box-shadow:0 0 20px rgba(76,175,80,0.5); }
+
+/* Горячие клавиши */
+.hotkeys-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.hotkey-item { display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,0,0,0.3); border-radius:12px; border:1px solid rgba(255,140,0,0.15); }
+.hotkey-key { padding:4px 12px; background:linear-gradient(135deg,rgba(255,140,0,0.25),rgba(199,44,0,0.2)); border:1px solid rgba(255,140,0,0.5); border-radius:8px; font-size:12px; font-family:monospace; color:#ffb86b; font-weight:bold; min-width:40px; text-align:center; }
+.hotkey-desc { font-size:13px; color:#c9a0dc; }
+
+/* Info box */
+.info-box { background:rgba(0,0,0,0.3); border-left:4px solid #ff8c00; padding:12px 16px; border-radius:8px; font-size:13px; color:#c9a0dc; line-height:1.6; margin-bottom:16px; }
+.info-box.warning { border-left-color:#ff9800; }
+.info-box.danger { border-left-color:#f44336; }
+.info-box.success { border-left-color:#4caf50; }
+
+/* Статистика аккаунта */
+.account-stats { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; }
+.account-stat { padding:14px; background:rgba(0,0,0,0.3); border-radius:12px; border:1px solid rgba(255,140,0,0.15); text-align:center; }
+.account-stat .ac-value { font-size:22px; font-family:'Creepster',cursive; color:#ffb86b; display:block; margin-bottom:4px; text-shadow:0 0 15px rgba(255,140,0,0.5); }
+.account-stat .ac-label { font-size:11px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; }
 
 @media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:340px; } }
 @media (max-width:600px) {
@@ -410,6 +484,9 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   .game-timer { width:52px; height:52px; font-size:20px; }
   .diff-stats { grid-template-columns:1fr; }
   .activity-chart { height:110px; }
+  .setting-row { flex-direction:column; align-items:flex-start; }
+  .setting-control { width:100%; }
+  .theme-grid { grid-template-columns:repeat(2,1fr); }
 }
 </style>
 </head>
@@ -520,20 +597,8 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
       <div class="stats-dashboard" id="statsDashboard"></div>
     </section>
     <section id="settingsView" class="view">
-      <h2>Настройки</h2>
-      <div class="friends-section">
-        <h3>🎨 Тема оформления</h3>
-        <div class="search-box" style="gap:8px;">
-          <button class="nav-btn" data-theme="halloween">🎃 Хэллоуин</button>
-          <button class="nav-btn" data-theme="christmas">🎄 Рождество</button>
-          <button class="nav-btn" data-theme="newyear">🎆 Новый год</button>
-          <button class="nav-btn" data-theme="cosmic">🌌 Космос</button>
-        </div>
-        <h3>🔊 Звуки</h3>
-        <button class="nav-btn" id="soundToggleBtn">Звук: Вкл</button>
-        <h3>🗑 Опасная зона</h3>
-        <button class="btn-secondary" id="resetProgressBtn" style="background:rgba(244,67,54,0.15);border-color:rgba(244,67,54,0.5);color:#ef5350;">Сбросить весь прогресс</button>
-      </div>
+      <h2>⚙ Настройки</h2>
+      <div class="settings-layout" id="settingsLayout"></div>
     </section>
   </main>
 </div>
@@ -620,6 +685,49 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
       <button id="inviteByNickBtn" class="btn-primary" style="width:100%;">🎮 Пригласить по никнейму</button>
     </div>
     <button id="cancelInviteBtn" class="btn-secondary" style="width:100%;margin-top:12px;">Отмена</button>
+  </div>
+</div>
+
+<!-- CHANGE PASSWORD MODAL -->
+<div id="passwordModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>🔐 Смена пароля</h2>
+    <input type="password" id="oldPassword" placeholder="Старый пароль">
+    <input type="password" id="newPassword" placeholder="Новый пароль (мин. 4 символа)">
+    <input type="password" id="newPassword2" placeholder="Повторите новый пароль">
+    <p class="error" id="passwordError"></p>
+    <div class="modal-buttons">
+      <button id="savePasswordBtn" class="btn-primary">Сохранить</button>
+      <button id="cancelPasswordBtn" class="btn-secondary">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGE NICKNAME MODAL -->
+<div id="nicknameModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>✏️ Смена никнейма</h2>
+    <div class="info-box warning">⚠️ Внимание: после смены никнейма ваш прогресс сохранится, но по старому никнейму вас больше не смогут найти друзья.</div>
+    <input type="text" id="newNicknameInput" placeholder="Новый никнейм (3-20 символов)">
+    <p class="error" id="nicknameError"></p>
+    <div class="modal-buttons">
+      <button id="saveNicknameBtn" class="btn-primary">Сохранить</button>
+      <button id="cancelNicknameBtn" class="btn-secondary">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT DATA MODAL -->
+<div id="importModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>📥 Импорт данных</h2>
+    <div class="info-box danger">⚠️ Текущий прогресс будет полностью заменён. Это действие нельзя отменить!</div>
+    <textarea id="importTextarea" style="width:100%;height:160px;padding:13px;background:rgba(0,0,0,0.5);border:1px solid rgba(255,140,0,0.3);border-radius:12px;color:#ffb86b;font-size:12px;font-family:monospace;resize:vertical;" placeholder="Вставьте данные для импорта..."></textarea>
+    <p class="error" id="importError"></p>
+    <div class="modal-buttons">
+      <button id="confirmImportBtn" class="btn-primary">Импортировать</button>
+      <button id="cancelImportBtn" class="btn-secondary">Отмена</button>
+    </div>
   </div>
 </div>
 
@@ -1596,6 +1704,8 @@ const CATEGORIES = {
   fun: { name:'🎉 Весёлые', icon:'🎉' }
 };
 
+const AVATARS = ['😀','😎','🤓','🥳','😺','🐶','🦊','🐼','🦁','🐸','🐵','🦉','🎃','👻','🤖','👽','🧙','🧛','🧟','🦸','🧝','🧞','🐉','🦄','🎅','🧑‍🎄','👨‍🚀','👩‍🎨'];
+
 const ACHIEVEMENTS = [
   {id:'first_game', icon:'🎯', name:'Первый шаг', desc:'Пройдите первую викторину', check:u => u.gamesPlayed>=1, progress:u => [Math.min(u.gamesPlayed,1), 1]},
   {id:'five_games', icon:'🔥', name:'В ударе', desc:'Пройдите 5 викторин', check:u => u.gamesPlayed>=5, progress:u => [Math.min(u.gamesPlayed,5), 5]},
@@ -1653,7 +1763,14 @@ const DB = {
   set online(v) { localStorage.setItem('hq_online', JSON.stringify(v)); },
   get lobbies() { return JSON.parse(localStorage.getItem('hq_lobbies') || '{}'); },
   set lobbies(v) { localStorage.setItem('hq_lobbies', JSON.stringify(v)); },
-  get settings() { return JSON.parse(localStorage.getItem('hq_settings') || '{"sound":true,"theme":"halloween"}'); },
+  get settings() {
+    return Object.assign({
+      sound:true, theme:'halloween', volume:0.7,
+      animations:true, batsBg:true,
+      autosave:true, notifications:true,
+      avatar:'😀'
+    }, JSON.parse(localStorage.getItem('hq_settings') || '{}'));
+  },
   set settings(v) { localStorage.setItem('hq_settings', JSON.stringify(v)); }
 };
 
@@ -1666,15 +1783,10 @@ function defaultUser(name) {
     streak: 0, lastPlayDate: null,
     completed: {}, friends: [], achievements: [], createdAt: Date.now(),
     lastSeen: Date.now(), totalTime: 0,
-    // Расширенная статистика
-    categoryStats: {},   // { russian: { played: 0, wins: 0 }, ... }
-    difficultyStats: {}, // { easy: { played: 0, wins: 0 }, ... }
-    dailyHistory: {},    // { '2024-01-01': { count, score, time } }
-    recentGames: [],     // [ { quizId, difficulty, score, correct, wrong, total, date, timeSpent } ]
-    totalCorrect: 0,     // всего правильных ответов
-    totalWrong: 0,       // всего неправильных ответов
-    totalQuestions: 0,   // всего задано вопросов
-    dailyStreakDates: [] // даты игр для графика
+    categoryStats: {}, difficultyStats: {}, dailyHistory: {},
+    recentGames: [], totalCorrect: 0, totalWrong: 0, totalQuestions: 0,
+    dailyStreakDates: [],
+    avatar: '😀'
   };
 }
 
@@ -1748,7 +1860,7 @@ function playSound(type) {
     const gain = audioCtx.createGain();
     osc.frequency.value = f;
     osc.type = type === 'wrong' ? 'sawtooth' : 'sine';
-    gain.gain.value = 0.08;
+    gain.gain.value = 0.08 * (s.volume ?? 0.7);
     gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3 + i * 0.08);
     osc.connect(gain);
     gain.connect(audioCtx.destination);
@@ -1761,6 +1873,7 @@ function playSound(type) {
    CONFETTI
    ========================================================= */
 function burstConfetti(count = 50) {
+  if (!DB.settings.animations) return;
   const colors = ['#ff6b00','#ffb86b','#ffd700','#4caf50','#e91e63','#2196f3'];
   for (let i = 0; i < count; i++) {
     const piece = document.createElement('div');
@@ -1800,14 +1913,8 @@ function updateDailyCard() {
   const diff = DIFFICULTIES[dailyChallenge.difficulty];
   const card = $('dailyCard');
   const doneToday = currentUser.lastDaily === dailyChallenge.key;
-  
-  $('dailyDesc').textContent = doneToday 
-    ? '✅ Вы уже прошли вызов сегодня!' 
-    : `Сегодня: "${quiz.name}" на сложности ${diff.name}. ×2 XP!`;
-  $('dailyInfo').innerHTML = `
-    <span>${quiz.emoji} ${quiz.name}</span>
-    <span>${diff.icon} ${diff.name}</span>
-  `;
+  $('dailyDesc').textContent = doneToday ? '✅ Вы уже прошли вызов сегодня!' : `Сегодня: "${quiz.name}" на сложности ${diff.name}. ×2 XP!`;
+  $('dailyInfo').innerHTML = `<span>${quiz.emoji} ${quiz.name}</span><span>${diff.icon} ${diff.name}</span>`;
   card.classList.toggle('done', doneToday);
   $('dailyStartBtn').textContent = doneToday ? '✓ Пройдено' : '▶ Играть';
   $('dailyStartBtn').disabled = doneToday;
@@ -1902,7 +2009,6 @@ $('loginForm').addEventListener('submit', e => {
   DB.session = u;
   currentUser = users[u];
   currentUser.lastSeen = Date.now();
-  // Совместимость с v1-аккаунтами: инициализируем новые поля
   initExtendedStats(currentUser);
   enterMain();
 });
@@ -1916,6 +2022,7 @@ function initExtendedStats(u) {
   if (typeof u.totalWrong !== 'number') u.totalWrong = 0;
   if (typeof u.totalQuestions !== 'number') u.totalQuestions = 0;
   if (!u.dailyStreakDates) u.dailyStreakDates = [];
+  if (!u.avatar) u.avatar = '😀';
 }
 
 $('logoutBtn').addEventListener('click', () => {
@@ -1951,10 +2058,7 @@ function updateStreak() {
     currentUser.streak = 1;
   }
   currentUser.lastPlayDate = today;
-  if (currentUser.streak > (currentUser.bestStreak || 0)) {
-    currentUser.bestStreak = currentUser.streak;
-  }
-  // Список дат для графика
+  if (currentUser.streak > (currentUser.bestStreak || 0)) currentUser.bestStreak = currentUser.streak;
   if (!currentUser.dailyStreakDates) currentUser.dailyStreakDates = [];
   if (!currentUser.dailyStreakDates.includes(today)) {
     currentUser.dailyStreakDates.push(today);
@@ -1969,6 +2073,7 @@ function enterMain() {
   initExtendedStats(currentUser);
   heartbeat();
   applyTheme(DB.settings.theme);
+  applySettings();
   updateTopBar();
   updateDailyCard();
   updateStatsMini();
@@ -1977,13 +2082,21 @@ function enterMain() {
   renderLeaderboard();
   renderFriends();
   renderStatsDashboard();
+  renderSettings();
   showScreen('main');
   if (pendingInvite) showJoinPrompt();
 }
 
+function applySettings() {
+  const s = DB.settings;
+  document.body.classList.toggle('no-animations', !s.animations);
+  document.querySelectorAll('.bat').forEach(b => b.style.display = s.batsBg ? '' : 'none');
+}
+
 function updateTopBar() {
   $('userLevel').textContent = 'Ур. ' + currentUser.level;
-  $('userAvatar').textContent = currentUser.username[0].toUpperCase();
+  const av = $('userAvatar');
+  av.textContent = currentUser.avatar || currentUser.username[0].toUpperCase();
   const needed = xpForLevel(currentUser.level);
   const pct = Math.min(100, (currentUser.xp / needed) * 100);
   $('xpBar').style.width = pct + '%';
@@ -2009,21 +2122,6 @@ function applyTheme(theme) {
   const s = DB.settings; s.theme = theme; DB.settings = s;
 }
 
-document.querySelectorAll('[data-theme]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    applyTheme(btn.dataset.theme);
-    showToast(`🎨 Тема: ${btn.textContent.trim()}`);
-  });
-});
-
-$('soundToggleBtn').addEventListener('click', () => {
-  const s = DB.settings;
-  s.sound = !s.sound;
-  DB.settings = s;
-  $('soundToggleBtn').textContent = 'Звук: ' + (s.sound ? 'Вкл' : 'Выкл');
-  if (s.sound) playSound('click');
-});
-
 /* =========================================================
    NAV
    ========================================================= */
@@ -2037,6 +2135,7 @@ document.querySelectorAll('.nav-btn[data-view]').forEach(btn => {
     if (btn.dataset.view === 'achievements') renderAchievements();
     if (btn.dataset.view === 'friends') renderFriends();
     if (btn.dataset.view === 'stats') renderStatsDashboard();
+    if (btn.dataset.view === 'settings') renderSettings();
   });
 });
 
@@ -2113,24 +2212,17 @@ function renderQuizzes() {
         played: playedFriends.includes(f)
       }))
     ];
-
     if (allPlayers.length > 1) {
-      playersHtml = '<div class="quiz-players">';
-      playersHtml += '<span class="quiz-players-label">Игроки:</span>';
+      playersHtml = '<div class="quiz-players"><span class="quiz-players-label">Игроки:</span>';
       allPlayers.forEach(p => {
         const cls = p.me ? 'me' : (p.invited ? 'invited' : (p.online ? 'online' : ''));
-        playersHtml += `<div class="player-tag ${cls}" title="${p.name}">
-          <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
-          <span>${p.name}${p.me ? ' (вы)' : ''}</span>
-        </div>`;
+        playersHtml += `<div class="player-tag ${cls}" title="${p.name}"><div class="mini-avatar">${p.name[0].toUpperCase()}</div><span>${p.name}${p.me ? ' (вы)' : ''}</span></div>`;
       });
       playersHtml += '</div>';
     }
 
     const diffButtonsHtml = Object.entries(DIFFICULTIES).map(([k, d]) => `
-      <button class="diff-btn ${k === currentDiff ? 'active' : ''}" data-diff="${k}" data-quiz="${q.id}">
-        ${d.icon} ${d.name}
-      </button>
+      <button class="diff-btn ${k === currentDiff ? 'active' : ''}" data-diff="${k}" data-quiz="${q.id}">${d.icon} ${d.name}</button>
     `).join('');
 
     const catName = CATEGORIES[q.category]?.name || '';
@@ -2195,9 +2287,7 @@ function startGame(quizId, difficulty = 'easy', lobbyPlayers = null, isDaily = f
   };
 
   if (lobbyPlayers && lobbyPlayers.length) {
-    lobbyPlayers.forEach(name => {
-      game.participants.push({ name, me: name === currentUser.username, online: isOnline(name) || name === currentUser.username });
-    });
+    lobbyPlayers.forEach(name => game.participants.push({ name, me: name === currentUser.username, online: isOnline(name) || name === currentUser.username }));
   } else {
     game.participants.push({ name: currentUser.username, me: true, online: true });
     const friends = (currentUser.friends || []).sort((a, b) => isOnline(b) - isOnline(a));
@@ -2248,10 +2338,7 @@ function renderChatParticipants() {
   game.participants.forEach(p => {
     const chip = document.createElement('div');
     chip.className = 'participant-chip' + (p.me ? ' me' : '');
-    chip.innerHTML = `
-      <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
-      <span>${p.name}${p.me ? ' (вы)' : ''}</span>
-    `;
+    chip.innerHTML = `<div class="mini-avatar">${p.name[0].toUpperCase()}</div><span>${p.name}${p.me ? ' (вы)' : ''}</span>`;
     cont.appendChild(chip);
   });
 }
@@ -2278,7 +2365,6 @@ function nextRound() {
     b.addEventListener('click', () => selectAnswer(i));
     cont.appendChild(b);
   });
-
   startTimer();
 
   if (Math.random() < 0.5 && game.participants.length > 1) {
@@ -2342,7 +2428,6 @@ function selectAnswer(idx) {
     playSound('wrong');
     addChat('system', `❌ Неверно. Правильно: ${q.answers[q.correct]}`);
   }
-
   $('gameScore').textContent = '⭐ ' + game.score;
   game.round++;
   setTimeout(() => { renderProgressStrip(); nextRound(); }, 1600);
@@ -2352,43 +2437,35 @@ function endGame() {
   clearInterval(timerInterval);
   const key = `${game.quizId}_${game.difficulty}`;
   const timeSpent = Math.round((Date.now() - gameStartTime) / 1000);
-  
+
   currentUser.gamesPlayed++;
   currentUser.totalScore = (currentUser.totalScore || 0) + game.score;
   currentUser.totalTime = (currentUser.totalTime || 0) + timeSpent;
   currentUser.totalCorrect = (currentUser.totalCorrect || 0) + game.correct;
   currentUser.totalWrong = (currentUser.totalWrong || 0) + game.wrong;
   currentUser.totalQuestions = (currentUser.totalQuestions || 0) + game.questions.length;
-  
+
   if (game.wrong === 0) {
     currentUser.perfectGames++;
     playSound('success');
     burstConfetti(80);
   }
-  
   if (!currentUser.completed) currentUser.completed = {};
   const prevBest = currentUser.completed[key]?.score || 0;
-  if (game.score > prevBest) {
-    currentUser.completed[key] = { score: game.score, date: Date.now(), difficulty: game.difficulty };
-  }
-  
-  if (game.difficulty === 'hard' && game.wrong <= 2) {
-    currentUser.hardWins = (currentUser.hardWins || 0) + 1;
-  }
-  
+  if (game.score > prevBest) currentUser.completed[key] = { score: game.score, date: Date.now(), difficulty: game.difficulty };
+  if (game.difficulty === 'hard' && game.wrong <= 2) currentUser.hardWins = (currentUser.hardWins || 0) + 1;
+
   let dailyBonus = false;
   if (game.isDaily) {
     dailyBonus = true;
     currentUser.lastDaily = todayKey();
     currentUser.dailyDone = (currentUser.dailyDone || 0) + 1;
   }
-  
   updateStreak();
   recordExtendedStats(game, timeSpent);
-  
+
   const baseXp = Math.round(game.score * DIFFICULTIES[game.difficulty].xpMultiplier);
   const xpGain = Math.round(baseXp * (dailyBonus ? 2 : 1));
-  
   addXp(currentUser, xpGain);
   saveUser();
   updateTopBar();
@@ -2403,7 +2480,7 @@ function endGame() {
     <div class="stat"><span class="stat-value">${game.wrong}</span><span class="stat-label">Ошибок</span></div>
     <div class="stat"><span class="stat-value">+${xpGain}</span><span class="stat-label">XP${dailyBonus ? ' ×2' : ''}</span></div>
   `;
-  
+
   let extra = '';
   const accuracy = Math.round((game.correct / game.questions.length) * 100);
   if (accuracy === 100) extra = '💯 Идеально!';
@@ -2413,30 +2490,26 @@ function endGame() {
   extra += `<br><span style="font-size:13px;color:#c9a0dc;">⏱ Время: ${timeSpent}с • Точность: ${accuracy}%</span>`;
   if (game.isDaily) extra += ' ⚡ Бонус ×2 XP!';
   $('resultExtra').innerHTML = extra;
-  
+
   $('resultModal').classList.remove('hidden');
 }
 
-/* Записываем расширенную статистику */
 function recordExtendedStats(g, timeSpent) {
   const quiz = QUIZZES[g.quizId];
   const accuracy = g.correct / g.questions.length;
 
-  // По категориям
   if (!currentUser.categoryStats) currentUser.categoryStats = {};
   if (!currentUser.categoryStats[quiz.category]) currentUser.categoryStats[quiz.category] = { played: 0, wins: 0, score: 0 };
   currentUser.categoryStats[quiz.category].played++;
   currentUser.categoryStats[quiz.category].score += g.score;
   if (g.wrong === 0) currentUser.categoryStats[quiz.category].wins++;
 
-  // По сложностям
   if (!currentUser.difficultyStats) currentUser.difficultyStats = {};
   if (!currentUser.difficultyStats[g.difficulty]) currentUser.difficultyStats[g.difficulty] = { played: 0, wins: 0, score: 0 };
   currentUser.difficultyStats[g.difficulty].played++;
   currentUser.difficultyStats[g.difficulty].score += g.score;
   if (g.wrong === 0) currentUser.difficultyStats[g.difficulty].wins++;
 
-  // По дням
   const day = todayKey();
   if (!currentUser.dailyHistory) currentUser.dailyHistory = {};
   if (!currentUser.dailyHistory[day]) currentUser.dailyHistory[day] = { count: 0, score: 0, time: 0 };
@@ -2444,18 +2517,11 @@ function recordExtendedStats(g, timeSpent) {
   currentUser.dailyHistory[day].score += g.score;
   currentUser.dailyHistory[day].time += timeSpent;
 
-  // Последние игры
   if (!currentUser.recentGames) currentUser.recentGames = [];
   currentUser.recentGames.unshift({
-    quizId: g.quizId,
-    difficulty: g.difficulty,
-    score: g.score,
-    correct: g.correct,
-    wrong: g.wrong,
-    total: g.questions.length,
-    accuracy: Math.round(accuracy * 100),
-    date: Date.now(),
-    timeSpent
+    quizId: g.quizId, difficulty: g.difficulty, score: g.score,
+    correct: g.correct, wrong: g.wrong, total: g.questions.length,
+    accuracy: Math.round(accuracy * 100), date: Date.now(), timeSpent
   });
   if (currentUser.recentGames.length > 30) currentUser.recentGames.length = 30;
 }
@@ -2502,7 +2568,6 @@ function sendChat() {
   saveUser();
   checkAchievements();
   inp.value = '';
-
   if (game && game.participants.length > 1) {
     const others = game.participants.filter(p => !p.me);
     if (others.length && Math.random() < 0.7) {
@@ -2530,12 +2595,7 @@ function renderAchievements() {
     }
     const div = document.createElement('div');
     div.className = 'achievement ' + (unlocked ? 'unlocked' : 'locked');
-    div.innerHTML = `
-      <div class="achievement-icon">${a.icon}</div>
-      <h4>${a.name}</h4>
-      <p>${a.desc}</p>
-      ${progressHtml}
-    `;
+    div.innerHTML = `<div class="achievement-icon">${a.icon}</div><h4>${a.name}</h4><p>${a.desc}</p>${progressHtml}`;
     grid.appendChild(div);
   });
 }
@@ -2568,9 +2628,10 @@ function renderLeaderboard() {
     const online = isOnline(u.username);
     const row = document.createElement('div');
     row.className = 'leaderboard-row' + (u.username === currentUser.username ? ' me' : '');
+    const av = u.avatar || u.username[0].toUpperCase();
     row.innerHTML = `
       <div class="rank ${rankClass}">${medal}</div>
-      <div class="avatar">${u.username[0].toUpperCase()}</div>
+      <div class="avatar">${av}</div>
       <div class="leaderboard-name">${u.username} ${online ? '<span style="color:#4caf50;font-size:12px;">● онлайн</span>' : ''}</div>
       <div class="leaderboard-xp">Ур. ${u.level} • ${u.xp} XP</div>
     `;
@@ -2592,7 +2653,6 @@ function addFriendByNick() {
   if (!nick) return;
   const users = DB.users;
   const target = users[nick.toLowerCase()];
-
   if (!target) {
     res.innerHTML = `<div class="friend-item" style="border-color:rgba(244,67,54,0.5);"><div class="name" style="color:#ff5c7c;">❌ Игрок "${nick}" не найден</div></div>`;
     return;
@@ -2605,8 +2665,9 @@ function addFriendByNick() {
   const online = isOnline(target.username);
   const item = document.createElement('div');
   item.className = 'friend-item';
+  const av = target.avatar || target.username[0].toUpperCase();
   item.innerHTML = `
-    <div class="avatar">${target.username[0].toUpperCase()}</div>
+    <div class="avatar">${av}</div>
     <div class="name">${target.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${target.level}${online ? ' • ● онлайн' : ''})</span></div>
     <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>${isFriend ? '✓ В друзьях' : '➕ Добавить'}</button>
   `;
@@ -2640,8 +2701,9 @@ function renderFriends() {
       const online = isOnline(name);
       const item = document.createElement('div');
       item.className = 'friend-item';
+      const av = (u && u.avatar) || name[0].toUpperCase();
       item.innerHTML = `
-        <div class="avatar">${name[0].toUpperCase()}</div>
+        <div class="avatar">${av}</div>
         <div class="name">${name} ${u ? `<span style="opacity:0.6;font-size:12px;">(Ур. ${u.level}${online ? ' • ● онлайн' : ''})</span>` : ''}</div>
         <button data-remove="${name}" style="background:rgba(255,255,255,0.15);">Удалить</button>
       `;
@@ -2677,7 +2739,6 @@ function openInviteModal(quizId) {
   $('inviteQuizName').textContent = `${quiz.emoji} ${quiz.name} • ${DIFFICULTIES[diff].icon} ${DIFFICULTIES[diff].name}`;
   const linkData = btoa(JSON.stringify({ q: quizId, d: diff, from: currentUser.username, t: Date.now() }));
   $('inviteLinkInput').value = `${location.origin}${location.pathname}#join=${linkData}`;
-
   const sel = $('inviteFriendSelect');
   sel.innerHTML = '';
   if (!currentUser.friends || !currentUser.friends.length) {
@@ -2801,16 +2862,12 @@ function updateLobby() {
   const lobbies = DB.lobbies;
   const lobby = lobbies[currentLobby];
   if (!lobby) { leaveLobby(); return; }
-
   const cont = $('lobbyPlayers');
   cont.innerHTML = '';
   lobby.players.forEach(p => {
     const tag = document.createElement('div');
     tag.className = 'player-tag online';
-    tag.innerHTML = `
-      <div class="mini-avatar">${p.name[0].toUpperCase()}</div>
-      <span>${p.name}${p.name === currentUser.username ? ' (вы)' : ''}${p.name === lobby.host ? ' 👑' : ''}</span>
-    `;
+    tag.innerHTML = `<div class="mini-avatar">${p.name[0].toUpperCase()}</div><span>${p.name}${p.name === currentUser.username ? ' (вы)' : ''}${p.name === lobby.host ? ' 👑' : ''}</span>`;
     cont.appendChild(tag);
   });
   $('lobbyCount').textContent = `(${lobby.players.length}/8)`;
@@ -2818,7 +2875,6 @@ function updateLobby() {
   const btn = $('startLobbyGameBtn');
   btn.style.display = isHost ? 'block' : 'none';
   if (isHost) btn.textContent = `▶ Начать игру (${lobby.players.length})`;
-
   if (lobby.status === 'started' && !game) {
     clearInterval(lobbyInterval);
     startGame(lobby.quizId, lobby.difficulty, lobby.players.map(p => p.name));
@@ -2861,10 +2917,12 @@ function leaveLobby() {
 function checkInvites() {
   const invites = DB.invites.filter(i => i.to === currentUser.username);
   invites.forEach(inv => {
-    if (!inv.notified) {
+    if (!inv.notified && DB.settings.notifications) {
       showToast(`📨 ${inv.from} приглашает в "${QUIZZES[inv.quizId]?.name}"`);
       inv.notified = true;
       playSound('click');
+    } else if (!inv.notified) {
+      inv.notified = true;
     }
   });
   const allInvites = DB.invites;
@@ -2912,7 +2970,6 @@ function renderStatsDashboard() {
   const dash = $('statsDashboard');
   if (!dash) return;
   initExtendedStats(currentUser);
-
   const u = currentUser;
   const totalGames = u.gamesPlayed || 0;
   const totalCorrect = u.totalCorrect || 0;
@@ -2928,77 +2985,43 @@ function renderStatsDashboard() {
   const playDays = (u.dailyStreakDates || []).length;
   const achPercent = Math.round(((u.achievements||[]).length / ACHIEVEMENTS.length) * 100);
 
-  // Топ-3 лучших результатов
   const allResults = Object.entries(u.completed || {}).map(([k, v]) => {
     const [qid, diff] = k.split('_');
-    const q = QUIZZES[qid];
-    return { quizId: qid, difficulty: diff, score: v.score, quiz: q };
+    return { quizId: qid, difficulty: diff, score: v.score, quiz: QUIZZES[qid] };
   }).filter(r => r.quiz).sort((a, b) => b.score - a.score).slice(0, 3);
 
-  // Разбивка по сложностям
   const diffStats = { easy:{played:0,wins:0}, medium:{played:0,wins:0}, hard:{played:0,wins:0} };
   Object.entries(u.difficultyStats || {}).forEach(([k, v]) => { if (diffStats[k]) diffStats[k] = v; });
 
-  // Прогресс по категориям
   const catProgressHtml = Object.entries(CATEGORIES).filter(([k]) => k !== 'all').map(([catKey, catInfo]) => {
     const totalInCat = Object.values(QUIZZES).filter(q => q.category === catKey).length;
     const playedInCat = Object.entries(u.completed || {}).filter(([k]) => QUIZZES[k.split('_')[0]]?.category === catKey).length;
     const pct = totalInCat > 0 ? Math.round((playedInCat / totalInCat) * 100) : 0;
-    return `
-      <div class="cat-progress-row">
-        <div class="cat-icon">${catInfo.icon}</div>
-        <div class="cat-name">${catInfo.name}</div>
-        <div class="cat-bar"><div class="cat-bar-fill" style="width:${pct}%"></div></div>
-        <div class="cat-count">${playedInCat}/${totalInCat} (${pct}%)</div>
-      </div>
-    `;
+    return `<div class="cat-progress-row"><div class="cat-icon">${catInfo.icon}</div><div class="cat-name">${catInfo.name}</div><div class="cat-bar"><div class="cat-bar-fill" style="width:${pct}%"></div></div><div class="cat-count">${playedInCat}/${totalInCat} (${pct}%)</div></div>`;
   }).join('');
 
-  // График активности за 7 дней
   const last7 = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
     const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
     const dayName = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'][d.getDay()];
-    const isToday = i === 0;
     const rec = (u.dailyHistory || {})[key] || { count: 0, score: 0, time: 0 };
-    last7.push({ key, dayName, count: rec.count, score: rec.score, time: rec.time, isToday });
+    last7.push({ key, dayName, count: rec.count, isToday: i === 0 });
   }
   const maxCount = Math.max(1, ...last7.map(d => d.count));
   const activityHtml = last7.map(d => {
     const heightPct = (d.count / maxCount) * 100;
-    return `
-      <div class="activity-day">
-        <div class="activity-bar-wrap">
-          <div class="activity-bar ${d.count === 0 ? 'empty' : ''}" style="height:${d.count === 0 ? 4 : Math.max(8, heightPct)}%">
-            ${d.count > 0 ? `<span class="activity-count">${d.count}</span>` : ''}
-          </div>
-        </div>
-        <div class="activity-day-label ${d.isToday ? 'today' : ''}">${d.dayName}</div>
-      </div>
-    `;
+    return `<div class="activity-day"><div class="activity-bar-wrap"><div class="activity-bar ${d.count === 0 ? 'empty' : ''}" style="height:${d.count === 0 ? 4 : Math.max(8, heightPct)}%">${d.count > 0 ? `<span class="activity-count">${d.count}</span>` : ''}</div></div><div class="activity-day-label ${d.isToday ? 'today' : ''}">${d.dayName}</div></div>`;
   }).join('');
 
-  // Топ-3 викторин
   const topHtml = allResults.length
     ? allResults.map((r, i) => {
         const diffInfo = DIFFICULTIES[r.difficulty];
-        return `
-          <div class="top-result rank-${i+1}">
-            <div class="top-rank">${i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}</div>
-            <div class="top-emoji">${r.quiz.emoji}</div>
-            <div class="top-info">
-              <div class="top-name">${r.quiz.name}</div>
-              <div class="top-meta">${diffInfo.icon} ${diffInfo.name}</div>
-            </div>
-            <div class="top-score">${r.score}</div>
-          </div>
-        `;
+        return `<div class="top-result rank-${i+1}"><div class="top-rank">${i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}</div><div class="top-emoji">${r.quiz.emoji}</div><div class="top-info"><div class="top-name">${r.quiz.name}</div><div class="top-meta">${diffInfo.icon} ${diffInfo.name}</div></div><div class="top-score">${r.score}</div></div>`;
       }).join('')
     : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Пройдите викторину, чтобы увидеть топ</p>';
 
-  // Последние игры
   const recentHtml = (u.recentGames || []).length
     ? u.recentGames.slice(0, 8).map(g => {
         const q = QUIZZES[g.quizId];
@@ -3007,201 +3030,493 @@ function renderStatsDashboard() {
         const diffInfo = DIFFICULTIES[g.difficulty];
         const d = new Date(g.date);
         const dateStr = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-        return `
-          <div class="recent-game ${cls}">
-            <div class="rg-emoji">${q.emoji}</div>
-            <div class="rg-info">
-              <div class="rg-name">${q.name}</div>
-              <div class="rg-meta">${diffInfo.icon} ${diffInfo.name} • ✅ ${g.correct}/${g.total} • ⏱ ${g.timeSpent}с</div>
-            </div>
-            <div class="rg-score">${g.score}</div>
-            <div class="rg-date">${dateStr}</div>
-          </div>
-        `;
+        return `<div class="recent-game ${cls}"><div class="rg-emoji">${q.emoji}</div><div class="rg-info"><div class="rg-name">${q.name}</div><div class="rg-meta">${diffInfo.icon} ${diffInfo.name} • ✅ ${g.correct}/${g.total} • ⏱ ${g.timeSpent}с</div></div><div class="rg-score">${g.score}</div><div class="rg-date">${dateStr}</div></div>`;
       }).join('')
     : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Ещё нет сыгранных игр</p>';
 
-  // Сравнение со средним по всем игрокам
   const allUsers = Object.values(DB.users);
   const avgLevelAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.level||1), 0) / allUsers.length) : 1;
   const avgScoreAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.totalScore||0), 0) / allUsers.length) : 0;
   const avgGamesAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.gamesPlayed||0), 0) / allUsers.length) : 0;
-  const avgAccuracyAll = (() => {
-    const totalQAll = allUsers.reduce((a,b) => a + (b.totalQuestions||0), 0);
-    const totalCAll = allUsers.reduce((a,b) => a + (b.totalCorrect||0), 0);
-    return totalQAll > 0 ? Math.round((totalCAll / totalQAll) * 100) : 0;
-  })();
+  const totalQAll = allUsers.reduce((a,b) => a + (b.totalQuestions||0), 0);
+  const totalCAll = allUsers.reduce((a,b) => a + (b.totalCorrect||0), 0);
+  const avgAccuracyAll = totalQAll > 0 ? Math.round((totalCAll / totalQAll) * 100) : 0;
 
   const cmp = (val, avg) => {
-    const diff = val - avg;
-    if (diff > 0) return `<span class="cmp-hint above">▲ +${diff}</span>`;
-    if (diff < 0) return `<span class="cmp-hint below">▼ ${diff}</span>`;
+    const d = val - avg;
+    if (d > 0) return `<span class="cmp-hint above">▲ +${d}</span>`;
+    if (d < 0) return `<span class="cmp-hint below">▼ ${d}</span>`;
     return `<span class="cmp-hint equal">= 0</span>`;
   };
 
   dash.innerHTML = `
-    <!-- ОСНОВНЫЕ ПОКАЗАТЕЛИ -->
-    <div class="stats-section">
-      <h3>📊 Общие показатели</h3>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">🎮</div>
-          <span class="stat-number">${totalGames}</span>
-          <span class="stat-name">Игр сыграно</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">💯</div>
-          <span class="stat-number">${u.perfectGames || 0}</span>
-          <span class="stat-name">Идеальных</span>
-          <span class="stat-sub">${perfectRate}% от всех</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🎯</div>
-          <span class="stat-number">${accuracy}%</span>
-          <span class="stat-name">Точность</span>
-          <span class="stat-sub">${totalCorrect}/${totalQ}</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">⭐</div>
-          <span class="stat-number">${u.totalScore || 0}</span>
-          <span class="stat-name">Всего очков</span>
-          <span class="stat-sub">Ср. ${avgScore}</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🏆</div>
-          <span class="stat-number">${(u.achievements||[]).length}</span>
-          <span class="stat-name">Достижений</span>
-          <span class="stat-sub">${achPercent}% от ${ACHIEVEMENTS.length}</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🎓</div>
-          <span class="stat-number">${u.level}</span>
-          <span class="stat-name">Уровень</span>
-          <span class="stat-sub">${u.xp} XP до ${u.level+1}</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🔥</div>
-          <span class="stat-number">${u.streak || 0}</span>
-          <span class="stat-name">Текущий стрик</span>
-          <span class="stat-sub">Лучший: ${u.bestStreak || 0}</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">📅</div>
-          <span class="stat-number">${playDays}</span>
-          <span class="stat-name">Дней в игре</span>
-          <span class="stat-sub">Всего</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">⏱️</div>
-          <span class="stat-number">${totalHours > 0 ? totalHours + 'ч ' : ''}${mins}м</span>
-          <span class="stat-name">Время в игре</span>
-          <span class="stat-sub">Ср. ${avgTime}с/игра</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">✅</div>
-          <span class="stat-number">${totalCorrect}</span>
-          <span class="stat-name">Верных ответов</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">❌</div>
-          <span class="stat-number">${totalWrong}</span>
-          <span class="stat-name">Ошибок</span>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">📝</div>
-          <span class="stat-number">${totalQ}</span>
-          <span class="stat-name">Всего вопросов</span>
-        </div>
-      </div>
-    </div>
+    <div class="stats-section"><h3>📊 Общие показатели</h3><div class="stats-grid">
+      <div class="stat-card"><div class="stat-icon">🎮</div><span class="stat-number">${totalGames}</span><span class="stat-name">Игр сыграно</span></div>
+      <div class="stat-card"><div class="stat-icon">💯</div><span class="stat-number">${u.perfectGames || 0}</span><span class="stat-name">Идеальных</span><span class="stat-sub">${perfectRate}% от всех</span></div>
+      <div class="stat-card"><div class="stat-icon">🎯</div><span class="stat-number">${accuracy}%</span><span class="stat-name">Точность</span><span class="stat-sub">${totalCorrect}/${totalQ}</span></div>
+      <div class="stat-card"><div class="stat-icon">⭐</div><span class="stat-number">${u.totalScore || 0}</span><span class="stat-name">Всего очков</span><span class="stat-sub">Ср. ${avgScore}</span></div>
+      <div class="stat-card"><div class="stat-icon">🏆</div><span class="stat-number">${(u.achievements||[]).length}</span><span class="stat-name">Достижений</span><span class="stat-sub">${achPercent}% от ${ACHIEVEMENTS.length}</span></div>
+      <div class="stat-card"><div class="stat-icon">🎓</div><span class="stat-number">${u.level}</span><span class="stat-name">Уровень</span><span class="stat-sub">${u.xp} XP до ${u.level+1}</span></div>
+      <div class="stat-card"><div class="stat-icon">🔥</div><span class="stat-number">${u.streak || 0}</span><span class="stat-name">Текущий стрик</span><span class="stat-sub">Лучший: ${u.bestStreak || 0}</span></div>
+      <div class="stat-card"><div class="stat-icon">📅</div><span class="stat-number">${playDays}</span><span class="stat-name">Дней в игре</span></div>
+      <div class="stat-card"><div class="stat-icon">⏱️</div><span class="stat-number">${totalHours > 0 ? totalHours + 'ч ' : ''}${mins}м</span><span class="stat-name">Время в игре</span><span class="stat-sub">Ср. ${avgTime}с/игра</span></div>
+      <div class="stat-card"><div class="stat-icon">✅</div><span class="stat-number">${totalCorrect}</span><span class="stat-name">Верных ответов</span></div>
+      <div class="stat-card"><div class="stat-icon">❌</div><span class="stat-number">${totalWrong}</span><span class="stat-name">Ошибок</span></div>
+      <div class="stat-card"><div class="stat-icon">📝</div><span class="stat-number">${totalQ}</span><span class="stat-name">Всего вопросов</span></div>
+    </div></div>
 
-    <!-- ТОП-3 ЛУЧШИХ -->
-    <div class="stats-section">
-      <h3>🏅 Ваши лучшие результаты</h3>
-      ${topHtml}
-    </div>
+    <div class="stats-section"><h3>🏅 Ваши лучшие результаты</h3>${topHtml}</div>
 
-    <!-- СЛОЖНОСТЬ -->
-    <div class="stats-section">
-      <h3>🎚️ По сложностям</h3>
-      <div class="diff-stats">
-        <div class="diff-stat easy">
-          <div class="diff-label">🟢 ЛЕГКО</div>
-          <span class="diff-count">${diffStats.easy.played || 0}</span>
-          <div class="diff-sub">Игр • Идеальных: ${diffStats.easy.wins || 0}</div>
-        </div>
-        <div class="diff-stat medium">
-          <div class="diff-label">🟡 СРЕДНЕ</div>
-          <span class="diff-count">${diffStats.medium.played || 0}</span>
-          <div class="diff-sub">Игр • Идеальных: ${diffStats.medium.wins || 0}</div>
-        </div>
-        <div class="diff-stat hard">
-          <div class="diff-label">🔴 СЛОЖНО</div>
-          <span class="diff-count">${diffStats.hard.played || 0}</span>
-          <div class="diff-sub">Игр • Идеальных: ${diffStats.hard.wins || 0}</div>
-        </div>
-      </div>
-    </div>
+    <div class="stats-section"><h3>🎚️ По сложностям</h3><div class="diff-stats">
+      <div class="diff-stat easy"><div class="diff-label">🟢 ЛЕГКО</div><span class="diff-count">${diffStats.easy.played || 0}</span><div class="diff-sub">Игр • Идеальных: ${diffStats.easy.wins || 0}</div></div>
+      <div class="diff-stat medium"><div class="diff-label">🟡 СРЕДНЕ</div><span class="diff-count">${diffStats.medium.played || 0}</span><div class="diff-sub">Игр • Идеальных: ${diffStats.medium.wins || 0}</div></div>
+      <div class="diff-stat hard"><div class="diff-label">🔴 СЛОЖНО</div><span class="diff-count">${diffStats.hard.played || 0}</span><div class="diff-sub">Игр • Идеальных: ${diffStats.hard.wins || 0}</div></div>
+    </div></div>
 
-    <!-- ПРОГРЕСС ПО КАТЕГОРИЯМ -->
-    <div class="stats-section">
-      <h3>🌍 Прогресс по категориям</h3>
-      ${catProgressHtml}
-    </div>
+    <div class="stats-section"><h3>🌍 Прогресс по категориям</h3>${catProgressHtml}</div>
 
-    <!-- АКТИВНОСТЬ ЗА 7 ДНЕЙ -->
-    <div class="stats-section">
-      <h3>📈 Активность за последние 7 дней</h3>
-      <div class="activity-chart">${activityHtml}</div>
-    </div>
+    <div class="stats-section"><h3>📈 Активность за последние 7 дней</h3><div class="activity-chart">${activityHtml}</div></div>
 
-    <!-- ПОСЛЕДНИЕ ИГРЫ -->
-    <div class="stats-section">
-      <h3>🕐 Последние игры</h3>
-      <div class="recent-games">${recentHtml}</div>
-    </div>
+    <div class="stats-section"><h3>🕐 Последние игры</h3><div class="recent-games">${recentHtml}</div></div>
 
-    <!-- СРАВНЕНИЕ С ДРУГИМИ -->
-    <div class="stats-section">
-      <h3>⚖️ Сравнение со средним по игрокам</h3>
-      <div class="compare-row">
-        <span class="cmp-label">Уровень</span>
-        <span class="cmp-value">${u.level} ${cmp(u.level, avgLevelAll)}</span>
-      </div>
-      <div class="compare-row">
-        <span class="cmp-label">Игр сыграно</span>
-        <span class="cmp-value">${totalGames} ${cmp(totalGames, avgGamesAll)}</span>
-      </div>
-      <div class="compare-row">
-        <span class="cmp-label">Всего очков</span>
-        <span class="cmp-value">${u.totalScore || 0} ${cmp(u.totalScore || 0, avgScoreAll)}</span>
-      </div>
-      <div class="compare-row">
-        <span class="cmp-label">Точность</span>
-        <span class="cmp-value">${accuracy}% ${cmp(accuracy, avgAccuracyAll)}</span>
-      </div>
-      <div class="compare-row">
-        <span class="cmp-label">Всего игроков</span>
-        <span class="cmp-value">${allUsers.length}</span>
-      </div>
-      <div class="compare-row">
-        <span class="cmp-label">Ваше место в рейтинге</span>
-        <span class="cmp-value">
-          ${(() => {
-            const sorted = Object.values(DB.users).sort((a,b) => (b.level*10000+b.xp) - (a.level*10000+a.xp));
-            const place = sorted.findIndex(x => x.username === currentUser.username) + 1;
-            return `#${place} из ${sorted.length}`;
-          })()}
-        </span>
-      </div>
+    <div class="stats-section"><h3>⚖️ Сравнение со средним</h3>
+      <div class="compare-row"><span class="cmp-label">Уровень</span><span class="cmp-value">${u.level} ${cmp(u.level, avgLevelAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Игр сыграно</span><span class="cmp-value">${totalGames} ${cmp(totalGames, avgGamesAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Всего очков</span><span class="cmp-value">${u.totalScore || 0} ${cmp(u.totalScore || 0, avgScoreAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Точность</span><span class="cmp-value">${accuracy}% ${cmp(accuracy, avgAccuracyAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Всего игроков</span><span class="cmp-value">${allUsers.length}</span></div>
+      <div class="compare-row"><span class="cmp-label">Место в рейтинге</span><span class="cmp-value">${(() => { const sorted = allUsers.sort((a,b) => (b.level*10000+b.xp) - (a.level*10000+a.xp)); return `#${sorted.findIndex(x => x.username === currentUser.username) + 1} из ${sorted.length}`; })()}</span></div>
     </div>
   `;
 }
 
 /* =========================================================
-   SETTINGS
+   ⚙️ НАСТРОЙКИ (ПОЛНОСТЬЮ ПЕРЕРАБОТАНО)
    ========================================================= */
-$('resetProgressBtn').addEventListener('click', () => {
+function renderSettings() {
+  const layout = $('settingsLayout');
+  if (!layout) return;
+  initExtendedStats(currentUser);
+  const s = DB.settings;
+  const u = currentUser;
+  const accCreated = new Date(u.createdAt);
+  const accAge = Math.floor((Date.now() - u.createdAt) / (1000 * 60 * 60 * 24));
+  const lastSeenStr = new Date(u.lastSeen).toLocaleString('ru');
+  const storageUsed = (() => {
+    try {
+      const raw = JSON.stringify(DB.users);
+      const bytes = new Blob([raw]).size;
+      if (bytes < 1024) return bytes + ' Б';
+      if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' КБ';
+      return (bytes/1024/1024).toFixed(2) + ' МБ';
+    } catch { return '—'; }
+  })();
+
+  layout.innerHTML = `
+    <!-- ПРОФИЛЬ -->
+    <div class="settings-card">
+      <h3><span class="settings-icon">👤</span> Профиль</h3>
+      <div class="profile-header">
+        <div class="profile-big-avatar">${u.avatar || u.username[0].toUpperCase()}</div>
+        <div class="profile-info-block">
+          <div class="profile-name">${u.username}</div>
+          <div class="profile-meta">
+            <span>🎓 Ур. ${u.level}</span>
+            <span>⭐ ${u.xp} XP</span>
+            <span>🏆 ${(u.achievements||[]).length} достижений</span>
+            <span>📅 ${accAge} дн. в игре</span>
+          </div>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">Сменить аватар</div>
+          <div class="setting-desc">Выберите смайлик для профиля</div>
+        </div>
+      </div>
+      <div class="avatar-grid" id="avatarGrid">
+        ${AVATARS.map(a => `<div class="avatar-option ${a === (u.avatar || '😀') ? 'active' : ''}" data-avatar="${a}">${a}</div>`).join('')}
+      </div>
+      <div class="setting-row" style="margin-top:16px;">
+        <div class="setting-info">
+          <div class="setting-title">Никнейм</div>
+          <div class="setting-desc">Текущий: <b style="color:#ffb86b;">${u.username}</b> • 3-20 символов</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn" id="changeNicknameBtn">✏️ Изменить</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">Пароль</div>
+          <div class="setting-desc">Смените пароль для входа в аккаунт</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn" id="changePasswordBtn">🔐 Сменить пароль</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ВНЕШНИЙ ВИД -->
+    <div class="settings-card">
+      <h3><span class="settings-icon">🎨</span> Внешний вид</h3>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">Тема оформления</div>
+          <div class="setting-desc">Выберите цветовую схему сайта</div>
+        </div>
+      </div>
+      <div class="theme-grid">
+        <div class="theme-preview halloween ${s.theme === 'halloween' ? 'active' : ''}" data-theme="halloween">
+          <div class="theme-preview-swatch"></div>
+          <div class="theme-preview-name">🎃 Хэллоуин</div>
+        </div>
+        <div class="theme-preview christmas ${s.theme === 'christmas' ? 'active' : ''}" data-theme="christmas">
+          <div class="theme-preview-swatch"></div>
+          <div class="theme-preview-name">🎄 Рождество</div>
+        </div>
+        <div class="theme-preview newyear ${s.theme === 'newyear' ? 'active' : ''}" data-theme="newyear">
+          <div class="theme-preview-swatch"></div>
+          <div class="theme-preview-name">🎆 Новый год</div>
+        </div>
+        <div class="theme-preview cosmic ${s.theme === 'cosmic' ? 'active' : ''}" data-theme="cosmic">
+          <div class="theme-preview-swatch"></div>
+          <div class="theme-preview-name">🌌 Космос</div>
+        </div>
+      </div>
+      <div class="setting-row" style="margin-top:16px;">
+        <div class="setting-info">
+          <div class="setting-title">🎬 Анимации</div>
+          <div class="setting-desc">Плавные переходы и эффекты (отключите для слабых устройств)</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="animationsToggle" ${s.animations ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">🦇 Летучие мыши на фоне</div>
+          <div class="setting-desc">Декоративные элементы для атмосферы</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="batsToggle" ${s.batsBg ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ЗВУК -->
+    <div class="settings-card">
+      <h3><span class="settings-icon">🔊</span> Звук</h3>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">Звуковые эффекты</div>
+          <div class="setting-desc">Правильные ответы, уровни, тики таймера</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="soundToggle" ${s.sound ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">Громкость</div>
+          <div class="setting-desc">Уровень громкости звуковых эффектов</div>
+        </div>
+        <div class="volume-control">
+          <input type="range" id="volumeSlider" min="0" max="100" value="${Math.round(s.volume * 100)}">
+          <span class="volume-value" id="volumeValue">${Math.round(s.volume * 100)}%</span>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">🔔 Уведомления</div>
+          <div class="setting-desc">Показывать всплывающие уведомления о приглашениях</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="notificationsToggle" ${s.notifications ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ДАННЫЕ -->
+    <div class="settings-card">
+      <h3><span class="settings-icon">💾</span> Данные аккаунта</h3>
+      <div class="account-stats">
+        <div class="account-stat"><span class="ac-value">${accCreated.toLocaleDateString('ru')}</span><span class="ac-label">Создан</span></div>
+        <div class="account-stat"><span class="ac-value">${accAge} дн.</span><span class="ac-label">С нами</span></div>
+        <div class="account-stat"><span class="ac-value">${storageUsed}</span><span class="ac-label">В хранилище</span></div>
+        <div class="account-stat"><span class="ac-value">${(DB.invites.filter(i => i.from === u.username).length)}</span><span class="ac-label">Отправлено инвайтов</span></div>
+        <div class="account-stat"><span class="ac-value">${(u.friends||[]).length}</span><span class="ac-label">Друзей</span></div>
+        <div class="account-stat"><span class="ac-value">${(u.achievements||[]).length}/${ACHIEVEMENTS.length}</span><span class="ac-label">Достижений</span></div>
+      </div>
+      <div class="setting-row" style="margin-top:16px;">
+        <div class="setting-info">
+          <div class="setting-title">📤 Экспорт данных</div>
+          <div class="setting-desc">Скачать весь прогресс в виде JSON-файла для резервной копии</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn success" id="exportDataBtn">📥 Скачать</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">📥 Импорт данных</div>
+          <div class="setting-desc">Восстановить прогресс из резервной копии</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn" id="importDataBtn">📂 Загрузить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ГОРЯЧИЕ КЛАВИШИ -->
+    <div class="settings-card">
+      <h3><span class="settings-icon">⌨️</span> Горячие клавиши</h3>
+      <div class="info-box">Эти комбинации работают на странице викторин и в игре.</div>
+      <div class="hotkeys-grid">
+        <div class="hotkey-item"><span class="hotkey-key">1-4</span><span class="hotkey-desc">Выбор ответа в игре</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">ESC</span><span class="hotkey-desc">Выход из игры</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">Enter</span><span class="hotkey-desc">Отправить сообщение в чат</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">Q</span><span class="hotkey-desc">Открыть викторины</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">S</span><span class="hotkey-desc">Настройки</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">F</span><span class="hotkey-desc">Друзья</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">L</span><span class="hotkey-desc">Рейтинг</span></div>
+        <div class="hotkey-item"><span class="hotkey-key">A</span><span class="hotkey-desc">Достижения</span></div>
+      </div>
+    </div>
+
+    <!-- ОПАСНАЯ ЗОНА -->
+    <div class="settings-card" style="border-color:rgba(244,67,54,0.4);">
+      <h3 style="color:#ef5350;"><span class="settings-icon">⚠️</span> Опасная зона</h3>
+      <div class="info-box danger">Действия ниже необратимы. Будьте осторожны.</div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title" style="color:#ef5350;">Сбросить статистику</div>
+          <div class="setting-desc">Обнулит игры, очки, достижения и уровни. Друзья и настройки останутся</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn danger" id="resetStatsBtn">📊 Сбросить</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title" style="color:#ef5350;">Сбросить весь прогресс</div>
+          <div class="setting-desc">Полное удаление всех данных аккаунта, кроме логина и пароля</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn danger" id="resetAllBtn">🗑 Полный сброс</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title" style="color:#ef5350;">Удалить аккаунт</div>
+          <div class="setting-desc">Безвозвратное удаление аккаунта и всех данных</div>
+        </div>
+        <div class="setting-control">
+          <button class="settings-btn danger" id="deleteAccountBtn">❌ Удалить</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Навешиваем обработчики
+  layout.querySelectorAll('.theme-preview').forEach(el => {
+    el.addEventListener('click', () => {
+      const t = el.dataset.theme;
+      applyTheme(t);
+      showToast(`🎨 Тема: ${el.textContent.trim()}`);
+      renderSettings();
+    });
+  });
+
+  layout.querySelectorAll('.avatar-option').forEach(el => {
+    el.addEventListener('click', () => {
+      const a = el.dataset.avatar;
+      currentUser.avatar = a;
+      saveUser();
+      updateTopBar();
+      showToast(`✅ Аватар: ${a}`);
+      playSound('click');
+      renderSettings();
+    });
+  });
+
+  $('animationsToggle').addEventListener('change', e => {
+    const s = DB.settings; s.animations = e.target.checked; DB.settings = s;
+    applySettings();
+    showToast(e.target.checked ? '🎬 Анимации включены' : '🎬 Анимации выключены');
+  });
+  $('batsToggle').addEventListener('change', e => {
+    const s = DB.settings; s.batsBg = e.target.checked; DB.settings = s;
+    applySettings();
+  });
+  $('soundToggle').addEventListener('change', e => {
+    const s = DB.settings; s.sound = e.target.checked; DB.settings = s;
+    if (s.sound) playSound('click');
+  });
+  $('volumeSlider').addEventListener('input', e => {
+    const v = parseInt(e.target.value);
+    $('volumeValue').textContent = v + '%';
+    const s = DB.settings; s.volume = v / 100; DB.settings = s;
+  });
+  $('volumeSlider').addEventListener('change', () => playSound('click'));
+  $('notificationsToggle').addEventListener('change', e => {
+    const s = DB.settings; s.notifications = e.target.checked; DB.settings = s;
+  });
+
+  $('changePasswordBtn').addEventListener('click', () => {
+    $('oldPassword').value = '';
+    $('newPassword').value = '';
+    $('newPassword2').value = '';
+    $('passwordError').textContent = '';
+    $('passwordModal').classList.remove('hidden');
+  });
+  $('changeNicknameBtn').addEventListener('click', () => {
+    $('newNicknameInput').value = '';
+    $('nicknameError').textContent = '';
+    $('nicknameModal').classList.remove('hidden');
+  });
+  $('exportDataBtn').addEventListener('click', exportData);
+  $('importDataBtn').addEventListener('click', () => {
+    $('importTextarea').value = '';
+    $('importError').textContent = '';
+    $('importModal').classList.remove('hidden');
+  });
+  $('resetStatsBtn').addEventListener('click', resetStatsOnly);
+  $('resetAllBtn').addEventListener('click', resetAllProgress);
+  $('deleteAccountBtn').addEventListener('click', deleteAccount);
+}
+
+/* ===== Экспорт данных ===== */
+function exportData() {
+  const data = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    user: currentUser,
+    settings: DB.settings
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `quiz_backup_${currentUser.username}_${todayKey()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('📥 Файл скачан!');
+  playSound('success');
+}
+
+/* ===== Импорт данных ===== */
+$('cancelImportBtn').addEventListener('click', () => $('importModal').classList.add('hidden'));
+$('confirmImportBtn').addEventListener('click', () => {
+  const raw = $('importTextarea').value.trim();
+  const err = $('importError');
+  err.textContent = '';
+  if (!raw) return err.textContent = 'Вставьте данные';
+  try {
+    const data = JSON.parse(raw);
+    if (!data.user || !data.user.username) return err.textContent = 'Неверный формат данных';
+    if (!confirm('⚠ Все текущие данные будут заменены. Продолжить?')) return;
+    const imported = Object.assign(defaultUser(data.user.username), data.user);
+    initExtendedStats(imported);
+    // Сохраняем пароль текущего пользователя
+    imported.password = currentUser.password;
+    const users = DB.users;
+    users[currentUser.username.toLowerCase()] = imported;
+    DB.users = users;
+    currentUser = imported;
+    if (data.settings) DB.settings = Object.assign(DB.settings, data.settings);
+    saveUser();
+    $('importModal').classList.add('hidden');
+    showToast('✅ Данные импортированы');
+    playSound('success');
+    burstConfetti(40);
+    enterMain();
+  } catch (e) {
+    err.textContent = 'Ошибка: ' + e.message;
+  }
+});
+
+/* ===== Смена пароля ===== */
+$('cancelPasswordBtn').addEventListener('click', () => $('passwordModal').classList.add('hidden'));
+$('savePasswordBtn').addEventListener('click', () => {
+  const oldP = $('oldPassword').value;
+  const newP = $('newPassword').value;
+  const newP2 = $('newPassword2').value;
+  const err = $('passwordError');
+  err.textContent = '';
+  if (currentUser.password !== btoa(oldP)) return err.textContent = 'Неверный старый пароль';
+  if (newP.length < 4) return err.textContent = 'Новый пароль минимум 4 символа';
+  if (newP !== newP2) return err.textContent = 'Пароли не совпадают';
+  currentUser.password = btoa(newP);
+  saveUser();
+  $('passwordModal').classList.add('hidden');
+  showToast('🔐 Пароль изменён');
+  playSound('success');
+});
+
+/* ===== Смена никнейма ===== */
+$('cancelNicknameBtn').addEventListener('click', () => $('nicknameModal').classList.add('hidden'));
+$('saveNicknameBtn').addEventListener('click', () => {
+  const nick = $('newNicknameInput').value.trim();
+  const err = $('nicknameError');
+  err.textContent = '';
+  if (nick.length < 3 || nick.length > 20) return err.textContent = 'Никнейм от 3 до 20 символов';
+  if (!/^[a-zA-Zа-яА-Я0-9_\-]+$/.test(nick)) return err.textContent = 'Только буквы, цифры, _ и -';
+  const users = DB.users;
+  if (users[nick.toLowerCase()] && nick.toLowerCase() !== currentUser.username.toLowerCase()) return err.textContent = 'Этот никнейм занят';
+
+  const oldNick = currentUser.username;
+  const oldKey = oldNick.toLowerCase();
+  const newKey = nick.toLowerCase();
+
+  // Меняем в системе
+  currentUser.username = nick;
+  users[newKey] = currentUser;
+  if (oldKey !== newKey) delete users[oldKey];
+  DB.users = users;
+  DB.session = newKey;
+  saveUser();
+
+  // Обновляем ссылки у других игроков
+  Object.keys(users).forEach(k => {
+    if (Array.isArray(users[k].friends)) {
+      const idx = users[k].friends.indexOf(oldNick);
+      if (idx !== -1) users[k].friends[idx] = nick;
+    }
+  });
+  DB.users = users;
+
+  $('nicknameModal').classList.add('hidden');
+  showToast('✅ Никнейм изменён');
+  playSound('success');
+  enterMain();
+});
+
+/* ===== Сброс только статистики ===== */
+function resetStatsOnly() {
+  if (!confirm('📊 Сбросить статистику (игры, очки, достижения, уровни)?\nДрузья и настройки останутся.')) return;
+  const fresh = defaultUser(currentUser.username);
+  fresh.password = currentUser.password;
+  fresh.friends = currentUser.friends;
+  fresh.avatar = currentUser.avatar;
+  fresh.createdAt = currentUser.createdAt;
+  const users = DB.users;
+  users[currentUser.username.toLowerCase()] = fresh;
+  DB.users = users;
+  currentUser = fresh;
+  saveUser();
+  showToast('📊 Статистика сброшена');
+  enterMain();
+}
+
+/* ===== Сброс всего прогресса ===== */
+function resetAllProgress() {
   if (!confirm('⚠ Сбросить ВЕСЬ прогресс?')) return;
   if (!confirm('Точно? Это НЕОБРАТИМО!')) return;
   const fresh = defaultUser(currentUser.username);
@@ -3211,12 +3526,30 @@ $('resetProgressBtn').addEventListener('click', () => {
   DB.users = users;
   currentUser = fresh;
   saveUser();
-  showToast('🗑 Сброшено');
+  showToast('🗑 Полный сброс');
   enterMain();
-});
+}
+
+/* ===== Удаление аккаунта ===== */
+function deleteAccount() {
+  if (!confirm('❌ УДАЛИТЬ АККАУНТ?\nЭто действие необратимо!')) return;
+  if (!confirm('Вы точно уверены? Вся ваша статистика, друзья и прогресс будут потеряны навсегда.')) return;
+  const nick = prompt('Введите ваш никнейм для подтверждения:');
+  if (nick !== currentUser.username) return showToast('❌ Никнейм не совпал. Удаление отменено.');
+  const users = DB.users;
+  delete users[currentUser.username.toLowerCase()];
+  DB.users = users;
+  DB.session = null;
+  const online = DB.online;
+  delete online[currentUser.username];
+  DB.online = online;
+  currentUser = null;
+  showScreen('auth');
+  showToast('❌ Аккаунт удалён');
+}
 
 /* =========================================================
-   PROFILE
+   PROFILE MODAL (по клику на аватар)
    ========================================================= */
 $('userAvatar').addEventListener('click', () => {
   $('profileName').textContent = '👤 ' + currentUser.username;
@@ -3232,6 +3565,44 @@ $('userAvatar').addEventListener('click', () => {
 });
 
 $('closeProfileBtn').addEventListener('click', () => $('profileModal').classList.add('hidden'));
+
+/* =========================================================
+   ГОРЯЧИЕ КЛАВИШИ
+   ========================================================= */
+document.addEventListener('keydown', e => {
+  if (!currentUser) return;
+  // Не срабатывают при вводе в поле
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea') {
+    if (e.key === 'Escape' && game) {
+      // Разрешаем Esc в игре
+      e.preventDefault();
+      if (confirm('Покинуть игру?')) { clearInterval(timerInterval); showScreen('main'); }
+    }
+    return;
+  }
+  // Цифры 1-4 в игре
+  if (game && screens.game.classList.contains('active')) {
+    if (e.key >= '1' && e.key <= '4') {
+      const idx = parseInt(e.key) - 1;
+      const btns = document.querySelectorAll('.answer-btn');
+      if (btns[idx] && !btns[idx].disabled) btns[idx].click();
+    }
+    if (e.key === 'Escape') {
+      if (confirm('Покинуть игру?')) { clearInterval(timerInterval); showScreen('main'); }
+    }
+    return;
+  }
+  // Навигация по вкладкам
+  if (screens.main.classList.contains('active')) {
+    const map = { 'q':'quizzes', 's':'settings', 'f':'friends', 'l':'leaderboard', 'a':'achievements', 'i':'stats' };
+    const view = map[e.key.toLowerCase()];
+    if (view) {
+      const btn = document.querySelector(`.nav-btn[data-view="${view}"]`);
+      if (btn) btn.click();
+    }
+  }
+});
 
 /* =========================================================
    INIT
