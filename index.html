@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Праздничная Викторина</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,sans-serif; }
+body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:100vh; color:#fff; overflow-x:hidden; }
+.screen { display:none; min-height:100vh; }
+.screen.active { display:block; }
+.hidden { display:none !important; }
+
+/* AUTH */
+.auth-container { max-width:420px; margin:80px auto; background:rgba(255,255,255,0.1); backdrop-filter:blur(20px); border-radius:20px; padding:40px; box-shadow:0 20px 60px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); }
+.auth-container h1 { font-size:28px; text-align:center; margin-bottom:8px; }
+.subtitle { text-align:center; opacity:0.8; margin-bottom:30px; font-size:14px; }
+.tabs { display:flex; background:rgba(0,0,0,0.2); border-radius:12px; padding:4px; margin-bottom:24px; }
+.tab-btn { flex:1; padding:12px; background:transparent; border:none; color:#fff; cursor:pointer; border-radius:10px; font-size:15px; transition:0.3s; }
+.tab-btn.active { background:rgba(255,255,255,0.2); font-weight:bold; }
+.auth-form { display:none; flex-direction:column; gap:14px; }
+.auth-form.active { display:flex; }
+.auth-form input { padding:14px 16px; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#fff; font-size:15px; }
+.auth-form input:focus { outline:none; border-color:rgba(255,255,255,0.6); background:rgba(0,0,0,0.3); }
+.auth-form input::placeholder { color:rgba(255,255,255,0.5); }
+.btn-primary { padding:14px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:12px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; transition:0.3s; box-shadow:0 6px 20px rgba(255,107,107,0.4); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(255,107,107,0.5); }
+.btn-secondary { padding:14px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:12px; color:#fff; font-size:16px; cursor:pointer; }
+.error { color:#ff8a8a; font-size:13px; text-align:center; min-height:18px; }
+
+/* TOP BAR */
+.top-bar { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:rgba(0,0,0,0.2); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.1); }
+.logo { font-size:20px; font-weight:bold; }
+.user-info { display:flex; align-items:center; gap:14px; }
+.user-info span { font-size:14px; background:rgba(255,255,255,0.15); padding:6px 12px; border-radius:20px; }
+.avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,#f093fb,#f5576c); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; border:2px solid rgba(255,255,255,0.3); }
+.btn-icon { background:rgba(255,255,255,0.1); border:none; color:#fff; font-size:18px; width:42px; height:42px; border-radius:50%; cursor:pointer; transition:0.3s; }
+.btn-icon:hover { background:rgba(255,255,255,0.25); }
+.main-nav { display:flex; justify-content:center; gap:10px; padding:20px; flex-wrap:wrap; }
+.nav-btn { padding:10px 22px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); color:#fff; border-radius:25px; cursor:pointer; font-size:14px; transition:0.3s; }
+.nav-btn:hover { background:rgba(255,255,255,0.2); }
+.nav-btn.active { background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border-color:transparent; box-shadow:0 6px 20px rgba(255,107,107,0.4); }
+#content { max-width:1200px; margin:0 auto; padding:20px; }
+.view { display:none; }
+.view.active { display:block; }
+.view h2 { margin-bottom:24px; font-size:26px; }
+
+/* QUIZ CARDS */
+.quiz-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+.quiz-card { background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:24px; cursor:pointer; transition:0.3s; position:relative; overflow:hidden; }
+.quiz-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,0.3); background:rgba(255,255,255,0.15); }
+.quiz-card::before { content:''; position:absolute; top:-50%; right:-50%; width:200%; height:200%; background:radial-gradient(circle, var(--accent,#ff6b6b) 0%, transparent 60%); opacity:0.15; pointer-events:none; }
+.quiz-emoji { font-size:56px; display:block; margin-bottom:12px; }
+.quiz-card h3 { font-size:20px; margin-bottom:8px; }
+.quiz-card p { font-size:13px; opacity:0.85; margin-bottom:16px; line-height:1.5; }
+.quiz-meta { display:flex; justify-content:space-between; align-items:center; font-size:12px; }
+.quiz-difficulty { padding:4px 10px; border-radius:12px; background:rgba(0,0,0,0.25); }
+.play-btn { padding:8px 18px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:20px; color:#fff; cursor:pointer; font-size:13px; font-weight:bold; }
+.quiz-card.completed { opacity:0.75; }
+.quiz-card.completed::after { content:'✓ Пройдено'; position:absolute; top:12px; right:12px; background:#4caf50; padding:4px 10px; border-radius:12px; font-size:11px; font-weight:bold; }
+
+/* ACHIEVEMENTS */
+.achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.achievement { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:20px; text-align:center; transition:0.3s; }
+.achievement.unlocked { background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,107,107,0.15)); border-color:rgba(255,215,0,0.5); box-shadow:0 10px 30px rgba(255,215,0,0.2); }
+.achievement.locked { opacity:0.4; filter:grayscale(1); }
+.achievement-icon { font-size:44px; margin-bottom:10px; }
+.achievement h4 { font-size:15px; margin-bottom:6px; }
+.achievement p { font-size:12px; opacity:0.8; }
+
+/* LEADERBOARD */
+.leaderboard { display:flex; flex-direction:column; gap:10px; }
+.leaderboard-row { display:flex; align-items:center; gap:16px; padding:16px 20px; background:rgba(255,255,255,0.08); border-radius:14px; border:1px solid rgba(255,255,255,0.12); }
+.leaderboard-row.me { background:linear-gradient(135deg,rgba(255,107,107,0.2),rgba(238,90,111,0.2)); border-color:rgba(255,107,107,0.5); }
+.rank { font-size:20px; font-weight:bold; width:40px; }
+.rank.gold { color:#ffd700; } .rank.silver { color:#c0c0c0; } .rank.bronze { color:#cd7f32; }
+.leaderboard-row .avatar { width:36px; height:36px; font-size:15px; }
+.leaderboard-name { flex:1; font-weight:bold; }
+.leaderboard-xp { font-size:14px; opacity:0.9; }
+
+/* FRIENDS */
+.friends-section { max-width:700px; }
+.search-box { display:flex; gap:10px; margin-bottom:20px; }
+.search-box input { flex:1; padding:12px 16px; background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#fff; font-size:15px; }
+.friends-section h3 { margin:24px 0 12px; font-size:18px; }
+.friends-list, .invites-list, #searchResults { display:flex; flex-direction:column; gap:8px; }
+.friend-item { display:flex; align-items:center; gap:12px; padding:12px 16px; background:rgba(255,255,255,0.08); border-radius:12px; }
+.friend-item .avatar { width:36px; height:36px; font-size:15px; }
+.friend-item .name { flex:1; font-weight:bold; }
+.friend-item button { padding:8px 14px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:8px; color:#fff; cursor:pointer; font-size:13px; }
+
+/* GAME */
+.game-header { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background:rgba(0,0,0,0.3); backdrop-filter:blur(10px); }
+.game-info { display:flex; gap:20px; font-size:15px; }
+.game-timer { width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:bold; box-shadow:0 4px 15px rgba(255,107,107,0.5); }
+.game-timer.warning { animation:pulse 0.5s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.1);} }
+.game-body { display:grid; grid-template-columns:1fr 320px; gap:20px; padding:24px; max-width:1400px; margin:0 auto; }
+.question-area h2 { font-size:24px; margin-bottom:24px; line-height:1.4; background:rgba(255,255,255,0.08); padding:24px; border-radius:16px; border:1px solid rgba(255,255,255,0.15); }
+.answers { display:flex; flex-direction:column; gap:12px; }
+.answer-btn { padding:18px 24px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:14px; color:#fff; font-size:16px; cursor:pointer; text-align:left; transition:0.3s; }
+.answer-btn:hover:not(:disabled) { background:rgba(255,255,255,0.2); transform:translateX(4px); }
+.answer-btn.correct { background:linear-gradient(135deg,#4caf50,#66bb6a); border-color:#4caf50; }
+.answer-btn.wrong { background:linear-gradient(135deg,#f44336,#e53935); border-color:#f44336; }
+.answer-btn:disabled { cursor:not-allowed; }
+
+/* CHAT */
+.chat-panel { background:rgba(0,0,0,0.2); border-radius:16px; padding:16px; display:flex; flex-direction:column; height:500px; border:1px solid rgba(255,255,255,0.15); }
+.chat-panel h3 { margin-bottom:12px; font-size:15px; }
+.chat-messages { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:8px; padding-right:4px; }
+.chat-messages::-webkit-scrollbar { width:4px; }
+.chat-messages::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.3); border-radius:4px; }
+.chat-msg { background:rgba(255,255,255,0.08); padding:8px 12px; border-radius:12px; font-size:13px; word-wrap:break-word; }
+.chat-msg .author { font-weight:bold; color:#ffd700; margin-right:6px; }
+.chat-msg.system { background:rgba(255,107,107,0.15); text-align:center; font-style:italic; opacity:0.9; }
+.chat-input { display:flex; gap:6px; margin-top:12px; }
+.chat-input input { flex:1; padding:10px 12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; font-size:13px; }
+.chat-input button { padding:0 16px; background:linear-gradient(135deg,#ff6b6b,#ee5a6f); border:none; border-radius:10px; color:#fff; font-size:18px; cursor:pointer; }
+
+/* MODAL */
+.modal { position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; }
+.modal.hidden { display:none; }
+.modal-content { background:linear-gradient(135deg,#667eea,#764ba2); padding:40px; border-radius:24px; max-width:500px; width:100%; border:1px solid rgba(255,255,255,0.2); box-shadow:0 20px 60px rgba(0,0,0,0.5); animation:modalIn 0.3s ease; }
+@keyframes modalIn { from{transform:scale(0.9);opacity:0;} to{transform:scale(1);opacity:1;} }
+.modal-content h2 { margin-bottom:16px; text-align:center; }
+.result-stats { display:flex; justify-content:space-around; margin:24px 0; flex-wrap:wrap; gap:16px; }
+.stat { text-align:center; }
+.stat-value { font-size:32px; font-weight:bold; display:block; }
+.stat-label { font-size:13px; opacity:0.8; }
+.modal-content select { width:100%; padding:12px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:#fff; font-size:15px; margin:16px 0; }
+.modal-buttons { display:flex; gap:10px; }
+.modal-buttons button { flex:1; }
+.round-result { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.9); padding:40px 60px; border-radius:20px; text-align:center; z-index:100; border:2px solid rgba(255,255,255,0.2); }
+.round-result h3 { font-size:32px; margin-bottom:10px; }
+
+/* TOAST */
+.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.9); padding:14px 28px; border-radius:30px; font-size:15px; z-index:300; border:1px solid rgba(255,255,255,0.2); animation:toastIn 0.3s ease; }
+@keyframes toastIn { from{transform:translate(-50%,20px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
+
+@media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:300px; } }
+@media (max-width:600px) { .top-bar { padding:12px; } .logo { font-size:14px; } .user-info span { display:none; } .auth-container { margin:20px; padding:24px; } .quiz-grid { grid-template-columns:1fr; } .nav-btn { padding:8px 14px; font-size:12px; } }
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="authScreen" class="screen active">
+  <div class="auth-container">
+    <h1>🎉 Праздничная Викторина</h1>
+    <p class="subtitle">От Хэллоуина до Нового года</p>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="login">Вход</button>
+      <button class="tab-btn" data-tab="register">Регистрация</button>
+    </div>
+    <form id="loginForm" class="auth-form active">
+      <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
+      <input type="password" id="loginPassword" placeholder="Пароль" required>
+      <button type="submit" class="btn-primary">Войти</button>
+      <p class="error" id="loginError"></p>
+    </form>
+    <form id="registerForm" class="auth-form">
+      <input type="text" id="regUsername" placeholder="Имя пользователя" required minlength="3">
+      <input type="password" id="regPassword" placeholder="Пароль (мин. 4 символа)" required minlength="4">
+      <input type="password" id="regPassword2" placeholder="Повторите пароль" required>
+      <button type="submit" class="btn-primary">Зарегистрироваться</button>
+      <p class="error" id="regError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="mainScreen" class="screen">
+  <header class="top-bar">
+    <div class="logo">🎉 Праздничная Викторина</div>
+    <div class="user-info">
+      <span id="userLevel">Ур. 1</span>
+      <span id="userXp">0 XP</span>
+      <div class="avatar" id="userAvatar">?</div>
+      <button id="logoutBtn" class="btn-icon" title="Выйти">🚪</button>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <button class="nav-btn active" data-view="quizzes">🎯 Викторины</button>
+    <button class="nav-btn" data-view="achievements">🏆 Достижения</button>
+    <button class="nav-btn" data-view="leaderboard">📊 Рейтинг</button>
+    <button class="nav-btn" data-view="friends">👥 Друзья</button>
+  </nav>
+  <main id="content">
+    <section id="quizzesView" class="view active">
+      <h2>Выберите праздник</h2>
+      <div class="quiz-grid" id="quizGrid"></div>
+    </section>
+    <section id="achievementsView" class="view">
+      <h2>Ваши достижения</h2>
+      <div class="achievements-grid" id="achievementsGrid"></div>
+    </section>
+    <section id="leaderboardView" class="view">
+      <h2>Рейтинг игроков</h2>
+      <div class="leaderboard" id="leaderboardList"></div>
+    </section>
+    <section id="friendsView" class="view">
+      <h2>Друзья и приглашения</h2>
+      <div class="friends-section">
+        <div class="search-box">
+          <input type="text" id="friendSearch" placeholder="Найти игрока...">
+          <button id="searchBtn" class="btn-primary">Найти</button>
+        </div>
+        <div id="searchResults"></div>
+        <h3>Ваши друзья</h3>
+        <div id="friendsList" class="friends-list"></div>
+        <h3>Приглашения в игру</h3>
+        <div id="invitesList" class="invites-list"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- GAME -->
+<div id="gameScreen" class="screen">
+  <header class="game-header">
+    <button id="leaveGameBtn" class="btn-icon">←</button>
+    <div class="game-info">
+      <span id="gameQuizName"></span>
+      <span id="gameRound">Раунд 1/5</span>
+    </div>
+    <div class="game-timer" id="gameTimer">30</div>
+  </header>
+  <div class="game-body">
+    <div class="question-area">
+      <h2 id="questionText"></h2>
+      <div class="answers" id="answersContainer"></div>
+    </div>
+    <div class="chat-panel">
+      <h3>💬 Чат раунда</h3>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Сообщение..." maxlength="100">
+        <button id="sendChatBtn">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT MODAL -->
+<div id="resultModal" class="modal hidden">
+  <div class="modal-content">
+    <h2 id="resultTitle">Игра завершена!</h2>
+    <div class="result-stats" id="resultStats"></div>
+    <button id="closeResultBtn" class="btn-primary">В меню</button>
+  </div>
+</div>
+
+<!-- INVITE MODAL -->
+<div id="inviteModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Пригласить друга</h2>
+    <p id="inviteQuizName" style="text-align:center;opacity:0.85;margin-top:8px;"></p>
+    <select id="inviteFriendSelect"></select>
+    <div class="modal-buttons">
+      <button id="sendInviteBtn" class="btn-primary">Отправить</button>
+      <button id="cancelInviteBtn" class="btn-secondary">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script>
+/* =========================================================
+   DATA
+   ========================================================= */
+const QUIZZES = {
+  halloween: {
+    id:'halloween', name:'Хэллоуин', emoji:'🎃',
+    description:'Проверь свои знания о самом жутком празднике года!',
+    difficulty:'Легко', accent:'#ff6b00',
+    questions:[
+      {q:'Какого числа отмечается Хэллоуин?', answers:['30 октября','31 октября','1 ноября','28 октября'], correct:1},
+      {q:'Что дети говорят, стучась в двери?', answers:['Сладость или гадость!','Дайте конфет!','Угостите!','Откройте!'], correct:0},
+      {q:'Какой овощ используется для фонаря Джека?', answers:['Арбуз','Тыква','Дыня','Кабачок'], correct:1},
+      {q:'Из какой страны родом традиция Хэллоуина?', answers:['США','Ирландия','Мексика','Англия'], correct:1},
+      {q:'Как называется праздник в Мексике, связанный с Хэллоуином?', answers:['Карнавал','День Мёртвых','Фиеста','Сомбреро'], correct:1}
+    ]
+  },
+  dayOfDead: {
+    id:'dayOfDead', name:'День Мёртвых', emoji:'💀',
+    description:'Мексиканский праздник памяти и радости о жизни!',
+    difficulty:'Средне', accent:'#e91e63',
+    questions:[
+      {q:'Как называется День Мёртвых на испанском?', answers:['Día de los Muertos','Día de la Vida','Fiesta Muerta','Calaveras'], correct:0},
+      {q:'Сколько дней длится праздник?', answers:['1 день','2 дня','3 дня','5 дней'], correct:1},
+      {q:'Какие цветы символизируют праздник?', answers:['Розы','Бархатцы','Лилии','Тюльпаны'], correct:1},
+      {q:'Что делают люди на кладбищах в этот праздник?', answers:['Молчат','Убирают','Празднуют','Спят'], correct:2}
+    ]
+  },
+  thanksgiving: {
+    id:'thanksgiving', name:'День Благодарения', emoji:'🦃',
+    description:'Американский праздник урожая и семьи',
+    difficulty:'Легко', accent:'#ff9800',
+    questions:[
+      {q:'В каком месяце отмечают День Благодарения в США?', answers:['Октябрь','Ноябрь','Декабрь','Сентябрь'], correct:1},
+      {q:'Какая птица традиционно готовится?', answers:['Курица','Индейка','Утка','Гусь'], correct:1},
+      {q:'Кто участвовал в первом празднике?', answers:['Пираты','Пилигримы и индейцы','Ковбои','Рыцари'], correct:1},
+      {q:'Какой пирог традиционно пекут?', answers:['Тыквенный','Яблочный','Вишнёвый','Шоколадный'], correct:0}
+    ]
+  },
+  christmas: {
+    id:'christmas', name:'Рождество', emoji:'🎄',
+    description:'Светлый праздник с множеством традиций!',
+    difficulty:'Легко', accent:'#4caf50',
+    questions:[
+      {q:'Какого числа католическое Рождество?', answers:['24 декабря','25 декабря','1 января','7 января'], correct:1},
+      {q:'Что традиционно вешают на ёлку?', answers:['Фрукты','Игрушки и гирлянды','Одежду','Книги'], correct:1},
+      {q:'Как зовут главного дарителя подарков в США?', answers:['Дед Мороз','Санта-Клаус','Святой Николай','Морозко'], correct:1},
+      {q:'Какого цвета омела приносит удачу?', answers:['Красного','Зелёного','Белого','Синего'], correct:1},
+      {q:'Что поют на Рождество?', answers:['Рок','Колядки','Рэп','Опера'], correct:1}
+    ]
+  },
+  newYear: {
+    id:'newYear', name:'Новый год', emoji:'🎆',
+    description:'Самый волшебный праздник! Проверь знания!',
+    difficulty:'Легко', accent:'#2196f3',
+    questions:[
+      {q:'Во сколько начинают бить куранты?', answers:['21:00','22:00','00:00','01:00'], correct:2},
+      {q:'Что загадывают под бой курантов?', answers:['Желание','Тосты','Песни','Стихи'], correct:0},
+      {q:'Что традиционно пьют в новогоднюю ночь?', answers:['Воду','Шампанское','Сок','Чай'], correct:1},
+      {q:'В какой стране придумали традицию с оливье?', answers:['Франция','СССР','Италия','Испания'], correct:1},
+      {q:'Какое дерево украшают на Новый год в России?', answers:['Дуб','Ёлка','Берёза','Сосна'], correct:1}
+    ]
+  },
+  valentine: {
+    id:'valentine', name:'День Валентина', emoji:'💕',
+    description:'Праздник всех влюблённых!',
+    difficulty:'Легко', accent:'#e91e63',
+    questions:[
+      {q:'Какого числа День Валентина?', answers:['13 февраля','14 февраля','15 февраля','1 февраля'], correct:1},
+      {q:'Какой символ праздника?', answers:['Роза','Сердце','Кольцо','Лента'], correct:1},
+      {q:'Кто такой Валентин?', answers:['Король','Святой','Воин','Поэт'], correct:1},
+      {q:'Что традиционно дарят?', answers:['Конфеты и цветы','Книги','Технику','Одежду'], correct:0}
+    ]
+  }
+};
+
+const ACHIEVEMENTS = [
+  {id:'first_game', icon:'🎯', name:'Первый шаг', desc:'Пройдите первую викторину', check:u => u.gamesPlayed>=1},
+  {id:'five_games', icon:'🔥', name:'В ударе', desc:'Пройдите 5 викторин', check:u => u.gamesPlayed>=5},
+  {id:'ten_games', icon:'🏅', name:'Опытный игрок', desc:'Пройдите 10 викторин', check:u => u.gamesPlayed>=10},
+  {id:'perfect', icon:'💯', name:'Идеально!', desc:'Пройдите викторину без ошибок', check:u => u.perfectGames>=1},
+  {id:'five_perfect', icon:'⭐', name:'Перфекционист', desc:'5 викторин без ошибок', check:u => u.perfectGames>=5},
+  {id:'all_quizzes', icon:'👑', name:'Коллекционер', desc:'Пройдите все викторины', check:u => Object.keys(u.completed||{}).length >= Object.keys(QUIZZES).length},
+  {id:'level_5', icon:'📈', name:'Растущий', desc:'Достигните 5 уровня', check:u => u.level>=5},
+  {id:'level_10', icon:'🌟', name:'Звезда', desc:'Достигните 10 уровня', check:u => u.level>=10},
+  {id:'friends_3', icon:'👥', name:'Компания', desc:'Добавьте 3 друзей', check:u => (u.friends||[]).length>=3},
+  {id:'social', icon:'💬', name:'Болтун', desc:'Отправьте 10 сообщений', check:u => (u.messagesSent||0)>=10},
+  {id:'halloween_master', icon:'🎃', name:'Повелитель тыкв', desc:'Пройдите викторину о Хэллоуине', check:u => u.completed && u.completed.halloween},
+  {id:'newyear_master', icon:'🎁', name:'Новогодний', desc:'Пройдите викторину о Новом годе', check:u => u.completed && u.completed.newYear}
+];
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+const DB = {
+  get users() { return JSON.parse(localStorage.getItem('hq_users') || '{}'); },
+  set users(v) { localStorage.setItem('hq_users', JSON.stringify(v)); },
+  get session() { return localStorage.getItem('hq_session'); },
+  set session(v) { v ? localStorage.setItem('hq_session', v) : localStorage.removeItem('hq_session'); },
+  get invites() { return JSON.parse(localStorage.getItem('hq_invites') || '[]'); },
+  set invites(v) { localStorage.setItem('hq_invites', JSON.stringify(v)); }
+};
+
+function defaultUser(name) {
+  return {
+    username: name, password: '', xp: 0, level: 1,
+    gamesPlayed: 0, perfectGames: 0, messagesSent: 0,
+    completed: {}, friends: [], achievements: [], createdAt: Date.now()
+  };
+}
+
+function xpForLevel(lvl) { return lvl * 100; }
+
+function addXp(user, amount) {
+  user.xp += amount;
+  while (user.xp >= xpForLevel(user.level)) {
+    user.xp -= xpForLevel(user.level);
+    user.level++;
+    showToast(`🎉 Уровень ${user.level}!`);
+  }
+}
+
+/* =========================================================
+   STATE
+   ========================================================= */
+let currentUser = null;
+let game = null;
+let timerInterval = null;
+
+/* =========================================================
+   DOM   ========================================================= */
+const $ = id => document.getElementById(id);
+const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen') };
+
+function showScreen(name) {
+  Object.values(screens).forEach(s => s.classList.remove('active'));
+  screens[name].classList.add('active');
+}
+
+function showToast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.remove('hidden');
+  clearTimeout(t._tm);
+  t._tm = setTimeout(() => t.classList.add('hidden'), 2500);
+}
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    $('loginForm').classList.toggle('active', tab === 'login');
+    $('registerForm').classList.toggle('active', tab === 'register');
+  });
+});
+
+$('registerForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = $('regUsername').value.trim();
+  const p = $('regPassword').value;
+  const p2 = $('regPassword2').value;
+  const err = $('regError');
+  err.textContent = '';
+
+  if (u.length < 3) return err.textContent = 'Имя минимум 3 символа';
+  if (p.length < 4) return err.textContent = 'Пароль минимум 4 символа';
+  if (p !== p2) return err.textContent = 'Пароли не совпадают';
+
+  const users = DB.users;
+  if (users[u.toLowerCase()]) return err.textContent = 'Имя занято';
+
+  const user = defaultUser(u);
+  user.password = btoa(p);
+  users[u.toLowerCase()] = user;
+  DB.users = users;
+  DB.session = u.toLowerCase();
+  currentUser = user;
+  enterMain();
+});
+
+$('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = $('loginUsername').value.trim().toLowerCase();
+  const p = $('loginPassword').value;
+  const err = $('loginError');
+  err.textContent = '';
+
+  const users = DB.users;
+  if (!users[u]) return err.textContent = 'Пользователь не найден';
+  if (users[u].password !== btoa(p)) return err.textContent = 'Неверный пароль';
+
+  DB.session = u;
+  currentUser = users[u];
+  enterMain();
+});
+
+$('logoutBtn').addEventListener('click', () => {
+  if (!confirm('Выйти из аккаунта?')) return;
+  saveUser();
+  DB.session = null;
+  currentUser = null;
+  showScreen('auth');
+  $('loginForm').reset();
+  $('registerForm').reset();
+});
+
+function saveUser() {
+  if (!currentUser) return;
+  const users = DB.users;
+  users[currentUser.username.toLowerCase()] = currentUser;
+  DB.users = users;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+function enterMain() {
+  updateTopBar();
+  renderQuizzes();
+  renderAchievements();
+  renderLeaderboard();
+  renderFriends();
+  showScreen('main');
+  checkInvites();
+}
+
+function updateTopBar() {
+  $('userLevel').textContent = 'Ур. ' + currentUser.level;
+  $('userXp').textContent = currentUser.xp + ' XP';
+  $('userAvatar').textContent = currentUser.username[0].toUpperCase();
+}
+
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    $(btn.dataset.view + 'View').classList.add('active');
+    if (btn.dataset.view === 'leaderboard') renderLeaderboard();
+    if (btn.dataset.view === 'achievements') renderAchievements();
+    if (btn.dataset.view === 'friends') renderFriends();
+  });
+});
+
+/* =========================================================
+   QUIZZES RENDER
+   ========================================================= */
+function renderQuizzes() {
+  const grid = $('quizGrid');
+  grid.innerHTML = '';
+  Object.values(QUIZZES).forEach(q => {
+    const done = currentUser.completed && currentUser.completed[q.id];
+    const card = document.createElement('div');
+    card.className = 'quiz-card' + (done ? ' completed' : '');
+    card.style.setProperty('--accent', q.accent);
+    card.innerHTML = `
+      <span class="quiz-emoji">${q.emoji}</span>
+      <h3>${q.name}</h3>
+      <p>${q.description}</p>
+      <div class="quiz-meta">
+        <span class="quiz-difficulty">${q.difficulty} • ${q.questions.length} вопр.</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px;">
+        <button class="play-btn" data-play="${q.id}">Играть</button>
+        <button class="play-btn" style="background:rgba(255,255,255,0.15);" data-invite="${q.id}">👥 Пригласить</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+$('quizGrid').addEventListener('click', e => {
+  const playBtn = e.target.closest('[data-play]');
+  const invBtn = e.target.closest('[data-invite]');
+  if (playBtn) startGame(playBtn.dataset.play);
+  if (invBtn) openInviteModal(invBtn.dataset.invite);
+});
+
+/* =========================================================
+   GAME LOGIC
+   ========================================================= */
+function startGame(quizId) {
+  const quiz = QUIZZES[quizId];
+  game = {
+    quizId, quiz,
+    round: 0,
+    score: 0,
+    correct: 0,
+    wrong: 0,
+    answered: false,
+    timeLeft: 30,
+    chat: []
+  };
+  $('gameQuizName').textContent = quiz.emoji + ' ' + quiz.name;
+  $('chatMessages').innerHTML = '';
+  addChat('system', 'Игра началась! Удачи!');
+  showScreen('game');
+  nextRound();
+}
+
+function nextRound() {
+  if (game.round >= game.quiz.questions.length) {
+    endGame();
+    return;
+  }
+  const q = game.quiz.questions[game.round];
+  game.answered = false;
+  game.timeLeft = 30;
+  $('gameRound').textContent = `Раунд ${game.round + 1}/${game.quiz.questions.length}`;
+  $('questionText').textContent = q.q;
+  $('gameTimer').textContent = game.timeLeft;
+  $('gameTimer').classList.remove('warning');
+
+  const cont = $('answersContainer');
+  cont.innerHTML = '';
+  q.answers.forEach((ans, i) => {
+    const b = document.createElement('button');
+    b.className = 'answer-btn';
+    b.textContent = ans;
+    b.dataset.idx = i;
+    b.addEventListener('click', () => selectAnswer(i));
+    cont.appendChild(b);
+  });
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    game.timeLeft--;
+    $('gameTimer').textContent = game.timeLeft;
+    if (game.timeLeft <= 5) $('gameTimer').classList.add('warning');
+    if (game.timeLeft <= 0) {
+      clearInterval(timerInterval);
+      if (!game.answered) selectAnswer(-1);
+    }
+  }, 1000);
+}
+
+function selectAnswer(idx) {
+  if (game.answered) return;
+  game.answered = true;
+  clearInterval(timerInterval);
+
+  const q = game.quiz.questions[game.round];
+  const btns = document.querySelectorAll('.answer-btn');
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.correct) b.classList.add('correct');
+    else if (i === idx) b.classList.add('wrong');
+  });
+
+  if (idx === q.correct) {
+    game.correct++;
+    game.score += 10 + Math.max(0, game.timeLeft);
+    addChat('system', `✅ Верно! +${10 + Math.max(0, game.timeLeft)} очков`);
+  } else {
+    game.wrong++;
+    addChat('system', `❌ Неверно. Правильно: ${q.answers[q.correct]}`);
+  }
+
+  game.round++;
+  setTimeout(nextRound, 1500);
+}
+
+function endGame() {
+  clearInterval(timerInterval);
+  currentUser.gamesPlayed++;
+  if (game.wrong === 0) currentUser.perfectGames++;
+  if (!currentUser.completed) currentUser.completed = {};
+  const prevBest = currentUser.completed[game.quizId]?.score || 0;
+  if (game.score > prevBest) {
+    currentUser.completed[game.quizId] = { score: game.score, date: Date.now() };
+  }
+  addXp(currentUser, game.score);
+  saveUser();
+  updateTopBar();
+  checkAchievements();
+
+  $('resultTitle').textContent = '🏁 Игра завершена!';
+  $('resultStats').innerHTML = `
+    <div class="stat"><span class="stat-value">${game.score}</span><span class="stat-label">Очков</span></div>
+    <div class="stat"><span class="stat-value">${game.correct}</span><span class="stat-label">Верных</span></div>
+    <div class="stat"><span class="stat-value">${game.wrong}</span><span class="stat-label">Ошибок</span></div>
+  `;
+  $('resultModal').classList.remove('hidden');
+}
+
+$('closeResultBtn').addEventListener('click', () => {
+  $('resultModal').classList.add('hidden');
+  renderQuizzes();
+  renderAchievements();
+  renderLeaderboard();
+  showScreen('main');
+});
+
+$('leaveGameBtn').addEventListener('click', () => {
+  if (!confirm('Покинуть игру? Прогресс не сохранится.')) return;
+  clearInterval(timerInterval);
+  showScreen('main');
+});
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+function addChat(author, text) {
+  const c = $('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg' + (author === 'system' ? ' system' : '');
+  if (author === 'system') div.textContent = text;
+  else div.innerHTML = `<span class="author">${author}:</span>${text}`;
+  c.appendChild(div);
+  c.scrollTop = c.scrollHeight;
+}
+
+$('sendChatBtn').addEventListener('click', sendChat);
+$('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
+
+function sendChat() {
+  const inp = $('chatInput');
+  const text = inp.value.trim();
+  if (!text) return;
+  addChat(currentUser.username, text);
+  currentUser.messagesSent = (currentUser.messagesSent || 0) + 1;
+  saveUser();
+  checkAchievements();
+  inp.value = '';
+
+  // Ответ от бота
+  setTimeout(() => {
+    const bots = ['Ого, я тоже так думаю!', 'Ха-ха, согласен 😄', 'Кто это сказал?', 'Не подсказывай!', 'Интересно 🤔', 'Погнали дальше!'];
+    addChat('Гость_' + (Math.floor(Math.random() * 90) + 10), bots[Math.floor(Math.random() * bots.length)]);
+  }, 1200);
+}
+
+/* =========================================================
+   ACHIEVEMENTS
+   ========================================================= */
+function renderAchievements() {
+  const grid = $('achievementsGrid');
+  grid.innerHTML = '';
+  ACHIEVEMENTS.forEach(a => {
+    const unlocked = currentUser.achievements && currentUser.achievements.includes(a.id);
+    const div = document.createElement('div');
+    div.className = 'achievement ' + (unlocked ? 'unlocked' : 'locked');
+    div.innerHTML = `
+      <div class="achievement-icon">${a.icon}</div>
+      <h4>${a.name}</h4>
+      <p>${a.desc}</p>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function checkAchievements() {
+  if (!currentUser.achievements) currentUser.achievements = [];
+  ACHIEVEMENTS.forEach(a => {
+    if (!currentUser.achievements.includes(a.id) && a.check(currentUser)) {
+      currentUser.achievements.push(a.id);
+      showToast(`🏆 Достижение: ${a.name}`);
+    }
+  });
+  saveUser();
+}
+
+/* =========================================================
+   LEADERBOARD
+   ========================================================= */
+function renderLeaderboard() {
+  const users = Object.values(DB.users);
+  users.sort((a, b) => (b.level * 1000 + b.xp) - (a.level * 1000 + a.xp));
+  const list = $('leaderboardList');
+  list.innerHTML = '';
+  users.forEach((u, i) => {
+    const rank = i + 1;
+    const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
+    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+    const row = document.createElement('div');
+    row.className = 'leaderboard-row' + (u.username === currentUser.username ? ' me' : '');
+    row.innerHTML = `
+      <div class="rank ${rankClass}">${medal}</div>
+      <div class="avatar">${u.username[0].toUpperCase()}</div>
+      <div class="leaderboard-name">${u.username}</div>
+      <div class="leaderboard-xp">Ур. ${u.level} • ${u.xp} XP</div>
+    `;
+    list.appendChild(row);
+  });
+  if (!users.length) list.innerHTML = '<p style="opacity:0.6;">Пока никого нет</p>';
+}
+
+/* =========================================================
+   FRIENDS
+   ========================================================= */
+$('searchBtn').addEventListener('click', () => {
+  const q = $('friendSearch').value.trim().toLowerCase();
+  const res = $('searchResults');
+  res.innerHTML = '';
+  if (!q) return;
+  const users = DB.users;
+  const found = Object.values(users).filter(u =>
+    u.username.toLowerCase().includes(q) && u.username !== currentUser.username
+  );
+  if (!found.length) {
+    res.innerHTML = '<p style="opacity:0.6;">Никого не найдено</p>';
+    return;
+  }
+  found.forEach(u => {
+    const isFriend = (currentUser.friends || []).includes(u.username);
+    const item = document.createElement('div');
+    item.className = 'friend-item';
+    item.innerHTML = `
+      <div class="avatar">${u.username[0].toUpperCase()}</div>
+      <div class="name">${u.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${u.level})</span></div>
+      <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>
+        ${isFriend ? '✓ В друзьях' : 'Добавить'}
+      </button>
+    `;
+    if (!isFriend) item.querySelector('button').addEventListener('click', () => addFriend(u.username));
+    res.appendChild(item);
+  });
+});
+
+function addFriend(name) {
+  if (!currentUser.friends) currentUser.friends = [];
+  if (!currentUser.friends.includes(name)) {
+    currentUser.friends.push(name);
+    saveUser();
+    showToast(`✅ ${name} добавлен в друзья`);
+    checkAchievements();
+    renderFriends();
+    $('searchBtn').click();
+  }
+}
+
+function renderFriends() {
+  const list = $('friendsList');
+  list.innerHTML = '';
+  if (!currentUser.friends || !currentUser.friends.length) {
+    list.innerHTML = '<p style="opacity:0.6;">Пока никого нет. Найдите друзей через поиск!</p>';
+  } else {
+    currentUser.friends.forEach(name => {
+      const u = DB.users[name.toLowerCase()];
+      const item = document.createElement('div');
+      item.className = 'friend-item';
+      item.innerHTML = `
+        <div class="avatar">${name[0].toUpperCase()}</div>
+        <div class="name">${name} ${u ? `<span style="opacity:0.6;font-size:12px;">(Ур. ${u.level})</span>` : ''}</div>
+        <button data-remove="${name}" style="background:rgba(255,255,255,0.15);">Удалить</button>
+      `;
+      item.querySelector('[data-remove]').addEventListener('click', () => {
+        currentUser.friends = currentUser.friends.filter(f => f !== name);
+        saveUser();
+        renderFriends();
+      });
+      list.appendChild(item);
+    });
+  }
+  renderInvites();
+}
+
+/* =========================================================
+   INVITES
+   ========================================================= */
+function openInviteModal(quizId) {
+  const quiz = QUIZZES[quizId];
+  $('inviteQuizName').textContent = `Викторина: ${quiz.emoji} ${quiz.name}`;
+  const sel = $('inviteFriendSelect');
+  sel.innerHTML = '';
+  if (!currentUser.friends || !currentUser.friends.length) {
+    sel.innerHTML = '<option value="">— сначала добавьте друзей —</option>';
+  } else {
+    currentUser.friends.forEach(f => {
+      const o = document.createElement('option');
+      o.value = f;
+      o.textContent = f;
+      sel.appendChild(o);
+    });
+  }
+  $('inviteModal').dataset.quizId = quizId;
+  $('inviteModal').classList.remove('hidden');
+}
+
+$('cancelInviteBtn').addEventListener('click', () => $('inviteModal').classList.add('hidden'));
+
+$('sendInviteBtn').addEventListener('click', () => {
+  const friend = $('inviteFriendSelect').value;
+  if (!friend) return showToast('Сначала добавьте друзей');
+  const quizId = $('inviteModal').dataset.quizId;
+  const invites = DB.invites;
+  invites.push({
+    from: currentUser.username,
+    to: friend,
+    quizId,
+    date: Date.now(),
+    id: 'inv_' + Date.now()
+  });
+  DB.invites = invites;
+  $('inviteModal').classList.add('hidden');
+  showToast(`📨 Приглашение отправлено: ${friend}`);
+  // Симуляция принятия через 5 сек
+  setTimeout(() => {
+    const current = DB.invites.filter(i => i.id !== 'inv_' + Date.now());
+    showToast(`🎮 ${friend} принял приглашение! Можно играть вместе.`);
+  }, 5000);
+});
+
+function checkInvites() {
+  // Показываем уведомления о приглашениях для текущего пользователя
+  const invites = DB.invites.filter(i => i.to === currentUser.username);
+  invites.forEach(inv => {
+    if (!inv.notified) {
+      showToast(`📨 ${inv.from} приглашает вас в "${QUIZZES[inv.quizId]?.name}"`);
+      inv.notified = true;
+    }
+  });
+  DB.invites = DB.invites.map(i => invites.find(x => x.id === i.id) || i);
+  renderInvites();
+}
+
+function renderInvites() {
+  const list = $('invitesList');
+  if (!list) return;
+  list.innerHTML = '';
+  const invites = DB.invites.filter(i => i.to === currentUser.username);
+  if (!invites.length) {
+    list.innerHTML = '<p style="opacity:0.6;">Нет активных приглашений</p>';
+    return;
+  }
+  invites.forEach(inv => {
+    const quiz = QUIZZES[inv.quizId];
+    const item = document.createElement('div');
+    item.className = 'friend-item';
+    item.innerHTML = `
+      <div class="avatar">${inv.from[0].toUpperCase()}</div>
+      <div class="name">${inv.from} → ${quiz?.emoji || '🎯'} ${quiz?.name || ''}</div>
+      <button data-accept="${inv.id}">Принять</button>
+      <button data-decline="${inv.id}" style="background:rgba(255,255,255,0.15);">✕</button>
+    `;
+    item.querySelector('[data-accept]').addEventListener('click', () => {
+      DB.invites = DB.invites.filter(i => i.id !== inv.id);
+      startGame(inv.quizId);
+    });
+    item.querySelector('[data-decline]').addEventListener('click', () => {
+      DB.invites = DB.invites.filter(i => i.id !== inv.id);
+      renderInvites();
+    });
+    list.appendChild(item);
+  });
+}
+
+// Периодическая проверка приглашений
+setInterval(() => { if (currentUser) checkInvites(); }, 5000);
+
+/* =========================================================
+   AUTO LOGIN
+   ========================================================= */
+(function init() {
+  const session = DB.session;
+  if (session && DB.users[session]) {
+    currentUser = DB.users[session];
+    enterMain();
+  } else {
+    showScreen('auth');
+  }
+})();
+</script>
+</body>
+</html>
