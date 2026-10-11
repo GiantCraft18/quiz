@@ -273,8 +273,8 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 @keyframes statIn { from { opacity:0; transform: scale(0.5); } to { opacity:1; transform: scale(1); } }
 .stat-value { font-size:36px; font-weight:bold; display:block; color:#ffb86b; font-family:'Creepster',cursive; text-shadow:0 0 20px rgba(255,140,0,0.7); }
 .stat-label { font-size:13px; color:#c9a0dc; margin-top:4px; display:block; }
-.modal-content select, .modal-content input[type=text], .modal-content input[type=password] { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:8px 0; }
-.modal-content input[type=text]:focus, .modal-content select:focus, .modal-content input[type=password]:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.modal-content select, .modal-content input[type=text], .modal-content input[type=password], .modal-content input[type=email] { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:8px 0; }
+.modal-content input:focus, .modal-content select:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
 .modal-buttons { display:flex; gap:12px; margin-top:8px; }
 .modal-buttons button { flex:1; }
 .modal-tabs { display:flex; gap:8px; margin-bottom:20px; background:rgba(0,0,0,0.4); padding:5px; border-radius:12px; }
@@ -397,7 +397,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .setting-info .setting-desc { font-size:12px; color:#c9a0dc; line-height:1.5; }
 .setting-control { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
-/* Переключатель (switch) */
 .switch { position:relative; display:inline-block; width:56px; height:30px; flex-shrink:0; }
 .switch input { opacity:0; width:0; height:0; }
 .switch .slider { position:absolute; cursor:pointer; inset:0; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:30px; transition:0.3s; }
@@ -406,7 +405,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .switch input:checked + .slider:before { transform:translateX(26px); background:linear-gradient(135deg,#fff,#ffb86b); }
 .switch input:focus + .slider { box-shadow:0 0 20px rgba(255,140,0,0.6); }
 
-/* Кнопки выбора темы */
 .theme-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; }
 .theme-preview { padding:16px; border-radius:14px; border:2px solid rgba(255,140,0,0.25); cursor:pointer; transition:0.3s; text-align:center; position:relative; overflow:hidden; background:rgba(0,0,0,0.3); }
 .theme-preview:hover { transform:translateY(-3px); border-color:rgba(255,160,0,0.6); }
@@ -419,21 +417,18 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .theme-preview.newyear .theme-preview-swatch { background:linear-gradient(135deg,#0a1d40,#64b5f6); }
 .theme-preview.cosmic .theme-preview-swatch { background:linear-gradient(135deg,#1a0033,#e1bee7); }
 
-/* Аватары */
 .avatar-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(60px,1fr)); gap:10px; }
 .avatar-option { width:100%; aspect-ratio:1; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer; border:2px solid rgba(255,140,0,0.3); background:rgba(0,0,0,0.3); transition:0.3s; position:relative; }
 .avatar-option:hover { transform:scale(1.1); border-color:rgba(255,160,0,0.7); }
 .avatar-option.active { border-color:#ff6b00; box-shadow:0 0 20px rgba(255,100,0,0.6); background:rgba(255,100,0,0.2); }
 .avatar-option.active::after { content:'✓'; position:absolute; bottom:-2px; right:-2px; background:#4caf50; color:#fff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:bold; }
 
-/* Громкость */
 .volume-control { display:flex; align-items:center; gap:12px; flex:1; min-width:200px; }
 .volume-control input[type=range] { flex:1; -webkit-appearance:none; appearance:none; height:8px; border-radius:4px; background:rgba(0,0,0,0.5); outline:none; border:1px solid rgba(255,140,0,0.3); }
 .volume-control input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); cursor:pointer; box-shadow:0 0 15px rgba(255,100,0,0.6); }
 .volume-control input[type=range]::-moz-range-thumb { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); cursor:pointer; border:none; box-shadow:0 0 15px rgba(255,100,0,0.6); }
 .volume-value { font-size:13px; color:#ffb86b; font-weight:bold; min-width:45px; text-align:right; }
 
-/* Профиль */
 .profile-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; flex-wrap:wrap; }
 .profile-big-avatar { width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:40px; border:3px solid rgba(255,180,80,0.6); box-shadow:0 0 30px rgba(255,140,0,0.5); color:#fff; flex-shrink:0; }
 .profile-info-block { flex:1; min-width:200px; }
@@ -441,7 +436,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .profile-info-block .profile-meta { font-size:13px; color:#c9a0dc; }
 .profile-info-block .profile-meta span { display:inline-block; margin-right:14px; margin-top:4px; }
 
-/* Кнопки действий */
 .settings-btn { padding:10px 20px; background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.4); border-radius:12px; color:#ffb86b; cursor:pointer; font-size:14px; font-weight:600; transition:0.3s; display:inline-flex; align-items:center; gap:8px; }
 .settings-btn:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.4); transform:translateY(-2px); }
 .settings-btn.danger { background:rgba(244,67,54,0.15); border-color:rgba(244,67,54,0.5); color:#ef5350; }
@@ -449,23 +443,94 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .settings-btn.success { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
 .settings-btn.success:hover { background:rgba(76,175,80,0.3); box-shadow:0 0 20px rgba(76,175,80,0.5); }
 
-/* Горячие клавиши */
 .hotkeys-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
 .hotkey-item { display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,0,0,0.3); border-radius:12px; border:1px solid rgba(255,140,0,0.15); }
 .hotkey-key { padding:4px 12px; background:linear-gradient(135deg,rgba(255,140,0,0.25),rgba(199,44,0,0.2)); border:1px solid rgba(255,140,0,0.5); border-radius:8px; font-size:12px; font-family:monospace; color:#ffb86b; font-weight:bold; min-width:40px; text-align:center; }
 .hotkey-desc { font-size:13px; color:#c9a0dc; }
 
-/* Info box */
 .info-box { background:rgba(0,0,0,0.3); border-left:4px solid #ff8c00; padding:12px 16px; border-radius:8px; font-size:13px; color:#c9a0dc; line-height:1.6; margin-bottom:16px; }
 .info-box.warning { border-left-color:#ff9800; }
 .info-box.danger { border-left-color:#f44336; }
 .info-box.success { border-left-color:#4caf50; }
 
-/* Статистика аккаунта */
 .account-stats { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; }
 .account-stat { padding:14px; background:rgba(0,0,0,0.3); border-radius:12px; border:1px solid rgba(255,140,0,0.15); text-align:center; }
 .account-stat .ac-value { font-size:22px; font-family:'Creepster',cursive; color:#ffb86b; display:block; margin-bottom:4px; text-shadow:0 0 15px rgba(255,140,0,0.5); }
 .account-stat .ac-label { font-size:11px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; }
+
+/* ========== ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ ========== */
+.profile-page { max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
+
+.profile-hero { background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15),rgba(40,10,60,0.9)); border:2px solid rgba(255,180,80,0.5); border-radius:24px; padding:32px; position:relative; overflow:hidden; box-shadow:0 20px 60px rgba(255,100,0,0.25); }
+.profile-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:400px; height:400px; background:radial-gradient(circle,rgba(255,140,0,0.25),transparent 60%); pointer-events:none; animation: batGlow 6s infinite alternate; }
+.profile-hero-content { display:flex; align-items:center; gap:26px; position:relative; z-index:1; flex-wrap:wrap; }
+.profile-hero-avatar { width:130px; height:130px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:60px; border:4px solid rgba(255,180,80,0.7); box-shadow:0 0 50px rgba(255,140,0,0.6), inset 0 0 30px rgba(255,255,255,0.15); color:#fff; flex-shrink:0; position:relative; }
+.profile-hero-avatar.online::after { content:''; position:absolute; bottom:8px; right:12px; width:24px; height:24px; border-radius:50%; background:#4caf50; border:3px solid rgba(40,10,60,0.95); box-shadow:0 0 15px #4caf50; }
+.profile-hero-info { flex:1; min-width:220px; }
+.profile-hero-name { font-size:38px; font-family:'Creepster',cursive; color:#ffb86b; margin-bottom:8px; line-height:1; text-shadow:0 0 25px rgba(255,140,0,0.7); word-break:break-word; }
+.profile-hero-level { display:inline-block; padding:6px 16px; background:linear-gradient(135deg,rgba(255,140,0,0.3),rgba(199,44,0,0.25)); border:1px solid rgba(255,180,80,0.5); border-radius:20px; font-size:14px; font-weight:700; color:#ffd700; margin-bottom:12px; }
+.profile-hero-bio { font-size:14px; color:#c9a0dc; line-height:1.6; margin-bottom:14px; }
+.profile-hero-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:12px; color:#c9a0dc; }
+.profile-hero-meta span { padding:5px 12px; background:rgba(0,0,0,0.35); border-radius:12px; border:1px solid rgba(255,140,0,0.2); }
+.profile-hero-xp { margin-top:16px; }
+.profile-hero-xp-label { display:flex; justify-content:space-between; font-size:12px; color:#c9a0dc; margin-bottom:6px; }
+.profile-hero-xp-bar { height:12px; background:rgba(0,0,0,0.5); border-radius:6px; overflow:hidden; border:1px solid rgba(255,140,0,0.3); }
+.profile-hero-xp-fill { height:100%; background:linear-gradient(90deg,#ff6b00,#ffb86b,#ff6b00); background-size:200% 100%; animation: xpShine 3s linear infinite; transition:width 0.8s ease; border-radius:6px; }
+
+.profile-quick-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-top:24px; }
+.profile-quick-stat { padding:18px; background:linear-gradient(160deg,rgba(40,10,60,0.8),rgba(20,5,35,0.9)); border:2px solid rgba(255,140,0,0.25); border-radius:18px; text-align:center; transition:0.3s; }
+.profile-quick-stat:hover { transform:translateY(-4px); border-color:rgba(255,160,0,0.6); box-shadow:0 15px 30px rgba(255,100,0,0.25); }
+.profile-quick-stat .pq-icon { font-size:32px; margin-bottom:8px; line-height:1; filter:drop-shadow(0 0 10px rgba(255,140,0,0.5)); }
+.profile-quick-stat .pq-value { font-size:28px; font-family:'Creepster',cursive; color:#ffb86b; display:block; line-height:1; text-shadow:0 0 15px rgba(255,140,0,0.6); }
+.profile-quick-stat .pq-label { font-size:11px; color:#c9a0dc; margin-top:6px; display:block; text-transform:uppercase; letter-spacing:0.5px; }
+
+/* Секции профиля */
+.profile-section { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:26px; }
+.profile-section h3 { margin-bottom:18px; font-size:22px; color:#ff8c00; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:1px dashed rgba(255,140,0,0.2); }
+
+/* Информация об аккаунте */
+.account-info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+.account-info-item { padding:16px; background:rgba(0,0,0,0.35); border:1px solid rgba(255,140,0,0.2); border-radius:14px; display:flex; align-items:center; gap:14px; transition:0.3s; }
+.account-info-item:hover { border-color:rgba(255,160,0,0.5); background:rgba(0,0,0,0.5); }
+.account-info-icon { font-size:28px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,rgba(255,140,0,0.25),rgba(199,44,0,0.15)); border-radius:50%; flex-shrink:0; border:1px solid rgba(255,140,0,0.35); }
+.account-info-content { flex:1; min-width:0; }
+.account-info-label { font-size:11px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+.account-info-value { font-size:15px; color:#ffb86b; font-weight:700; word-break:break-word; }
+.account-info-value.mono { font-family:monospace; font-size:13px; color:#ffa94d; }
+
+/* Профиль — кнопки действий */
+.profile-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.profile-action-btn { flex:1; min-width:180px; padding:14px 20px; background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15)); border:2px solid rgba(255,140,0,0.4); border-radius:14px; color:#ffb86b; cursor:pointer; font-size:14px; font-weight:700; transition:0.3s; display:flex; align-items:center; justify-content:center; gap:10px; }
+.profile-action-btn:hover { background:linear-gradient(135deg,rgba(255,140,0,0.35),rgba(199,44,0,0.3)); box-shadow:0 8px 25px rgba(255,100,0,0.4); transform:translateY(-3px); border-color:rgba(255,160,0,0.7); }
+.profile-action-btn .pa-icon { font-size:20px; }
+
+/* Прогресс-бар достижений */
+.ach-summary { display:flex; align-items:center; gap:16px; padding:16px; background:rgba(0,0,0,0.3); border-radius:14px; margin-bottom:18px; border:1px solid rgba(255,140,0,0.15); }
+.ach-summary-circle { width:70px; height:70px; border-radius:50%; background:conic-gradient(#ff6b00 calc(var(--p) * 1%), rgba(0,0,0,0.4) 0); display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
+.ach-summary-circle::after { content:''; position:absolute; inset:8px; background:linear-gradient(160deg,rgba(40,10,60,1),rgba(20,5,35,1)); border-radius:50%; }
+.ach-summary-circle span { position:relative; z-index:1; font-size:16px; font-weight:bold; color:#ffb86b; font-family:'Creepster',cursive; }
+.ach-summary-info { flex:1; }
+.ach-summary-title { font-size:16px; color:#ffb86b; font-weight:700; margin-bottom:4px; }
+.ach-summary-desc { font-size:12px; color:#c9a0dc; }
+
+/* Мини-достижения в профиле */
+.profile-ach-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+.profile-ach-item { padding:14px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,140,0,0.2); border-radius:14px; text-align:center; transition:0.3s; }
+.profile-ach-item.unlocked { background:linear-gradient(160deg,rgba(255,140,0,0.15),rgba(199,44,0,0.1)); border-color:rgba(255,180,80,0.5); }
+.profile-ach-item.locked { opacity:0.5; }
+.profile-ach-item .pa-emoji { font-size:32px; line-height:1; margin-bottom:6px; filter:drop-shadow(0 0 8px rgba(255,140,0,0.5)); }
+.profile-ach-item .pa-name { font-size:12px; color:#ffb86b; font-weight:700; }
+
+/* Форма профиля */
+.profile-form { display:flex; flex-direction:column; gap:14px; }
+.profile-form-row { display:flex; flex-direction:column; gap:6px; }
+.profile-form-row label { font-size:12px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
+.profile-form-row input { padding:13px 16px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; transition:0.3s; }
+.profile-form-row input:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.profile-form-row input:disabled { opacity:0.5; cursor:not-allowed; }
+.profile-form-row .hint { font-size:11px; color:#8a7aa0; }
+.profile-form-actions { display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
+.profile-form-actions button { flex:1; min-width:140px; }
 
 @media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:340px; } }
 @media (max-width:600px) {
@@ -487,6 +552,10 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   .setting-row { flex-direction:column; align-items:flex-start; }
   .setting-control { width:100%; }
   .theme-grid { grid-template-columns:repeat(2,1fr); }
+  .profile-hero { padding:20px; }
+  .profile-hero-avatar { width:90px; height:90px; font-size:44px; }
+  .profile-hero-name { font-size:26px; }
+  .profile-hero-content { gap:16px; }
 }
 </style>
 </head>
@@ -506,13 +575,14 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
       <button class="tab-btn" data-tab="register">Регистрация</button>
     </div>
     <form id="loginForm" class="auth-form active">
-      <input type="text" id="loginUsername" placeholder="Имя пользователя" required>
+      <input type="text" id="loginUsername" placeholder="Имя пользователя или email" required>
       <input type="password" id="loginPassword" placeholder="Пароль" required>
       <button type="submit" class="btn-primary">🕯 Войти</button>
       <p class="error" id="loginError"></p>
     </form>
     <form id="registerForm" class="auth-form">
       <input type="text" id="regUsername" placeholder="Имя пользователя" required minlength="3">
+      <input type="email" id="regEmail" placeholder="Email (необязательно)">
       <input type="password" id="regPassword" placeholder="Пароль (мин. 4 символа)" required minlength="4">
       <input type="password" id="regPassword2" placeholder="Повторите пароль" required>
       <button type="submit" class="btn-primary">🦇 Зарегистрироваться</button>
@@ -528,12 +598,13 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
     <div class="user-info">
       <span id="userLevel">Ур. 1</span>
       <div class="xp-bar-container" title="XP"><div class="xp-bar" id="xpBar" style="width:0%"></div></div>
-      <div class="avatar" id="userAvatar">?</div>
+      <div class="avatar" id="userAvatar" title="Открыть профиль">?</div>
       <button id="logoutBtn" class="btn-icon" title="Выйти">🚪</button>
     </div>
   </header>
   <nav class="main-nav">
     <button class="nav-btn active" data-view="quizzes">🎯 Праздники</button>
+    <button class="nav-btn" data-view="profile">👤 Профиль</button>
     <button class="nav-btn" data-view="achievements">🏆 Достижения</button>
     <button class="nav-btn" data-view="leaderboard">📊 Рейтинг</button>
     <button class="nav-btn" data-view="friends">👥 Друзья</button>
@@ -570,6 +641,13 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
       </div>
       <div class="quiz-grid" id="quizGrid"></div>
     </section>
+
+    <!-- ========== ПРОФИЛЬ ========== -->
+    <section id="profileView" class="view">
+      <h2>👤 Мой профиль</h2>
+      <div class="profile-page" id="profilePage"></div>
+    </section>
+
     <section id="achievementsView" class="view">
       <h2>Ваши достижения</h2>
       <div class="achievements-grid" id="achievementsGrid"></div>
@@ -717,6 +795,20 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   </div>
 </div>
 
+<!-- CHANGE EMAIL MODAL -->
+<div id="emailModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>📧 Смена почты</h2>
+    <div class="info-box">Email нужен для восстановления пароля и уведомлений.</div>
+    <input type="email" id="newEmailInput" placeholder="Новый email">
+    <p class="error" id="emailError"></p>
+    <div class="modal-buttons">
+      <button id="saveEmailBtn" class="btn-primary">Сохранить</button>
+      <button id="cancelEmailBtn" class="btn-secondary">Отмена</button>
+    </div>
+  </div>
+</div>
+
 <!-- IMPORT DATA MODAL -->
 <div id="importModal" class="modal hidden">
   <div class="modal-content">
@@ -731,7 +823,7 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   </div>
 </div>
 
-<!-- PROFILE MODAL -->
+<!-- PROFILE MODAL (быстрый просмотр с аватара) -->
 <div id="profileModal" class="modal hidden">
   <div class="modal-content">
     <h2 id="profileName">Профиль</h2>
@@ -776,7 +868,102 @@ const QUIZZES = {
       ]
     }
   },
-  oldNewYear: { id:'oldNewYear', name:'Старый Новый год', emoji:'🌙', category:'russian', description:'Уникальный русский праздник 13-14 января!', accent:'#9c27b0',
+  halloween: { id:'halloween', name:'Хэллоуин', emoji:'🎃', category:'western', description:'Самый жуткий праздник года!', accent:'#ff6b00',
+    questions: {
+      easy: [
+        {q:'Какого числа отмечается Хэллоуин?', answers:['30 октября','31 октября','1 ноября','28 октября'], correct:1},
+        {q:'Какой овощ используется для фонаря Джека?', answers:['Арбуз','Тыква','Дыня','Кабачок'], correct:1},
+        {q:'Что дети говорят, стучась в двери?', answers:['Сладость или гадость!','Дайте конфет!','Угостите!','Откройте!'], correct:0}
+      ],
+      medium: [
+        {q:'Из какой страны родом традиция Хэллоуина?', answers:['США','Ирландия','Мексика','Англия'], correct:1},
+        {q:'Как называется праздник в Мексике?', answers:['Карнавал','День Мёртвых','Фиеста','Сомбреро'], correct:1},
+        {q:'Какого цвета традиционный костюм тыквы?', answers:['Оранжевый с чёрным','Красный','Зелёный','Синий'], correct:0}
+      ],
+      hard: [
+        {q:'Как изначально назывался Хэллоуин?', answers:['Самайн','Белтейн','Имболк','Лугнасад'], correct:0},
+        {q:'Какое племя считается родоначальником?', answers:['Римляне','Кельты','Викинги','Греки'], correct:1},
+        {q:'Какой цвет НЕ традиционный для Хэллоуина?', answers:['Оранжевый','Чёрный','Фиолетовый','Синий'], correct:3}
+      ]
+    }
+  },
+  valentine: { id:'valentine', name:'День Валентина', emoji:'💕', category:'western', description:'Праздник всех влюблённых', accent:'#e91e63',
+    questions: {
+      easy: [
+        {q:'Какого числа День Валентина?', answers:['13 февраля','14 февраля','15 февраля','1 февраля'], correct:1},
+        {q:'Какой символ праздника?', answers:['Роза','Сердце','Кольцо','Лента'], correct:1},
+        {q:'Что традиционно дарят?', answers:['Конфеты и цветы','Книги','Технику','Одежду'], correct:0}
+      ],
+      medium: [
+        {q:'Кто такой Валентин?', answers:['Король','Святой','Воин','Поэт'], correct:1},
+        {q:'Какая страна считается родиной?', answers:['Франция','Италия','Англия','Испания'], correct:1},
+        {q:'Сколько открыток отправляется в США?', answers:['~10 млн','~50 млн','~150 млн','~1 млрд'], correct:2}
+      ],
+      hard: [
+        {q:'В каком году выпустили валентинки массово?', answers:['1840-е','1860-е','1880-е','1900-е'], correct:0},
+        {q:'Как называется валентинка на японском?', answers:['Кокоро','Балентайн','Хонмей','Гири'], correct:1},
+        {q:'Где отмечают День Валентина 14 июля?', answers:['Япония','Бразилия','Китай','Индия'], correct:1}
+      ]
+    }
+  },
+  christmas: { id:'christmas', name:'Католическое Рождество', emoji:'🎄', category:'western', description:'25 декабря — главный праздник Запада', accent:'#4caf50',
+    questions: {
+      easy: [
+        {q:'Какого числа католическое Рождество?', answers:['24 декабря','25 декабря','1 января','7 января'], correct:1},
+        {q:'Как зовут главного дарителя в США?', answers:['Дед Мороз','Санта-Клаус','Святой Николай','Морозко'], correct:1},
+        {q:'Что вешают на ёлку?', answers:['Фрукты','Игрушки и гирлянды','Одежду','Книги'], correct:1}
+      ],
+      medium: [
+        {q:'Сколько оленей у Санта-Клауса?', answers:['6','7','8','9'], correct:2},
+        {q:'Как зовут главного оленя?', answers:['Рудольф','Дансер','Прэнсер','Купид'], correct:0},
+        {q:'Какого цвета омела приносит удачу?', answers:['Красного','Зелёного','Белого','Синего'], correct:1}
+      ],
+      hard: [
+        {q:'Как называют 12 дней после Рождества?', answers:['Коляды','Святки','Адвент','Пост'], correct:1},
+        {q:'В какой стране придумали открытки?', answers:['Англия','Германия','США','Франция'], correct:0},
+        {q:'Как называется британский рождественский пирог?', answers:['Пудинг','Пай','Торт','Кекс'], correct:0}
+      ]
+    }
+  },
+  thanksgiving: { id:'thanksgiving', name:'День Благодарения', emoji:'🦃', category:'western', description:'Американский праздник урожая', accent:'#ff9800',
+    questions: {
+      easy: [
+        {q:'В каком месяце День Благодарения?', answers:['Октябрь','Ноябрь','Декабрь','Сентябрь'], correct:1},
+        {q:'Какая птица традиционно готовится?', answers:['Курица','Индейка','Утка','Гусь'], correct:1},
+        {q:'Какой пирог традиционно пекут?', answers:['Тыквенный','Яблочный','Вишнёвый','Шоколадный'], correct:0}
+      ],
+      medium: [
+        {q:'Кто участвовал в первом празднике?', answers:['Пираты','Пилигримы и индейцы','Ковбои','Рыцари'], correct:1},
+        {q:'В каком году был первый День Благодарения?', answers:['1600','1621','1700','1750'], correct:1},
+        {q:'Какая ягода в традиционном соусе?', answers:['Малина','Клюква','Черника','Крыжовник'], correct:1}
+      ],
+      hard: [
+        {q:'Как звали вождя племени вампаноаг?', answers:['Массасойт','Скванто','Покахонтас','Героним'], correct:0},
+        {q:'Сколько индеек съедают в США?', answers:['~10 млн','~46 млн','~100 млн','~200 млн'], correct:1},
+        {q:'Кто ввёл праздник как национальный?', answers:['Вашингтон','Линкольн','Джефферсон','Рузвельт'], correct:1}
+      ]
+    }
+  },
+  stpatrick: { id:'stpatrick', name:'День Святого Патрика', emoji:'🍀', category:'western', description:'17 марта — ирландский праздник', accent:'#4caf50',
+    questions: {
+      easy: [
+        {q:'Какого числа День Святого Патрика?', answers:['1 марта','17 марта','25 марта','14 марта'], correct:1},
+        {q:'Какое растение символ праздника?', answers:['Клевер','Роза','Лилия','Тюльпан'], correct:0},
+        {q:'Какого цвета надевают одежду?', answers:['Красного','Зелёного','Синего','Жёлтого'], correct:1}
+      ],
+      medium: [
+        {q:'Из какой страны праздник?', answers:['Ирландия','Шотландия','Англия','Уэльс'], correct:0},
+        {q:'Сколько листьев у клевера-символа?', answers:['2','3','4','5'], correct:1},
+        {q:'Кто такой Святой Патрик?', answers:['Епископ','Король','Воин','Поэт'], correct:0}
+      ],
+      hard: [
+        {q:'В каком веке жил Святой Патрик?', answers:['IV','V','VI','VII'], correct:1},
+        {q:'Что, по легенде, изгнал Патрик?', answers:['Змей','Драконов','Демонов','Духов'], correct:0},
+        {q:'Какое дерево связано с Патриком?', answers:['Дуб','Ясень','Берёза','Сосна'], correct:0}
+      ]
+    }
+  },
+  newYear2: { id:'newYear2', name:'Старый Новый год', emoji:'🌙', category:'russian', description:'Уникальный русский праздник 13-14 января!', accent:'#9c27b0',
     questions: {
       easy: [
         {q:'Какого числа отмечают Старый Новый год?', answers:['1 января','7 января','13-14 января','25 января'], correct:2},
@@ -791,81 +978,7 @@ const QUIZZES = {
       hard: [
         {q:'На сколько дней расходится юлианский календарь с григорианским сейчас?', answers:['10','13','14','18'], correct:1},
         {q:'Кто ввёл Юлианский календарь?', answers:['Юлий Цезарь','Август','Константин','Пётр I'], correct:0},
-        {q:'Что такое "щедровки"?', answers:['Песни','Подарки','Блюда','Танцы'], correct:0},
-        {q:'В какой стране тоже празднуют свой "старый" Новый год 13 января?', answers:['Сербия','Германия','Франция','США'], correct:0},
-        {q:'Что делали в ночь на Василия Великого (14 января)?', answers:['Гадали','Постились','Пели','Работали'], correct:0},
-        {q:'Какое блюдо традиционно готовили на Васильев вечер?', answers:['Кутью','Жаркое','Плов','Щи'], correct:0}
-      ]
-    }
-  },
-  christmasRus: { id:'christmasRus', name:'Рождество Христово', emoji:'⭐', category:'russian', description:'Православное Рождество 7 января', accent:'#ffc107',
-    questions: {
-      easy: [
-        {q:'Какого числа православное Рождество?', answers:['25 декабря','1 января','7 января','19 января'], correct:2},
-        {q:'Что предшествует Рождеству?', answers:['Масленица','Пост','Пасха','Яблочный Спас'], correct:1},
-        {q:'Где родился Иисус?', answers:['В Иерусалиме','В Вифлееме','В Назарете','В Египте'], correct:1}
-      ],
-      medium: [
-        {q:'Сколько дней длится Рождественский пост?', answers:['20','30','40','50'], correct:2},
-        {q:'Что означает слово "Рождество"?', answers:['Рождение','Праздник','Радость','Свет'], correct:0},
-        {q:'Как называется богослужение в ночь перед Рождеством?', answers:['Всенощная','Литургия','Вечерня','Обедня'], correct:0},
-        {q:'Как называют период между Рождеством и Крещением?', answers:['Святки','Масленица','Пост','Пасха'], correct:0}
-      ],
-      hard: [
-        {q:'Кто были первыми, кто узнал о рождении Христа?', answers:['Волхвы','Пастухи','Ангелы','Цари'], correct:1},
-        {q:'Сколько было волхвов?', answers:['2','3','4','7'], correct:1},
-        {q:'Какие дары принесли волхвы?', answers:['Золото, ладан, смирну','Серебро, злато, мирру','Хлеб, вино, масло','Свечи, ладан, елей'], correct:0},
-        {q:'Как называется пещера, где родился Христос?', answers:['Вертеп','Скит','Храм','Церковь'], correct:0},
-        {q:'Кто правил Иудеей во время рождения Христа?', answers:['Ирод','Пилат','Кесарь','Август'], correct:0},
-        {q:'Как называется звезда, что вела волхвов?', answers:['Вифлеемская','Иудейская','Рождественская','Волшебная'], correct:0}
-      ]
-    }
-  },
-  epiphany: { id:'epiphany', name:'Крещение Господне', emoji:'💧', category:'russian', description:'Праздник 19 января', accent:'#03a9f4',
-    questions: {
-      easy: [
-        {q:'Какого числа отмечают Крещение?', answers:['7 января','14 января','19 января','2 февраля'], correct:2},
-        {q:'Что делают верующие на Крещение?', answers:['Купаются в проруби','Постятся','Пекут блины','Гадают'], correct:0},
-        {q:'Как называется вода, освящённая на Крещение?', answers:['Святая','Живая','Крещенская','Мёртвая'], correct:2}
-      ],
-      medium: [
-        {q:'В какой реке крестили Иисуса?', answers:['Иордан','Нил','Волга','Евфрат'], correct:0},
-        {q:'Кто крестил Иисуса?', answers:['Иоанн Креститель','Пётр','Павел','Иаков'], correct:0},
-        {q:'Сколько лет было Иисусу при крещении?', answers:['20','25','30','33'], correct:2},
-        {q:'Что символизирует крещенская вода?', answers:['Очищение','Исцеление','Благословение','Всё вышеперечисленное'], correct:3}
-      ],
-      hard: [
-        {q:'Как называется праздник накануне Крещения?', answers:['Крещенский сочельник','Святки','Масленица','Сочельник'], correct:0},
-        {q:'Сколько дней между Рождеством и Крещением?', answers:['7','10','12','15'], correct:2},
-        {q:'Что делают в церкви на Крещение?', answers:['Освящают воду','Постятся','Молятся','Крестят детей'], correct:0},
-        {q:'Что означает крещение Иисуса в Иордане?', answers:['Начало служения','Конец жизни','Исцеление','Чудо'], correct:0},
-        {q:'Кто первым вошёл в воду после крещения Иисуса?', answers:['Сам Иисус','Иоанн','Апостолы','Никто'], correct:0},
-        {q:'Как называется икона праздника Крещения?', answers:['Богоявление','Преображение','Рождество','Троица'], correct:0}
-      ]
-    }
-  },
-  maslenitsa: { id:'maslenitsa', name:'Масленица', emoji:'🥞', category:'russian', description:'Проводы зимы и блины!', accent:'#ff9800',
-    questions: {
-      easy: [
-        {q:'Что главное блюдо Масленицы?', answers:['Пироги','Блины','Пельмени','Каша'], correct:1},
-        {q:'Что сжигают в конце Масленицы?', answers:['Чучело','Блины','Костёр','Дрова'], correct:0},
-        {q:'Что символизируют блины на Масленице?', answers:['Луну','Солнце','Землю','Звёзды'], correct:1},
-        {q:'Сколько дней длится Масленица?', answers:['3','5','7','10'], correct:2}
-      ],
-      medium: [
-        {q:'Как называется последний день Масленицы?', answers:['Прощёное воскресенье','Чистый понедельник','Красная горка','Сороки'], correct:0},
-        {q:'Что делают в Прощёное воскресенье?', answers:['Просят прощения','Постятся','Гадают','Пляшут'], correct:0},
-        {q:'Как называется понедельник Масленицы?', answers:['Встреча','Заигрыши','Лакомка','Разгул'], correct:0},
-        {q:'Что пекут в среду Масленицы?', answers:['Блины','Куличи','Пряники','Пироги'], correct:0},
-        {q:'Зачем сжигают чучело Масленицы?', answers:['Провожают зиму','Приветствуют весну','Избавляются от бед','Всё вышеперечисленное'], correct:3}
-      ],
-      hard: [
-        {q:'Как называется чучело, которое сжигают?', answers:['Масленица','Зима','Кострома','Марена'], correct:0},
-        {q:'Откуда пришла традиция Масленицы?', answers:['Язычество','Христианство','Византия','Рим'], correct:0},
-        {q:'Как называется вторник Масленицы?', answers:['Заигрыши','Лакомка','Разгул','Тёщины вечёрки'], correct:0},
-        {q:'Что делают в четверг Масленицы?', answers:['Катаются на санях','Постятся','Работают','Молчат'], correct:0},
-        {q:'Что делают в пятницу Масленицы?', answers:['Тёщины вечёрки','Заигрыши','Разгул','Проводы'], correct:0},
-        {q:'Сколько недель длится подготовка к Масленице?', answers:['1','2','3','4'], correct:2}
+        {q:'Что такое "щедровки"?', answers:['Песни','Подарки','Блюда','Танцы'], correct:0}
       ]
     }
   },
@@ -874,23 +987,36 @@ const QUIZZES = {
       easy: [
         {q:'Что главное блюдо на Пасху?', answers:['Кулич','Торт','Пирог','Пряники'], correct:0},
         {q:'Что красят на Пасху?', answers:['Камни','Яйца','Стены','Небо'], correct:1},
-        {q:'Что говорят друг другу на Пасху?', answers:['Христос воскресе!','С Новым годом!','С днём рождения!','Ура!'], correct:0},
-        {q:'Какого цвета традиционно пасхальные яйца?', answers:['Синие','Красные','Зелёные','Жёлтые'], correct:1}
+        {q:'Что говорят друг другу на Пасху?', answers:['Христос воскресе!','С Новым годом!','С днём рождения!','Ура!'], correct:0}
       ],
       medium: [
         {q:'Как называют пасхальный хлеб?', answers:['Кулич','Хлеб','Калач','Пирог'], correct:0},
         {q:'Что символизирует красное яйцо?', answers:['Кровь Христа','Солнце','Весну','Удачу'], correct:0},
-        {q:'Сколько дней длится пасхальная неделя?', answers:['3','5','7','10'], correct:2},
-        {q:'Как называется творожное блюдо на Пасху?', answers:['Пасха','Сырники','Пудинг','Запеканка'], correct:0},
-        {q:'Когда отмечают Пасху?', answers:['Весной','Зимой','Летом','Осенью'], correct:0}
+        {q:'Сколько дней длится пасхальная неделя?', answers:['3','5','7','10'], correct:2}
       ],
       hard: [
         {q:'Как называется неделя перед Пасхой?', answers:['Страстная','Светлая','Красная','Тёмная'], correct:0},
         {q:'Какой день недели перед Пасхой называется Чистый?', answers:['Понедельник','Вторник','Среда','Четверг'], correct:3},
-        {q:'Что происходит в Страстную пятницу?', answers:['Распятие Христа','Воскресение','Рождение','Крещение'], correct:0},
-        {q:'Как называется служба в пасхальную ночь?', answers:['Крестный ход','Всенощная','Литургия','Молебен'], correct:0},
-        {q:'Сколько дней продолжается празднование Пасхи?', answers:['1','7','40','50'], correct:2},
-        {q:'Почему Пасха каждый год в разное время?', answers:['По лунному календарю','По солнцу','По звёздам','По церковному указу'], correct:0}
+        {q:'Что происходит в Страстную пятницу?', answers:['Распятие Христа','Воскресение','Рождение','Крещение'], correct:0}
+      ]
+    }
+  },
+  maslenitsa: { id:'maslenitsa', name:'Масленица', emoji:'🥞', category:'russian', description:'Проводы зимы и блины!', accent:'#ff9800',
+    questions: {
+      easy: [
+        {q:'Что главное блюдо Масленицы?', answers:['Пироги','Блины','Пельмени','Каша'], correct:1},
+        {q:'Что сжигают в конце Масленицы?', answers:['Чучело','Блины','Костёр','Дрова'], correct:0},
+        {q:'Что символизируют блины на Масленице?', answers:['Луну','Солнце','Землю','Звёзды'], correct:1}
+      ],
+      medium: [
+        {q:'Как называется последний день Масленицы?', answers:['Прощёное воскресенье','Чистый понедельник','Красная горка','Сороки'], correct:0},
+        {q:'Что делают в Прощёное воскресенье?', answers:['Просят прощения','Постятся','Гадают','Пляшут'], correct:0},
+        {q:'Как называется понедельник Масленицы?', answers:['Встреча','Заигрыши','Лакомка','Разгул'], correct:0}
+      ],
+      hard: [
+        {q:'Как называется чучело, которое сжигают?', answers:['Масленица','Зима','Кострома','Марена'], correct:0},
+        {q:'Откуда пришла традиция Масленицы?', answers:['Язычество','Христианство','Византия','Рим'], correct:0},
+        {q:'Сколько недель длится подготовка к Масленице?', answers:['1','2','3','4'], correct:2}
       ]
     }
   },
@@ -899,23 +1025,17 @@ const QUIZZES = {
       easy: [
         {q:'Какого числа День Победы?', answers:['1 мая','9 мая','22 июня','7 ноября'], correct:1},
         {q:'В каком году закончилась ВОВ?', answers:['1941','1943','1945','1947'], correct:2},
-        {q:'Что дарят ветеранам на 9 мая?', answers:['Цветы','Конфеты','Деньги','Книги'], correct:0},
-        {q:'Что проводится вечером 9 мая?', answers:['Салют','Костёр','Концерт','Парад'], correct:0}
+        {q:'Что дарят ветеранам на 9 мая?', answers:['Цветы','Конфеты','Деньги','Книги'], correct:0}
       ],
       medium: [
         {q:'Как называется акция с георгиевской лентой?', answers:['Я помню','Победа','Спасибо','Память'], correct:0},
-        {q:'Что означает оранжевый цвет георгиевской ленты?', answers:['Огонь','Пламя','Дым','Свет'], correct:1},
         {q:'Сколько лет длилась ВОВ?', answers:['3','4','5','6'], correct:1},
-        {q:'Когда началась ВОВ?', answers:['22 июня 1941','1 сентября 1939','9 мая 1945','23 февраля 1918'], correct:0},
-        {q:'Как называется главный парад в Москве 9 мая?', answers:['Парад Победы','Красный парад','Военный смотр','Парад войск'], correct:0}
+        {q:'Когда началась ВОВ?', answers:['22 июня 1941','1 сентября 1939','9 мая 1945','23 февраля 1918'], correct:0}
       ],
       hard: [
         {q:'Какой город первым принял удар 22 июня 1941?', answers:['Брест','Минск','Киев','Смоленск'], correct:0},
         {q:'Сколько дней длилась блокада Ленинграда?', answers:['500','700','872','1000'], correct:2},
-        {q:'Как называется операция по взятию Берлина?', answers:['Берлинская','Ураган','Кутузов','Багратион'], correct:0},
-        {q:'Кто подписал акт о капитуляции Германии от СССР?', answers:['Жуков','Сталин','Рокоссовский','Конев'], correct:0},
-        {q:'Где проходила крупнейшая танковая битва?', answers:['Курск','Сталинград','Москва','Ленинград'], correct:0},
-        {q:'Сколько дней продолжалась Сталинградская битва?', answers:['100','150','200','250'], correct:2}
+        {q:'Как называется операция по взятию Берлина?', answers:['Берлинская','Ураган','Кутузов','Багратион'], correct:0}
       ]
     }
   },
@@ -934,10 +1054,7 @@ const QUIZZES = {
       hard: [
         {q:'Кто был первым наркомом по военным делам?', answers:['Троцкий','Ленин','Сталин','Фрунзе'], correct:0},
         {q:'Как называлась армия в 1918 году?', answers:['Красная','Советская','Русская','Царская'], correct:0},
-        {q:'Когда 23 февраля стал выходным?', answers:['1922','1925','1945','2002'], correct:3},
-        {q:'Какой указ сделал 23 февраля нерабочим днём?', answers:['Президентский','Правительственный','Государственный','Царский'], correct:0},
-        {q:'Что дают за службу в армии?', answers:['Медали','Диплом','Сертификат','Грамоту'], correct:0},
-        {q:'Какой род войск самый многочисленный?', answers:['Сухопутные','ВМФ','ВВС','Космические'], correct:0}
+        {q:'Когда 23 февраля стал выходным?', answers:['1922','1925','1945','2002'], correct:3}
       ]
     }
   },
@@ -946,91 +1063,17 @@ const QUIZZES = {
       easy: [
         {q:'Какого числа женский день?', answers:['1 марта','8 марта','14 февраля','21 марта'], correct:1},
         {q:'Что дарят женщинам 8 марта?', answers:['Цветы','Мячи','Книги','Инструменты'], correct:0},
-        {q:'Какие цветы чаще всего дарят 8 марта?', answers:['Розы','Тюльпаны','Лилии','Ромашки'], correct:1},
-        {q:'Кого поздравляют 8 марта?', answers:['Женщин','Мужчин','Детей','Всех'], correct:0}
+        {q:'Какие цветы чаще всего дарят 8 марта?', answers:['Розы','Тюльпаны','Лилии','Ромашки'], correct:1}
       ],
       medium: [
         {q:'Кто предложил отмечать 8 марта?', answers:['Клара Цеткин','Роза Люксембург','Мать Тереза','Клеопатра'], correct:0},
         {q:'В каком году впервые отметили 8 марта?', answers:['1900','1910','1920','1930'], correct:1},
-        {q:'Какой город стал местом первого празднования?', answers:['Копенгаген','Париж','Лондон','Берлин'], correct:0},
-        {q:'Что символизирует мимоза на 8 марта?', answers:['Весну','Мир','Счастье','Любовь'], correct:0}
+        {q:'Какой город стал местом первого празднования?', answers:['Копенгаген','Париж','Лондон','Берлин'], correct:0}
       ],
       hard: [
         {q:'В каком году 8 марта стало выходным в СССР?', answers:['1960','1965','1970','1975'], correct:1},
         {q:'Кто официально утвердил 8 марта как праздник в России?', answers:['Ленин','Сталин','Хрущёв','Брежнев'], correct:0},
-        {q:'Как называлась конференция 1910 года в Копенгагене?', answers:['Женская','Социалистическая','Международная','Рабочая'], correct:1},
-        {q:'Что происходило 8 марта 1917 года в Петрограде?', answers:['Демонстрация женщин','Парад','Забастовка','Митинг'], correct:0},
-        {q:'Какая страна первой сделала 8 марта государственным праздником?', answers:['СССР','США','Германия','Франция'], correct:0},
-        {q:'Как звучит полное название праздника?', answers:['Международный женский день','День женщин','Всемирный день','Женский праздник'], correct:0}
-      ]
-    }
-  },
-  mayday: { id:'mayday', name:'1 Мая', emoji:'🚩', category:'russian', description:'Праздник Весны и Труда', accent:'#f44336',
-    questions: {
-      easy: [
-        {q:'Какого числа праздник Весны и Труда?', answers:['1 апреля','1 мая','9 мая','1 июня'], correct:1},
-        {q:'Что делают 1 мая?', answers:['Отдыхают','Работают','Постятся','Учатся'], correct:0},
-        {q:'Что несут на демонстрациях 1 мая?', answers:['Флаги','Камни','Книги','Одежду'], correct:0}
-      ],
-      medium: [
-        {q:'Как назывался праздник в СССР?', answers:['День труда','День солидарности','Первомай','Праздник весны'], correct:2},
-        {q:'Когда впервые отметили 1 мая?', answers:['1886','1890','1900','1917'], correct:0},
-        {q:'В каком городе произошли события, положившие начало празднику?', answers:['Чикаго','Нью-Йорк','Париж','Лондон'], correct:0},
-        {q:'Как называют 1 мая в разных странах?', answers:['День труда','Первомай','День рабочих','Всё вышеперечисленное'], correct:3}
-      ],
-      hard: [
-        {q:'Что требовали рабочие Чикаго в 1886 году?', answers:['8-часовой день','Повышение зарплаты','Отпуск','Пенсию'], correct:0},
-        {q:'Сколько рабочих погибло на Хеймаркетской площади?', answers:['2','4','8','10'], correct:2},
-        {q:'В каком году 1 мая стало официальным в России?', answers:['1890','1900','1917','1920'], correct:2},
-        {q:'Как называлась площадь в Чикаго?', answers:['Хеймаркет','Таймс-сквер','Трафальгар','Центральная'], correct:0},
-        {q:'Что произошло в Чикаго 4 мая 1886?', answers:['Взрыв бомбы','Пожар','Парад','Мирный митинг'], correct:0},
-        {q:'Сколько человек было казнено после событий в Чикаго?', answers:['2','4','6','8'], correct:1}
-      ]
-    }
-  },
-  russiaDay: { id:'russiaDay', name:'День России', emoji:'🇷🇺', category:'russian', description:'12 июня', accent:'#2196f3',
-    questions: {
-      easy: [
-        {q:'Какого числа День России?', answers:['1 мая','12 июня','4 ноября','9 мая'], correct:1},
-        {q:'Что символизирует День России?', answers:['Независимость','Победу','Мир','Труд'], correct:0},
-        {q:'Какого цвета флаг России?', answers:['Красный-синий-белый','Белый-синий-красный','Синий-белый-красный','Белый-красный-синий'], correct:1}
-      ],
-      medium: [
-        {q:'Как назывался праздник раньше?', answers:['День независимости','День Конституции','День республики','День России'], correct:0},
-        {q:'В каком году принята Декларация о суверенитете?', answers:['1990','1991','1992','1993'], correct:0},
-        {q:'Когда день стал государственным праздником?', answers:['1992','1994','1998','2000'], correct:1},
-        {q:'Как в народе называют День России?', answers:['День независимости','День страны','День Конституции','Главный праздник'], correct:0}
-      ],
-      hard: [
-        {q:'Кто подписал Декларацию о суверенитете?', answers:['Ельцин','Горбачёв','Путин','Лужков'], correct:0},
-        {q:'Сколько депутатов проголосовало за Декларацию?', answers:['907','700','500','1000'], correct:0},
-        {q:'Как раньше назывался праздник до 2002 года?', answers:['День принятия Декларации','День независимости','День России','День страны'], correct:0},
-        {q:'В каком году праздник получил современное название?', answers:['1998','2000','2002','2005'], correct:2},
-        {q:'Что обычно проходит 12 июня?', answers:['Концерты и салюты','Парады','Демонстрации','Съезды'], correct:0},
-        {q:'Сколько лет прошло с принятия Декларации до 2024 года?', answers:['30','32','34','36'], correct:2}
-      ]
-    }
-  },
-  unity: { id:'unity', name:'День народного единства', emoji:'🤝', category:'russian', description:'4 ноября', accent:'#3f51b5',
-    questions: {
-      easy: [
-        {q:'Какого числа День народного единства?', answers:['1 ноября','4 ноября','7 ноября','12 июня'], correct:1},
-        {q:'Что символизирует праздник?', answers:['Единство','Победу','Мир','Труд'], correct:0},
-        {q:'Кто такие Минин и Пожарский?', answers:['Герои','Цари','Полководцы','Писатели'], correct:0}
-      ],
-      medium: [
-        {q:'В каком году произошло событие, которому посвящён праздник?', answers:['1612','1613','1620','1700'], correct:0},
-        {q:'Что произошло в 1612 году?', answers:['Освобождение Москвы','Победа','Коронация','Мирный договор'], correct:0},
-        {q:'Кого изгнали из Москвы в 1612?', answers:['Поляков','Французов','Немцев','Шведов'], correct:0},
-        {q:'В каком году учреждён праздник?', answers:['2000','2003','2005','2010'], correct:2}
-      ],
-      hard: [
-        {q:'Кем был Кузьма Минин?', answers:['Мясником','Купцом','Дворянином','Крестьянином'], correct:1},
-        {q:'Кем был Дмитрий Пожарский?', answers:['Князем','Купцом','Воеводой','Боярином'], correct:0},
-        {q:'Что построили в честь победы 1612 года?', answers:['Казанский собор','Храм Христа','Успенский собор','Исаакиевский'], correct:0},
-        {q:'Какое ополчение освободило Москву?', answers:['Второе','Первое','Третье','Все'], correct:0},
-        {q:'Какой праздник заменил День народного единства?', answers:['7 ноября','1 мая','12 июня','9 мая'], correct:0},
-        {q:'Сколько лет длилось Смутное время?', answers:['10','15','20','25'], correct:1}
+        {q:'Что происходило 8 марта 1917 года в Петрограде?', answers:['Демонстрация женщин','Парад','Забастовка','Митинг'], correct:0}
       ]
     }
   },
@@ -1039,23 +1082,17 @@ const QUIZZES = {
       easy: [
         {q:'Какого числа День космонавтики?', answers:['12 марта','12 апреля','12 мая','12 июня'], correct:1},
         {q:'Кто первый полетел в космос?', answers:['Гагарин','Титов','Леонов','Армстронг'], correct:0},
-        {q:'Как назывался корабль Гагарина?', answers:['Восток','Союз','Восход','Мир'], correct:0},
-        {q:'Какую фразу сказал Гагарин?', answers:['Поехали!','Полетели!','В путь!','Ура!'], correct:0}
+        {q:'Как назывался корабль Гагарина?', answers:['Восток','Союз','Восход','Мир'], correct:0}
       ],
       medium: [
         {q:'В каком году Гагарин полетел в космос?', answers:['1957','1960','1961','1965'], correct:2},
         {q:'Сколько длился полёт Гагарина?', answers:['30 мин','108 мин','5 часов','сутки'], correct:1},
-        {q:'С какого космодрома стартовал Гагарин?', answers:['Байконур','Плесецк','Восточный','Канаверал'], correct:0},
-        {q:'Кто первая женщина-космонавт?', answers:['Терешкова','Савицкая','Кондакова','Серова'], correct:0},
-        {q:'Кто первым вышел в открытый космос?', answers:['Леонов','Гагарин','Титов','Армстронг'], correct:0}
+        {q:'С какого космодрома стартовал Гагарин?', answers:['Байконур','Плесецк','Восточный','Канаверал'], correct:0}
       ],
       hard: [
         {q:'Кто был главным конструктором ракет?', answers:['Королёв','Циолковский','Глушко','Челомей'], correct:0},
         {q:'Когда запустили первый спутник?', answers:['1955','1957','1961','1965'], correct:1},
-        {q:'Как назывался первый спутник?', answers:['Спутник-1','Восток-1','Молния-1','Зенит-1'], correct:0},
-        {q:'Сколько витков вокруг Земли сделал Гагарин?', answers:['1','2','3','5'], correct:0},
-        {q:'Как называлась первая женщина в космосе по позывному?', answers:['Чайка','Орёл','Сокол','Лебедь'], correct:0},
-        {q:'Сколько лет было Гагарину при полёте?', answers:['25','27','30','34'], correct:1}
+        {q:'Как назывался первый спутник?', answers:['Спутник-1','Восток-1','Молния-1','Зенит-1'], correct:0}
       ]
     }
   },
@@ -1064,22 +1101,17 @@ const QUIZZES = {
       easy: [
         {q:'Какого числа День знаний?', answers:['1 августа','1 сентября','1 октября','1 ноября'], correct:1},
         {q:'Что дарят первоклассникам?', answers:['Цветы','Конфеты','Книги','Игрушки'], correct:0},
-        {q:'Как называют первый звонок?', answers:['Первый','Последний','Громкий','Звонкий'], correct:0},
-        {q:'Что дарят учителям?', answers:['Цветы','Подарки','Деньги','Конфеты'], correct:0}
+        {q:'Как называют первый звонок?', answers:['Первый','Последний','Громкий','Звонкий'], correct:0}
       ],
       medium: [
         {q:'Как называется первый день в школе?', answers:['День знаний','День учителя','День школы','1 сентября'], correct:0},
         {q:'Как отмечают День знаний?', answers:['Линейкой','Концертом','Дискотекой','Парадом'], correct:0},
-        {q:'Что носят первоклассники?', answers:['Портфели','Рюкзаки','Сумки','Всё вышеперечисленное'], correct:3},
-        {q:'Кто проводит линейку 1 сентября?', answers:['Директор','Учитель','Ученики','Родители'], correct:0}
+        {q:'Что носят первоклассники?', answers:['Портфели','Рюкзаки','Сумки','Всё вышеперечисленное'], correct:3}
       ],
       hard: [
         {q:'В каком году 1 сентября стало официальным праздником?', answers:['1930','1935','1984','1990'], correct:2},
         {q:'Как раньше назывался День знаний?', answers:['Первый день школы','День учителя','День знаний','Учебный день'], correct:0},
-        {q:'Что делают в День знаний после линейки?', answers:['Классный час','Контрольную','Домашку','Уроки'], correct:0},
-        {q:'Как называется указ об учреждении?', answers:['Президиум Верховного Совета','Правительственный','Царский','Президентский'], correct:0},
-        {q:'В каком году 1 сентября стало выходным?', answers:['1935','1984','1990','2000'], correct:1},
-        {q:'В скольких странах 1 сентября — начало учебного года?', answers:['~50','~100','~150','~200'], correct:1}
+        {q:'Что делают в День знаний после линейки?', answers:['Классный час','Контрольную','Домашку','Уроки'], correct:0}
       ]
     }
   },
@@ -1098,10 +1130,7 @@ const QUIZZES = {
       hard: [
         {q:'В какой день Елизавета подписала указ?', answers:['25 января','12 января','1 сентября','14 февраля'], correct:0},
         {q:'Кто был первым куратором университета?', answers:['Шувалов','Ломоносов','Бецкой','Разумовский'], correct:0},
-        {q:'Сколько факультетов было в первом университете?', answers:['2','3','4','5'], correct:1},
-        {q:'Что традиционно делают студенты в Татьянин день?', answers:['Празднуют','Учатся','Сдают экзамен','Уходят на каникулы'], correct:0},
-        {q:'Как называется церковь при МГУ?', answers:['Татьянинская','Университетская','Студенческая','Мученическая'], correct:0},
-        {q:'В каком году Татьянин день стал официальным Днём студента в России?', answers:['1995','2000','2005','2010'], correct:2}
+        {q:'Сколько факультетов было в первом университете?', answers:['2','3','4','5'], correct:1}
       ]
     }
   },
@@ -1115,140 +1144,12 @@ const QUIZZES = {
       medium: [
         {q:'В честь кого учреждён праздник?', answers:['Пётр и Феврония','Ромео и Джульетта','Адам и Ева','Тристан и Изольда'], correct:0},
         {q:'В каком году учреждён праздник?', answers:['2000','2005','2008','2010'], correct:2},
-        {q:'Где жили Пётр и Феврония?', answers:['Муром','Москва','Псков','Новгород'], correct:0},
-        {q:'В каком веке жили Пётр и Феврония?', answers:['XII','XIII','XIV','XV'], correct:1}
+        {q:'Где жили Пётр и Феврония?', answers:['Муром','Москва','Псков','Новгород'], correct:0}
       ],
       hard: [
         {q:'Кем был Пётр Муромский?', answers:['Князем','Купцом','Крестьянином','Военным'], correct:0},
         {q:'Кем была Феврония?', answers:['Крестьянкой','Княжной','Боярыней','Монахиней'], correct:0},
-        {q:'Как закончили жизнь Пётр и Феврония?', answers:['В монастыре','На войне','В изгнании','В пути'], correct:0},
-        {q:'Что произошло с ними после смерти?', answers:['Оба в одном гробу','Разные могилы','Воскресли','Исчезли'], correct:0},
-        {q:'Как называется главная награда праздника?', answers:['Медаль','Орден','Кубок','Грамота'], correct:0},
-        {q:'Что изображают на медали праздника?', answers:['Ромашку','Розу','Лилию','Сердце'], correct:0}
-      ]
-    }
-  },
-  halloween: { id:'halloween', name:'Хэллоуин', emoji:'🎃', category:'western', description:'Самый жуткий праздник года!', accent:'#ff6b00',
-    questions: {
-      easy: [
-        {q:'Какого числа отмечается Хэллоуин?', answers:['30 октября','31 октября','1 ноября','28 октября'], correct:1},
-        {q:'Какой овощ используется для фонаря Джека?', answers:['Арбуз','Тыква','Дыня','Кабачок'], correct:1},
-        {q:'Что дети говорят, стучась в двери?', answers:['Сладость или гадость!','Дайте конфет!','Угостите!','Откройте!'], correct:0},
-        {q:'Какое животное традиционно сопровождает ведьм?', answers:['Собака','Кошка','Сова','Ворон'], correct:1},
-        {q:'Что носят дети на Хэллоуин?', answers:['Костюмы','Пижамы','Форму','Платья'], correct:0},
-        {q:'Как называют тыкву-фонарь?', answers:['Джек','Тыква','Светильник','Фонарик'], correct:0}
-      ],
-      medium: [
-        {q:'Из какой страны родом традиция Хэллоуина?', answers:['США','Ирландия','Мексика','Англия'], correct:1},
-        {q:'Как называется праздник в Мексике?', answers:['Карнавал','День Мёртвых','Фиеста','Сомбреро'], correct:1},
-        {q:'Какого цвета традиционный костюм тыквы?', answers:['Оранжевый с чёрным','Красный','Зелёный','Синий'], correct:0},
-        {q:'Какая игра на Хэллоуин связана с яблоками?', answers:['Ловля яблок','Прыжки','Метание','Поиск'], correct:0},
-        {q:'Что символизирует паук на Хэллоуин?', answers:['Удачу','Деньги','Болезнь','Холод'], correct:0},
-        {q:'Какое дерево связано с Хэллоуином?', answers:['Дуб','Ясень','Берёза','Сосна'], correct:1}
-      ],
-      hard: [
-        {q:'Как изначально назывался Хэллоуин?', answers:['Самайн','Белтейн','Имболк','Лугнасад'], correct:0},
-        {q:'Какое племя считается родоначальником?', answers:['Римляне','Кельты','Викинги','Греки'], correct:1},
-        {q:'Какой цвет НЕ традиционный для Хэллоуина?', answers:['Оранжевый','Чёрный','Фиолетовый','Синий'], correct:3},
-        {q:'Что означает "trick-or-treat" буквально?', answers:['Шутка или угощение','Игра или конфета','Хитрость или дар','Сладость или злость'], correct:0},
-        {q:'Когда Хэллоуин начали праздновать массово в США?', answers:['XVIII век','XIX век','XX век','XVII век'], correct:1},
-        {q:'Что означает свеча внутри тыквы?', answers:['Огонь в честь духов','Свет в доме','Тепло','Просто декор'], correct:0}
-      ]
-    }
-  },
-  valentine: { id:'valentine', name:'День Валентина', emoji:'💕', category:'western', description:'Праздник всех влюблённых', accent:'#e91e63',
-    questions: {
-      easy: [
-        {q:'Какого числа День Валентина?', answers:['13 февраля','14 февраля','15 февраля','1 февраля'], correct:1},
-        {q:'Какой символ праздника?', answers:['Роза','Сердце','Кольцо','Лента'], correct:1},
-        {q:'Что традиционно дарят?', answers:['Конфеты и цветы','Книги','Технику','Одежду'], correct:0},
-        {q:'Какого цвета валентинки?', answers:['Красные','Синие','Зелёные','Жёлтые'], correct:0}
-      ],
-      medium: [
-        {q:'Кто такой Валентин?', answers:['Король','Святой','Воин','Поэт'], correct:1},
-        {q:'Какая страна считается родиной?', answers:['Франция','Италия','Англия','Испания'], correct:1},
-        {q:'Сколько открыток отправляется в США?', answers:['~10 млн','~50 млн','~150 млн','~1 млрд'], correct:2},
-        {q:'Какой цветок — символ Валентина?', answers:['Роза','Ромашка','Лилия','Тюльпан'], correct:0}
-      ],
-      hard: [
-        {q:'В каком году выпустили валентинки массово?', answers:['1840-е','1860-е','1880-е','1900-е'], correct:0},
-        {q:'Как называется валентинка на японском?', answers:['Кокоро','Балентайн','Хонмей','Гири'], correct:1},
-        {q:'Где отмечают День Валентина 14 июля?', answers:['Япония','Бразилия','Китай','Индия'], correct:1},
-        {q:'Какое растение символизирует верность?', answers:['Мята','Вербена','Ромашка','Полынь'], correct:1},
-        {q:'Какой камень — талисман влюблённых?', answers:['Алмаз','Аметист','Изумруд','Рубин'], correct:1},
-        {q:'Кто был римским императором при Валентине?', answers:['Клавдий II','Юлий','Август','Нерон'], correct:0}
-      ]
-    }
-  },
-  christmas: { id:'christmas', name:'Католическое Рождество', emoji:'🎄', category:'western', description:'25 декабря — главный праздник Запада', accent:'#4caf50',
-    questions: {
-      easy: [
-        {q:'Какого числа католическое Рождество?', answers:['24 декабря','25 декабря','1 января','7 января'], correct:1},
-        {q:'Как зовут главного дарителя в США?', answers:['Дед Мороз','Санта-Клаус','Святой Николай','Морозко'], correct:1},
-        {q:'Что вешают на ёлку?', answers:['Фрукты','Игрушки и гирлянды','Одежду','Книги'], correct:1},
-        {q:'Что поют на Рождество?', answers:['Рок','Колядки','Рэп','Опера'], correct:1}
-      ],
-      medium: [
-        {q:'Сколько оленей у Санта-Клауса?', answers:['6','7','8','9'], correct:2},
-        {q:'Как зовут главного оленя?', answers:['Рудольф','Дансер','Прэнсер','Купид'], correct:0},
-        {q:'Какого цвета омела приносит удачу?', answers:['Красного','Зелёного','Белого','Синего'], correct:1},
-        {q:'Откуда Санта попадает в дом?', answers:['Через дверь','Через окно','Через дымоход','Через подвал'], correct:2},
-        {q:'Какая страна подарила традицию ёлки?', answers:['Германия','Франция','Англия','Италия'], correct:0}
-      ],
-      hard: [
-        {q:'Как называют 12 дней после Рождества?', answers:['Коляды','Святки','Адвент','Пост'], correct:1},
-        {q:'В какой стране придумали открытки?', answers:['Англия','Германия','США','Франция'], correct:0},
-        {q:'Как называется британский рождественский пирог?', answers:['Пудинг','Пай','Торт','Кекс'], correct:0},
-        {q:'Какое растение традиционно под Рождество?', answers:['Пуансеттия','Кактус','Орхидея','Роза'], correct:0},
-        {q:'Сколько блюд на рождественском столе в России?', answers:['7','12','13','20'], correct:1},
-        {q:'Как звали святого, чьё имя носит Санта?', answers:['Николай','Пётр','Иоанн','Павел'], correct:0}
-      ]
-    }
-  },
-  thanksgiving: { id:'thanksgiving', name:'День Благодарения', emoji:'🦃', category:'western', description:'Американский праздник урожая', accent:'#ff9800',
-    questions: {
-      easy: [
-        {q:'В каком месяце День Благодарения?', answers:['Октябрь','Ноябрь','Декабрь','Сентябрь'], correct:1},
-        {q:'Какая птица традиционно готовится?', answers:['Курица','Индейка','Утка','Гусь'], correct:1},
-        {q:'Какой пирог традиционно пекут?', answers:['Тыквенный','Яблочный','Вишнёвый','Шоколадный'], correct:0},
-        {q:'В какой стране празднуют?', answers:['Англия','США','Франция','Германия'], correct:1}
-      ],
-      medium: [
-        {q:'Кто участвовал в первом празднике?', answers:['Пираты','Пилигримы и индейцы','Ковбои','Рыцари'], correct:1},
-        {q:'В каком году был первый День Благодарения?', answers:['1600','1621','1700','1750'], correct:1},
-        {q:'Какая ягода в традиционном соусе?', answers:['Малина','Клюква','Черника','Крыжовник'], correct:1},
-        {q:'Что делают после обеда?', answers:['Прогулка','Смотрят футбол','Спят','Концерт'], correct:1}
-      ],
-      hard: [
-        {q:'Как звали вождя племени вампаноаг?', answers:['Массасойт','Скванто','Покахонтас','Героним'], correct:0},
-        {q:'Сколько индеек съедают в США?', answers:['~10 млн','~46 млн','~100 млн','~200 млн'], correct:1},
-        {q:'Кто ввёл праздник как национальный?', answers:['Вашингтон','Линкольн','Джефферсон','Рузвельт'], correct:1},
-        {q:'В каком году президент перенёс дату?', answers:['1863','1939','1945','1950'], correct:1},
-        {q:'Как называется кастрюля для индейки?', answers:['Гриль','Ростер','Сковорода','Котел'], correct:1},
-        {q:'Какое племя помогло пилигримам?', answers:['Вампаноаг','Ирокезы','Сиу','Чероки'], correct:0}
-      ]
-    }
-  },
-  stpatrick: { id:'stpatrick', name:'День Святого Патрика', emoji:'🍀', category:'western', description:'17 марта — ирландский праздник', accent:'#4caf50',
-    questions: {
-      easy: [
-        {q:'Какого числа День Святого Патрика?', answers:['1 марта','17 марта','25 марта','14 марта'], correct:1},
-        {q:'Какое растение символ праздника?', answers:['Клевер','Роза','Лилия','Тюльпан'], correct:0},
-        {q:'Какого цвета надевают одежду?', answers:['Красного','Зелёного','Синего','Жёлтого'], correct:1}
-      ],
-      medium: [
-        {q:'Из какой страны праздник?', answers:['Ирландия','Шотландия','Англия','Уэльс'], correct:0},
-        {q:'Сколько листьев у клевера-символа?', answers:['2','3','4','5'], correct:1},
-        {q:'Кто такой Святой Патрик?', answers:['Епископ','Король','Воин','Поэт'], correct:0},
-        {q:'Какое существо связано с праздником?', answers:['Лепрекон','Дракон','Фея','Эльф'], correct:0}
-      ],
-      hard: [
-        {q:'В каком веке жил Святой Патрик?', answers:['IV','V','VI','VII'], correct:1},
-        {q:'Что, по легенде, изгнал Патрик?', answers:['Змей','Драконов','Демонов','Духов'], correct:0},
-        {q:'Какое дерево связано с Патриком?', answers:['Дуб','Ясень','Берёза','Сосна'], correct:0},
-        {q:'Что означает клевер для ирландцев?', answers:['Троицу','Удачу','Богатство','Здоровье'], correct:0},
-        {q:'Как называют лепреконов в Ирландии?', answers:['Люди-гномы','Волшебники','Эльфы','Кобольды'], correct:0},
-        {q:'Сколько лет официально празднуют в Ирландии?', answers:['~500','~1000','~1500','~2000'], correct:1}
+        {q:'Как закончили жизнь Пётр и Феврония?', answers:['В монастыре','На войне','В изгнании','В пути'], correct:0}
       ]
     }
   },
@@ -1267,55 +1168,7 @@ const QUIZZES = {
       hard: [
         {q:'В какой стране праздник появился впервые?', answers:['Франция','Англия','Италия','Германия'], correct:0},
         {q:'В каком году праздник впервые упомянут?', answers:['1392','1500','1600','1700'], correct:0},
-        {q:'Что послужило поводом появления праздника?', answers:['Смена календаря','Война','Коронация','Победа'], correct:0},
-        {q:'Какой король ввёл новый календарь?', answers:['Карл IX','Людовик','Генрих','Франциск'], correct:0},
-        {q:'Что произошло 1 апреля 1989 года?', answers:['Полёт над Москвой','Война','Коронация','Мир'], correct:0},
-        {q:'В какой стране 1 апреля — государственный праздник?', answers:['Италия','Россия','Франция','Германия'], correct:0}
-      ]
-    }
-  },
-  womensInt: { id:'womensInt', name:'Международный женский день', emoji:'♀️', category:'international', description:'8 марта — праздник всех женщин', accent:'#e91e63',
-    questions: {
-      easy: [
-        {q:'Какого числа Международный женский день?', answers:['1 марта','8 марта','14 марта','21 марта'], correct:1},
-        {q:'Что дарят женщинам?', answers:['Цветы','Мячи','Книги','Инструменты'], correct:0},
-        {q:'Кого поздравляют?', answers:['Женщин','Мужчин','Детей','Всех'], correct:0}
-      ],
-      medium: [
-        {q:'Кто предложил отмечать день?', answers:['Клара Цеткин','Роза Люксембург','Мать Тереза','Клеопатра'], correct:0},
-        {q:'В каком году впервые отметили?', answers:['1900','1910','1920','1930'], correct:1},
-        {q:'В каком городе впервые?', answers:['Копенгаген','Париж','Лондон','Берлин'], correct:0}
-      ],
-      hard: [
-        {q:'Кем была Клара Цеткин?', answers:['Политиком','Королевой','Учёным','Врачом'], correct:0},
-        {q:'В каком году 8 марта стало выходным в СССР?', answers:['1960','1965','1970','1975'], correct:1},
-        {q:'Что произошло 8 марта 1917 в Петрограде?', answers:['Демонстрация','Парад','Забастовка','Митинг'], correct:0},
-        {q:'В каком году ООН объявил 8 марта праздником?', answers:['1975','1977','1980','1985'], correct:1},
-        {q:'Сколько стран официально отмечают 8 марта?', answers:['~30','~50','~100','~150'], correct:2},
-        {q:'Как по-другому называют праздник?', answers:['День женщин','Международный женский день','Женский праздник','День матери'], correct:1}
-      ]
-    }
-  },
-  workers: { id:'workers', name:'День труда', emoji:'⚒️', category:'international', description:'1 мая — международный праздник', accent:'#f44336',
-    questions: {
-      easy: [
-        {q:'Какого числа День труда?', answers:['1 апреля','1 мая','1 июня','1 июля'], correct:1},
-        {q:'Что делают в этот день?', answers:['Отдыхают','Работают','Постятся','Учатся'], correct:0},
-        {q:'Что несут на демонстрациях?', answers:['Флаги','Камни','Книги','Одежду'], correct:0}
-      ],
-      medium: [
-        {q:'В каком году впервые отметили?', answers:['1886','1890','1900','1917'], correct:0},
-        {q:'В каком городе начались события?', answers:['Чикаго','Нью-Йорк','Париж','Лондон'], correct:0},
-        {q:'Что требовали рабочие?', answers:['8-часовой день','Зарплату','Отпуск','Пенсию'], correct:0},
-        {q:'Сколько стран отмечают?', answers:['~30','~50','~100','~150'], correct:2}
-      ],
-      hard: [
-        {q:'Сколько рабочих погибло на Хеймаркет?', answers:['2','4','8','10'], correct:2},
-        {q:'Сколько было казнено?', answers:['2','4','6','8'], correct:1},
-        {q:'Как называется площадь в Чикаго?', answers:['Хеймаркет','Таймс-сквер','Трафальгар','Центральная'], correct:0},
-        {q:'В каком году конгресс II Интернационала признал 1 мая?', answers:['1889','1890','1900','1910'], correct:0},
-        {q:'Что произошло 4 мая 1886?', answers:['Взрыв бомбы','Пожар','Парад','Мирный митинг'], correct:0},
-        {q:'Как называют 1 мая в США?', answers:['День лояльности','День труда','День рабочих','День весны'], correct:0}
+        {q:'Что послужило поводом появления праздника?', answers:['Смена календаря','Война','Коронация','Победа'], correct:0}
       ]
     }
   },
@@ -1329,16 +1182,12 @@ const QUIZZES = {
       medium: [
         {q:'В каком году учреждён праздник?', answers:['1945','1949','1950','1960'], correct:1},
         {q:'Где принято решение об учреждении?', answers:['Москва','Париж','Лондон','Нью-Йорк'], correct:0},
-        {q:'Почему именно 1 июня?', answers:['В память о детях Китая','В память о войне','Просто дата','Указ ООН'], correct:0},
-        {q:'Что принято делать в этот день?', answers:['Развлекать детей','Работать','Учиться','Голодать'], correct:0}
+        {q:'Почему именно 1 июня?', answers:['В память о детях Китая','В память о войне','Просто дата','Указ ООН'], correct:0}
       ],
       hard: [
         {q:'Какая организация учредила праздник?', answers:['ООН','Международная демократическая федерация женщин','ЮНЕСКО','Красный Крест'], correct:1},
         {q:'Какой документ принят в этот же день?', answers:['Декларация прав ребёнка','Конституция','Устав','Закон'], correct:0},
-        {q:'В каком году принята Декларация?', answers:['1949','1950','1959','1989'], correct:2},
-        {q:'Сколько стран отмечают?', answers:['~30','~50','~100','~150'], correct:2},
-        {q:'Что было в этот день в 1925 в Женеве?', answers:['Конференция','Парад','Митинг','Праздник'], correct:0},
-        {q:'Сколько детей в мире сейчас?', answers:['~1 млрд','~2 млрд','~3 млрд','~4 млрд'], correct:1}
+        {q:'В каком году принята Декларация?', answers:['1949','1950','1959','1989'], correct:2}
       ]
     }
   },
@@ -1352,16 +1201,12 @@ const QUIZZES = {
       medium: [
         {q:'В каком году впервые отметили?', answers:['1960','1970','1980','1990'], correct:1},
         {q:'В какой стране начали?', answers:['США','Франция','Англия','Германия'], correct:0},
-        {q:'Как называется международный документ по защите?', answers:['Парижское соглашение','Женевская конвенция','Устав ООН','Киотский протокол'], correct:0},
-        {q:'Сколько стран отмечают?', answers:['~50','~100','~150','~190'], correct:3}
+        {q:'Как называется международный документ по защите?', answers:['Парижское соглашение','Женевская конвенция','Устав ООН','Киотский протокол'], correct:0}
       ],
       hard: [
         {q:'Кто основал День Земли?', answers:['Гейлорд Нельсон','Альберт Гор','Линдон Джонсон','Барак Обама'], correct:0},
         {q:'Сколько человек участвовало в первом Дне?', answers:['1 млн','10 млн','20 млн','100 млн'], correct:2},
-        {q:'Какое соглашение подписано в 2015 году?', answers:['Парижское','Киотское','Женевское','Венское'], correct:0},
-        {q:'Какой символ праздника?', answers:['Флаг Земли','Флаг ООН','Голубь','Дерево'], correct:0},
-        {q:'Когда родился основатель праздника?', answers:['1920','1922','1930','1940'], correct:1},
-        {q:'Какой колокол звенит в День Земли?', answers:['Колокол мира','Церковный','Корабельный','Кремлёвский'], correct:0}
+        {q:'Какое соглашение подписано в 2015 году?', answers:['Парижское','Киотское','Женевское','Венское'], correct:0}
       ]
     }
   },
@@ -1375,16 +1220,12 @@ const QUIZZES = {
       medium: [
         {q:'В каком году учреждён ЮНЕСКО?', answers:['1966','1994','2000','2010'], correct:1},
         {q:'Какая дата стала основанием?', answers:['Подписание документа','Основание школы','Рождение педагога','Открытие ЮНЕСКО'], correct:0},
-        {q:'Какой документ подписан в 1966?', answers:['О статусе учителя','О школе','О детях','О знаниях'], correct:0},
-        {q:'Сколько стран отмечают?', answers:['~50','~100','~150','~200'], correct:1}
+        {q:'Какой документ подписан в 1966?', answers:['О статусе учителя','О школе','О детях','О знаниях'], correct:0}
       ],
       hard: [
         {q:'Какая организация учредила праздник?', answers:['ЮНЕСКО','ООН','ВОЗ','Красный Крест'], correct:0},
         {q:'Что принято в 1997 году?', answers:['Рекомендация о статусе','Декларация','Закон','Устав'], correct:0},
-        {q:'В какой стране День учителя 1 сентября?', answers:['Россия','Китай','Франция','Англия'], correct:0},
-        {q:'В какой стране 28 февраля?', answers:['Индия','Китай','Египет','Аргентина'], correct:0},
-        {q:'Когда день в США?', answers:['Первая неделя мая','5 октября','1 сентября','25 января'], correct:0},
-        {q:'Сколько учителей в мире?', answers:['~30 млн','~50 млн','~80 млн','~100 млн'], correct:2}
+        {q:'В какой стране День учителя 1 сентября?', answers:['Россия','Китай','Франция','Англия'], correct:0}
       ]
     }
   },
@@ -1398,16 +1239,12 @@ const QUIZZES = {
       medium: [
         {q:'В какой стране впервые?', answers:['США','Англия','Франция','Германия'], correct:0},
         {q:'В каком году в России?', answers:['1998','2000','2005','2010'], correct:0},
-        {q:'Как отмечают?', answers:['Дарят подарки','Работают','Постятся','Учатся'], correct:0},
-        {q:'Кто учредил в России?', answers:['Ельцин','Путин','Медведев','Горбачёв'], correct:0}
+        {q:'Как отмечают?', answers:['Дарят подарки','Работают','Постятся','Учатся'], correct:0}
       ],
       hard: [
         {q:'Кто основала День матери в США?', answers:['Анна Джарвис','Клара Цеткин','Мэри Кюри','Элеонора Рузвельт'], correct:0},
         {q:'В каком году официально в США?', answers:['1900','1914','1920','1930'], correct:1},
-        {q:'Сколько стран отмечают?', answers:['~50','~80','~100','~150'], correct:2},
-        {q:'Сколько открыток отправляют?', answers:['~10 млн','~50 млн','~100 млн','~200 млн'], correct:2},
-        {q:'Как называется в Англии?', answers:['Mothering Sunday','Mother Day','Mum Day','Family Day'], correct:0},
-        {q:'Когда в Англии?', answers:['4-е воскресенье поста','1 мая','8 марта','Май'], correct:0}
+        {q:'Сколько стран отмечают?', answers:['~50','~80','~100','~150'], correct:2}
       ]
     }
   },
@@ -1421,16 +1258,12 @@ const QUIZZES = {
       medium: [
         {q:'Как называется праздник на испанском?', answers:['Día de los Muertos','Día de la Vida','Fiesta Muerta','Calaveras'], correct:0},
         {q:'Сколько дней длится?', answers:['1','2','3','5'], correct:1},
-        {q:'Что делают на кладбищах?', answers:['Молчат','Убирают','Празднуют','Спят'], correct:2},
-        {q:'Какое блюдо традиционно готовят?', answers:['Паэлья','Моле','Тако','Эмпанада'], correct:1}
+        {q:'Что делают на кладбищах?', answers:['Молчат','Убирают','Празднуют','Спят'], correct:2}
       ],
       hard: [
         {q:'Какому святому посвящён первый день?', answers:['Св. Иоанну','Св. Всех Святых','Св. Михаилу','Св. Петру'], correct:1},
         {q:'Что такое "офренда"?', answers:['Церковь','Алтарь-подношение','Песня','Танец'], correct:1},
-        {q:'Какого числа второй день?', answers:['1 ноября','2 ноября','3 ноября','31 октября'], correct:1},
-        {q:'Какое животное чаще на алтарях?', answers:['Собака','Кошка','Обезьяна','Ящерица'], correct:0},
-        {q:'Что делают с черепами в конце?', answers:['Съедают','Выбрасывают','Дают детям','Сохраняют'], correct:0},
-        {q:'Откуда пришла традиция?', answers:['Испания','Коренное население Мексики','Африка','Китай'], correct:1}
+        {q:'Какого числа второй день?', answers:['1 ноября','2 ноября','3 ноября','31 октября'], correct:1}
       ]
     }
   },
@@ -1444,39 +1277,12 @@ const QUIZZES = {
       medium: [
         {q:'В каком месяце обычно Ханука?', answers:['Сентябрь','Ноябрь-декабрь','Март','Июнь'], correct:1},
         {q:'Сколько свечей в ханукии?', answers:['7','8','9','10'], correct:2},
-        {q:'Что едят на Хануку?', answers:['Латкес','Пельмени','Пиццу','Суши'], correct:0},
-        {q:'Как называется волчок?', answers:['Дрейдл','Йо-йо','Кубик','Шарик'], correct:0}
+        {q:'Что едят на Хануку?', answers:['Латкес','Пельмени','Пиццу','Суши'], correct:0}
       ],
       hard: [
         {q:'В честь чего праздник?', answers:['Освящение Храма','Исход','Победы','Чуда'], correct:0},
         {q:'Сколько дней длилось чудо с маслом?', answers:['4 дня','6 дней','8 дней','10 дней'], correct:2},
-        {q:'Кто был врагом?', answers:['Греки','Римляне','Персы','Египтяне'], correct:0},
-        {q:'Как звали вождя восстания?', answers:['Маттафия','Моисей','Давид','Соломон'], correct:0},
-        {q:'Какой язык использует слово "Ханука"?', answers:['Иврит','Арамейский','Греческий','Латынь'], correct:0},
-        {q:'Что означает "Ханука"?', answers:['Освящение','Свет','Чудо','Победа'], correct:0}
-      ]
-    }
-  },
-  eid: { id:'eid', name:'Ураза-байрам', emoji:'🌙', category:'religious', description:'Мусульманский праздник разговения', accent:'#00bcd4',
-    questions: {
-      easy: [
-        {q:'Как называется праздник?', answers:['Ураза-байрам','Курбан-байрам','Рамадан','Хадж'], correct:0},
-        {q:'Что заканчивается в этот праздник?', answers:['Пост','Год','Месяц','Работа'], correct:0},
-        {q:'Что делают утром?', answers:['Молятся','Постятся','Работают','Спят'], correct:0}
-      ],
-      medium: [
-        {q:'Сколько дней длится?', answers:['1','2','3','5'], correct:0},
-        {q:'В каком месяце?', answers:['Рамадан','Шавваль','Мухаррам','Раджаб'], correct:1},
-        {q:'Что делают в праздник?', answers:['Ходят в гости','Постятся','Работают','Учатся'], correct:0},
-        {q:'Какое блюдо традиционно?', answers:['Плов','Пицца','Паста','Суши'], correct:0}
-      ],
-      hard: [
-        {q:'Сколько дней длится Рамадан?', answers:['25','28','29-30','40'], correct:2},
-        {q:'Что делают в ночь Ляйлятуль-Кадр?', answers:['Молятся','Постятся','Спят','Гуляют'], correct:0},
-        {q:'Как называется праздник жертвоприношения?', answers:['Курбан-байрам','Ураза-байрам','Рамадан','Хадж'], correct:0},
-        {q:'Что делают перед праздником?', answers:['Плату закят','Постятся','Работают','Молчат'], correct:0},
-        {q:'Сколько часов длится пост?', answers:['От рассвета до заката','24','12','8'], correct:0},
-        {q:'Какая фраза приветствия?', answers:['Ид мубарак','Салам','Мархаба','Шукран'], correct:0}
+        {q:'Кто был врагом?', answers:['Греки','Римляне','Персы','Египтяне'], correct:0}
       ]
     }
   },
@@ -1490,39 +1296,12 @@ const QUIZZES = {
       medium: [
         {q:'Что означает Дивали?', answers:['Ряд огней','Свет','Праздник','Радость'], correct:0},
         {q:'Какое божество главное?', answers:['Лакшми','Шива','Вишну','Кришна'], correct:0},
-        {q:'Что дарят на Дивали?', answers:['Сладости','Одежду','Деньги','Цветы'], correct:0},
-        {q:'Как украшают дома?', answers:['Огнями','Цветами','Лентами','Картинами'], correct:0}
+        {q:'Что дарят на Дивали?', answers:['Сладости','Одежду','Деньги','Цветы'], correct:0}
       ],
       hard: [
         {q:'В честь чего праздник?', answers:['Возвращение Рамы','Рождение Кришны','Победы','Чуда'], correct:0},
         {q:'Как называется лампа?', answers:['Дия','Свеча','Факел','Лампада'], correct:0},
-        {q:'Какое животное символ?', answers:['Слон','Тигр','Корова','Попугай'], correct:0},
-        {q:'Сколько цветов у ранголи?', answers:['Разные','Один','Два','Три'], correct:0},
-        {q:'В каком месяце Дивали?', answers:['Октябрь-ноябрь','Январь','Май','Август'], correct:0},
-        {q:'Как называют сладости?', answers:['Митхаи','Самоса','Наан','Карри'], correct:0}
-      ]
-    }
-  },
-  beer: { id:'beer', name:'День пива', emoji:'🍺', category:'fun', description:'Международный день пива', accent:'#ffc107',
-    questions: {
-      easy: [
-        {q:'Когда Международный день пива?', answers:['Первая пятница августа','1 мая','1 июня','30 сентября'], correct:0},
-        {q:'Из чего делают пиво?', answers:['Из ячменя','Из риса','Из пшеницы','Всё вышеперечисленное'], correct:3},
-        {q:'Какого цвета обычно пиво?', answers:['Жёлто-коричневое','Красное','Зелёное','Синее'], correct:0}
-      ],
-      medium: [
-        {q:'В какой стране больше всего пивоварен?', answers:['Германия','США','Бельгия','Чехия'], correct:1},
-        {q:'Как называется немецкий закон о пиве?', answers:['Райнхайтсгебот','Биргесетц','Пивной закон','Браугесетц'], correct:0},
-        {q:'В каком году принят закон?', answers:['1516','1600','1700','1800'], correct:0},
-        {q:'Сколько сортов пива в мире?', answers:['~50','~100','~200','~1000'], correct:2}
-      ],
-      hard: [
-        {q:'Сколько ингредиентов в чистом пиве?', answers:['4','5','6','7'], correct:0},
-        {q:'Какие 4 ингредиента?', answers:['Вода, солод, хмель, дрожжи','Вода, сахар, хмель, дрожжи','Вода, солод, сахар, хмель','Вода, солод, сахар, дрожжи'], correct:0},
-        {q:'В какой стране пиво самое крепкое?', answers:['Шотландия','Германия','Бельгия','США'], correct:0},
-        {q:'Какая страна потребляет больше всего пива?', answers:['Чехия','Германия','Ирландия','США'], correct:0},
-        {q:'Сколько литров в год пьёт чех?', answers:['~100','~150','~200','~250'], correct:1},
-        {q:'Какой Октоберфест — главный пивной фестиваль?', answers:['Мюнхенский','Берлинский','Венский','Пражский'], correct:0}
+        {q:'Какое животное символ?', answers:['Слон','Тигр','Корова','Попугай'], correct:0}
       ]
     }
   },
@@ -1536,39 +1315,12 @@ const QUIZZES = {
       medium: [
         {q:'Как называется пицца с сыром?', answers:['Маргарита','Пепперони','Гавайская','4 сыра'], correct:0},
         {q:'В каком году появилась Маргарита?', answers:['1870','1889','1900','1920'], correct:1},
-        {q:'В честь кого названа Маргарита?', answers:['Королевы','Принцессы','Мамы','Дочери'], correct:0},
-        {q:'Из какой страны пришло слово?', answers:['Италия','Греция','Латынь','Арабский'], correct:0}
+        {q:'В честь кого названа Маргарита?', answers:['Королевы','Принцессы','Мамы','Дочери'], correct:0}
       ],
       hard: [
         {q:'Какой цвет флага Италии в Маргарите?', answers:['Томат, моцарелла, базилик','Красный, белый, зелёный','Томат, сыр, орегано','Сыр, мясо, овощи'], correct:0},
         {q:'Что означает слово "пицца"?', answers:['Лепёшка','Круг','Хлеб','Пирог'], correct:0},
-        {q:'Сколько пицц съедают в год в США?', answers:['~1 млрд','~3 млрд','~10 млрд','~30 млрд'], correct:2},
-        {q:'Какая самая дорогая пицца?', answers:['Люкс','Золотая','Неаполь','Французская'], correct:0},
-        {q:'Как называется пицца с ананасом?', answers:['Гавайская','Тропическая','Ананасная','Сладкая'], correct:0},
-        {q:'Какой сыр традиционно на Маргарите?', answers:['Моцарелла','Пармезан','Чеддер','Гауда'], correct:0}
-      ]
-    }
-  },
-  coffee: { id:'coffee', name:'День кофе', emoji:'☕', category:'fun', description:'Всемирный день кофе', accent:'#795548',
-    questions: {
-      easy: [
-        {q:'В какой стране открыт кофе?', answers:['Эфиопия','Бразилия','Колумбия','Италия'], correct:0},
-        {q:'Из чего делают кофе?', answers:['Из зёрен','Из листьев','Из цветов','Из корней'], correct:0},
-        {q:'Какого цвета кофе?', answers:['Коричневый','Зелёный','Красный','Синий'], correct:0}
-      ],
-      medium: [
-        {q:'Как называется кофе с молоком?', answers:['Латте','Эспрессо','Американо','Капучино'], correct:3},
-        {q:'Сколько сортов кофе?', answers:['2 основных','5','10','20'], correct:0},
-        {q:'Какая страна производит больше всего кофе?', answers:['Бразилия','Колумбия','Вьетнам','Эфиопия'], correct:0},
-        {q:'Как называется двойной эспрессо?', answers:['Доппио','Лунго','Ристретто','Макиато'], correct:0}
-      ],
-      hard: [
-        {q:'Сколько кофеина в чашке эспрессо?', answers:['~30 мг','~65 мг','~100 мг','~200 мг'], correct:1},
-        {q:'Какие два основных вида кофе?', answers:['Арабика и робуста','Либерика и эксцельса','Индийский и бразильский','Чёрный и белый'], correct:0},
-        {q:'Сколько арабики в мире?', answers:['~30%','~50%','~60%','~80%'], correct:2},
-        {q:'Какой кофе самый популярный в Италии?', answers:['Эспрессо','Латте','Американо','Капучино'], correct:0},
-        {q:'Как называется кофе с молочной пенкой?', answers:['Капучино','Американо','Фраппе','Мокко'], correct:0},
-        {q:'Сколько чашек кофе пьют в день в мире?', answers:['~1 млрд','~2 млрд','~3 млрд','~5 млрд'], correct:1}
+        {q:'Сколько пицц съедают в год в США?', answers:['~1 млрд','~3 млрд','~10 млрд','~30 млрд'], correct:2}
       ]
     }
   },
@@ -1582,108 +1334,12 @@ const QUIZZES = {
       medium: [
         {q:'Сколько пород кошек?', answers:['~30','~50','~70','~100'], correct:2},
         {q:'Какая самая популярная порода?', answers:['Британская','Персидская','Мейн-кун','Сиамская'], correct:0},
-        {q:'Сколько живут домашние кошки?', answers:['5-8 лет','10-15 лет','15-20 лет','20-25 лет'], correct:1},
-        {q:'Как кошки благодарят хозяев?', answers:['Мурлычут','Лают','Мяукают','Шипят'], correct:0}
+        {q:'Сколько живут домашние кошки?', answers:['5-8 лет','10-15 лет','15-20 лет','20-25 лет'], correct:1}
       ],
       hard: [
         {q:'Сколько часов в день спит кошка?', answers:['8','12-16','18','20'], correct:1},
         {q:'Какое место у кошки самое чувствительное?', answers:['Усы','Нос','Хвост','Лапы'], correct:0},
-        {q:'Сколько костей у кошки?', answers:['~150','~200','~230','~300'], correct:2},
-        {q:'Как кошки видят в темноте?', answers:['Отражающий слой','Ультрафиолет','Инфракрасный','Они не видят'], correct:0},
-        {q:'Какая группа крови чаще у кошек?', answers:['A','B','AB','O'], correct:0},
-        {q:'Сколько кошек в мире?', answers:['~100 млн','~300 млн','~600 млн','~1 млрд'], correct:2}
-      ]
-    }
-  },
-  dog: { id:'dog', name:'День собак', emoji:'🐶', category:'fun', description:'Всемирный день собак', accent:'#795548',
-    questions: {
-      easy: [
-        {q:'Какое животное символ?', answers:['Собака','Кошка','Попугай','Хомяк'], correct:0},
-        {q:'Какого числа день собак?', answers:['26 августа','1 марта','1 июня','8 августа'], correct:0},
-        {q:'Что делают собаки?', answers:['Лают','Мяукают','Поют','Шипят'], correct:0}
-      ],
-      medium: [
-        {q:'Сколько пород собак?', answers:['~200','~340','~500','~700'], correct:1},
-        {q:'Какой породы самый маленький?', answers:['Чихуахуа','Йорк','Пекинес','Мопс'], correct:0},
-        {q:'Какой породы самый большой?', answers:['Немецкий дог','Лабрадор','Хаски','Мастиф'], correct:0},
-        {q:'Сколько живут собаки?', answers:['5-8 лет','10-13 лет','15-18 лет','20 лет'], correct:1}
-      ],
-      hard: [
-        {q:'Сколько костей у собаки?', answers:['~250','~320','~400','~500'], correct:1},
-        {q:'Какое обоняние у собаки?', answers:['В 10 раз сильнее человека','В 100 раз','В 1000 раз','В 10000 раз'], correct:3},
-        {q:'Сколько лет живут крупные породы?', answers:['5-8 лет','8-10 лет','12-15 лет','15-20 лет'], correct:0},
-        {q:'Какая порода самая умная?', answers:['Бордер-колли','Немецкая овчарка','Лабрадор','Пудель'], correct:0},
-        {q:'Сколько зубов у взрослой собаки?', answers:['28','30','42','50'], correct:2},
-        {q:'Сколько собак в мире?', answers:['~300 млн','~500 млн','~700 млн','~900 млн'], correct:2}
-      ]
-    }
-  },
-  icecream: { id:'icecream', name:'День мороженого', emoji:'🍦', category:'fun', description:'Всемирный день мороженого', accent:'#e91e63',
-    questions: {
-      easy: [
-        {q:'Из чего делают мороженое?', answers:['Из молока','Из воды','Из сока','Из чая'], correct:0},
-        {q:'Какая температура мороженого?', answers:['Холодная','Горячая','Тёплая','Комнатная'], correct:0},
-        {q:'Какого цвета шоколадное мороженое?', answers:['Коричневое','Белое','Розовое','Зелёное'], correct:0}
-      ],
-      medium: [
-        {q:'В какой стране изобрели мороженое?', answers:['Китай','Италия','Франция','США'], correct:0},
-        {q:'Как называется итальянское мороженое?', answers:['Джелато','Сорбет','Фрозен','Фрэппе'], correct:0},
-        {q:'Сколько лет мороженому?', answers:['~500','~1000','~2000','~3000'], correct:3},
-        {q:'Какое мороженое без молока?', answers:['Сорбет','Пломбир','Рожок','Эскимо'], correct:0}
-      ],
-      hard: [
-        {q:'Кто придумал вафельный рожок?', answers:['Итальянец','Француз','Сириец','Американец'], correct:2},
-        {q:'В каком году появился рожок?', answers:['1900','1904','1910','1920'], correct:1},
-        {q:'Сколько сортов мороженого?', answers:['~100','~300','~500','~1000'], correct:3},
-        {q:'Сколько мороженого едят в США в год?', answers:['~1 л','~5 л','~10 л','~20 л'], correct:2},
-        {q:'Какое мороженое самое популярное в мире?', answers:['Ванильное','Шоколадное','Клубничное','Фисташковое'], correct:0},
-        {q:'Что добавляют в мороженое для мягкости?', answers:['Воздух','Воду','Сахар','Молоко'], correct:0}
-      ]
-    }
-  },
-  ocktoberfest: { id:'ocktoberfest', name:'Октоберфест', emoji:'🍻', category:'fun', description:'Немецкий пивной фестиваль', accent:'#ffc107',
-    questions: {
-      easy: [
-        {q:'В какой стране проходит Октоберфест?', answers:['Германия','Австрия','Швейцария','Бельгия'], correct:0},
-        {q:'В каком городе проходит?', answers:['Берлин','Мюнхен','Гамбург','Кёльн'], correct:1},
-        {q:'Что пьют на фестивале?', answers:['Пиво','Вино','Сок','Воду'], correct:0}
-      ],
-      medium: [
-        {q:'В каком месяце обычно проходит?', answers:['Сентябрь-октябрь','Июль','Декабрь','Май'], correct:0},
-        {q:'Сколько дней длится?', answers:['~7','~10','~16','~30'], correct:2},
-        {q:'В каком году первый Октоберфест?', answers:['1810','1820','1850','1900'], correct:0},
-        {q:'Что едят на фестивале?', answers:['Колбаски','Пиццу','Суши','Тако'], correct:0}
-      ],
-      hard: [
-        {q:'В честь чего первый фестиваль?', answers:['Свадьба','Победа','Коронация','Открытие'], correct:0},
-        {q:'Кто женился в 1810?', answers:['Людвиг I','Вильгельм','Фридрих','Максимилиан'], correct:0},
-        {q:'Сколько литров пива выпивают?', answers:['~1 млн','~3 млн','~7 млн','~10 млн'], correct:2},
-        {q:'Сколько людей посещают?', answers:['~1 млн','~3 млн','~6 млн','~10 млн'], correct:2},
-        {q:'Как называется главная палатка?', answers:['Хофбройхаус','Пауланер','Августинер','Лёвенброй'], correct:0},
-        {q:'В каком году отменяли из-за COVID?', answers:['2020','2019','2021','2018'], correct:0}
-      ]
-    }
-  },
-  blackFriday: { id:'blackFriday', name:'Чёрная пятница', emoji:'🛍️', category:'fun', description:'День грандиозных скидок', accent:'#212121',
-    questions: {
-      easy: [
-        {q:'Что делают в Чёрную пятницу?', answers:['Покупают','Отдыхают','Постятся','Работают'], correct:0},
-        {q:'Когда Чёрная пятница?', answers:['После Дня Благодарения','На Новый год','В марте','В мае'], correct:0},
-        {q:'Что главное в этот день?', answers:['Скидки','Погода','Еда','Музыка'], correct:0}
-      ],
-      medium: [
-        {q:'Где началась традиция?', answers:['США','Англия','Франция','Германия'], correct:0},
-        {q:'Откуда название?', answers:['Пробки и давка','Цвет цен','Погода','Ночь'], correct:0},
-        {q:'Какой день после?', answers:['Киберпонедельник','Вторник','Среда','Понедельник'], correct:0},
-        {q:'Когда в России появилась?', answers:['2010','2012','2015','2018'], correct:0}
-      ],
-      hard: [
-        {q:'В каком году термин впервые?', answers:['1961','1950','1970','1980'], correct:0},
-        {q:'В каком городе?', answers:['Филадельфия','Нью-Йорк','Лос-Анджелес','Чикаго'], correct:0},
-        {q:'Сколько покупателей в США?', answers:['~50 млн','~100 млн','~150 млн','~200 млн'], correct:1},
-        {q:'Сколько тратят в день?', answers:['~1 млрд','~5 млрд','~10 млрд','~50 млрд'], correct:2},
-        {q:'Какой самый популярный товар?', answers:['Электроника','Одежда','Еда','Игрушки'], correct:0},
-        {q:'Когда Киберпонедельник?', answers:['Понедельник после','Пятница','Вторник','Среда'], correct:0}
+        {q:'Сколько костей у кошки?', answers:['~150','~200','~230','~300'], correct:2}
       ]
     }
   }
@@ -1730,21 +1386,9 @@ const ACHIEVEMENTS = [
   {id:'daily_done', icon:'⚡', name:'Молния', desc:'Ежедневный вызов пройден', check:u => (u.dailyDone||0)>=1, progress:u => [Math.min(u.dailyDone||0,1), 1]},
   {id:'daily_5', icon:'🗲', name:'Гроза', desc:'5 ежедневных вызовов', check:u => (u.dailyDone||0)>=5, progress:u => [Math.min(u.dailyDone||0,5), 5]},
   {id:'daily_30', icon:'⚡', name:'Электрик', desc:'30 ежедневных вызовов', check:u => (u.dailyDone||0)>=30, progress:u => [Math.min(u.dailyDone||0,30), 30]},
-  {id:'russian_master', icon:'🇷🇺', name:'Русская душа', desc:'Пройдите 10 русских праздников', check:u => Object.entries(u.completed||{}).filter(([k]) => QUIZZES[k.split('_')[0]]?.category === 'russian').length >= 10, progress:u => [Object.entries(u.completed||{}).filter(([k]) => QUIZZES[k.split('_')[0]]?.category === 'russian').length, 10]},
-  {id:'western_master', icon:'🎅', name:'Западный герой', desc:'Пройдите 5 западных праздников', check:u => Object.entries(u.completed||{}).filter(([k]) => QUIZZES[k.split('_')[0]]?.category === 'western').length >= 5, progress:u => [Object.entries(u.completed||{}).filter(([k]) => QUIZZES[k.split('_')[0]]?.category === 'western').length, 5]},
-  {id:'world_traveler', icon:'🌍', name:'Путешественник', desc:'Пройдите праздники всех категорий', check:u => {
-    const cats = new Set();
-    Object.keys(u.completed||{}).forEach(k => { const q = QUIZZES[k.split('_')[0]]; if (q) cats.add(q.category); });
-    return ['russian','western','international','religious','fun'].every(c => cats.has(c));
-  }, progress:u => {
-    const cats = new Set();
-    Object.keys(u.completed||{}).forEach(k => { const q = QUIZZES[k.split('_')[0]]; if (q) cats.add(q.category); });
-    return [['russian','western','international','religious','fun'].filter(c => cats.has(c)).length, 5];
-  }},
   {id:'hard_win', icon:'💪', name:'Смельчак', desc:'Пройдите викторину на сложном', check:u => (u.hardWins||0)>=1, progress:u => [Math.min(u.hardWins||0,1), 1]},
   {id:'hard_10', icon:'🏋️', name:'Тяжелоатлет', desc:'10 сложных викторин', check:u => (u.hardWins||0)>=10, progress:u => [Math.min(u.hardWins||0,10), 10]},
   {id:'link_invite', icon:'🔗', name:'Связист', desc:'Пригласите по ссылке', check:u => (u.linkInvites||0)>=1, progress:u => [Math.min(u.linkInvites||0,1), 1]},
-  {id:'link_10', icon:'🌐', name:'Сетевой', desc:'10 приглашений по ссылке', check:u => (u.linkInvites||0)>=10, progress:u => [Math.min(u.linkInvites||0,10), 10]},
   {id:'score_1000', icon:'💰', name:'Богач', desc:'Наберите 1000 очков', check:u => (u.totalScore||0)>=1000, progress:u => [Math.min(u.totalScore||0,1000), 1000]},
   {id:'score_10000', icon:'💎', name:'Миллионер', desc:'Наберите 10000 очков', check:u => (u.totalScore||0)>=10000, progress:u => [Math.min(u.totalScore||0,10000), 10000]},
 ];
@@ -1774,9 +1418,10 @@ const DB = {
   set settings(v) { localStorage.setItem('hq_settings', JSON.stringify(v)); }
 };
 
-function defaultUser(name) {
+function defaultUser(name, email = '') {
   return {
-    username: name, password: '', xp: 0, level: 1,
+    username: name, password: '', email: email, bio: '',
+    xp: 0, level: 1,
     gamesPlayed: 0, perfectGames: 0, messagesSent: 0,
     hardWins: 0, linkInvites: 0, dailyDone: 0,
     totalScore: 0, bestStreak: 0,
@@ -1950,6 +1595,7 @@ setInterval(() => {
       updateStatsMini();
       if ($('friendsView').classList.contains('active')) renderFriends();
       if ($('statsView').classList.contains('active')) renderStatsDashboard();
+      if ($('profileView').classList.contains('active')) renderProfilePage();
     }
     if (currentLobby) updateLobby();
     checkInvites();
@@ -1972,6 +1618,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 $('registerForm').addEventListener('submit', e => {
   e.preventDefault();
   const u = $('regUsername').value.trim();
+  const em = $('regEmail').value.trim();
   const p = $('regPassword').value;
   const p2 = $('regPassword2').value;
   const err = $('regError');
@@ -1980,11 +1627,18 @@ $('registerForm').addEventListener('submit', e => {
   if (u.length < 3) return err.textContent = 'Имя минимум 3 символа';
   if (p.length < 4) return err.textContent = 'Пароль минимум 4 символа';
   if (p !== p2) return err.textContent = 'Пароли не совпадают';
+  if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return err.textContent = 'Неверный email';
 
   const users = DB.users;
   if (users[u.toLowerCase()]) return err.textContent = 'Имя занято';
 
-  const user = defaultUser(u);
+  // Проверяем email на занятость
+  if (em) {
+    const emailExists = Object.values(users).some(user => user.email && user.email.toLowerCase() === em.toLowerCase());
+    if (emailExists) return err.textContent = 'Этот email уже используется';
+  }
+
+  const user = defaultUser(u, em);
   user.password = btoa(p);
   users[u.toLowerCase()] = user;
   DB.users = users;
@@ -1997,17 +1651,31 @@ $('registerForm').addEventListener('submit', e => {
 
 $('loginForm').addEventListener('submit', e => {
   e.preventDefault();
-  const u = $('loginUsername').value.trim().toLowerCase();
+  const input = $('loginUsername').value.trim();
   const p = $('loginPassword').value;
   const err = $('loginError');
   err.textContent = '';
 
   const users = DB.users;
-  if (!users[u]) return err.textContent = 'Пользователь не найден';
-  if (users[u].password !== btoa(p)) return err.textContent = 'Неверный пароль';
 
-  DB.session = u;
-  currentUser = users[u];
+  // Ищем по нику или email
+  let userKey = input.toLowerCase();
+  let user = users[userKey];
+
+  if (!user) {
+    // Ищем по email
+    const found = Object.entries(users).find(([k, u]) => u.email && u.email.toLowerCase() === input.toLowerCase());
+    if (found) {
+      userKey = found[0];
+      user = found[1];
+    }
+  }
+
+  if (!user) return err.textContent = 'Пользователь не найден';
+  if (user.password !== btoa(p)) return err.textContent = 'Неверный пароль';
+
+  DB.session = userKey;
+  currentUser = user;
   currentUser.lastSeen = Date.now();
   initExtendedStats(currentUser);
   enterMain();
@@ -2023,6 +1691,8 @@ function initExtendedStats(u) {
   if (typeof u.totalQuestions !== 'number') u.totalQuestions = 0;
   if (!u.dailyStreakDates) u.dailyStreakDates = [];
   if (!u.avatar) u.avatar = '😀';
+  if (typeof u.email !== 'string') u.email = '';
+  if (typeof u.bio !== 'string') u.bio = '';
 }
 
 $('logoutBtn').addEventListener('click', () => {
@@ -2078,6 +1748,7 @@ function enterMain() {
   updateDailyCard();
   updateStatsMini();
   renderQuizzes();
+  renderProfilePage();
   renderAchievements();
   renderLeaderboard();
   renderFriends();
@@ -2135,6 +1806,7 @@ document.querySelectorAll('.nav-btn[data-view]').forEach(btn => {
     if (btn.dataset.view === 'achievements') renderAchievements();
     if (btn.dataset.view === 'friends') renderFriends();
     if (btn.dataset.view === 'stats') renderStatsDashboard();
+    if (btn.dataset.view === 'profile') renderProfilePage();
     if (btn.dataset.view === 'settings') renderSettings();
   });
 });
@@ -2191,35 +1863,9 @@ function renderQuizzes() {
     const diffInfo = DIFFICULTIES[currentDiff];
     const best = currentUser.completed?.[key]?.score;
 
-    const playedFriends = friends.filter(fname => {
-      const u = DB.users[fname.toLowerCase()];
-      return u && u.completed && u.completed[key];
-    });
-
-    const activeInvites = DB.invites.filter(i => i.quizId === q.id && i.from === currentUser.username);
-    const invitedNames = activeInvites.map(i => i.to);
-
     const card = document.createElement('div');
     card.className = 'quiz-card' + (done ? ' completed' : '');
     card.style.setProperty('--accent', q.accent);
-
-    let playersHtml = '';
-    const allPlayers = [
-      { name: currentUser.username, me: true, online: true },
-      ...friends.slice(0, 5).map(f => ({
-        name: f, me: false, online: isOnline(f),
-        invited: invitedNames.includes(f),
-        played: playedFriends.includes(f)
-      }))
-    ];
-    if (allPlayers.length > 1) {
-      playersHtml = '<div class="quiz-players"><span class="quiz-players-label">Игроки:</span>';
-      allPlayers.forEach(p => {
-        const cls = p.me ? 'me' : (p.invited ? 'invited' : (p.online ? 'online' : ''));
-        playersHtml += `<div class="player-tag ${cls}" title="${p.name}"><div class="mini-avatar">${p.name[0].toUpperCase()}</div><span>${p.name}${p.me ? ' (вы)' : ''}</span></div>`;
-      });
-      playersHtml += '</div>';
-    }
 
     const diffButtonsHtml = Object.entries(DIFFICULTIES).map(([k, d]) => `
       <button class="diff-btn ${k === currentDiff ? 'active' : ''}" data-diff="${k}" data-quiz="${q.id}">${d.icon} ${d.name}</button>
@@ -2233,7 +1879,6 @@ function renderQuizzes() {
       <h3>${q.name}</h3>
       <div class="quiz-category">${catName}</div>
       <p>${q.description}</p>
-      ${playersHtml}
       <div class="difficulty-selector">${diffButtonsHtml}</div>
       <div class="quiz-meta">
         <span class="quiz-difficulty">${diffInfo.icon} ${diffInfo.name} • ${q.questions[currentDiff].length} вопр. • ${diffInfo.timer}с</span>
@@ -2286,13 +1931,9 @@ function startGame(quizId, difficulty = 'easy', lobbyPlayers = null, isDaily = f
     participants: [], isDaily, answersHistory: []
   };
 
-  if (lobbyPlayers && lobbyPlayers.length) {
-    lobbyPlayers.forEach(name => game.participants.push({ name, me: name === currentUser.username, online: isOnline(name) || name === currentUser.username }));
-  } else {
-    game.participants.push({ name: currentUser.username, me: true, online: true });
-    const friends = (currentUser.friends || []).sort((a, b) => isOnline(b) - isOnline(a));
-    friends.slice(0, 3).forEach(f => game.participants.push({ name: f, me: false, online: isOnline(f) }));
-  }
+  game.participants.push({ name: currentUser.username, me: true, online: true });
+  const friends = (currentUser.friends || []).sort((a, b) => isOnline(b) - isOnline(a));
+  friends.slice(0, 3).forEach(f => game.participants.push({ name: f, me: false, online: isOnline(f) }));
 
   $('gameQuizName').textContent = (isDaily ? '⚡ ' : '') + quiz.emoji + ' ' + quiz.name;
   const badge = $('gameDifficultyBadge');
@@ -2303,9 +1944,6 @@ function startGame(quizId, difficulty = 'easy', lobbyPlayers = null, isDaily = f
   renderChatParticipants();
   renderProgressStrip();
   addChat('system', `🎉 Игра началась! Сложность: ${diff.name}. Удачи!`);
-  game.participants.filter(p => !p.me).forEach((p, i) => {
-    setTimeout(() => { if (game) addChat('system', `${p.name} присоединился`); }, 800 + i * 600);
-  });
 
   gameStartTime = Date.now();
   showScreen('game');
@@ -2366,15 +2004,6 @@ function nextRound() {
     cont.appendChild(b);
   });
   startTimer();
-
-  if (Math.random() < 0.5 && game.participants.length > 1) {
-    const bots = game.participants.filter(p => !p.me);
-    if (bots.length) {
-      const bot = bots[Math.floor(Math.random() * bots.length)];
-      const botMsgs = ['Хм, сложный вопрос...','Я знаю ответ!','Легкотня 😎','Дайте подумать...','Это точно вариант 1!','Ну и вопросики...','Уверен в этом!'];
-      setTimeout(() => { if (game) addChat(bot.name, botMsgs[Math.floor(Math.random() * botMsgs.length)]); }, 2000 + Math.random() * 3000);
-    }
-  }
 }
 
 function updateTimerUI() {
@@ -2422,7 +2051,7 @@ function selectAnswer(idx) {
     game.correct++;
     game.score += points;
     playSound('correct');
-    addChat('system', `✅ ${currentUser.username} — верно! +${points} очков`);
+    addChat('system', `✅ Верно! +${points} очков`);
   } else {
     game.wrong++;
     playSound('wrong');
@@ -2472,6 +2101,7 @@ function endGame() {
   updateStatsMini();
   checkAchievements();
   renderStatsDashboard();
+  renderProfilePage();
 
   $('resultTitle').textContent = dailyBonus ? '⚡ Ежедневный вызов пройден!' : '🎉 Игра завершена!';
   $('resultStats').innerHTML = `
@@ -2488,7 +2118,6 @@ function endGame() {
   else if (accuracy >= 50) extra = '👍 Неплохо!';
   else extra = '💪 Попробуй ещё!';
   extra += `<br><span style="font-size:13px;color:#c9a0dc;">⏱ Время: ${timeSpent}с • Точность: ${accuracy}%</span>`;
-  if (game.isDaily) extra += ' ⚡ Бонус ×2 XP!';
   $('resultExtra').innerHTML = extra;
 
   $('resultModal').classList.remove('hidden');
@@ -2529,6 +2158,7 @@ function recordExtendedStats(g, timeSpent) {
 $('closeResultBtn').addEventListener('click', () => {
   $('resultModal').classList.add('hidden');
   renderQuizzes();
+  renderProfilePage();
   renderAchievements();
   renderLeaderboard();
   updateDailyCard();
@@ -2568,14 +2198,6 @@ function sendChat() {
   saveUser();
   checkAchievements();
   inp.value = '';
-  if (game && game.participants.length > 1) {
-    const others = game.participants.filter(p => !p.me);
-    if (others.length && Math.random() < 0.7) {
-      const bot = others[Math.floor(Math.random() * others.length)];
-      const bots = ['Ого, я тоже так думаю!','Ха-ха, согласен 😄','Кто это сказал?','Не подсказывай!','Интересно 🤔','Погнали дальше!','Точно!','Не уверен...'];
-      setTimeout(() => { if (game) addChat(bot.name, bots[Math.floor(Math.random() * bots.length)]); }, 1200 + Math.random() * 1500);
-    }
-  }
 }
 
 /* =========================================================
@@ -2685,6 +2307,7 @@ function addFriend(name) {
     renderFriends();
     renderQuizzes();
     updateStatsMini();
+    renderProfilePage();
     $('friendSearch').value = '';
     $('searchResults').innerHTML = '';
   }
@@ -2711,7 +2334,7 @@ function renderFriends() {
         currentUser.friends = currentUser.friends.filter(f => f !== name);
         saveUser();
         renderFriends();
-        renderQuizzes();
+        renderProfilePage();
         updateStatsMini();
       });
       list.appendChild(item);
@@ -2754,10 +2377,6 @@ function openInviteModal(quizId) {
   $('inviteNickInput').value = '';
   $('inviteModal').dataset.quizId = quizId;
   $('inviteModal').classList.remove('hidden');
-  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
-  document.querySelector('.modal-tab[data-itab="link"]').classList.add('active');
-  document.querySelectorAll('.invite-panel').forEach(p => p.classList.add('hidden'));
-  $('inviteLinkPanel').classList.remove('hidden');
 }
 
 $('cancelInviteBtn').addEventListener('click', () => $('inviteModal').classList.add('hidden'));
@@ -2798,116 +2417,6 @@ function sendInviteTo(friendName) {
   invites.push({ from: currentUser.username, to: friendName, quizId, difficulty: diff, date: Date.now(), id: inviteId });
   DB.invites = invites;
   showToast(`📨 Отправлено: ${friendName}`);
-  renderQuizzes();
-}
-
-/* =========================================================
-   LINK JOIN
-   ========================================================= */
-function checkUrlJoin() {
-  const hash = location.hash;
-  if (!hash.startsWith('#join=')) return false;
-  try {
-    const data = JSON.parse(atob(hash.slice(6)));
-    if (Date.now() - data.t > 24 * 60 * 60 * 1000) { showToast('⏰ Ссылка устарела'); history.replaceState(null, '', location.pathname); return false; }
-    if (!QUIZZES[data.q]) { showToast('❌ Неверная ссылка'); history.replaceState(null, '', location.pathname); return false; }
-    pendingInvite = data;
-    return true;
-  } catch (e) { console.error(e); return false; }
-}
-
-function showJoinPrompt() {
-  if (!pendingInvite) return;
-  const quiz = QUIZZES[pendingInvite.q];
-  const diff = DIFFICULTIES[pendingInvite.d];
-  const from = pendingInvite.from;
-  if (currentUser.username === from) {
-    showToast('😄 Это ваша ссылка');
-    pendingInvite = null;
-    history.replaceState(null, '', location.pathname);
-    return;
-  }
-  const ok = confirm(`🎉 ${from} приглашает в "${quiz.name}" (${diff.icon} ${diff.name}).\n\nПрисоединиться?`);
-  if (ok) startLobby(pendingInvite.q, pendingInvite.d, [from, currentUser.username]);
-  else pendingInvite = null;
-  history.replaceState(null, '', location.pathname);
-}
-
-/* =========================================================
-   LOBBY
-   ========================================================= */
-function startLobby(quizId, difficulty, players) {
-  const lobbyId = 'lobby_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
-  const lobbies = DB.lobbies;
-  lobbies[lobbyId] = {
-    id: lobbyId, quizId, difficulty, host: players[0],
-    players: players.map(p => ({ name: p, joinedAt: Date.now() })),
-    createdAt: Date.now(), status: 'waiting'
-  };
-  DB.lobbies = lobbies;
-  currentLobby = lobbyId;
-
-  const quiz = QUIZZES[quizId];
-  const diff = DIFFICULTIES[difficulty];
-  $('lobbyQuizInfo').textContent = `${quiz.emoji} ${quiz.name}`;
-  $('lobbyDifficulty').textContent = `${diff.icon} ${diff.name} • ${quiz.questions[difficulty].length} вопросов`;
-  updateLobby();
-  showScreen('lobby');
-  clearInterval(lobbyInterval);
-  lobbyInterval = setInterval(updateLobby, 1500);
-}
-
-function updateLobby() {
-  if (!currentLobby) return;
-  const lobbies = DB.lobbies;
-  const lobby = lobbies[currentLobby];
-  if (!lobby) { leaveLobby(); return; }
-  const cont = $('lobbyPlayers');
-  cont.innerHTML = '';
-  lobby.players.forEach(p => {
-    const tag = document.createElement('div');
-    tag.className = 'player-tag online';
-    tag.innerHTML = `<div class="mini-avatar">${p.name[0].toUpperCase()}</div><span>${p.name}${p.name === currentUser.username ? ' (вы)' : ''}${p.name === lobby.host ? ' 👑' : ''}</span>`;
-    cont.appendChild(tag);
-  });
-  $('lobbyCount').textContent = `(${lobby.players.length}/8)`;
-  const isHost = lobby.host === currentUser.username;
-  const btn = $('startLobbyGameBtn');
-  btn.style.display = isHost ? 'block' : 'none';
-  if (isHost) btn.textContent = `▶ Начать игру (${lobby.players.length})`;
-  if (lobby.status === 'started' && !game) {
-    clearInterval(lobbyInterval);
-    startGame(lobby.quizId, lobby.difficulty, lobby.players.map(p => p.name));
-  }
-}
-
-$('startLobbyGameBtn').addEventListener('click', () => {
-  if (!currentLobby) return;
-  const lobbies = DB.lobbies;
-  const lobby = lobbies[currentLobby];
-  if (!lobby) return;
-  lobby.status = 'started';
-  DB.lobbies = lobbies;
-  clearInterval(lobbyInterval);
-  startGame(lobby.quizId, lobby.difficulty, lobby.players.map(p => p.name));
-});
-
-$('leaveLobbyBtn').addEventListener('click', leaveLobby);
-
-function leaveLobby() {
-  clearInterval(lobbyInterval);
-  if (currentLobby) {
-    const lobbies = DB.lobbies;
-    const lobby = lobbies[currentLobby];
-    if (lobby) {
-      lobby.players = lobby.players.filter(p => p.name !== currentUser.username);
-      if (lobby.players.length === 0) delete lobbies[currentLobby];
-      else if (lobby.host === currentUser.username) lobby.host = lobby.players[0].name;
-      DB.lobbies = lobbies;
-    }
-  }
-  currentLobby = null;
-  showScreen('main');
   renderQuizzes();
 }
 
@@ -2953,7 +2462,7 @@ function renderInvites() {
     `;
     item.querySelector('[data-accept]').addEventListener('click', () => {
       DB.invites = DB.invites.filter(i => i.id !== inv.id);
-      startLobby(inv.quizId, inv.difficulty || 'easy', [inv.from, currentUser.username]);
+      startGame(inv.quizId, inv.difficulty || 'easy');
     });
     item.querySelector('[data-decline]').addEventListener('click', () => {
       DB.invites = DB.invites.filter(i => i.id !== inv.id);
@@ -2964,7 +2473,241 @@ function renderInvites() {
 }
 
 /* =========================================================
-   📈 РАСШИРЕННАЯ СТАТИСТИКА
+   👤 СТРАНИЦА ПРОФИЛЯ
+   ========================================================= */
+function renderProfilePage() {
+  const page = $('profilePage');
+  if (!page) return;
+  initExtendedStats(currentUser);
+  const u = currentUser;
+  const now = Date.now();
+
+  const needed = xpForLevel(u.level);
+  const pct = Math.min(100, (u.xp / needed) * 100);
+  const online = isOnline(u.username);
+  const accCreated = new Date(u.createdAt);
+  const accAge = Math.floor((now - u.createdAt) / (1000 * 60 * 60 * 24));
+  const lastSeenStr = new Date(u.lastSeen).toLocaleString('ru');
+
+  const totalGames = u.gamesPlayed || 0;
+  const totalQ = u.totalQuestions || 0;
+  const accuracy = totalQ > 0 ? Math.round((u.totalCorrect / totalQ) * 100) : 0;
+  const perfectRate = totalGames > 0 ? Math.round((u.perfectGames / totalGames) * 100) : 0;
+
+  const achievementsUnlocked = (u.achievements || []).length;
+  const achPercent = Math.round((achievementsUnlocked / ACHIEVEMENTS.length) * 100);
+
+  // Последние 6 достижений
+  const recentAch = ACHIEVEMENTS.slice(0, 6).map(a => ({
+    ...a,
+    unlocked: (u.achievements || []).includes(a.id)
+  }));
+
+  // Недавние игры (топ-3)
+  const recentGames = (u.recentGames || []).slice(0, 3);
+
+  page.innerHTML = `
+    <!-- HERO -->
+    <div class="profile-hero">
+      <div class="profile-hero-content">
+        <div class="profile-hero-avatar ${online ? 'online' : ''}">${u.avatar || u.username[0].toUpperCase()}</div>
+        <div class="profile-hero-info">
+          <div class="profile-hero-name">${u.username}</div>
+          <div class="profile-hero-level">🎓 Уровень ${u.level} • ${u.xp} / ${needed} XP</div>
+          <div class="profile-hero-bio">${u.bio || 'Покоряю все праздники мира! 🌍'}</div>
+          <div class="profile-hero-meta">
+            <span>📅 С ${accCreated.toLocaleDateString('ru')}</span>
+            <span>⏰ ${accAge} дн. с нами</span>
+            <span>🏆 ${achievementsUnlocked} достижений</span>
+            <span>👥 ${(u.friends||[]).length} друзей</span>
+          </div>
+          <div class="profile-hero-xp">
+            <div class="profile-hero-xp-label">
+              <span>Прогресс уровня</span>
+              <span>${u.xp} / ${needed} XP</span>
+            </div>
+            <div class="profile-hero-xp-bar">
+              <div class="profile-hero-xp-fill" style="width:${pct}%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-quick-stats">
+        <div class="profile-quick-stat">
+          <div class="pq-icon">🎮</div>
+          <span class="pq-value">${totalGames}</span>
+          <span class="pq-label">Игр</span>
+        </div>
+        <div class="profile-quick-stat">
+          <div class="pq-icon">⭐</div>
+          <span class="pq-value">${u.totalScore || 0}</span>
+          <span class="pq-label">Очков</span>
+        </div>
+        <div class="profile-quick-stat">
+          <div class="pq-icon">🎯</div>
+          <span class="pq-value">${accuracy}%</span>
+          <span class="pq-label">Точность</span>
+        </div>
+        <div class="profile-quick-stat">
+          <div class="pq-icon">💯</div>
+          <span class="pq-value">${u.perfectGames || 0}</span>
+          <span class="pq-label">Идеальных</span>
+        </div>
+        <div class="profile-quick-stat">
+          <div class="pq-icon">🔥</div>
+          <span class="pq-value">${u.streak || 0}</span>
+          <span class="pq-label">Стрик</span>
+        </div>
+        <div class="profile-quick-stat">
+          <div class="pq-icon">🏆</div>
+          <span class="pq-value">${achievementsUnlocked}</span>
+          <span class="pq-label">Достижений</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ИНФОРМАЦИЯ ОБ АККАУНТЕ -->
+    <div class="profile-section">
+      <h3>📋 Информация об аккаунте</h3>
+      <div class="account-info-grid">
+        <div class="account-info-item">
+          <div class="account-info-icon">👤</div>
+          <div class="account-info-content">
+            <div class="account-info-label">Никнейм</div>
+            <div class="account-info-value">${u.username}</div>
+          </div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-icon">📧</div>
+          <div class="account-info-content">
+            <div class="account-info-label">Email</div>
+            <div class="account-info-value ${u.email ? '' : 'mono'}">${u.email || '— не указан —'}</div>
+          </div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-icon">📅</div>
+          <div class="account-info-content">
+            <div class="account-info-label">Дата регистрации</div>
+            <div class="account-info-value">${accCreated.toLocaleDateString('ru')}</div>
+          </div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-icon">🕐</div>
+          <div class="account-info-content">
+            <div class="account-info-label">Последний вход</div>
+            <div class="account-info-value mono">${lastSeenStr}</div>
+          </div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-icon">🎮</div>
+          <div class="account-info-content">
+            <div class="account-info-label">Всего игр</div>
+            <div class="account-info-value">${totalGames}</div>
+          </div>
+        </div>
+        <div class="account-info-item">
+          <div class="account-info-icon">⏱️</div>
+          <div class="account-info-content">
+            <div class="account-info-label">Время в игре</div>
+            <div class="account-info-value">${Math.floor((u.totalTime||0)/3600)}ч ${Math.floor(((u.totalTime||0)%3600)/60)}м</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button class="profile-action-btn" id="profileChangeNick">
+          <span class="pa-icon">✏️</span> Изменить ник
+        </button>
+        <button class="profile-action-btn" id="profileChangePassword">
+          <span class="pa-icon">🔐</span> Сменить пароль
+        </button>
+        <button class="profile-action-btn" id="profileChangeEmail">
+          <span class="pa-icon">📧</span> ${u.email ? 'Изменить почту' : 'Добавить почту'}
+        </button>
+        <button class="profile-action-btn" id="profileChangeBio">
+          <span class="pa-icon">💬</span> Изменить статус
+        </button>
+      </div>
+    </div>
+
+    <!-- ДОСТИЖЕНИЯ -->
+    <div class="profile-section">
+      <h3>🏆 Достижения (${achievementsUnlocked} / ${ACHIEVEMENTS.length})</h3>
+      <div class="ach-summary">
+        <div class="ach-summary-circle" style="--p:${achPercent}">
+          <span>${achPercent}%</span>
+        </div>
+        <div class="ach-summary-info">
+          <div class="ach-summary-title">${achievementsUnlocked} из ${ACHIEVEMENTS.length} открыто</div>
+          <div class="ach-summary-desc">${ACHIEVEMENTS.length - achievementsUnlocked > 0 ? `Осталось получить ещё ${ACHIEVEMENTS.length - achievementsUnlocked} достижений` : '👑 Вы получили все достижения!'}</div>
+        </div>
+      </div>
+      <div class="profile-ach-grid">
+        ${recentAch.map(a => `
+          <div class="profile-ach-item ${a.unlocked ? 'unlocked' : 'locked'}">
+            <div class="pa-emoji">${a.icon}</div>
+            <div class="pa-name">${a.unlocked ? a.name : '???'}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <button class="settings-btn" id="profileAllAchievements">Посмотреть все достижения →</button>
+      </div>
+    </div>
+
+    <!-- ПОСЛЕДНИЕ ИГРЫ -->
+    <div class="profile-section">
+      <h3>🕐 Последние игры</h3>
+      ${recentGames.length ? recentGames.map(g => {
+        const q = QUIZZES[g.quizId];
+        if (!q) return '';
+        const cls = g.accuracy === 100 ? 'win' : (g.accuracy >= 50 ? 'partial' : 'loss');
+        const diffInfo = DIFFICULTIES[g.difficulty];
+        const d = new Date(g.date);
+        const dateStr = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        return `<div class="recent-game ${cls}"><div class="rg-emoji">${q.emoji}</div><div class="rg-info"><div class="rg-name">${q.name}</div><div class="rg-meta">${diffInfo.icon} ${diffInfo.name} • ✅ ${g.correct}/${g.total} • ⏱ ${g.timeSpent}с</div></div><div class="rg-score">${g.score}</div><div class="rg-date">${dateStr}</div></div>`;
+      }).join('') : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Сыграйте первую игру, чтобы увидеть статистику</p>'}
+    </div>
+  `;
+
+  // Обработчики
+  $('profileChangeNick')?.addEventListener('click', () => {
+    $('newNicknameInput').value = u.username;
+    $('nicknameError').textContent = '';
+    $('nicknameModal').classList.remove('hidden');
+  });
+  $('profileChangePassword')?.addEventListener('click', () => {
+    $('oldPassword').value = '';
+    $('newPassword').value = '';
+    $('newPassword2').value = '';
+    $('passwordError').textContent = '';
+    $('passwordModal').classList.remove('hidden');
+  });
+  $('profileChangeEmail')?.addEventListener('click', () => {
+    $('newEmailInput').value = u.email || '';
+    $('emailError').textContent = '';
+    $('emailModal').classList.remove('hidden');
+  });
+  $('profileChangeBio')?.addEventListener('click', changeBio);
+  $('profileAllAchievements')?.addEventListener('click', () => {
+    document.querySelector('.nav-btn[data-view="achievements"]').click();
+  });
+}
+
+function changeBio() {
+  const current = currentUser.bio || '';
+  const bio = prompt('Введите ваш статус (макс. 100 символов):', current);
+  if (bio === null) return;
+  if (bio.length > 100) return showToast('❌ Слишком длинный статус');
+  currentUser.bio = bio.trim();
+  saveUser();
+  showToast('✅ Статус обновлён');
+  renderProfilePage();
+}
+
+/* =========================================================
+   РАСШИРЕННАЯ СТАТИСТИКА
    ========================================================= */
 function renderStatsDashboard() {
   const dash = $('statsDashboard');
@@ -3022,33 +2765,6 @@ function renderStatsDashboard() {
       }).join('')
     : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Пройдите викторину, чтобы увидеть топ</p>';
 
-  const recentHtml = (u.recentGames || []).length
-    ? u.recentGames.slice(0, 8).map(g => {
-        const q = QUIZZES[g.quizId];
-        if (!q) return '';
-        const cls = g.accuracy === 100 ? 'win' : (g.accuracy >= 50 ? 'partial' : 'loss');
-        const diffInfo = DIFFICULTIES[g.difficulty];
-        const d = new Date(g.date);
-        const dateStr = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-        return `<div class="recent-game ${cls}"><div class="rg-emoji">${q.emoji}</div><div class="rg-info"><div class="rg-name">${q.name}</div><div class="rg-meta">${diffInfo.icon} ${diffInfo.name} • ✅ ${g.correct}/${g.total} • ⏱ ${g.timeSpent}с</div></div><div class="rg-score">${g.score}</div><div class="rg-date">${dateStr}</div></div>`;
-      }).join('')
-    : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Ещё нет сыгранных игр</p>';
-
-  const allUsers = Object.values(DB.users);
-  const avgLevelAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.level||1), 0) / allUsers.length) : 1;
-  const avgScoreAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.totalScore||0), 0) / allUsers.length) : 0;
-  const avgGamesAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.gamesPlayed||0), 0) / allUsers.length) : 0;
-  const totalQAll = allUsers.reduce((a,b) => a + (b.totalQuestions||0), 0);
-  const totalCAll = allUsers.reduce((a,b) => a + (b.totalCorrect||0), 0);
-  const avgAccuracyAll = totalQAll > 0 ? Math.round((totalCAll / totalQAll) * 100) : 0;
-
-  const cmp = (val, avg) => {
-    const d = val - avg;
-    if (d > 0) return `<span class="cmp-hint above">▲ +${d}</span>`;
-    if (d < 0) return `<span class="cmp-hint below">▼ ${d}</span>`;
-    return `<span class="cmp-hint equal">= 0</span>`;
-  };
-
   dash.innerHTML = `
     <div class="stats-section"><h3>📊 Общие показатели</h3><div class="stats-grid">
       <div class="stat-card"><div class="stat-icon">🎮</div><span class="stat-number">${totalGames}</span><span class="stat-name">Игр сыграно</span></div>
@@ -3076,22 +2792,11 @@ function renderStatsDashboard() {
     <div class="stats-section"><h3>🌍 Прогресс по категориям</h3>${catProgressHtml}</div>
 
     <div class="stats-section"><h3>📈 Активность за последние 7 дней</h3><div class="activity-chart">${activityHtml}</div></div>
-
-    <div class="stats-section"><h3>🕐 Последние игры</h3><div class="recent-games">${recentHtml}</div></div>
-
-    <div class="stats-section"><h3>⚖️ Сравнение со средним</h3>
-      <div class="compare-row"><span class="cmp-label">Уровень</span><span class="cmp-value">${u.level} ${cmp(u.level, avgLevelAll)}</span></div>
-      <div class="compare-row"><span class="cmp-label">Игр сыграно</span><span class="cmp-value">${totalGames} ${cmp(totalGames, avgGamesAll)}</span></div>
-      <div class="compare-row"><span class="cmp-label">Всего очков</span><span class="cmp-value">${u.totalScore || 0} ${cmp(u.totalScore || 0, avgScoreAll)}</span></div>
-      <div class="compare-row"><span class="cmp-label">Точность</span><span class="cmp-value">${accuracy}% ${cmp(accuracy, avgAccuracyAll)}</span></div>
-      <div class="compare-row"><span class="cmp-label">Всего игроков</span><span class="cmp-value">${allUsers.length}</span></div>
-      <div class="compare-row"><span class="cmp-label">Место в рейтинге</span><span class="cmp-value">${(() => { const sorted = allUsers.sort((a,b) => (b.level*10000+b.xp) - (a.level*10000+a.xp)); return `#${sorted.findIndex(x => x.username === currentUser.username) + 1} из ${sorted.length}`; })()}</span></div>
-    </div>
   `;
 }
 
 /* =========================================================
-   ⚙️ НАСТРОЙКИ (ПОЛНОСТЬЮ ПЕРЕРАБОТАНО)
+   НАСТРОЙКИ
    ========================================================= */
 function renderSettings() {
   const layout = $('settingsLayout');
@@ -3101,71 +2806,10 @@ function renderSettings() {
   const u = currentUser;
   const accCreated = new Date(u.createdAt);
   const accAge = Math.floor((Date.now() - u.createdAt) / (1000 * 60 * 60 * 24));
-  const lastSeenStr = new Date(u.lastSeen).toLocaleString('ru');
-  const storageUsed = (() => {
-    try {
-      const raw = JSON.stringify(DB.users);
-      const bytes = new Blob([raw]).size;
-      if (bytes < 1024) return bytes + ' Б';
-      if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' КБ';
-      return (bytes/1024/1024).toFixed(2) + ' МБ';
-    } catch { return '—'; }
-  })();
 
   layout.innerHTML = `
-    <!-- ПРОФИЛЬ -->
-    <div class="settings-card">
-      <h3><span class="settings-icon">👤</span> Профиль</h3>
-      <div class="profile-header">
-        <div class="profile-big-avatar">${u.avatar || u.username[0].toUpperCase()}</div>
-        <div class="profile-info-block">
-          <div class="profile-name">${u.username}</div>
-          <div class="profile-meta">
-            <span>🎓 Ур. ${u.level}</span>
-            <span>⭐ ${u.xp} XP</span>
-            <span>🏆 ${(u.achievements||[]).length} достижений</span>
-            <span>📅 ${accAge} дн. в игре</span>
-          </div>
-        </div>
-      </div>
-      <div class="setting-row">
-        <div class="setting-info">
-          <div class="setting-title">Сменить аватар</div>
-          <div class="setting-desc">Выберите смайлик для профиля</div>
-        </div>
-      </div>
-      <div class="avatar-grid" id="avatarGrid">
-        ${AVATARS.map(a => `<div class="avatar-option ${a === (u.avatar || '😀') ? 'active' : ''}" data-avatar="${a}">${a}</div>`).join('')}
-      </div>
-      <div class="setting-row" style="margin-top:16px;">
-        <div class="setting-info">
-          <div class="setting-title">Никнейм</div>
-          <div class="setting-desc">Текущий: <b style="color:#ffb86b;">${u.username}</b> • 3-20 символов</div>
-        </div>
-        <div class="setting-control">
-          <button class="settings-btn" id="changeNicknameBtn">✏️ Изменить</button>
-        </div>
-      </div>
-      <div class="setting-row">
-        <div class="setting-info">
-          <div class="setting-title">Пароль</div>
-          <div class="setting-desc">Смените пароль для входа в аккаунт</div>
-        </div>
-        <div class="setting-control">
-          <button class="settings-btn" id="changePasswordBtn">🔐 Сменить пароль</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ВНЕШНИЙ ВИД -->
     <div class="settings-card">
       <h3><span class="settings-icon">🎨</span> Внешний вид</h3>
-      <div class="setting-row">
-        <div class="setting-info">
-          <div class="setting-title">Тема оформления</div>
-          <div class="setting-desc">Выберите цветовую схему сайта</div>
-        </div>
-      </div>
       <div class="theme-grid">
         <div class="theme-preview halloween ${s.theme === 'halloween' ? 'active' : ''}" data-theme="halloween">
           <div class="theme-preview-swatch"></div>
@@ -3187,7 +2831,7 @@ function renderSettings() {
       <div class="setting-row" style="margin-top:16px;">
         <div class="setting-info">
           <div class="setting-title">🎬 Анимации</div>
-          <div class="setting-desc">Плавные переходы и эффекты (отключите для слабых устройств)</div>
+          <div class="setting-desc">Плавные переходы и эффекты</div>
         </div>
         <label class="switch">
           <input type="checkbox" id="animationsToggle" ${s.animations ? 'checked' : ''}>
@@ -3197,7 +2841,7 @@ function renderSettings() {
       <div class="setting-row">
         <div class="setting-info">
           <div class="setting-title">🦇 Летучие мыши на фоне</div>
-          <div class="setting-desc">Декоративные элементы для атмосферы</div>
+          <div class="setting-desc">Декоративные элементы</div>
         </div>
         <label class="switch">
           <input type="checkbox" id="batsToggle" ${s.batsBg ? 'checked' : ''}>
@@ -3206,7 +2850,6 @@ function renderSettings() {
       </div>
     </div>
 
-    <!-- ЗВУК -->
     <div class="settings-card">
       <h3><span class="settings-icon">🔊</span> Звук</h3>
       <div class="setting-row">
@@ -3222,40 +2865,26 @@ function renderSettings() {
       <div class="setting-row">
         <div class="setting-info">
           <div class="setting-title">Громкость</div>
-          <div class="setting-desc">Уровень громкости звуковых эффектов</div>
         </div>
         <div class="volume-control">
           <input type="range" id="volumeSlider" min="0" max="100" value="${Math.round(s.volume * 100)}">
           <span class="volume-value" id="volumeValue">${Math.round(s.volume * 100)}%</span>
         </div>
       </div>
-      <div class="setting-row">
-        <div class="setting-info">
-          <div class="setting-title">🔔 Уведомления</div>
-          <div class="setting-desc">Показывать всплывающие уведомления о приглашениях</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="notificationsToggle" ${s.notifications ? 'checked' : ''}>
-          <span class="slider"></span>
-        </label>
-      </div>
     </div>
 
-    <!-- ДАННЫЕ -->
     <div class="settings-card">
       <h3><span class="settings-icon">💾</span> Данные аккаунта</h3>
       <div class="account-stats">
         <div class="account-stat"><span class="ac-value">${accCreated.toLocaleDateString('ru')}</span><span class="ac-label">Создан</span></div>
         <div class="account-stat"><span class="ac-value">${accAge} дн.</span><span class="ac-label">С нами</span></div>
-        <div class="account-stat"><span class="ac-value">${storageUsed}</span><span class="ac-label">В хранилище</span></div>
-        <div class="account-stat"><span class="ac-value">${(DB.invites.filter(i => i.from === u.username).length)}</span><span class="ac-label">Отправлено инвайтов</span></div>
         <div class="account-stat"><span class="ac-value">${(u.friends||[]).length}</span><span class="ac-label">Друзей</span></div>
         <div class="account-stat"><span class="ac-value">${(u.achievements||[]).length}/${ACHIEVEMENTS.length}</span><span class="ac-label">Достижений</span></div>
       </div>
       <div class="setting-row" style="margin-top:16px;">
         <div class="setting-info">
           <div class="setting-title">📤 Экспорт данных</div>
-          <div class="setting-desc">Скачать весь прогресс в виде JSON-файла для резервной копии</div>
+          <div class="setting-desc">Скачать весь прогресс в JSON-файле</div>
         </div>
         <div class="setting-control">
           <button class="settings-btn success" id="exportDataBtn">📥 Скачать</button>
@@ -3264,7 +2893,7 @@ function renderSettings() {
       <div class="setting-row">
         <div class="setting-info">
           <div class="setting-title">📥 Импорт данных</div>
-          <div class="setting-desc">Восстановить прогресс из резервной копии</div>
+          <div class="setting-desc">Восстановить из резервной копии</div>
         </div>
         <div class="setting-control">
           <button class="settings-btn" id="importDataBtn">📂 Загрузить</button>
@@ -3272,30 +2901,13 @@ function renderSettings() {
       </div>
     </div>
 
-    <!-- ГОРЯЧИЕ КЛАВИШИ -->
-    <div class="settings-card">
-      <h3><span class="settings-icon">⌨️</span> Горячие клавиши</h3>
-      <div class="info-box">Эти комбинации работают на странице викторин и в игре.</div>
-      <div class="hotkeys-grid">
-        <div class="hotkey-item"><span class="hotkey-key">1-4</span><span class="hotkey-desc">Выбор ответа в игре</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">ESC</span><span class="hotkey-desc">Выход из игры</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">Enter</span><span class="hotkey-desc">Отправить сообщение в чат</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">Q</span><span class="hotkey-desc">Открыть викторины</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">S</span><span class="hotkey-desc">Настройки</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">F</span><span class="hotkey-desc">Друзья</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">L</span><span class="hotkey-desc">Рейтинг</span></div>
-        <div class="hotkey-item"><span class="hotkey-key">A</span><span class="hotkey-desc">Достижения</span></div>
-      </div>
-    </div>
-
-    <!-- ОПАСНАЯ ЗОНА -->
     <div class="settings-card" style="border-color:rgba(244,67,54,0.4);">
       <h3 style="color:#ef5350;"><span class="settings-icon">⚠️</span> Опасная зона</h3>
-      <div class="info-box danger">Действия ниже необратимы. Будьте осторожны.</div>
+      <div class="info-box danger">Действия ниже необратимы.</div>
       <div class="setting-row">
         <div class="setting-info">
           <div class="setting-title" style="color:#ef5350;">Сбросить статистику</div>
-          <div class="setting-desc">Обнулит игры, очки, достижения и уровни. Друзья и настройки останутся</div>
+          <div class="setting-desc">Обнулит игры, очки, достижения, уровни</div>
         </div>
         <div class="setting-control">
           <button class="settings-btn danger" id="resetStatsBtn">📊 Сбросить</button>
@@ -3303,17 +2915,8 @@ function renderSettings() {
       </div>
       <div class="setting-row">
         <div class="setting-info">
-          <div class="setting-title" style="color:#ef5350;">Сбросить весь прогресс</div>
-          <div class="setting-desc">Полное удаление всех данных аккаунта, кроме логина и пароля</div>
-        </div>
-        <div class="setting-control">
-          <button class="settings-btn danger" id="resetAllBtn">🗑 Полный сброс</button>
-        </div>
-      </div>
-      <div class="setting-row">
-        <div class="setting-info">
           <div class="setting-title" style="color:#ef5350;">Удалить аккаунт</div>
-          <div class="setting-desc">Безвозвратное удаление аккаунта и всех данных</div>
+          <div class="setting-desc">Безвозвратное удаление аккаунта</div>
         </div>
         <div class="setting-control">
           <button class="settings-btn danger" id="deleteAccountBtn">❌ Удалить</button>
@@ -3322,24 +2925,10 @@ function renderSettings() {
     </div>
   `;
 
-  // Навешиваем обработчики
   layout.querySelectorAll('.theme-preview').forEach(el => {
     el.addEventListener('click', () => {
-      const t = el.dataset.theme;
-      applyTheme(t);
+      applyTheme(el.dataset.theme);
       showToast(`🎨 Тема: ${el.textContent.trim()}`);
-      renderSettings();
-    });
-  });
-
-  layout.querySelectorAll('.avatar-option').forEach(el => {
-    el.addEventListener('click', () => {
-      const a = el.dataset.avatar;
-      currentUser.avatar = a;
-      saveUser();
-      updateTopBar();
-      showToast(`✅ Аватар: ${a}`);
-      playSound('click');
       renderSettings();
     });
   });
@@ -3347,7 +2936,6 @@ function renderSettings() {
   $('animationsToggle').addEventListener('change', e => {
     const s = DB.settings; s.animations = e.target.checked; DB.settings = s;
     applySettings();
-    showToast(e.target.checked ? '🎬 Анимации включены' : '🎬 Анимации выключены');
   });
   $('batsToggle').addEventListener('change', e => {
     const s = DB.settings; s.batsBg = e.target.checked; DB.settings = s;
@@ -3362,23 +2950,6 @@ function renderSettings() {
     $('volumeValue').textContent = v + '%';
     const s = DB.settings; s.volume = v / 100; DB.settings = s;
   });
-  $('volumeSlider').addEventListener('change', () => playSound('click'));
-  $('notificationsToggle').addEventListener('change', e => {
-    const s = DB.settings; s.notifications = e.target.checked; DB.settings = s;
-  });
-
-  $('changePasswordBtn').addEventListener('click', () => {
-    $('oldPassword').value = '';
-    $('newPassword').value = '';
-    $('newPassword2').value = '';
-    $('passwordError').textContent = '';
-    $('passwordModal').classList.remove('hidden');
-  });
-  $('changeNicknameBtn').addEventListener('click', () => {
-    $('newNicknameInput').value = '';
-    $('nicknameError').textContent = '';
-    $('nicknameModal').classList.remove('hidden');
-  });
   $('exportDataBtn').addEventListener('click', exportData);
   $('importDataBtn').addEventListener('click', () => {
     $('importTextarea').value = '';
@@ -3386,32 +2957,24 @@ function renderSettings() {
     $('importModal').classList.remove('hidden');
   });
   $('resetStatsBtn').addEventListener('click', resetStatsOnly);
-  $('resetAllBtn').addEventListener('click', resetAllProgress);
   $('deleteAccountBtn').addEventListener('click', deleteAccount);
 }
 
-/* ===== Экспорт данных ===== */
+/* ===== Экспорт ===== */
 function exportData() {
-  const data = {
-    version: 1,
-    exportedAt: new Date().toISOString(),
-    user: currentUser,
-    settings: DB.settings
-  };
+  const data = { version:1, exportedAt:new Date().toISOString(), user:currentUser, settings:DB.settings };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = `quiz_backup_${currentUser.username}_${todayKey()}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast('📥 Файл скачан!');
   playSound('success');
 }
 
-/* ===== Импорт данных ===== */
+/* ===== Импорт ===== */
 $('cancelImportBtn').addEventListener('click', () => $('importModal').classList.add('hidden'));
 $('confirmImportBtn').addEventListener('click', () => {
   const raw = $('importTextarea').value.trim();
@@ -3420,11 +2983,10 @@ $('confirmImportBtn').addEventListener('click', () => {
   if (!raw) return err.textContent = 'Вставьте данные';
   try {
     const data = JSON.parse(raw);
-    if (!data.user || !data.user.username) return err.textContent = 'Неверный формат данных';
-    if (!confirm('⚠ Все текущие данные будут заменены. Продолжить?')) return;
+    if (!data.user || !data.user.username) return err.textContent = 'Неверный формат';
+    if (!confirm('⚠ Все данные будут заменены. Продолжить?')) return;
     const imported = Object.assign(defaultUser(data.user.username), data.user);
     initExtendedStats(imported);
-    // Сохраняем пароль текущего пользователя
     imported.password = currentUser.password;
     const users = DB.users;
     users[currentUser.username.toLowerCase()] = imported;
@@ -3433,13 +2995,11 @@ $('confirmImportBtn').addEventListener('click', () => {
     if (data.settings) DB.settings = Object.assign(DB.settings, data.settings);
     saveUser();
     $('importModal').classList.add('hidden');
-    showToast('✅ Данные импортированы');
+    showToast('✅ Импортировано');
     playSound('success');
     burstConfetti(40);
     enterMain();
-  } catch (e) {
-    err.textContent = 'Ошибка: ' + e.message;
-  }
+  } catch (e) { err.textContent = 'Ошибка: ' + e.message; }
 });
 
 /* ===== Смена пароля ===== */
@@ -3470,18 +3030,17 @@ $('saveNicknameBtn').addEventListener('click', () => {
   if (!/^[a-zA-Zа-яА-Я0-9_\-]+$/.test(nick)) return err.textContent = 'Только буквы, цифры, _ и -';
   const users = DB.users;
   if (users[nick.toLowerCase()] && nick.toLowerCase() !== currentUser.username.toLowerCase()) return err.textContent = 'Этот никнейм занят';
+  if (nick === currentUser.username) return err.textContent = 'Это ваш текущий ник';
 
   const oldNick = currentUser.username;
   const oldKey = oldNick.toLowerCase();
   const newKey = nick.toLowerCase();
 
-  // Меняем в системе
   currentUser.username = nick;
   users[newKey] = currentUser;
   if (oldKey !== newKey) delete users[oldKey];
   DB.users = users;
   DB.session = newKey;
-  saveUser();
 
   // Обновляем ссылки у других игроков
   Object.keys(users).forEach(k => {
@@ -3491,6 +3050,7 @@ $('saveNicknameBtn').addEventListener('click', () => {
     }
   });
   DB.users = users;
+  saveUser();
 
   $('nicknameModal').classList.add('hidden');
   showToast('✅ Никнейм изменён');
@@ -3498,14 +3058,37 @@ $('saveNicknameBtn').addEventListener('click', () => {
   enterMain();
 });
 
-/* ===== Сброс только статистики ===== */
+/* ===== Смена почты ===== */
+$('cancelEmailBtn').addEventListener('click', () => $('emailModal').classList.add('hidden'));
+$('saveEmailBtn').addEventListener('click', () => {
+  const em = $('newEmailInput').value.trim();
+  const err = $('emailError');
+  err.textContent = '';
+  if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return err.textContent = 'Неверный формат email';
+  if (em) {
+    const users = DB.users;
+    const emailExists = Object.entries(users).some(([k, u]) => 
+      u.email && u.email.toLowerCase() === em.toLowerCase() && k !== currentUser.username.toLowerCase()
+    );
+    if (emailExists) return err.textContent = 'Этот email уже используется';
+  }
+  currentUser.email = em;
+  saveUser();
+  $('emailModal').classList.add('hidden');
+  showToast(em ? '📧 Email сохранён' : '📧 Email удалён');
+  playSound('success');
+  renderProfilePage();
+});
+
+/* ===== Сброс статистики ===== */
 function resetStatsOnly() {
-  if (!confirm('📊 Сбросить статистику (игры, очки, достижения, уровни)?\nДрузья и настройки останутся.')) return;
-  const fresh = defaultUser(currentUser.username);
+  if (!confirm('📊 Сбросить статистику?\nДрузья, ник, почта и настройки останутся.')) return;
+  const fresh = defaultUser(currentUser.username, currentUser.email);
   fresh.password = currentUser.password;
   fresh.friends = currentUser.friends;
   fresh.avatar = currentUser.avatar;
   fresh.createdAt = currentUser.createdAt;
+  fresh.bio = currentUser.bio;
   const users = DB.users;
   users[currentUser.username.toLowerCase()] = fresh;
   DB.users = users;
@@ -3515,27 +3098,12 @@ function resetStatsOnly() {
   enterMain();
 }
 
-/* ===== Сброс всего прогресса ===== */
-function resetAllProgress() {
-  if (!confirm('⚠ Сбросить ВЕСЬ прогресс?')) return;
-  if (!confirm('Точно? Это НЕОБРАТИМО!')) return;
-  const fresh = defaultUser(currentUser.username);
-  fresh.password = currentUser.password;
-  const users = DB.users;
-  users[currentUser.username.toLowerCase()] = fresh;
-  DB.users = users;
-  currentUser = fresh;
-  saveUser();
-  showToast('🗑 Полный сброс');
-  enterMain();
-}
-
 /* ===== Удаление аккаунта ===== */
 function deleteAccount() {
   if (!confirm('❌ УДАЛИТЬ АККАУНТ?\nЭто действие необратимо!')) return;
-  if (!confirm('Вы точно уверены? Вся ваша статистика, друзья и прогресс будут потеряны навсегда.')) return;
+  if (!confirm('Точно уверены? Всё будет потеряно навсегда.')) return;
   const nick = prompt('Введите ваш никнейм для подтверждения:');
-  if (nick !== currentUser.username) return showToast('❌ Никнейм не совпал. Удаление отменено.');
+  if (nick !== currentUser.username) return showToast('❌ Никнейм не совпал');
   const users = DB.users;
   delete users[currentUser.username.toLowerCase()];
   DB.users = users;
@@ -3549,66 +3117,19 @@ function deleteAccount() {
 }
 
 /* =========================================================
-   PROFILE MODAL (по клику на аватар)
+   PROFILE MODAL (быстрый просмотр с аватара в шапке)
    ========================================================= */
 $('userAvatar').addEventListener('click', () => {
-  $('profileName').textContent = '👤 ' + currentUser.username;
-  $('profileStats').innerHTML = `
-    <div class="stat"><span class="stat-value">${currentUser.level}</span><span class="stat-label">Уровень</span></div>
-    <div class="stat"><span class="stat-value">${currentUser.xp}</span><span class="stat-label">XP</span></div>
-    <div class="stat"><span class="stat-value">${currentUser.gamesPlayed}</span><span class="stat-label">Игр</span></div>
-    <div class="stat"><span class="stat-value">${(currentUser.achievements||[]).length}</span><span class="stat-label">Достижений</span></div>
-    <div class="stat"><span class="stat-value">${(currentUser.friends||[]).length}</span><span class="stat-label">Друзей</span></div>
-    <div class="stat"><span class="stat-value">${currentUser.streak || 0}</span><span class="stat-label">Стрик 🔥</span></div>
-  `;
-  $('profileModal').classList.remove('hidden');
+  // Переключаемся на вкладку профиля
+  document.querySelector('.nav-btn[data-view="profile"]').click();
 });
 
 $('closeProfileBtn').addEventListener('click', () => $('profileModal').classList.add('hidden'));
 
 /* =========================================================
-   ГОРЯЧИЕ КЛАВИШИ
-   ========================================================= */
-document.addEventListener('keydown', e => {
-  if (!currentUser) return;
-  // Не срабатывают при вводе в поле
-  const tag = (e.target.tagName || '').toLowerCase();
-  if (tag === 'input' || tag === 'textarea') {
-    if (e.key === 'Escape' && game) {
-      // Разрешаем Esc в игре
-      e.preventDefault();
-      if (confirm('Покинуть игру?')) { clearInterval(timerInterval); showScreen('main'); }
-    }
-    return;
-  }
-  // Цифры 1-4 в игре
-  if (game && screens.game.classList.contains('active')) {
-    if (e.key >= '1' && e.key <= '4') {
-      const idx = parseInt(e.key) - 1;
-      const btns = document.querySelectorAll('.answer-btn');
-      if (btns[idx] && !btns[idx].disabled) btns[idx].click();
-    }
-    if (e.key === 'Escape') {
-      if (confirm('Покинуть игру?')) { clearInterval(timerInterval); showScreen('main'); }
-    }
-    return;
-  }
-  // Навигация по вкладкам
-  if (screens.main.classList.contains('active')) {
-    const map = { 'q':'quizzes', 's':'settings', 'f':'friends', 'l':'leaderboard', 'a':'achievements', 'i':'stats' };
-    const view = map[e.key.toLowerCase()];
-    if (view) {
-      const btn = document.querySelector(`.nav-btn[data-view="${view}"]`);
-      if (btn) btn.click();
-    }
-  }
-});
-
-/* =========================================================
    INIT
    ========================================================= */
 (function init() {
-  const hasUrlJoin = checkUrlJoin();
   const session = DB.session;
   if (session && DB.users[session]) {
     currentUser = DB.users[session];
@@ -3616,7 +3137,6 @@ document.addEventListener('keydown', e => {
     enterMain();
   } else {
     showScreen('auth');
-    if (hasUrlJoin) showToast('🔗 Войдите, чтобы присоединиться');
   }
   setTimeout(() => { if (currentUser) burstConfetti(20); }, 500);
 })();
