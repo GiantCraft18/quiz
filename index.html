@@ -74,8 +74,7 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .user-info span { font-size:13px; background:rgba(255,140,0,0.15); padding:6px 14px; border-radius:20px; border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-weight:600; }
 .avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; border:2px solid rgba(255,180,80,0.6); box-shadow:0 0 15px rgba(255,140,0,0.5); color:#fff; transition:0.3s; cursor:pointer; position:relative; }
 .avatar:hover { transform:scale(1.1) rotate(-5deg); box-shadow:0 0 25px rgba(255,140,0,0.8); }
-.avatar.has-notification::after { content:''; position:absolute; top:-2px; right:-2px; width:12px; height:12px; background:#f44336; border-radius:50%; border:2px solid rgba(40,10,60,0.95); box-shadow:0 0 10px #f44336; animation: pulse 1.5s infinite; }
-.btn-icon { background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-size:18px; width:44px; height:44px; border-radius:50%; cursor:pointer; transition:0.3s; position:relative; }
+.btn-icon { background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-size:18px; width:44px; height:44px; border-radius:50%; cursor:pointer; transition:0.3s; }
 .btn-icon:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.5); transform:scale(1.05); }
 .xp-bar-container { position:relative; width:200px; height:8px; background:rgba(0,0,0,0.5); border-radius:4px; overflow:hidden; border:1px solid rgba(255,140,0,0.3); }
 .xp-bar { height:100%; background:linear-gradient(90deg,#ff6b00,#ffb86b,#ff6b00); background-size:200% 100%; animation: xpShine 3s linear infinite; transition: width 0.5s; }
@@ -146,6 +145,8 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .quiz-actions { display:flex; gap:8px; flex-wrap:wrap; position:relative; z-index:1; }
 .quiz-card.completed::after { content:'✓ ПРОЙДЕНО'; position:absolute; top:14px; right:14px; background:linear-gradient(135deg,#4caf50,#2e7d32); padding:5px 12px; border-radius:12px; font-size:10px; font-weight:bold; letter-spacing:1px; box-shadow:0 0 15px rgba(76,175,80,0.5); z-index:2; }
 .quiz-best { position:absolute; top:14px; left:14px; background:rgba(255,215,0,0.15); color:#ffd700; padding:4px 10px; border-radius:12px; font-size:11px; border:1px solid rgba(255,215,0,0.5); z-index:2; font-weight:bold; }
+.quiz-author { position:absolute; top:14px; right:14px; background:rgba(156,39,176,0.2); color:#ce93d8; padding:4px 10px; border-radius:12px; font-size:11px; border:1px solid rgba(206,147,216,0.5); z-index:2; font-weight:bold; }
+.quiz-card.completed .quiz-author { right:auto; left:14px; top:44px; }
 
 /* ACHIEVEMENTS */
 .achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px; }
@@ -218,7 +219,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 
 .question-type-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:linear-gradient(135deg,rgba(156,39,176,0.3),rgba(103,58,183,0.2)); border:1px solid rgba(206,147,216,0.5); border-radius:20px; font-size:12px; color:#ce93d8; font-weight:700; margin-bottom:16px; text-transform:uppercase; letter-spacing:1px; }
 
-/* Answers - Choice */
 .answers { display:flex; flex-direction:column; gap:12px; }
 .answer-btn { padding:18px 24px; background:rgba(255,140,0,0.08); border:2px solid rgba(255,140,0,0.25); border-radius:14px; color:#e8d5b7; font-size:16px; cursor:pointer; text-align:left; transition:0.3s; font-weight:500; position:relative; overflow:hidden; animation: slideInA 0.4s ease backwards; }
 .answer-btn:nth-child(1) { animation-delay: 0.1s; }
@@ -233,24 +233,19 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
 .answer-btn:disabled { cursor:not-allowed; }
 
-/* Emoji puzzle question */
 .emoji-puzzle { display:flex; justify-content:center; align-items:center; gap:14px; padding:30px; background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px dashed rgba(255,180,80,0.5); border-radius:20px; margin-bottom:24px; flex-wrap:wrap; }
 .emoji-puzzle .emoji-big { font-size:64px; line-height:1; filter:drop-shadow(0 0 20px rgba(255,140,0,0.7)); animation: emojiFloat 2s ease-in-out infinite; }
-.emoji-puzzle .emoji-plus { font-size:36px; color:#ffb86b; opacity:0.6; }
 
-/* Image question */
 .image-question { display:flex; justify-content:center; align-items:center; padding:20px; background:rgba(0,0,0,0.3); border-radius:20px; margin-bottom:20px; min-height:180px; border:2px solid rgba(255,140,0,0.25); }
 .image-question img { max-width:100%; max-height:300px; border-radius:14px; box-shadow:0 10px 40px rgba(0,0,0,0.5); }
 .image-question .image-fallback { font-size:120px; line-height:1; filter:drop-shadow(0 0 20px rgba(255,140,0,0.7)); }
 
-/* Audio question */
 .audio-question { display:flex; flex-direction:column; align-items:center; gap:16px; padding:30px; background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.3); border-radius:20px; margin-bottom:20px; }
 .audio-play-btn { width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; color:#fff; font-size:38px; cursor:pointer; box-shadow:0 0 40px rgba(255,100,0,0.6); transition:0.3s; display:flex; align-items:center; justify-content:center; position:relative; }
 .audio-play-btn:hover { transform:scale(1.08); box-shadow:0 0 60px rgba(255,100,0,0.9); }
 .audio-play-btn.playing { animation: pulse 1s infinite; }
 .audio-hint { font-size:13px; color:#c9a0dc; text-align:center; }
 
-/* Free text answer */
 .free-answer-container { display:flex; flex-direction:column; gap:14px; }
 .free-answer-input { padding:18px 22px; background:rgba(0,0,0,0.5); border:2px solid rgba(255,140,0,0.35); border-radius:14px; color:#ffb86b; font-size:18px; font-weight:600; text-align:center; transition:0.3s; }
 .free-answer-input:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 25px rgba(255,140,0,0.5); background:rgba(0,0,0,0.6); }
@@ -259,11 +254,9 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .free-answer-submit { padding:16px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:14px; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; transition:0.3s; box-shadow:0 6px 20px rgba(255,100,0,0.5); }
 .free-answer-submit:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,100,0,0.7); }
 
-/* Fill-in-the-blank */
 .fill-blank-text { font-size:20px; line-height:1.7; text-align:center; padding:24px; background:rgba(0,0,0,0.3); border-radius:16px; margin-bottom:20px; color:#e8d5b7; }
 .fill-blank-text .blank { display:inline-block; min-width:120px; padding:4px 14px; background:rgba(255,140,0,0.15); border:2px dashed rgba(255,180,80,0.6); border-radius:8px; color:#ffd700; font-weight:bold; }
 
-/* True/False */
 .tf-container { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .tf-btn { padding:32px 20px; border-radius:18px; border:3px solid; color:#fff; font-size:20px; font-weight:bold; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .tf-btn .tf-icon { font-size:48px; line-height:1; }
@@ -275,7 +268,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .tf-btn.wrong { animation: shake 0.4s ease; box-shadow:0 0 50px rgba(244,67,54,0.8); }
 .tf-btn:disabled { cursor:not-allowed; }
 
-/* Matching pairs */
 .match-container { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
 .match-column { display:flex; flex-direction:column; gap:10px; }
 .match-item { padding:14px 18px; background:rgba(255,140,0,0.08); border:2px solid rgba(255,140,0,0.25); border-radius:12px; color:#e8d5b7; cursor:pointer; transition:0.3s; font-size:15px; font-weight:600; text-align:center; position:relative; }
@@ -284,7 +276,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .match-item.matched { background:linear-gradient(135deg,rgba(76,175,80,0.3),rgba(46,125,50,0.25)); border-color:#4caf50; color:#8bc34a; cursor:default; box-shadow:0 0 20px rgba(76,175,80,0.4); }
 .match-item.matched::after { content:'✓'; position:absolute; top:6px; right:10px; color:#8bc34a; font-size:16px; }
 .match-item.mismatch { animation: shake 0.4s ease; background:linear-gradient(135deg,rgba(244,67,54,0.3),rgba(198,40,40,0.25)); border-color:#f44336; }
-
 .match-progress { text-align:center; margin-top:16px; font-size:14px; color:#c9a0dc; font-weight:600; }
 
 /* CHAT */
@@ -297,15 +288,45 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 @keyframes msgIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
 .chat-msg .author { font-weight:bold; color:#ffb86b; margin-right:6px; }
 .chat-msg.system { background:rgba(255,140,0,0.15); text-align:center; font-style:italic; color:#c9a0dc; border-left:none; border-top:1px dashed rgba(255,140,0,0.3); }
-.chat-input { display:flex; gap:8px; margin-top:14px; }
-.chat-input input { flex:1; padding:11px 14px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.25); border-radius:10px; color:#ffb86b; font-size:13px; }
-.chat-input input:focus { outline:none; border-color:#ff8c00; }
-.chat-input button { padding:0 18px; background:linear-gradient(135deg,#ff6b00,#c72c00); border:none; border-radius:10px; color:#fff; font-size:18px; cursor:pointer; transition:0.3s; }
-.chat-input button:hover { box-shadow:0 0 20px rgba(255,140,0,0.6); transform: scale(1.05); }
+
+/* MODAL */
+.modal { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; backdrop-filter:blur(5px); }
+.modal.hidden { display:none; }
+.modal-content { background:linear-gradient(160deg,rgba(40,10,60,0.95),rgba(20,5,35,0.98)); padding:42px; border-radius:26px; max-width:540px; width:100%; border:2px solid rgba(255,140,0,0.4); box-shadow:0 30px 80px rgba(0,0,0,0.8), 0 0 100px rgba(255,100,0,0.2); animation:modalIn 0.35s ease; position:relative; max-height:90vh; overflow-y:auto; }
+.modal-content::before { content:'🎃'; position:absolute; top:-28px; right:24px; font-size:44px; filter: drop-shadow(0 0 20px rgba(255,140,0,0.9)); }
+@keyframes modalIn { from{transform:scale(0.9);opacity:0;} to{transform:scale(1);opacity:1;} }
+.modal-content h2 { margin-bottom:18px; text-align:center; color:#ff8c00; font-size:28px; }
+.result-stats { display:flex; justify-content:space-around; margin:26px 0; flex-wrap:wrap; gap:16px; }
+.stat { text-align:center; }
+.stat-value { font-size:36px; font-weight:bold; display:block; color:#ffb86b; font-family:'Creepster',cursive; text-shadow:0 0 20px rgba(255,140,0,0.7); }
+.stat-label { font-size:13px; color:#c9a0dc; margin-top:4px; display:block; }
+.modal-content select, .modal-content input[type=text], .modal-content input[type=password], .modal-content input[type=email] { width:100%; padding:13px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; margin:8px 0; }
+.modal-content input:focus, .modal-content select:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
+.modal-buttons { display:flex; gap:12px; margin-top:8px; }
+.modal-buttons button { flex:1; }
+
+/* TOAST */
+.toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,rgba(40,10,60,0.98),rgba(20,5,35,0.98)); padding:15px 30px; border-radius:30px; font-size:15px; z-index:300; border:2px solid rgba(255,140,0,0.5); box-shadow:0 0 40px rgba(255,100,0,0.4); color:#ffb86b; font-weight:600; animation:toastIn 0.35s ease; max-width:90%; text-align:center; }
+@keyframes toastIn { from{transform:translate(-50%,20px);opacity:0;} to{transform:translate(-50%,0);opacity:1;} }
+
+/* CONFETTI */
+.confetti-piece { position:fixed; width:10px; height:10px; pointer-events:none; z-index:400; animation: fall linear forwards; }
+@keyframes fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity:1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity:0; }
+}
+
+/* THEMES */
+body.theme-christmas { background: radial-gradient(ellipse at top, #0a2e1a 0%, #061a10 40%, #020a05 100%); }
+body.theme-christmas .logo { color:#ff5252; text-shadow: 0 0 15px rgba(255,82,82,0.7); }
+body.theme-newyear { background: radial-gradient(ellipse at top, #0a1d40 0%, #06122a 40%, #020617 100%); }
+body.theme-newyear .logo { color:#64b5f6; text-shadow: 0 0 15px rgba(100,181,246,0.7); }
+body.theme-cosmic { background: radial-gradient(ellipse at top, #1a0033 0%, #0d001a 40%, #000 100%); }
+body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,0.7); }
 
 /* ========== ГЛОБАЛЬНЫЙ ЧАТ ========== */
 .global-chat-layout { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 280px; gap:20px; }
-.global-chat-main { background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.3); border-radius:20px; display:flex; flex-direction:column; height:calc(100vh - 280px); min-height:500px; overflow:hidden; }
+.global-chat-main { background:linear-gradient(160deg,rgba(40,10,60,0.9),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.3); border-radius:20px; display:flex; flex-direction:column; height:calc(100vh - 320px); min-height:500px; overflow:hidden; }
 .global-chat-header { padding:16px 22px; border-bottom:2px solid rgba(255,140,0,0.2); display:flex; justify-content:space-between; align-items:center; background:linear-gradient(90deg,rgba(255,140,0,0.1),transparent); }
 .global-chat-header h3 { margin:0; font-size:20px; }
 .chat-online-badge { display:flex; align-items:center; gap:6px; font-size:13px; color:#8bc34a; padding:6px 12px; background:rgba(76,175,80,0.15); border:1px solid rgba(76,175,80,0.4); border-radius:16px; font-weight:600; }
@@ -358,21 +379,16 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .creator-layout { max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
 .creator-card { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:26px; }
 .creator-card h3 { margin-bottom:18px; font-size:22px; color:#ff8c00; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:1px dashed rgba(255,140,0,0.2); }
-
 .creator-tabs { display:flex; gap:8px; margin-bottom:20px; background:rgba(0,0,0,0.4); padding:5px; border-radius:14px; flex-wrap:wrap; }
 .creator-tab { flex:1; min-width:130px; padding:12px; background:transparent; border:none; color:#c9a0dc; cursor:pointer; border-radius:10px; font-size:13px; font-weight:600; transition:0.3s; }
 .creator-tab:hover { background:rgba(255,140,0,0.15); color:#ffb86b; }
 .creator-tab.active { background:linear-gradient(135deg,#ff6b00,#c72c00); color:#fff; box-shadow:0 4px 15px rgba(255,100,0,0.5); }
-
 .creator-form-row { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
 .creator-form-row label { font-size:12px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
 .creator-form-row input, .creator-form-row select, .creator-form-row textarea { padding:13px 16px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; transition:0.3s; font-family:inherit; }
 .creator-form-row input:focus, .creator-form-row select:focus, .creator-form-row textarea:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
 .creator-form-row textarea { resize:vertical; min-height:80px; }
-
 .creator-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-
-/* Question editor */
 .question-editor { background:rgba(0,0,0,0.3); border:2px solid rgba(255,140,0,0.2); border-radius:16px; padding:20px; margin-bottom:16px; position:relative; }
 .question-editor-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
 .question-editor-number { font-size:14px; color:#ffb86b; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
@@ -380,33 +396,19 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .qtype-btn { padding:6px 12px; background:rgba(255,140,0,0.1); border:1px solid rgba(255,140,0,0.25); border-radius:10px; color:#c9a0dc; cursor:pointer; font-size:11px; font-weight:600; transition:0.3s; }
 .qtype-btn:hover { background:rgba(255,140,0,0.2); color:#ffb86b; }
 .qtype-btn.active { background:linear-gradient(135deg,#ff6b00,#c72c00); color:#fff; border-color:transparent; }
-.question-editor-actions { display:flex; gap:6px; }
-.qe-action { width:32px; height:32px; border-radius:8px; border:1px solid rgba(255,140,0,0.3); background:rgba(255,140,0,0.1); color:#ffb86b; cursor:pointer; font-size:14px; transition:0.3s; }
-.qe-action:hover { background:rgba(255,140,0,0.3); }
-.qe-action.danger { border-color:rgba(244,67,54,0.5); color:#ef5350; }
-.qe-action.danger:hover { background:rgba(244,67,54,0.3); }
-
+.qe-action { width:32px; height:32px; border-radius:8px; border:1px solid rgba(244,67,54,0.5); background:rgba(244,67,54,0.1); color:#ef5350; cursor:pointer; font-size:14px; }
+.qe-action:hover { background:rgba(244,67,54,0.3); }
 .answer-input-row { display:flex; gap:10px; align-items:center; margin-bottom:10px; }
 .answer-input-row input[type="text"] { flex:1; padding:11px 14px; background:rgba(0,0,0,0.4); border:1px solid rgba(255,140,0,0.25); border-radius:10px; color:#ffb86b; font-size:14px; }
-.answer-input-row input[type="text"]:focus { outline:none; border-color:#ff8c00; }
 .answer-input-row input[type="radio"] { width:22px; height:22px; cursor:pointer; accent-color:#ff6b00; }
-.answer-input-row .remove-answer { width:32px; height:32px; border-radius:8px; border:1px solid rgba(244,67,54,0.4); background:rgba(244,67,54,0.15); color:#ef5350; cursor:pointer; font-size:14px; }
-.answer-input-row .remove-answer:hover { background:rgba(244,67,54,0.35); }
-
 .creator-btn-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
 .creator-btn { padding:12px 22px; border-radius:12px; border:1px solid rgba(255,140,0,0.4); background:rgba(255,140,0,0.15); color:#ffb86b; cursor:pointer; font-size:14px; font-weight:600; transition:0.3s; display:inline-flex; align-items:center; gap:8px; }
 .creator-btn:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.4); transform:translateY(-2px); }
 .creator-btn.primary { background:linear-gradient(135deg,#ff6b00,#c72c00); border-color:transparent; color:#fff; box-shadow:0 6px 20px rgba(255,100,0,0.4); }
-.creator-btn.primary:hover { box-shadow:0 10px 30px rgba(255,100,0,0.6); }
 .creator-btn.danger { background:rgba(244,67,54,0.15); border-color:rgba(244,67,54,0.5); color:#ef5350; }
-.creator-btn.danger:hover { background:rgba(244,67,54,0.35); box-shadow:0 0 20px rgba(244,67,54,0.5); }
 .creator-btn.success { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
-.creator-btn.success:hover { background:rgba(76,175,80,0.35); box-shadow:0 0 20px rgba(76,175,80,0.5); }
-
-/* User-created quizzes list */
 .my-quizzes-list { display:flex; flex-direction:column; gap:12px; }
 .my-quiz-item { display:flex; gap:16px; padding:16px 20px; background:linear-gradient(90deg,rgba(40,10,60,0.7),rgba(20,5,35,0.6)); border:1px solid rgba(255,140,0,0.2); border-radius:14px; align-items:center; flex-wrap:wrap; }
-.my-quiz-item:hover { border-color:rgba(255,140,0,0.4); }
 .my-quiz-emoji { font-size:40px; line-height:1; }
 .my-quiz-info { flex:1; min-width:180px; }
 .my-quiz-name { font-size:16px; color:#ffb86b; font-weight:700; margin-bottom:4px; }
@@ -415,15 +417,153 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .my-quiz-actions button { padding:8px 14px; background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.35); border-radius:10px; color:#ffb86b; cursor:pointer; font-size:12px; font-weight:600; transition:0.3s; }
 .my-quiz-actions button:hover { background:rgba(255,140,0,0.3); }
 .my-quiz-actions button.danger { background:rgba(244,67,54,0.15); border-color:rgba(244,67,54,0.4); color:#ef5350; }
-
 .published-badge { padding:3px 10px; background:rgba(76,175,80,0.2); border:1px solid rgba(76,175,80,0.5); border-radius:12px; font-size:10px; color:#8bc34a; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
 .draft-badge { padding:3px 10px; background:rgba(255,152,0,0.2); border:1px solid rgba(255,152,0,0.5); border-radius:12px; font-size:10px; color:#ffb74d; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
 
 .info-box { background:rgba(0,0,0,0.3); border-left:4px solid #ff8c00; padding:12px 16px; border-radius:8px; font-size:13px; color:#c9a0dc; line-height:1.6; margin-bottom:16px; }
+.info-box.info { border-left-color:#2196f3; }
 .info-box.warning { border-left-color:#ff9800; }
 .info-box.danger { border-left-color:#f44336; }
-.info-box.success { border-left-color:#4caf50; }
-.info-box.info { border-left-color:#2196f3; }
+
+/* ========== ПРОФИЛЬ ========== */
+.profile-page { max-width:1000px; margin:0 auto; }
+
+.profile-hero { background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15),rgba(40,10,60,0.9)); border:2px solid rgba(255,180,80,0.5); border-radius:24px; padding:32px; position:relative; overflow:hidden; box-shadow:0 20px 60px rgba(255,100,0,0.25); margin-bottom:20px; }
+.profile-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:400px; height:400px; background:radial-gradient(circle,rgba(255,140,0,0.25),transparent 60%); pointer-events:none; animation: batGlow 6s infinite alternate; }
+.profile-hero-content { display:flex; align-items:center; gap:26px; position:relative; z-index:1; flex-wrap:wrap; }
+.profile-hero-avatar { width:130px; height:130px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:60px; border:4px solid rgba(255,180,80,0.7); box-shadow:0 0 50px rgba(255,140,0,0.6), inset 0 0 30px rgba(255,255,255,0.15); color:#fff; flex-shrink:0; position:relative; }
+.profile-hero-avatar.online::after { content:''; position:absolute; bottom:8px; right:12px; width:24px; height:24px; border-radius:50%; background:#4caf50; border:3px solid rgba(40,10,60,0.95); box-shadow:0 0 15px #4caf50; }
+.profile-hero-info { flex:1; min-width:220px; }
+.profile-hero-name { font-size:38px; font-family:'Creepster',cursive; color:#ffb86b; margin-bottom:8px; line-height:1; text-shadow:0 0 25px rgba(255,140,0,0.7); word-break:break-word; }
+.profile-hero-level { display:inline-block; padding:6px 16px; background:linear-gradient(135deg,rgba(255,140,0,0.3),rgba(199,44,0,0.25)); border:1px solid rgba(255,180,80,0.5); border-radius:20px; font-size:14px; font-weight:700; color:#ffd700; margin-bottom:12px; }
+.profile-hero-bio { font-size:14px; color:#c9a0dc; line-height:1.6; margin-bottom:14px; }
+.profile-hero-meta { display:flex; flex-wrap:wrap; gap:8px; font-size:12px; color:#c9a0dc; }
+.profile-hero-meta span { padding:5px 12px; background:rgba(0,0,0,0.35); border-radius:12px; border:1px solid rgba(255,140,0,0.2); }
+.profile-hero-xp { margin-top:16px; }
+.profile-hero-xp-label { display:flex; justify-content:space-between; font-size:12px; color:#c9a0dc; margin-bottom:6px; }
+.profile-hero-xp-bar { height:12px; background:rgba(0,0,0,0.5); border-radius:6px; overflow:hidden; border:1px solid rgba(255,140,0,0.3); }
+.profile-hero-xp-fill { height:100%; background:linear-gradient(90deg,#ff6b00,#ffb86b,#ff6b00); background-size:200% 100%; animation: xpShine 3s linear infinite; transition:width 0.8s ease; border-radius:6px; }
+
+.profile-quick-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin-top:24px; }
+.profile-quick-stat { padding:18px; background:linear-gradient(160deg,rgba(40,10,60,0.8),rgba(20,5,35,0.9)); border:2px solid rgba(255,140,0,0.25); border-radius:18px; text-align:center; transition:0.3s; }
+.profile-quick-stat:hover { transform:translateY(-4px); border-color:rgba(255,160,0,0.6); box-shadow:0 15px 30px rgba(255,100,0,0.25); }
+.profile-quick-stat .pq-icon { font-size:32px; margin-bottom:8px; line-height:1; filter:drop-shadow(0 0 10px rgba(255,140,0,0.5)); }
+.profile-quick-stat .pq-value { font-size:28px; font-family:'Creepster',cursive; color:#ffb86b; display:block; line-height:1; text-shadow:0 0 15px rgba(255,140,0,0.6); }
+.profile-quick-stat .pq-label { font-size:11px; color:#c9a0dc; margin-top:6px; display:block; text-transform:uppercase; letter-spacing:0.5px; }
+
+/* Профиль-табы */
+.profile-tabs { display:flex; gap:8px; margin-bottom:22px; background:rgba(0,0,0,0.4); padding:6px; border-radius:16px; flex-wrap:wrap; border:1px solid rgba(255,140,0,0.2); }
+.profile-tab { flex:1; min-width:120px; padding:14px 18px; background:transparent; border:none; color:#c9a0dc; cursor:pointer; border-radius:12px; font-size:14px; font-weight:700; transition:0.3s; display:flex; align-items:center; justify-content:center; gap:8px; }
+.profile-tab:hover { background:rgba(255,140,0,0.12); color:#ffb86b; }
+.profile-tab.active { background:linear-gradient(135deg,#ff6b00,#c72c00); color:#fff; box-shadow:0 6px 20px rgba(255,100,0,0.5); }
+.profile-tab-content { display:none; animation: fadeIn 0.3s ease; }
+.profile-tab-content.active { display:block; }
+
+/* Профиль-секция */
+.profile-section { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:26px; margin-bottom:20px; }
+.profile-section h3 { margin-bottom:18px; font-size:22px; color:#ff8c00; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:1px dashed rgba(255,140,0,0.2); }
+
+.account-info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+.account-info-item { padding:16px; background:rgba(0,0,0,0.35); border:1px solid rgba(255,140,0,0.2); border-radius:14px; display:flex; align-items:center; gap:14px; transition:0.3s; }
+.account-info-item:hover { border-color:rgba(255,160,0,0.5); background:rgba(0,0,0,0.5); }
+.account-info-icon { font-size:28px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,rgba(255,140,0,0.25),rgba(199,44,0,0.15)); border-radius:50%; flex-shrink:0; border:1px solid rgba(255,140,0,0.35); }
+.account-info-content { flex:1; min-width:0; }
+.account-info-label { font-size:11px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+.account-info-value { font-size:15px; color:#ffb86b; font-weight:700; word-break:break-word; }
+.account-info-value.mono { font-family:monospace; font-size:13px; color:#ffa94d; }
+
+.profile-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.profile-action-btn { flex:1; min-width:180px; padding:14px 20px; background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15)); border:2px solid rgba(255,140,0,0.4); border-radius:14px; color:#ffb86b; cursor:pointer; font-size:14px; font-weight:700; transition:0.3s; display:flex; align-items:center; justify-content:center; gap:10px; }
+.profile-action-btn:hover { background:linear-gradient(135deg,rgba(255,140,0,0.35),rgba(199,44,0,0.3)); box-shadow:0 8px 25px rgba(255,100,0,0.4); transform:translateY(-3px); border-color:rgba(255,160,0,0.7); }
+
+/* Ачивки в профиле */
+.ach-summary { display:flex; align-items:center; gap:16px; padding:16px; background:rgba(0,0,0,0.3); border-radius:14px; margin-bottom:18px; border:1px solid rgba(255,140,0,0.15); }
+.ach-summary-circle { width:70px; height:70px; border-radius:50%; background:conic-gradient(#ff6b00 calc(var(--p) * 1%), rgba(0,0,0,0.4) 0); display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
+.ach-summary-circle::after { content:''; position:absolute; inset:8px; background:linear-gradient(160deg,rgba(40,10,60,1),rgba(20,5,35,1)); border-radius:50%; }
+.ach-summary-circle span { position:relative; z-index:1; font-size:16px; font-weight:bold; color:#ffb86b; font-family:'Creepster',cursive; }
+.ach-summary-info { flex:1; }
+.ach-summary-title { font-size:16px; color:#ffb86b; font-weight:700; margin-bottom:4px; }
+.ach-summary-desc { font-size:12px; color:#c9a0dc; }
+
+/* Статистика карточки */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; }
+.stat-card { background:linear-gradient(135deg,rgba(255,140,0,0.12),rgba(199,44,0,0.08)); border:1px solid rgba(255,140,0,0.3); border-radius:14px; padding:16px; text-align:center; transition:0.3s; }
+.stat-card:hover { transform:translateY(-3px); border-color:rgba(255,160,0,0.6); box-shadow:0 10px 25px rgba(255,100,0,0.25); }
+.stat-card .stat-icon { font-size:32px; margin-bottom:8px; line-height:1; filter:drop-shadow(0 0 10px rgba(255,140,0,0.5)); }
+.stat-card .stat-number { font-size:28px; font-weight:bold; color:#ffb86b; font-family:'Creepster',cursive; text-shadow:0 0 15px rgba(255,140,0,0.6); display:block; line-height:1; }
+.stat-card .stat-name { font-size:12px; color:#c9a0dc; margin-top:6px; display:block; text-transform:uppercase; letter-spacing:0.5px; }
+.stat-card .stat-sub { font-size:11px; color:#8bc34a; margin-top:3px; }
+
+.diff-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.diff-stat { padding:18px; border-radius:14px; text-align:center; border:2px solid; }
+.diff-stat.easy { background:linear-gradient(160deg,rgba(76,175,80,0.15),rgba(46,125,50,0.08)); border-color:rgba(76,175,80,0.5); }
+.diff-stat.medium { background:linear-gradient(160deg,rgba(255,152,0,0.15),rgba(230,81,0,0.08)); border-color:rgba(255,152,0,0.5); }
+.diff-stat.hard { background:linear-gradient(160deg,rgba(244,67,54,0.15),rgba(183,28,28,0.08)); border-color:rgba(244,67,54,0.5); }
+.diff-stat .diff-label { font-size:13px; font-weight:bold; letter-spacing:1px; margin-bottom:8px; }
+.diff-stat.easy .diff-label { color:#8bc34a; }
+.diff-stat.medium .diff-label { color:#ffb74d; }
+.diff-stat.hard .diff-label { color:#ef5350; }
+.diff-stat .diff-count { font-size:32px; font-weight:bold; color:#fff; font-family:'Creepster',cursive; display:block; line-height:1; }
+.diff-stat .diff-sub { font-size:11px; color:#c9a0dc; margin-top:6px; }
+
+.cat-progress-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px dashed rgba(255,140,0,0.15); }
+.cat-progress-row:last-child { border-bottom:none; }
+.cat-progress-row .cat-icon { font-size:22px; width:32px; text-align:center; }
+.cat-progress-row .cat-name { flex:1; font-size:14px; color:#ffb86b; font-weight:600; }
+.cat-progress-row .cat-count { font-size:13px; color:#c9a0dc; min-width:70px; text-align:right; }
+.cat-bar { flex:2; height:8px; background:rgba(0,0,0,0.4); border-radius:4px; overflow:hidden; min-width:100px; }
+.cat-bar-fill { height:100%; background:linear-gradient(90deg,#ff6b00,#ffb86b); border-radius:4px; transition:width 0.8s ease; box-shadow:0 0 10px rgba(255,140,0,0.5); }
+
+.activity-chart { display:flex; align-items:flex-end; justify-content:space-around; gap:8px; height:140px; padding:10px 0; }
+.activity-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end; }
+.activity-bar-wrap { flex:1; display:flex; align-items:flex-end; width:100%; justify-content:center; }
+.activity-bar { width:70%; min-height:4px; background:linear-gradient(180deg,#ffb86b,#ff6b00); border-radius:6px 6px 0 0; transition:height 0.8s ease; box-shadow:0 0 15px rgba(255,140,0,0.4); position:relative; }
+.activity-bar.empty { background:rgba(255,140,0,0.15); box-shadow:none; min-height:4px; }
+.activity-bar .activity-count { position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:12px; color:#ffb86b; font-weight:bold; }
+.activity-day-label { font-size:11px; color:#c9a0dc; text-transform:uppercase; }
+.activity-day-label.today { color:#ffd700; font-weight:bold; }
+
+.top-result { display:flex; align-items:center; gap:14px; padding:14px 16px; background:linear-gradient(90deg,rgba(255,215,0,0.1),rgba(255,140,0,0.08)); border:1px solid rgba(255,215,0,0.4); border-radius:14px; margin-bottom:10px; }
+.top-result.rank-1 { border-color:rgba(255,215,0,0.6); background:linear-gradient(90deg,rgba(255,215,0,0.2),rgba(255,140,0,0.1)); }
+.top-result.rank-2 { border-color:rgba(224,224,224,0.4); }
+.top-result.rank-3 { border-color:rgba(205,127,50,0.4); }
+.top-result .top-rank { font-size:26px; width:36px; text-align:center; }
+.top-result .top-emoji { font-size:32px; line-height:1; }
+.top-result .top-info { flex:1; }
+.top-result .top-name { font-size:15px; font-weight:bold; color:#ffb86b; }
+.top-result .top-meta { font-size:12px; color:#c9a0dc; margin-top:2px; }
+.top-result .top-score { font-size:24px; font-weight:bold; color:#ffd700; font-family:'Creepster',cursive; }
+
+.recent-games { display:flex; flex-direction:column; gap:8px; max-height:400px; overflow-y:auto; padding-right:6px; }
+.recent-games::-webkit-scrollbar { width:5px; }
+.recent-games::-webkit-scrollbar-thumb { background:rgba(255,140,0,0.4); border-radius:5px; }
+.recent-game { display:flex; align-items:center; gap:12px; padding:12px 16px; background:rgba(0,0,0,0.3); border-radius:12px; border-left:4px solid; }
+.recent-game.win { border-color:#4caf50; }
+.recent-game.partial { border-color:#ff9800; }
+.recent-game.loss { border-color:#f44336; }
+.recent-game .rg-emoji { font-size:26px; line-height:1; }
+.recent-game .rg-info { flex:1; }
+.recent-game .rg-name { font-size:14px; color:#ffb86b; font-weight:bold; }
+.recent-game .rg-meta { font-size:11px; color:#c9a0dc; margin-top:2px; }
+.recent-game .rg-score { font-size:16px; font-weight:bold; color:#ffd700; }
+.recent-game .rg-date { font-size:10px; color:#8a7aa0; margin-left:8px; }
+
+.compare-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed rgba(255,140,0,0.15); font-size:13px; }
+.compare-row:last-child { border-bottom:none; }
+.compare-row .cmp-label { color:#c9a0dc; }
+.compare-row .cmp-value { color:#ffb86b; font-weight:bold; }
+.compare-row .cmp-hint { font-size:11px; margin-left:8px; padding:2px 8px; border-radius:8px; }
+.cmp-hint.above { background:rgba(76,175,80,0.2); color:#8bc34a; }
+.cmp-hint.below { background:rgba(244,67,54,0.2); color:#ef5350; }
+.cmp-hint.equal { background:rgba(255,255,255,0.1); color:#c9a0dc; }
+
+/* Настройки */
+.switch { position:relative; display:inline-block; width:56px; height:30px; flex-shrink:0; }
+.switch input { opacity:0; width:0; height:0; }
+.switch .slider { position:absolute; cursor:pointer; inset:0; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:30px; transition:0.3s; }
+.switch .slider:before { content:''; position:absolute; height:22px; width:22px; left:3px; bottom:3px; background:linear-gradient(135deg,#c9a0dc,#8a7aa0); border-radius:50%; transition:0.3s; }
+.switch input:checked + .slider { background:linear-gradient(135deg,#ff6b00,#c72c00); border-color:transparent; box-shadow:0 0 20px rgba(255,100,0,0.5); }
+.switch input:checked + .slider:before { transform:translateX(26px); background:linear-gradient(135deg,#fff,#ffb86b); }
 
 @media (max-width:900px) { 
   .game-body { grid-template-columns:1fr; } 
@@ -451,11 +591,12 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
   .profile-hero-name { font-size:26px; }
   .profile-hero-content { gap:16px; }
   .profile-action-btn { min-width:140px; font-size:13px; padding:12px 14px; }
+  .profile-tab { min-width:100px; font-size:12px; padding:10px; }
   .emoji-puzzle .emoji-big { font-size:44px; }
   .tf-container { grid-template-columns:1fr; }
   .tf-btn { padding:20px; font-size:16px; }
   .tf-btn .tf-icon { font-size:32px; }
-  .creator-tab { min-width:100px; font-size:11px; padding:10px 8px; }
+  .diff-stats { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -506,11 +647,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
     <button class="nav-btn active" data-view="quizzes">🎯 Праздники</button>
     <button class="nav-btn" data-view="creator">✏️ Конструктор</button>
     <button class="nav-btn" data-view="globalChat">💬 Чат</button>
-    <button class="nav-btn" data-view="achievements">🏆 Достижения</button>
-    <button class="nav-btn" data-view="leaderboard">📊 Рейтинг</button>
-    <button class="nav-btn" data-view="friends">👥 Друзья</button>
-    <button class="nav-btn" data-view="stats">📈 Статистика</button>
-    <button class="nav-btn" data-view="settings">⚙ Настройки</button>
   </nav>
   <main id="content">
     <section id="quizzesView" class="view active">
@@ -574,63 +710,22 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
             <div class="chat-online-list" id="chatOnlineList"></div>
           </div>
           <div class="chat-sidebar-card">
-            <h4>📊 Статистика чата</h4>
+            <h4>📊 Статистика</h4>
             <div class="chat-stats-grid">
-              <div class="chat-stat-mini">
-                <span class="cs-val" id="chatTotalMsgs">0</span>
-                <span class="cs-lbl">Сообщений</span>
-              </div>
-              <div class="chat-stat-mini">
-                <span class="cs-val" id="chatMyMsgs">0</span>
-                <span class="cs-lbl">Ваших</span>
-              </div>
-              <div class="chat-stat-mini">
-                <span class="cs-val" id="chatOnlineCount">0</span>
-                <span class="cs-lbl">Онлайн</span>
-              </div>
-              <div class="chat-stat-mini">
-                <span class="cs-val" id="chatUsers">0</span>
-                <span class="cs-lbl">Игроков</span>
-              </div>
+              <div class="chat-stat-mini"><span class="cs-val" id="chatTotalMsgs">0</span><span class="cs-lbl">Сообщений</span></div>
+              <div class="chat-stat-mini"><span class="cs-val" id="chatMyMsgs">0</span><span class="cs-lbl">Ваших</span></div>
+              <div class="chat-stat-mini"><span class="cs-val" id="chatOnlineCount">0</span><span class="cs-lbl">Онлайн</span></div>
+              <div class="chat-stat-mini"><span class="cs-val" id="chatUsers">0</span><span class="cs-lbl">Игроков</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="achievementsView" class="view">
-      <h2>Ваши достижения</h2>
-      <div class="achievements-grid" id="achievementsGrid"></div>
-    </section>
-    <section id="leaderboardView" class="view">
-      <h2>Рейтинг игроков</h2>
-      <div class="leaderboard" id="leaderboardList"></div>
-    </section>
-    <section id="friendsView" class="view">
-      <h2>Друзья</h2>
-      <div class="friends-section">
-        <div class="search-box">
-          <input type="text" id="friendSearch" placeholder="Введите никнейм друга и нажмите Enter...">
-          <button id="searchBtn" class="btn-primary">🔍 Добавить</button>
-        </div>
-        <div id="searchResults"></div>
-        <h3>👥 Ваши друзья</h3>
-        <div id="friendsList" class="friends-list"></div>
-        <h3>📨 Приглашения в игру</h3>
-        <div id="invitesList" class="invites-list"></div>
-      </div>
-    </section>
-    <section id="statsView" class="view">
-      <h2>📈 Полная статистика</h2>
-      <div class="stats-dashboard" id="statsDashboard"></div>
-    </section>
+    <!-- ПРОФИЛЬ -->
     <section id="profileView" class="view">
       <h2>👤 Мой профиль</h2>
       <div class="profile-page" id="profilePage"></div>
-    </section>
-    <section id="settingsView" class="view">
-      <h2>⚙ Настройки</h2>
-      <div class="settings-layout" id="settingsLayout"></div>
     </section>
   </main>
 </div>
@@ -675,19 +770,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
   </div>
 </div>
 
-<!-- INVITE MODAL -->
-<div id="inviteModal" class="modal hidden">
-  <div class="modal-content">
-    <h2>Пригласить в игру</h2>
-    <p id="inviteQuizName" style="text-align:center;opacity:0.85;margin-top:8px;color:#c9a0dc;font-size:13px;"></p>
-    <div class="link-box">
-      <input type="text" id="inviteLinkInput" readonly>
-      <button class="copy-btn" id="copyLinkBtn">📋 Копировать</button>
-    </div>
-    <button id="cancelInviteBtn" class="btn-secondary" style="width:100%;margin-top:12px;">Закрыть</button>
-  </div>
-</div>
-
 <!-- CHANGE PASSWORD MODAL -->
 <div id="passwordModal" class="modal hidden">
   <div class="modal-content">
@@ -707,7 +789,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 <div id="nicknameModal" class="modal hidden">
   <div class="modal-content">
     <h2>✏️ Смена никнейма</h2>
-    <div class="info-box warning">⚠️ После смены никнейма вас не смогут найти друзья по старому нику.</div>
     <input type="text" id="newNicknameInput" placeholder="Новый никнейм (3-20 символов)">
     <p class="error" id="nicknameError"></p>
     <div class="modal-buttons">
@@ -734,20 +815,8 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 
 <script>
 /* =========================================================
-   БАЗА ПРАЗДНИКОВ С НОВЫМИ ТИПАМИ ВОПРОСОВ
+   БАЗА ПРАЗДНИКОВ
    ========================================================= */
-/*
-   Типы вопросов:
-   - choice: обычный выбор (по умолчанию)
-   - emoji: угадай по эмодзи (в поле emojis: "🎃🧙‍♀️🍬")
-   - image: с картинкой (image: URL, или emoji-fallback)
-   - audio: с мелодией (audio: массив частот)
-   - free: свободный ответ (correct: массив принимаемых вариантов)
-   - fill: заполни пропуск (q содержит ___, correct: варианты)
-   - tf: правда/ложь (correct: true/false)
-   - match: установи соответствие (pairs: [[a,b],[c,d]])
-*/
-
 const QUIZZES = {
   halloween: { id:'halloween', name:'Хэллоуин', emoji:'🎃', category:'western', description:'Самый жуткий праздник года!', accent:'#ff6b00',
     questions: {
@@ -755,21 +824,19 @@ const QUIZZES = {
         {type:'choice', q:'Какого числа отмечается Хэллоуин?', answers:['30 октября','31 октября','1 ноября','28 октября'], correct:1},
         {type:'emoji', q:'Какой праздник зашифрован?', emojis:'🎃🧙‍♀️🍬🦇', answers:['Рождество','Хэллоуин','Новый год','Пасха'], correct:1},
         {type:'tf', q:'Хэллоуин традиционно отмечается 31 октября.', correct:true},
-        {type:'fill', q:'Главный символ Хэллоуина — это ___ с вырезанным лицом.', correct:['тыква','тыквы','jack-o-lantern','фонарь']},
+        {type:'fill', q:'Главный символ Хэллоуина — это ___ с вырезанным лицом.', correct:['тыква','тыквы','фонарь']},
         {type:'choice', q:'Какой овощ используется для фонаря Джека?', answers:['Арбуз','Тыква','Дыня','Кабачок'], correct:1}
       ],
       medium: [
         {type:'choice', q:'Из какой страны родом традиция Хэллоуина?', answers:['США','Ирландия','Мексика','Англия'], correct:1},
         {type:'match', q:'Установите соответствия: символ ↔ значение',
           pairs:[['Паук','Удача'],['Тыква','Фонарь Джека'],['Чёрная кошка','Символ ведьм'],['Летучая мышь','Ночной дух']]},
-        {type:'free', q:'Напишите название кельтского праздника, от которого произошёл Хэллоуин:', correct:['самайн','samhain','самхейн']},
-        {type:'emoji', q:'Что за праздник?', emojis:'💀🌺🇲🇽🕯️', answers:['Хэллоуин','День Мёртвых','Карнавал','День независимости'], correct:1}
+        {type:'free', q:'Название кельтского праздника — предка Хэллоуина:', correct:['самайн','samhain','самхейн']}
       ],
       hard: [
         {type:'choice', q:'Как изначально назывался Хэллоуин в кельтской традиции?', answers:['Самайн','Белтейн','Имболк','Лугнасад'], correct:0},
-        {type:'free', q:'В каком веке Хэллоуин начали праздновать массово в США? (напишите век: XIX, XX и т.д.)', correct:['xix','19','девятнадцатый','xix век']},
-        {type:'tf', q:'Символ Хэллоуина — тыква — не является традиционным овощем для Ирландии. Ей была репа.', correct:true},
-        {type:'fill', q:'Традиционная фраза детей на Хэллоуин: "Сладость или ___!"', correct:['гадость','гадость!','пакость']}
+        {type:'free', q:'В каком веке Хэллоуин начали массово праздновать в США? (XIX, XX)', correct:['xix','19','девятнадцатый']},
+        {type:'tf', q:'Символ Хэллоуина — тыква — не является традиционным овощем для Ирландии. Ей была репа.', correct:true}
       ]
     }
   },
@@ -779,19 +846,17 @@ const QUIZZES = {
         {type:'choice', q:'Какого числа отмечают Новый год?', answers:['31 декабря','1 января','25 декабря','7 января'], correct:1},
         {type:'emoji', q:'Что за праздник?', emojis:'🎄🎅🎁🎆', answers:['Хэллоуин','Новый год','Пасха','8 Марта'], correct:1},
         {type:'tf', q:'Символ Нового года в России — ёлка.', correct:true},
-        {type:'fill', q:'Главный волшебник Нового года в России — ___ Мороз.', correct:['дед','дедушка','дед мороз']}
+        {type:'fill', q:'Главный волшебник Нового года в России — ___ Мороз.', correct:['дед','дедушка']}
       ],
       medium: [
         {type:'choice', q:'В какой стране придумали традицию с оливье?', answers:['Франция','СССР','Италия','Испания'], correct:1},
         {type:'free', q:'Как зовут внучку Деда Мороза?', correct:['снегурочка','снегурочку']},
         {type:'match', q:'Соотнесите страну и новогоднюю традицию:',
-          pairs:[['Испания','12 виноградин'],['Италия','Ла Бефана'],['Япония','Колокола храма'],['Китай','Красные конверты']]},
-        {type:'emoji', q:'Какой праздник?', emojis:'🥞🔥☀️❄️', answers:['Масленица','Пасха','Новый год','День России'], correct:0}
+          pairs:[['Испания','12 виноградин'],['Италия','Ла Бефана'],['Япония','Колокола храма'],['Китай','Красные конверты']]}
       ],
       hard: [
         {type:'choice', q:'В каком году Пётр I ввёл празднование Нового года 1 января?', answers:['1699','1700','1701','1705'], correct:0},
-        {type:'free', q:'Что традиционно пьют в новогоднюю ночь?', correct:['шампанское','шампанское!']},
-        {type:'tf', q:'Новый год в России стали отмечать 1 января по указу Петра I.', correct:true}
+        {type:'free', q:'Что традиционно пьют в новогоднюю ночь?', correct:['шампанское']}
       ]
     }
   },
@@ -801,19 +866,17 @@ const QUIZZES = {
         {type:'choice', q:'Что главное блюдо на Пасху?', answers:['Кулич','Торт','Пирог','Пряники'], correct:0},
         {type:'emoji', q:'Какой праздник?', emojis:'🥚🎂🙏⛪', answers:['Новый год','Пасха','Хэллоуин','8 Марта'], correct:1},
         {type:'fill', q:'Что говорят друг другу на Пасху? "Христос ___!"', correct:['воскресе','воскрес']},
-        {type:'tf', q:'Пасха — это праздник, посвящённый воскресению Иисуса Христа.', correct:true}
+        {type:'tf', q:'Пасха — праздник воскресения Иисуса Христа.', correct:true}
       ],
       medium: [
         {type:'choice', q:'Как называют пасхальный хлеб?', answers:['Кулич','Хлеб','Калач','Пирог'], correct:0},
-        {type:'free', q:'Какого цвета традиционно красят пасхальные яйца?', correct:['красный','красные','красного','красный цвет']},
+        {type:'free', q:'Какого цвета традиционно красят пасхальные яйца?', correct:['красный','красные','красного']},
         {type:'match', q:'Соотнесите слово и его смысл:',
-          pairs:[['Кулич','Пасхальный хлеб'],['Пасха','Творожное блюдо'],['Крашенка','Крашеное яйцо'],['Писанка','Яйцо с узорами']]},
-        {type:'emoji', q:'Что за праздник?', emojis:'🐣🥚🌷🙏', answers:['Масленица','Пасха','8 Марта','Троица'], correct:1}
+          pairs:[['Кулич','Пасхальный хлеб'],['Пасха','Творожное блюдо'],['Крашенка','Крашеное яйцо'],['Писанка','Яйцо с узорами']]}
       ],
       hard: [
-        {type:'free', q:'Сколько дней длится пасхальная неделя?', correct:['7','семь','7 дней']},
-        {type:'fill', q:'Неделя перед Пасхой называется ___ неделей.', correct:['страстная','страстная','страстной']},
-        {type:'tf', q:'Пасха каждый год отмечается в одну и ту же дату.', correct:false}
+        {type:'free', q:'Сколько дней длится пасхальная неделя?', correct:['7','семь']},
+        {type:'fill', q:'Неделя перед Пасхой называется ___ неделей.', correct:['страстная','страстной']}
       ]
     }
   },
@@ -822,18 +885,17 @@ const QUIZZES = {
       easy: [
         {type:'choice', q:'Какого числа католическое Рождество?', answers:['24 декабря','25 декабря','1 января','7 января'], correct:1},
         {type:'emoji', q:'Какой праздник?', emojis:'🎄🎅🦌🎁', answers:['Хэллоуин','Новый год','Рождество','Пасха'], correct:2},
-        {type:'fill', q:'Главный даритель подарков на Западе — Санта-___.', correct:['клаус','клаус','klaas','николай']},
+        {type:'fill', q:'Главный даритель подарков на Западе — Санта-___.', correct:['клаус','klaas','николай']},
         {type:'tf', q:'Рождество в США отмечают 25 декабря.', correct:true}
       ],
       medium: [
         {type:'choice', q:'Сколько оленей у Санта-Клауса?', answers:['6','7','8','9'], correct:2},
         {type:'free', q:'Как зовут главного оленя Санты с красным носом?', correct:['рудольф','rudolph']},
         {type:'match', q:'Соотнесите страну и Деда Мороза:',
-          pairs:[['США','Санта-Клаус'],['Россия','Дед Мороз'],['Франция','Пэр Ноэль'],['Италия','Баббо Натале']]},
-        {type:'emoji', q:'Какой праздник?', emojis:'🇮🇪🍀💚🌈', answers:['Рождество','День Святого Патрика','Пасха','Хэллоуин'], correct:1}
+          pairs:[['США','Санта-Клаус'],['Россия','Дед Мороз'],['Франция','Пэр Ноэль'],['Италия','Баббо Натале']]}
       ],
       hard: [
-        {type:'free', q:'Как называют 12 дней после Рождества?', correct:['святки','святки','12 дней']},
+        {type:'free', q:'Как называют 12 дней после Рождества?', correct:['святки','12 дней']},
         {type:'tf', q:'Традиция украшать ёлку пришла из Германии.', correct:true}
       ]
     }
@@ -848,32 +910,32 @@ const QUIZZES = {
       ],
       medium: [
         {type:'choice', q:'Как называется последний день Масленицы?', answers:['Прощёное воскресенье','Чистый понедельник','Красная горка','Сороки'], correct:0},
-        {type:'free', q:'Сколько дней длится Масленица?', correct:['7','семь','7 дней']},
+        {type:'free', q:'Сколько дней длится Масленица?', correct:['7','семь']},
         {type:'match', q:'Соотнесите день Масленицы и его название:',
           pairs:[['Понедельник','Встреча'],['Вторник','Заигрыши'],['Среда','Лакомка'],['Четверг','Разгул']]}
       ],
       hard: [
         {type:'free', q:'Откуда пришла традиция Масленицы?', correct:['язычество','язычества','древние славяне']},
-        {type:'tf', q:'Масленица — это христианский праздник.', correct:false}
+        {type:'tf', q:'Масленица — христианский праздник.', correct:false}
       ]
     }
   },
-  cosmonautics: { id:'cosmonautics', name:'День космонавтики', emoji:'🚀', category:'russian', description:'12 апреля — первый полёт человека в космос', accent:'#00bcd4',
+  cosmonautics: { id:'cosmonautics', name:'День космонавтики', emoji:'🚀', category:'russian', description:'12 апреля', accent:'#00bcd4',
     questions: {
       easy: [
         {type:'choice', q:'Какого числа День космонавтики?', answers:['12 марта','12 апреля','12 мая','12 июня'], correct:1},
         {type:'emoji', q:'Что за праздник?', emojis:'🚀👨‍🚀🌍⭐', answers:['День космонавтики','День Победы','Новый год','День Земли'], correct:0},
-        {type:'fill', q:'Первый космонавт — Юрий ___.', correct:['гагарин','гагарин']},
+        {type:'fill', q:'Первый космонавт — Юрий ___.', correct:['гагарин']},
         {type:'tf', q:'Гагарин первым полетел в космос в 1961 году.', correct:true}
       ],
       medium: [
         {type:'choice', q:'Сколько длился полёт Гагарина?', answers:['30 мин','108 мин','5 часов','сутки'], correct:1},
-        {type:'free', q:'Как назывался корабль Гагарина?', correct:['восток','восток','восток-1']},
+        {type:'free', q:'Как назывался корабль Гагарина?', correct:['восток','восток-1']},
         {type:'match', q:'Соотнесите космонавта и достижение:',
           pairs:[['Гагарин','Первый полёт'],['Терешкова','Первая женщина'],['Леонов','Первый выход в космос'],['Титов','Самый молодой']]}
       ],
       hard: [
-        {type:'free', q:'Сколько витков вокруг Земли сделал Гагарин?', correct:['1','один','1 виток']},
+        {type:'free', q:'Сколько витков вокруг Земли сделал Гагарин?', correct:['1','один']},
         {type:'tf', q:'Первая женщина-космонавт — Валентина Терешкова.', correct:true}
       ]
     }
@@ -883,7 +945,7 @@ const QUIZZES = {
       easy: [
         {type:'choice', q:'Какого числа День Валентина?', answers:['13 февраля','14 февраля','15 февраля','1 февраля'], correct:1},
         {type:'emoji', q:'Какой праздник?', emojis:'❤️💌🌹💐', answers:['День Валентина','8 Марта','Рождество','Пасха'], correct:0},
-        {type:'fill', q:'Символ Дня Валентина — ___.', correct:['сердце','сердечко','сердца']},
+        {type:'fill', q:'Символ Дня Валентина — ___.', correct:['сердце','сердечко']},
         {type:'tf', q:'День Валентина отмечается 14 февраля.', correct:true}
       ],
       medium: [
@@ -897,12 +959,12 @@ const QUIZZES = {
       ]
     }
   },
-  dayOfDead: { id:'dayOfDead', name:'День Мёртвых', emoji:'💀', category:'religious', description:'Мексиканский праздник памяти', accent:'#e91e63',
+  dayOfDead: { id:'dayOfDead', name:'День Мёртвых', emoji:'💀', category:'religious', description:'Мексиканский праздник', accent:'#e91e63',
     questions: {
       easy: [
         {type:'choice', q:'В какой стране отмечают День Мёртвых?', answers:['Испания','Мексика','Италия','Бразилия'], correct:1},
         {type:'emoji', q:'Какой праздник?', emojis:'💀🌺🇲🇽🕯️', answers:['Хэллоуин','День Мёртвых','Карнавал','Новый год'], correct:1},
-        {type:'fill', q:'Сахарные черепа на празднике называются ___.', correct:['калаверас','калаверас','калавера']}
+        {type:'fill', q:'Сахарные черепа на празднике — ___.', correct:['калаверас','калавера']}
       ],
       medium: [
         {type:'choice', q:'Сколько дней длится праздник?', answers:['1','2','3','5'], correct:1},
@@ -911,8 +973,8 @@ const QUIZZES = {
           pairs:[['Бархатцы','Цветы мёртвых'],['Алтарь','Офренда'],['Череп','Калавера'],['Свеча','Путь домой']]}
       ],
       hard: [
-        {type:'free', q:'Какого числа второй день праздника? (число)', correct:['2','2 ноября','второе','2-е']},
-        {type:'tf', q:'День Мёртвых — это мексиканский праздник, а не испанский.', correct:true}
+        {type:'free', q:'Какого числа второй день праздника?', correct:['2','2 ноября','второе']},
+        {type:'tf', q:'День Мёртвых — мексиканский праздник, а не испанский.', correct:true}
       ]
     }
   },
@@ -924,27 +986,27 @@ const QUIZZES = {
         {type:'tf', q:'На Хануку зажигают свечи на ханукии.', correct:true}
       ],
       medium: [
-        {type:'free', q:'Сколько свечей в ханукии?', correct:['9','девять','9 свечей']},
+        {type:'free', q:'Сколько свечей в ханукии?', correct:['9','девять']},
         {type:'match', q:'Соотнесите элемент и смысл:',
-          pairs:[['Ханукия','Светильник'],['Дрейдл','Волчок'],['Латкес','Картофельные оладьи'],['Гелт','Шоколадные монеты']]}
+          pairs:[['Ханукия','Светильник'],['Дрейдл','Волчок'],['Латкес','Оладьи'],['Гелт','Монеты']]}
       ],
       hard: [
-        {type:'free', q:'Что означает слово "Ханука"?', correct:['освящение','освящения','открытие']},
+        {type:'free', q:'Что означает слово "Ханука"?', correct:['освящение','открытие']},
         {type:'tf', q:'Чудо Хануки связано с маслом, которое горело 8 дней.', correct:true}
       ]
     }
   },
-  aprilfool: { id:'aprilfool', name:'День смеха', emoji:'😄', category:'fun', description:'1 апреля — День дурака', accent:'#ffc107',
+  aprilfool: { id:'aprilfool', name:'День смеха', emoji:'😄', category:'fun', description:'1 апреля', accent:'#ffc107',
     questions: {
       easy: [
         {type:'choice', q:'Какого числа День смеха?', answers:['1 марта','1 апреля','1 мая','1 июня'], correct:1},
         {type:'emoji', q:'Что за праздник?', emojis:'😂🤡🎭🎪', answers:['Хэллоуин','День смеха','Карнавал','Новый год'], correct:1},
-        {type:'fill', q:'В этот день принято ___ друг друга.', correct:['разыгрывать','шутить','обманывать']},
+        {type:'fill', q:'В этот день принято ___ друг друга.', correct:['разыгрывать','шутить']},
         {type:'tf', q:'1 апреля принято шутить до 12:00.', correct:true}
       ],
       medium: [
-        {type:'free', q:'Как называют тех, кто попался на шутку 1 апреля?', correct:['дурак','дураком','дураки']},
-        {type:'match', q:'Соотнесите страну и название праздника:',
+        {type:'free', q:'Как называют тех, кто попался на шутку?', correct:['дурак','дураком','дураки']},
+        {type:'match', q:'Соотнесите страну и название:',
           pairs:[['Англия','День дурака'],['Франция','Пуассон д’авриль'],['Шотландия','Hunt the Gowk'],['Италия','Pesce d’aprile']]}
       ],
       hard: [
@@ -958,7 +1020,7 @@ const QUIZZES = {
       easy: [
         {type:'choice', q:'В какой стране родилась пицца?', answers:['Италия','Франция','Испания','Греция'], correct:0},
         {type:'emoji', q:'Что за блюдо?', emojis:'🍕🇮🇹🍅🧀', answers:['Пицца','Паста','Лазанья','Равиоли'], correct:0},
-        {type:'fill', q:'Пицца с сыром и томатами называется ___.', correct:['маргарита','маргариту','маргарита']},
+        {type:'fill', q:'Пицца с сыром и томатами — ___.', correct:['маргарита']},
         {type:'tf', q:'Пицца появилась в Италии.', correct:true}
       ],
       medium: [
@@ -981,13 +1043,9 @@ const DIFFICULTIES = {
 };
 
 const CATEGORIES = {
-  all: { name:'🌍 Все' },
-  russian: { name:'🇷🇺 Русские' },
-  western: { name:'🎅 Западные' },
-  international: { name:'🌐 Международные' },
-  religious: { name:'⛪ Религиозные' },
-  fun: { name:'🎉 Весёлые' },
-  user: { name:'👤 Пользовательские' }
+  all: { name:'🌍 Все' }, russian: { name:'🇷🇺 Русские' }, western: { name:'🎅 Западные' },
+  international: { name:'🌐 Международные' }, religious: { name:'⛪ Религиозные' },
+  fun: { name:'🎉 Весёлые' }, user: { name:'👤 Пользовательские' }
 };
 
 const AVATARS = ['😀','😎','🤓','🥳','😺','🐶','🦊','🐼','🦁','🐸','🐵','🦉','🎃','👻','🤖','👽','🧙','🧛','🧟','🦸','🧝','🧞','🐉','🦄','🎅','🧑‍🎄','👨‍🚀','👩‍🎨'];
@@ -996,14 +1054,30 @@ const CHAT_EMOJIS = ['😀','😄','😂','🤣','😊','😍','🤔','😮','�
 const ACHIEVEMENTS = [
   {id:'first_game', icon:'🎯', name:'Первый шаг', desc:'Пройдите первую викторину', check:u => u.gamesPlayed>=1, progress:u => [Math.min(u.gamesPlayed,1), 1]},
   {id:'five_games', icon:'🔥', name:'В ударе', desc:'Пройдите 5 викторин', check:u => u.gamesPlayed>=5, progress:u => [Math.min(u.gamesPlayed,5), 5]},
+  {id:'ten_games', icon:'🏅', name:'Опытный игрок', desc:'Пройдите 10 викторин', check:u => u.gamesPlayed>=10, progress:u => [Math.min(u.gamesPlayed,10), 10]},
+  {id:'twenty_five', icon:'🎖️', name:'Ветеран', desc:'Пройдите 25 викторин', check:u => u.gamesPlayed>=25, progress:u => [Math.min(u.gamesPlayed,25), 25]},
+  {id:'fifty', icon:'🎗️', name:'Легенда', desc:'Пройдите 50 викторин', check:u => u.gamesPlayed>=50, progress:u => [Math.min(u.gamesPlayed,50), 50]},
   {id:'perfect', icon:'💯', name:'Идеально!', desc:'Пройдите без ошибок', check:u => u.perfectGames>=1, progress:u => [Math.min(u.perfectGames,1), 1]},
+  {id:'five_perfect', icon:'⭐', name:'Перфекционист', desc:'5 викторин без ошибок', check:u => u.perfectGames>=5, progress:u => [Math.min(u.perfectGames,5), 5]},
+  {id:'ten_perfect', icon:'🌟', name:'Гений', desc:'10 викторин без ошибок', check:u => u.perfectGames>=10, progress:u => [Math.min(u.perfectGames,10), 10]},
   {id:'level_5', icon:'📈', name:'Растущий', desc:'Достигните 5 уровня', check:u => u.level>=5, progress:u => [Math.min(u.level,5), 5]},
-  {id:'first_chat', icon:'💬', name:'Болтун', desc:'Напишите в глобальный чат', check:u => (u.globalMessages||0)>=1, progress:u => [Math.min(u.globalMessages||0,1), 1]},
-  {id:'chat_50', icon:'🗣️', name:'Говорун', desc:'50 сообщений в чат', check:u => (u.globalMessages||0)>=50, progress:u => [Math.min(u.globalMessages||0,50), 50]},
-  {id:'first_quiz_created', icon:'✏️', name:'Автор', desc:'Создайте свою викторину', check:u => (u.myQuizzes||[]).length>=1, progress:u => [Math.min((u.myQuizzes||[]).length,1), 1]},
+  {id:'level_10', icon:'🌟', name:'Звезда', desc:'Достигните 10 уровня', check:u => u.level>=10, progress:u => [Math.min(u.level,10), 10]},
+  {id:'level_25', icon:'💫', name:'Суперзвезда', desc:'Достигните 25 уровня', check:u => u.level>=25, progress:u => [Math.min(u.level,25), 25]},
+  {id:'friends_3', icon:'👥', name:'Компания', desc:'Добавьте 3 друзей', check:u => (u.friends||[]).length>=3, progress:u => [Math.min((u.friends||[]).length,3), 3]},
+  {id:'friends_10', icon:'🎊', name:'Тусовка', desc:'Добавьте 10 друзей', check:u => (u.friends||[]).length>=10, progress:u => [Math.min((u.friends||[]).length,10), 10]},
+  {id:'social', icon:'💬', name:'Болтун', desc:'10 сообщений в чат', check:u => (u.globalMessages||0)>=10, progress:u => [Math.min(u.globalMessages||0,10), 10]},
+  {id:'social_100', icon:'🗣️', name:'Говорун', desc:'100 сообщений в чат', check:u => (u.globalMessages||0)>=100, progress:u => [Math.min(u.globalMessages||0,100), 100]},
+  {id:'streak_3', icon:'🔥', name:'На огне', desc:'3 дня подряд', check:u => (u.streak||0)>=3, progress:u => [Math.min(u.streak||0,3), 3]},
+  {id:'streak_7', icon:'🌋', name:'Несокрушимый', desc:'7 дней подряд', check:u => (u.streak||0)>=7, progress:u => [Math.min(u.streak||0,7), 7]},
+  {id:'streak_30', icon:'💎', name:'Бриллиант', desc:'30 дней подряд', check:u => (u.streak||0)>=30, progress:u => [Math.min(u.streak||0,30), 30]},
+  {id:'daily_done', icon:'⚡', name:'Молния', desc:'Ежедневный вызов', check:u => (u.dailyDone||0)>=1, progress:u => [Math.min(u.dailyDone||0,1), 1]},
+  {id:'first_quiz_created', icon:'✏️', name:'Автор', desc:'Создайте викторину', check:u => (u.myQuizzes||[]).length>=1, progress:u => [Math.min((u.myQuizzes||[]).length,1), 1]},
   {id:'creator_5', icon:'🎨', name:'Креатор', desc:'Создайте 5 викторин', check:u => (u.myQuizzes||[]).length>=5, progress:u => [Math.min((u.myQuizzes||[]).length,5), 5]},
-  {id:'free_answer_master', icon:'✍️', name:'Эрудит', desc:'Ответьте верно на 10 свободных вопросов', check:u => (u.freeAnswers||0)>=10, progress:u => [Math.min(u.freeAnswers||0,10), 10]},
-  {id:'master_of_match', icon:'🔗', name:'Соединитель', desc:'Решите 5 задач на соответствие', check:u => (u.matchSolved||0)>=5, progress:u => [Math.min(u.matchSolved||0,5), 5]},
+  {id:'free_answer_master', icon:'✍️', name:'Эрудит', desc:'10 свободных ответов', check:u => (u.freeAnswers||0)>=10, progress:u => [Math.min(u.freeAnswers||0,10), 10]},
+  {id:'master_of_match', icon:'🔗', name:'Соединитель', desc:'5 задач на соответствие', check:u => (u.matchSolved||0)>=5, progress:u => [Math.min(u.matchSolved||0,5), 5]},
+  {id:'hard_win', icon:'💪', name:'Смельчак', desc:'Пройдите на сложном', check:u => (u.hardWins||0)>=1, progress:u => [Math.min(u.hardWins||0,1), 1]},
+  {id:'score_1000', icon:'💰', name:'Богач', desc:'1000 очков', check:u => (u.totalScore||0)>=1000, progress:u => [Math.min(u.totalScore||0,1000), 1000]},
+  {id:'score_10000', icon:'💎', name:'Миллионер', desc:'10000 очков', check:u => (u.totalScore||0)>=10000, progress:u => [Math.min(u.totalScore||0,10000), 10000]},
 ];
 
 /* =========================================================
@@ -1019,10 +1093,7 @@ const DB = {
   get chat() { return JSON.parse(localStorage.getItem('hq_chat') || '[]'); },
   set chat(v) { localStorage.setItem('hq_chat', JSON.stringify(v.slice(-200))); },
   get settings() {
-    return Object.assign({
-      sound:true, theme:'halloween', volume:0.7,
-      animations:true, batsBg:true, notifications:true
-    }, JSON.parse(localStorage.getItem('hq_settings') || '{}'));
+    return Object.assign({sound:true, theme:'halloween', volume:0.7, animations:true, batsBg:true, notifications:true}, JSON.parse(localStorage.getItem('hq_settings') || '{}'));
   },
   set settings(v) { localStorage.setItem('hq_settings', JSON.stringify(v)); }
 };
@@ -1066,11 +1137,11 @@ Object.keys(QUIZZES).forEach(id => selectedDifficulty[id] = 'easy');
 let gameStartTime = 0;
 let dailyChallenge = null;
 let currentFilter = { cat: 'all', search: '' };
-let chatInterval = null;
 let currentEditingQuiz = null;
+let activeProfileTab = 'account';
 
 /* =========================================================
-   DOM helpers
+   DOM
    ========================================================= */
 const $ = id => document.getElementById(id);
 const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen') };
@@ -1213,7 +1284,11 @@ setInterval(() => {
       const activeView = document.querySelector('.view.active');
       if (activeView?.id === 'quizzesView') renderQuizzes();
       if (activeView?.id === 'globalChatView') renderGlobalChat();
-      if (activeView?.id === 'leaderboardView') renderLeaderboard();
+      if (activeView?.id === 'profileView') {
+        // Только обновляем ачивки/друзей (не всю страницу, чтобы не мешать вводу)
+        if (activeProfileTab === 'friends') renderFriendsInProfile();
+        if (activeProfileTab === 'rating') renderRatingInProfile();
+      }
       updateStatsMini();
     }
   }
@@ -1356,13 +1431,8 @@ function enterMain() {
   updateDailyCard();
   updateStatsMini();
   renderQuizzes();
-  renderAchievements();
-  renderLeaderboard();
-  renderFriends();
-  renderStatsDashboard();
   renderCreator();
   renderGlobalChat();
-  renderSettings();
   showScreen('main');
 }
 
@@ -1405,12 +1475,6 @@ document.querySelectorAll('.nav-btn[data-view]').forEach(btn => {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     $(btn.dataset.view + 'View').classList.add('active');
     const view = btn.dataset.view;
-    if (view === 'leaderboard') renderLeaderboard();
-    if (view === 'achievements') renderAchievements();
-    if (view === 'friends') renderFriends();
-    if (view === 'stats') renderStatsDashboard();
-    if (view === 'settings') renderSettings();
-    if (view === 'profile') renderProfilePage();
     if (view === 'creator') renderCreator();
     if (view === 'globalChat') { renderGlobalChat(); currentUser.lastChatSeen = Date.now(); saveUser(); }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1435,16 +1499,14 @@ $('filterSearch').addEventListener('input', e => {
 });
 
 /* =========================================================
-   ALL QUIZZES (built-in + user)
+   ALL QUIZZES
    ========================================================= */
 function getAllQuizzes() {
   const all = { ...QUIZZES };
   const users = DB.users;
   Object.values(users).forEach(u => {
     (u.myQuizzes || []).forEach(q => {
-      if (q.published || u.username === currentUser.username) {
-        all['user_' + q.id] = q;
-      }
+      if (q.published || u.username === currentUser.username) all['user_' + q.id] = q;
     });
   });
   return all;
@@ -1459,16 +1521,10 @@ function renderQuizzes() {
   const allQuizzes = getAllQuizzes();
 
   let quizzes = Object.values(allQuizzes);
-  if (currentFilter.cat === 'user') {
-    quizzes = quizzes.filter(q => q.category === 'user');
-  } else if (currentFilter.cat !== 'all') {
-    quizzes = quizzes.filter(q => q.category === currentFilter.cat);
-  }
+  if (currentFilter.cat === 'user') quizzes = quizzes.filter(q => q.category === 'user');
+  else if (currentFilter.cat !== 'all') quizzes = quizzes.filter(q => q.category === currentFilter.cat);
   if (currentFilter.search) {
-    quizzes = quizzes.filter(q => 
-      q.name.toLowerCase().includes(currentFilter.search) || 
-      (q.description || '').toLowerCase().includes(currentFilter.search)
-    );
+    quizzes = quizzes.filter(q => q.name.toLowerCase().includes(currentFilter.search) || (q.description || '').toLowerCase().includes(currentFilter.search));
   }
 
   if (!quizzes.length) {
@@ -1524,13 +1580,11 @@ $('quizGrid').addEventListener('click', e => {
     renderQuizzes();
     return;
   }
-  if (playBtn && !playBtn.disabled) {
-    startGame(playBtn.dataset.play, selectedDifficulty[playBtn.dataset.play]);
-  }
+  if (playBtn && !playBtn.disabled) startGame(playBtn.dataset.play, selectedDifficulty[playBtn.dataset.play]);
 });
 
 /* =========================================================
-   GAME — с поддержкой всех типов вопросов
+   GAME
    ========================================================= */
 function startGame(quizId, difficulty = 'easy', isDaily = false) {
   const allQuizzes = getAllQuizzes();
@@ -1539,13 +1593,12 @@ function startGame(quizId, difficulty = 'easy', isDaily = false) {
 
   const diff = DIFFICULTIES[difficulty];
   let questions = [...(quiz.questions[difficulty] || [])];
-  if (!questions.length) return showToast('❌ Нет вопросов на этой сложности');
+  if (!questions.length) return showToast('❌ Нет вопросов');
 
   if (isDaily) {
     shuffleArray(questions);
     questions.length = Math.min(questions.length, 5);
   }
-  // Shuffle choice answers
   questions = questions.map(q => {
     const copy = { ...q };
     if (copy.type === 'choice' && Array.isArray(copy.answers)) {
@@ -1558,13 +1611,7 @@ function startGame(quizId, difficulty = 'easy', isDaily = false) {
     return copy;
   });
 
-  game = {
-    quizId, quiz, difficulty, questions,
-    round: 0, score: 0, correct: 0, wrong: 0,
-    answered: false, timeLeft: diff.timer,
-    isDaily, answersHistory: [],
-    freeAnswersInGame: 0, matchInGame: 0
-  };
+  game = { quizId, quiz, difficulty, questions, round: 0, score: 0, correct: 0, wrong: 0, answered: false, timeLeft: diff.timer, isDaily, answersHistory: [] };
 
   $('gameQuizName').textContent = (isDaily ? '⚡ ' : '') + quiz.emoji + ' ' + quiz.name;
   const badge = $('gameDifficultyBadge');
@@ -1614,55 +1661,38 @@ function nextRound() {
   extra.innerHTML = '';
 
   const type = q.type || 'choice';
-
-  // Question type badge
   const badges = {
-    choice: '📝 Обычный вопрос',
-    emoji: '🎨 Угадай по эмодзи',
-    image: '📷 Вопрос с картинкой',
-    audio: '🎵 Аудио-вопрос',
-    free: '✍️ Свободный ответ',
-    fill: '📝 Заполни пропуск',
-    tf: '📊 Правда или Ложь',
-    match: '🔗 Установи соответствие'
+    choice: '📝 Обычный вопрос', emoji: '🎨 Угадай по эмодзи', image: '📷 С картинкой',
+    audio: '🎵 Аудио-вопрос', free: '✍️ Свободный ответ', fill: '📝 Заполни пропуск',
+    tf: '📊 Правда или Ложь', match: '🔗 Установи соответствие'
   };
   typeBadge.innerHTML = `<div class="question-type-badge">${badges[type] || '📝 Вопрос'}</div>`;
 
-  // Set question text + extras
   if (type === 'emoji') {
     $('questionText').textContent = q.q;
-    extra.innerHTML = `<div class="emoji-puzzle">${q.emojis.split('').map((ch, i) => ch === ' ' ? '' : `<span class="emoji-big" style="animation-delay:${i*0.15}s">${ch}</span>`).join('')}</div>`;
+    extra.innerHTML = `<div class="emoji-puzzle">${[...q.emojis].map((ch, i) => ch === ' ' ? '' : `<span class="emoji-big" style="animation-delay:${i*0.15}s">${ch}</span>`).join('')}</div>`;
     renderChoiceAnswers(q.answers, q.correct);
   } else if (type === 'image') {
     $('questionText').textContent = q.q;
-    extra.innerHTML = `<div class="image-question">${q.image ? `<img src="${q.image}" alt="question">` : `<div class="image-fallback">${q.emoji || '🖼️'}</div>`}</div>`;
+    extra.innerHTML = `<div class="image-question">${q.image ? `<img src="${q.image}" alt="q">` : `<div class="image-fallback">${q.emoji || '🖼️'}</div>`}</div>`;
     renderChoiceAnswers(q.answers, q.correct);
   } else if (type === 'audio') {
     $('questionText').textContent = q.q;
-    extra.innerHTML = `
-      <div class="audio-question">
-        <button class="audio-play-btn" id="audioPlayBtn">🔊</button>
-        <div class="audio-hint">Нажмите, чтобы услышать мелодию</div>
-      </div>
-    `;
+    extra.innerHTML = `<div class="audio-question"><button class="audio-play-btn" id="audioPlayBtn">🔊</button><div class="audio-hint">Нажмите, чтобы услышать</div></div>`;
     renderChoiceAnswers(q.answers, q.correct);
     setTimeout(() => {
       const btn = $('audioPlayBtn');
-      if (btn) btn.addEventListener('click', () => {
-        btn.classList.add('playing');
-        playMelody(q.melody || [440, 494, 523]);
-        setTimeout(() => btn.classList.remove('playing'), 2000);
-      });
-      // Автозапуск через 0.5с
-      setTimeout(() => btn?.click(), 500);
+      if (btn) {
+        btn.addEventListener('click', () => { btn.classList.add('playing'); playMelody(q.melody || [440,494,523]); setTimeout(() => btn.classList.remove('playing'), 2000); });
+        setTimeout(() => btn.click(), 500);
+      }
     }, 100);
   } else if (type === 'free') {
     $('questionText').textContent = q.q;
     renderFreeAnswer(q);
   } else if (type === 'fill') {
     $('questionText').textContent = '';
-    const filled = q.q.replace('___', '<span class="blank">?</span>');
-    extra.innerHTML = `<div class="fill-blank-text">${filled}</div>`;
+    extra.innerHTML = `<div class="fill-blank-text">${q.q.replace('___', '<span class="blank">?</span>')}</div>`;
     renderFreeAnswer(q);
   } else if (type === 'tf') {
     $('questionText').textContent = q.q;
@@ -1671,11 +1701,9 @@ function nextRound() {
     $('questionText').textContent = q.q;
     renderMatch(q);
   } else {
-    // choice (default)
     $('questionText').textContent = q.q;
     renderChoiceAnswers(q.answers, q.correct);
   }
-
   startTimer();
 }
 
@@ -1695,14 +1723,12 @@ function selectChoice(idx, correctIdx) {
   if (game.answered) return;
   game.answered = true;
   clearInterval(timerInterval);
-
   const btns = document.querySelectorAll('.answer-btn');
   btns.forEach((b, i) => {
     b.disabled = true;
     if (i === correctIdx) b.classList.add('correct');
     else if (i === idx) b.classList.add('wrong');
   });
-
   const isCorrect = idx === correctIdx;
   game.answersHistory[game.round] = isCorrect;
   handleResult(isCorrect);
@@ -1710,12 +1736,7 @@ function selectChoice(idx, correctIdx) {
 
 function renderFreeAnswer(q) {
   const cont = $('answersContainer');
-  cont.innerHTML = `
-    <div class="free-answer-container">
-      <input type="text" class="free-answer-input" id="freeAnswerInput" placeholder="Введите ответ..." autocomplete="off" autocapitalize="off">
-      <button class="free-answer-submit" id="freeAnswerSubmit">✓ Ответить</button>
-    </div>
-  `;
+  cont.innerHTML = `<div class="free-answer-container"><input type="text" class="free-answer-input" id="freeAnswerInput" placeholder="Введите ответ..." autocomplete="off"><button class="free-answer-submit" id="freeAnswerSubmit">✓ Ответить</button></div>`;
   const input = $('freeAnswerInput');
   const submit = $('freeAnswerSubmit');
   input.focus();
@@ -1731,10 +1752,7 @@ function renderFreeAnswer(q) {
     input.disabled = true;
     submit.disabled = true;
     game.answersHistory[game.round] = isCorrect;
-    if (isCorrect) {
-      game.freeAnswersInGame++;
-      currentUser.freeAnswers = (currentUser.freeAnswers || 0) + 1;
-    }
+    if (isCorrect) { currentUser.freeAnswers = (currentUser.freeAnswers || 0) + 1; }
     handleResult(isCorrect);
   };
   submit.addEventListener('click', doSubmit);
@@ -1743,18 +1761,7 @@ function renderFreeAnswer(q) {
 
 function renderTrueFalse(q) {
   const cont = $('answersContainer');
-  cont.innerHTML = `
-    <div class="tf-container">
-      <button class="tf-btn tf-true" data-tf="true">
-        <span class="tf-icon">✅</span>
-        <span>Правда</span>
-      </button>
-      <button class="tf-btn tf-false" data-tf="false">
-        <span class="tf-icon">❌</span>
-        <span>Ложь</span>
-      </button>
-    </div>
-  `;
+  cont.innerHTML = `<div class="tf-container"><button class="tf-btn tf-true" data-tf="true"><span class="tf-icon">✅</span><span>Правда</span></button><button class="tf-btn tf-false" data-tf="false"><span class="tf-icon">❌</span><span>Ложь</span></button></div>`;
   cont.querySelectorAll('.tf-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       if (game.answered) return;
@@ -1781,87 +1788,45 @@ function renderMatch(q) {
   const rightItems = pairs.map((p, i) => ({ id: i, text: p[1] }));
   shuffleArray(rightItems);
 
-  cont.innerHTML = `
-    <div class="match-container">
-      <div class="match-column" id="matchLeft">
-        ${leftItems.map(item => `<div class="match-item" data-side="left" data-id="${item.id}">${item.text}</div>`).join('')}
-      </div>
-      <div class="match-column" id="matchRight">
-        ${rightItems.map(item => `<div class="match-item" data-side="right" data-id="${item.id}">${item.text}</div>`).join('')}
-      </div>
-    </div>
-    <div class="match-progress" id="matchProgress">Соединено: 0 / ${pairs.length}</div>
-  `;
+  cont.innerHTML = `<div class="match-container"><div class="match-column" id="matchLeft">${leftItems.map(i => `<div class="match-item" data-side="left" data-id="${i.id}">${i.text}</div>`).join('')}</div><div class="match-column" id="matchRight">${rightItems.map(i => `<div class="match-item" data-side="right" data-id="${i.id}">${i.text}</div>`).join('')}</div></div><div class="match-progress" id="matchProgress">Соединено: 0 / ${pairs.length}</div>`;
 
-  let selectedLeft = null;
-  let selectedRight = null;
-  let matched = 0;
-
+  let selectedLeft = null, selectedRight = null, matched = 0;
   const handleClick = (el) => {
-    if (game.answered) return;
-    if (el.classList.contains('matched')) return;
+    if (game.answered || el.classList.contains('matched')) return;
     const side = el.dataset.side;
-    if (side === 'left') {
-      document.querySelectorAll('[data-side="left"].selected').forEach(x => x.classList.remove('selected'));
-      el.classList.add('selected');
-      selectedLeft = el;
-    } else {
-      document.querySelectorAll('[data-side="right"].selected').forEach(x => x.classList.remove('selected'));
-      el.classList.add('selected');
-      selectedRight = el;
-    }
+    if (side === 'left') { document.querySelectorAll('[data-side="left"].selected').forEach(x => x.classList.remove('selected')); el.classList.add('selected'); selectedLeft = el; }
+    else { document.querySelectorAll('[data-side="right"].selected').forEach(x => x.classList.remove('selected')); el.classList.add('selected'); selectedRight = el; }
     if (selectedLeft && selectedRight) {
-      const leftId = parseInt(selectedLeft.dataset.id);
-      const rightId = parseInt(selectedRight.dataset.id);
-      if (leftId === rightId) {
-        selectedLeft.classList.remove('selected');
-        selectedRight.classList.remove('selected');
-        selectedLeft.classList.add('matched');
-        selectedRight.classList.add('matched');
-        matched++;
-        playSound('correct');
+      const lid = parseInt(selectedLeft.dataset.id), rid = parseInt(selectedRight.dataset.id);
+      if (lid === rid) {
+        selectedLeft.classList.remove('selected'); selectedRight.classList.remove('selected');
+        selectedLeft.classList.add('matched'); selectedRight.classList.add('matched');
+        matched++; playSound('correct');
         $('matchProgress').textContent = `Соединено: ${matched} / ${pairs.length}`;
-        selectedLeft = null;
-        selectedRight = null;
+        selectedLeft = null; selectedRight = null;
         if (matched === pairs.length) {
-          game.answered = true;
-          clearInterval(timerInterval);
-          game.matchInGame++;
+          game.answered = true; clearInterval(timerInterval);
           currentUser.matchSolved = (currentUser.matchSolved || 0) + 1;
           game.answersHistory[game.round] = true;
           setTimeout(() => handleResult(true), 500);
         }
       } else {
         const l = selectedLeft, r = selectedRight;
-        l.classList.add('mismatch');
-        r.classList.add('mismatch');
-        playSound('wrong');
-        selectedLeft = null;
-        selectedRight = null;
-        setTimeout(() => {
-          l.classList.remove('selected', 'mismatch');
-          r.classList.remove('selected', 'mismatch');
-        }, 500);
+        l.classList.add('mismatch'); r.classList.add('mismatch'); playSound('wrong');
+        selectedLeft = null; selectedRight = null;
+        setTimeout(() => { l.classList.remove('selected', 'mismatch'); r.classList.remove('selected', 'mismatch'); }, 500);
       }
     }
   };
-
   cont.querySelectorAll('.match-item').forEach(el => el.addEventListener('click', () => handleClick(el)));
 }
 
 function handleResult(isCorrect) {
-  const q = game.questions[game.round];
   const diff = DIFFICULTIES[game.difficulty];
   if (isCorrect) {
-    const timeBonus = Math.max(0, game.timeLeft);
-    const points = diff.pointsPerQ + timeBonus;
-    game.correct++;
-    game.score += points;
-    playSound('correct');
-  } else {
-    game.wrong++;
-    playSound('wrong');
-  }
+    const points = diff.pointsPerQ + Math.max(0, game.timeLeft);
+    game.correct++; game.score += points; playSound('correct');
+  } else { game.wrong++; playSound('wrong'); }
   $('gameScore').textContent = '⭐ ' + game.score;
   game.round++;
   setTimeout(() => { renderProgressStrip(); nextRound(); }, 1600);
@@ -1885,11 +1850,7 @@ function startTimer() {
     if (game.timeLeft <= 0) {
       clearInterval(timerInterval);
       if (!game.answered) {
-        game.answered = true;
-        game.answersHistory[game.round] = false;
-        game.wrong++;
-        playSound('wrong');
-        game.round++;
+        game.answered = true; game.answersHistory[game.round] = false; game.wrong++; playSound('wrong'); game.round++;
         setTimeout(() => { renderProgressStrip(); nextRound(); }, 1600);
       }
     }
@@ -1908,21 +1869,13 @@ function endGame() {
   currentUser.totalWrong = (currentUser.totalWrong || 0) + game.wrong;
   currentUser.totalQuestions = (currentUser.totalQuestions || 0) + game.questions.length;
 
-  if (game.wrong === 0) {
-    currentUser.perfectGames++;
-    playSound('success');
-    burstConfetti(80);
-  }
+  if (game.wrong === 0) { currentUser.perfectGames++; playSound('success'); burstConfetti(80); }
   if (!currentUser.completed) currentUser.completed = {};
   const prevBest = currentUser.completed[key]?.score || 0;
   if (game.score > prevBest) currentUser.completed[key] = { score: game.score, date: Date.now() };
 
   let dailyBonus = false;
-  if (game.isDaily) {
-    dailyBonus = true;
-    currentUser.lastDaily = todayKey();
-    currentUser.dailyDone = (currentUser.dailyDone || 0) + 1;
-  }
+  if (game.isDaily) { dailyBonus = true; currentUser.lastDaily = todayKey(); currentUser.dailyDone = (currentUser.dailyDone || 0) + 1; }
   updateStreak();
   recordExtendedStats(game, timeSpent);
 
@@ -1941,7 +1894,6 @@ function endGame() {
     <div class="stat"><span class="stat-value">${game.wrong}</span><span class="stat-label">Ошибок</span></div>
     <div class="stat"><span class="stat-value">+${xpGain}</span><span class="stat-label">XP${dailyBonus ? ' ×2' : ''}</span></div>
   `;
-
   let extra = '';
   const accuracy = Math.round((game.correct / game.questions.length) * 100);
   if (accuracy === 100) extra = '💯 Идеально!';
@@ -1962,19 +1914,16 @@ function recordExtendedStats(g, timeSpent) {
   currentUser.categoryStats[cat].played++;
   currentUser.categoryStats[cat].score += g.score;
   if (g.wrong === 0) currentUser.categoryStats[cat].wins++;
-
   const day = todayKey();
   if (!currentUser.dailyHistory) currentUser.dailyHistory = {};
   if (!currentUser.dailyHistory[day]) currentUser.dailyHistory[day] = { count: 0, score: 0, time: 0 };
   currentUser.dailyHistory[day].count++;
   currentUser.dailyHistory[day].score += g.score;
   currentUser.dailyHistory[day].time += timeSpent;
-
   if (!currentUser.recentGames) currentUser.recentGames = [];
   currentUser.recentGames.unshift({
-    quizId: g.quizId, quizName: g.quiz.name, quizEmoji: g.quiz.emoji,
-    difficulty: g.difficulty, score: g.score,
-    correct: g.correct, wrong: g.wrong, total: g.questions.length,
+    quizId: g.quizId, quizName: g.quiz.name, quizEmoji: g.quiz.emoji, difficulty: g.difficulty,
+    score: g.score, correct: g.correct, wrong: g.wrong, total: g.questions.length,
     accuracy: Math.round(accuracy * 100), date: Date.now(), timeSpent
   });
   if (currentUser.recentGames.length > 30) currentUser.recentGames.length = 30;
@@ -1983,8 +1932,6 @@ function recordExtendedStats(g, timeSpent) {
 $('closeResultBtn').addEventListener('click', () => {
   $('resultModal').classList.add('hidden');
   renderQuizzes();
-  renderAchievements();
-  renderLeaderboard();
   updateDailyCard();
   updateStatsMini();
   showScreen('main');
@@ -1997,24 +1944,17 @@ $('leaveGameBtn').addEventListener('click', () => {
 });
 
 /* =========================================================
-   🎨 КОНСТРУКТОР ВИКТОРИН
+   КОНСТРУКТОР
    ========================================================= */
 function renderCreator() {
   const layout = $('creatorLayout');
   if (!layout) return;
-
-  // Если редактируем
-  if (currentEditingQuiz) {
-    renderQuizEditor();
-    return;
-  }
-
+  if (currentEditingQuiz) { renderQuizEditor(); return; }
   const myQuizzes = currentUser.myQuizzes || [];
-
   layout.innerHTML = `
     <div class="creator-card">
       <h3>🎨 Мои викторины</h3>
-      <div class="info-box info">💡 Создавайте свои викторины на любую тему! Добавляйте вопросы разных типов: обычные, эмодзи, правда/ложь, свободный ответ, соответствия и другие.</div>
+      <div class="info-box info">💡 Создавайте свои викторины! Доступны типы вопросов: обычный, эмодзи, правда/ложь, свободный ответ, соответствие и другие.</div>
       <div class="creator-btn-row">
         <button class="creator-btn primary" id="newQuizBtn">➕ Создать новую викторину</button>
       </div>
@@ -2030,40 +1970,29 @@ function renderCreator() {
                 <div class="my-quiz-name">${q.name}</div>
                 <div class="my-quiz-meta">
                   <span>${q.published ? '<span class="published-badge">Опубликовано</span>' : '<span class="draft-badge">Черновик</span>'}</span>
-                  <span>📝 ${(q.questions.easy||[]).length + (q.questions.medium||[]).length + (q.questions.hard||[]).length} вопросов</span>
-                  <span>❤️ ${q.likes || 0} лайков</span>
-                  <span>🎮 ${q.plays || 0} игр</span>
+                  <span>📝 ${(q.questions.easy||[]).length + (q.questions.medium||[]).length + (q.questions.hard||[]).length} вопр.</span>
                 </div>
               </div>
               <div class="my-quiz-actions">
                 <button data-edit="${q.id}">✏️ Редактировать</button>
-                <button data-publish="${q.id}">${q.published ? '📥 Снять с публикации' : '🚀 Опубликовать'}</button>
+                <button data-publish="${q.id}">${q.published ? '📥 Снять' : '🚀 Опубликовать'}</button>
                 <button class="danger" data-delete="${q.id}">🗑 Удалить</button>
               </div>
             </div>
           `).join('')}
         </div>
-      ` : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:30px;">У вас пока нет викторин. Создайте первую!</p>'}
+      ` : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:30px;">У вас пока нет викторин</p>'}
     </div>
   `;
-
   $('newQuizBtn').addEventListener('click', () => {
     currentEditingQuiz = {
       id: 'q_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
-      name: '',
-      emoji: '🎉',
-      category: 'user',
-      description: '',
-      accent: '#9c27b0',
-      published: false,
-      author: currentUser.username,
-      likes: 0,
-      plays: 0,
+      name: '', emoji: '🎉', category: 'user', description: '', accent: '#9c27b0',
+      published: false, author: currentUser.username, likes: 0, plays: 0,
       questions: { easy: [], medium: [], hard: [] }
     };
     renderCreator();
   });
-
   layout.querySelectorAll('[data-edit]').forEach(btn => {
     btn.addEventListener('click', () => {
       const q = currentUser.myQuizzes.find(x => x.id === btn.dataset.edit);
@@ -2078,7 +2007,7 @@ function renderCreator() {
       if (!q.published && totalQ === 0) return showToast('❌ Сначала добавьте вопросы');
       q.published = !q.published;
       saveUser();
-      showToast(q.published ? '🚀 Опубликовано!' : '📥 Снято с публикации');
+      showToast(q.published ? '🚀 Опубликовано!' : '📥 Снято');
       checkAchievements();
       renderCreator();
     });
@@ -2097,30 +2026,16 @@ function renderCreator() {
 function renderQuizEditor() {
   const layout = $('creatorLayout');
   const q = currentEditingQuiz;
-
   layout.innerHTML = `
     <div class="creator-card">
       <h3>✏️ Редактор викторины</h3>
-      <div class="creator-form-row">
-        <label>Название викторины</label>
-        <input type="text" id="edName" value="${q.name}" placeholder="Например: Моя викторина про кошек" maxlength="50">
-      </div>
+      <div class="creator-form-row"><label>Название</label><input type="text" id="edName" value="${q.name}" placeholder="Название викторины" maxlength="50"></div>
       <div class="creator-row-2">
-        <div class="creator-form-row">
-          <label>Эмодзи</label>
-          <input type="text" id="edEmoji" value="${q.emoji}" maxlength="4" placeholder="🎉">
-        </div>
-        <div class="creator-form-row">
-          <label>Цвет (accent)</label>
-          <input type="text" id="edAccent" value="${q.accent}" placeholder="#9c27b0">
-        </div>
+        <div class="creator-form-row"><label>Эмодзи</label><input type="text" id="edEmoji" value="${q.emoji}" maxlength="4"></div>
+        <div class="creator-form-row"><label>Цвет</label><input type="text" id="edAccent" value="${q.accent}"></div>
       </div>
-      <div class="creator-form-row">
-        <label>Описание</label>
-        <textarea id="edDesc" placeholder="Короткое описание викторины" maxlength="150">${q.description}</textarea>
-      </div>
+      <div class="creator-form-row"><label>Описание</label><textarea id="edDesc" placeholder="Короткое описание" maxlength="150">${q.description}</textarea></div>
     </div>
-
     <div class="creator-card">
       <h3>📝 Вопросы</h3>
       <div class="creator-tabs">
@@ -2129,11 +2044,8 @@ function renderQuizEditor() {
         <button class="creator-tab" data-diff="hard">🔴 Сложно (${(q.questions.hard||[]).length})</button>
       </div>
       <div id="questionEditors"></div>
-      <div class="creator-btn-row">
-        <button class="creator-btn primary" id="addQuestionBtn">➕ Добавить вопрос</button>
-      </div>
+      <div class="creator-btn-row"><button class="creator-btn primary" id="addQuestionBtn">➕ Добавить вопрос</button></div>
     </div>
-
     <div class="creator-card">
       <div class="creator-btn-row">
         <button class="creator-btn success" id="saveQuizBtn">💾 Сохранить</button>
@@ -2142,17 +2054,13 @@ function renderQuizEditor() {
       </div>
     </div>
   `;
-
   let currentDiff = 'easy';
 
   const updateQuestionList = () => {
     const cont = $('questionEditors');
     const qs = q.questions[currentDiff] || [];
-    if (!qs.length) {
-      cont.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:30px;">Нет вопросов. Добавьте первый!</p>';
-      return;
-    }
-    cont.innerHTML = qs.map((question, i) => renderQuestionEditor(question, i, currentDiff)).join('');
+    if (!qs.length) { cont.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:30px;">Нет вопросов</p>'; return; }
+    cont.innerHTML = qs.map((question, i) => renderQuestionEditor(question, i)).join('');
     attachQuestionHandlers();
   };
 
@@ -2167,14 +2075,8 @@ function renderQuizEditor() {
 
   $('addQuestionBtn').addEventListener('click', () => {
     if (!q.questions[currentDiff]) q.questions[currentDiff] = [];
-    q.questions[currentDiff].push({
-      type: 'choice',
-      q: '',
-      answers: ['', '', '', ''],
-      correct: 0
-    });
+    q.questions[currentDiff].push({ type: 'choice', q: '', answers: ['', '', '', ''], correct: 0 });
     renderQuizEditor();
-    layout.querySelector(`.creator-tab[data-diff="${currentDiff}"]`).click();
   });
 
   $('saveQuizBtn').addEventListener('click', () => {
@@ -2184,19 +2086,15 @@ function renderQuizEditor() {
     q.description = $('edDesc').value.trim();
     const totalQ = (q.questions.easy||[]).length + (q.questions.medium||[]).length + (q.questions.hard||[]).length;
     if (totalQ === 0) return showToast('❌ Добавьте хотя бы 1 вопрос');
-
-    // Валидация
     for (const diff of ['easy', 'medium', 'hard']) {
       for (const question of (q.questions[diff] || [])) {
-        if (!question.q || !question.q.trim()) return showToast(`❌ Пустой текст вопроса (${diff})`);
+        if (!question.q || !question.q.trim()) return showToast(`❌ Пустой текст вопроса`);
       }
     }
-
-    const existingIdx = currentUser.myQuizzes.findIndex(x => x.id === q.id);
-    if (existingIdx >= 0) currentUser.myQuizzes[existingIdx] = q;
-    else currentUser.myQuizzes.push(q);
+    const idx = currentUser.myQuizzes.findIndex(x => x.id === q.id);
+    if (idx >= 0) currentUser.myQuizzes[idx] = q; else currentUser.myQuizzes.push(q);
     saveUser();
-    showToast('✅ Викторина сохранена');
+    showToast('✅ Сохранено');
     checkAchievements();
     currentEditingQuiz = null;
     renderCreator();
@@ -2209,10 +2107,8 @@ function renderQuizEditor() {
     q.description = $('edDesc').value.trim();
     const totalQ = (q.questions.easy||[]).length + (q.questions.medium||[]).length + (q.questions.hard||[]).length;
     if (totalQ === 0) return showToast('❌ Нет вопросов');
-    // Временно сохраняем
-    const existingIdx = currentUser.myQuizzes.findIndex(x => x.id === q.id);
-    if (existingIdx < 0) currentUser.myQuizzes.push(q);
-    else currentUser.myQuizzes[existingIdx] = q;
+    const idx = currentUser.myQuizzes.findIndex(x => x.id === q.id);
+    if (idx < 0) currentUser.myQuizzes.push(q); else currentUser.myQuizzes[idx] = q;
     saveUser();
     startGame(q.id, 'easy');
   });
@@ -2223,116 +2119,54 @@ function renderQuizEditor() {
     renderCreator();
   });
 
-  function renderQuestionEditor(question, idx, diff) {
+  function renderQuestionEditor(question, idx) {
     const type = question.type || 'choice';
     return `
       <div class="question-editor" data-qidx="${idx}">
         <div class="question-editor-header">
           <div class="question-editor-number">Вопрос ${idx + 1}</div>
-          <div class="question-editor-actions">
-            <button class="qe-action danger" data-remove-q="${idx}">🗑</button>
-          </div>
+          <button class="qe-action" data-remove-q="${idx}">🗑</button>
         </div>
         <div class="question-editor-type">
-          <button class="qtype-btn ${type === 'choice' ? 'active' : ''}" data-qtype="choice" data-qidx="${idx}">📝 Обычный</button>
-          <button class="qtype-btn ${type === 'emoji' ? 'active' : ''}" data-qtype="emoji" data-qidx="${idx}">🎨 Эмодзи</button>
-          <button class="qtype-btn ${type === 'tf' ? 'active' : ''}" data-qtype="tf" data-qidx="${idx}">📊 Правда/Ложь</button>
-          <button class="qtype-btn ${type === 'free' ? 'active' : ''}" data-qtype="free" data-qidx="${idx}">✍️ Свободный</button>
-          <button class="qtype-btn ${type === 'fill' ? 'active' : ''}" data-qtype="fill" data-qidx="${idx}">📝 Пропуск</button>
-          <button class="qtype-btn ${type === 'match' ? 'active' : ''}" data-qtype="match" data-qidx="${idx}">🔗 Соответствие</button>
-          <button class="qtype-btn ${type === 'audio' ? 'active' : ''}" data-qtype="audio" data-qidx="${idx}">🎵 Аудио</button>
+          ${['choice','emoji','tf','free','fill','match'].map(t => {
+            const names = { choice:'📝 Обычный', emoji:'🎨 Эмодзи', tf:'📊 Правда/Ложь', free:'✍️ Свободный', fill:'📝 Пропуск', match:'🔗 Соответствие' };
+            return `<button class="qtype-btn ${type === t ? 'active' : ''}" data-qtype="${t}" data-qidx="${idx}">${names[t]}</button>`;
+          }).join('')}
         </div>
         <div class="creator-form-row" style="margin-top:14px;">
           <label>Текст вопроса</label>
-          <input type="text" class="q-text-input" data-qidx="${idx}" value="${(question.q || '').replace(/"/g, '&quot;')}" placeholder="Введите вопрос...">
+          <input type="text" class="q-text-input" data-qidx="${idx}" value="${(question.q || '').replace(/"/g, '&quot;')}">
         </div>
-        ${renderTypeSpecificEditor(question, idx, type)}
+        ${renderTypeEditor(question, idx, type)}
       </div>
     `;
   }
 
-  function renderTypeSpecificEditor(question, idx, type) {
-    if (type === 'choice') {
+  function renderTypeEditor(question, idx, type) {
+    if (type === 'choice' || type === 'emoji') {
       return `
-        <div class="creator-form-row">
-          <label>Варианты ответов (отметьте правильный)</label>
+        ${type === 'emoji' ? `<div class="creator-form-row"><label>Эмодзи</label><input type="text" class="q-emojis" data-qidx="${idx}" value="${question.emojis || ''}" placeholder="🎃🧙‍♀️🍬"></div>` : ''}
+        <div class="creator-form-row"><label>Варианты</label>
           ${(question.answers || ['', '', '', '']).map((ans, ai) => `
             <div class="answer-input-row">
               <input type="radio" name="correct_${idx}" ${question.correct === ai ? 'checked' : ''} data-correct="${ai}" data-qidx="${idx}">
               <input type="text" class="answer-text" data-ai="${ai}" data-qidx="${idx}" value="${(ans || '').replace(/"/g, '&quot;')}" placeholder="Вариант ${ai + 1}">
-            </div>
-          `).join('')}
+            </div>`).join('')}
         </div>
       `;
     }
-    if (type === 'emoji') {
-      return `
-        <div class="creator-form-row">
-          <label>Эмодзи для шифра (без пробелов)</label>
-          <input type="text" class="q-emojis" data-qidx="${idx}" value="${question.emojis || ''}" placeholder="🎃🧙‍♀️🍬" maxlength="20">
-        </div>
-        <div class="creator-form-row">
-          <label>Варианты ответов</label>
-          ${(question.answers || ['', '', '', '']).map((ans, ai) => `
-            <div class="answer-input-row">
-              <input type="radio" name="correct_${idx}" ${question.correct === ai ? 'checked' : ''} data-correct="${ai}" data-qidx="${idx}">
-              <input type="text" class="answer-text" data-ai="${ai}" data-qidx="${idx}" value="${(ans || '').replace(/"/g, '&quot;')}" placeholder="Вариант ${ai + 1}">
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-    if (type === 'tf') {
-      return `
-        <div class="creator-form-row">
-          <label>Правильный ответ</label>
-          <select class="q-tf" data-qidx="${idx}">
-            <option value="true" ${question.correct === true ? 'selected' : ''}>✅ Правда</option>
-            <option value="false" ${question.correct === false ? 'selected' : ''}>❌ Ложь</option>
-          </select>
-        </div>
-      `;
-    }
+    if (type === 'tf') return `<div class="creator-form-row"><label>Правильный ответ</label><select class="q-tf" data-qidx="${idx}"><option value="true" ${question.correct === true ? 'selected' : ''}>✅ Правда</option><option value="false" ${question.correct === false ? 'selected' : ''}>❌ Ложь</option></select></div>`;
     if (type === 'free' || type === 'fill') {
-      return `
-        <div class="creator-form-row">
-          <label>Правильные ответы (через запятую, все варианты)</label>
-          <input type="text" class="q-correct-list" data-qidx="${idx}" value="${(question.correct || []).join(', ').replace(/"/g, '&quot;')}" placeholder="ответ1, ответ2, ответ3">
-        </div>
-        ${type === 'fill' ? '<div style="font-size:12px;color:#c9a0dc;margin-top:4px;">💡 Используйте ___ в тексте вопроса для обозначения пропуска</div>' : ''}
-      `;
+      return `<div class="creator-form-row"><label>Правильные ответы (через запятую)</label><input type="text" class="q-correct-list" data-qidx="${idx}" value="${(question.correct || []).join(', ').replace(/"/g, '&quot;')}" placeholder="ответ1, ответ2">${type === 'fill' ? '<div style="font-size:12px;color:#c9a0dc;margin-top:4px;">💡 Используйте ___ для пропуска</div>' : ''}</div>`;
     }
     if (type === 'match') {
       const pairs = question.pairs || [['', ''], ['', '']];
-      return `
-        <div class="creator-form-row">
-          <label>Пары для сопоставления</label>
-          ${pairs.map((pair, pi) => `
-            <div class="answer-input-row">
-              <input type="text" class="match-left" data-pi="${pi}" data-qidx="${idx}" value="${(pair[0] || '').replace(/"/g, '&quot;')}" placeholder="Левая часть">
-              <span style="color:#ffb86b;">↔</span>
-              <input type="text" class="match-right" data-pi="${pi}" data-qidx="${idx}" value="${(pair[1] || '').replace(/"/g, '&quot;')}" placeholder="Правая часть">
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-    if (type === 'audio') {
-      return `
-        <div class="creator-form-row">
-          <label>Мелодия (частоты через запятую, например: 440, 494, 523)</label>
-          <input type="text" class="q-melody" data-qidx="${idx}" value="${(question.melody || [440, 494, 523]).join(', ')}" placeholder="440, 494, 523, 587">
-        </div>
-        <div class="creator-form-row">
-          <label>Варианты ответов</label>
-          ${(question.answers || ['', '', '', '']).map((ans, ai) => `
-            <div class="answer-input-row">
-              <input type="radio" name="correct_${idx}" ${question.correct === ai ? 'checked' : ''} data-correct="${ai}" data-qidx="${idx}">
-              <input type="text" class="answer-text" data-ai="${ai}" data-qidx="${idx}" value="${(ans || '').replace(/"/g, '&quot;')}" placeholder="Вариант ${ai + 1}">
-            </div>
-          `).join('')}
-        </div>
-      `;
+      return `<div class="creator-form-row"><label>Пары</label>${pairs.map((pair, pi) => `
+        <div class="answer-input-row">
+          <input type="text" class="match-left" data-pi="${pi}" data-qidx="${idx}" value="${(pair[0] || '').replace(/"/g, '&quot;')}" placeholder="Левая">
+          <span style="color:#ffb86b;">↔</span>
+          <input type="text" class="match-right" data-pi="${pi}" data-qidx="${idx}" value="${(pair[1] || '').replace(/"/g, '&quot;')}" placeholder="Правая">
+        </div>`).join('')}</div>`;
     }
     return '';
   }
@@ -2345,80 +2179,45 @@ function renderQuizEditor() {
         const newType = btn.dataset.qtype;
         const old = q.questions[currentDiff][qidx];
         const base = { type: newType, q: old.q };
-        if (newType === 'choice' || newType === 'emoji' || newType === 'audio') {
-          base.answers = ['', '', '', ''];
-          base.correct = 0;
-          if (newType === 'emoji') base.emojis = '';
-          if (newType === 'audio') base.melody = [440, 494, 523, 587];
-        } else if (newType === 'tf') {
-          base.correct = true;
-        } else if (newType === 'free') {
-          base.correct = [];
-        } else if (newType === 'fill') {
-          base.correct = [];
-        } else if (newType === 'match') {
-          base.pairs = [['', ''], ['', '']];
-        }
+        if (newType === 'choice' || newType === 'emoji') { base.answers = ['', '', '', '']; base.correct = 0; if (newType === 'emoji') base.emojis = ''; }
+        else if (newType === 'tf') base.correct = true;
+        else if (newType === 'free' || newType === 'fill') base.correct = [];
+        else if (newType === 'match') base.pairs = [['', ''], ['', '']];
         q.questions[currentDiff][qidx] = base;
-        renderQuizEditor();
-        cont.querySelector(`.creator-tab[data-diff="${currentDiff}"]`)?.click();
         layout.querySelector(`.creator-tab[data-diff="${currentDiff}"]`).click();
       });
     });
-
     cont.querySelectorAll('[data-remove-q]').forEach(btn => {
       btn.addEventListener('click', () => {
-        const qidx = parseInt(btn.dataset.removeQ);
-        q.questions[currentDiff].splice(qidx, 1);
-        renderQuizEditor();
+        q.questions[currentDiff].splice(parseInt(btn.dataset.removeQ), 1);
         layout.querySelector(`.creator-tab[data-diff="${currentDiff}"]`).click();
       });
     });
-
     cont.querySelectorAll('.q-text-input').forEach(inp => {
-      inp.addEventListener('input', e => {
-        q.questions[currentDiff][parseInt(inp.dataset.qidx)].q = e.target.value;
-      });
+      inp.addEventListener('input', e => { q.questions[currentDiff][parseInt(inp.dataset.qidx)].q = e.target.value; });
     });
     cont.querySelectorAll('.answer-text').forEach(inp => {
       inp.addEventListener('input', e => {
-        const qidx = parseInt(inp.dataset.qidx);
-        const ai = parseInt(inp.dataset.ai);
+        const qidx = parseInt(inp.dataset.qidx), ai = parseInt(inp.dataset.ai);
         if (!q.questions[currentDiff][qidx].answers) q.questions[currentDiff][qidx].answers = ['', '', '', ''];
         q.questions[currentDiff][qidx].answers[ai] = e.target.value;
       });
     });
     cont.querySelectorAll('[data-correct]').forEach(r => {
-      r.addEventListener('change', e => {
-        if (r.checked) {
-          q.questions[currentDiff][parseInt(r.dataset.qidx)].correct = parseInt(r.dataset.correct);
-        }
-      });
+      r.addEventListener('change', () => { if (r.checked) q.questions[currentDiff][parseInt(r.dataset.qidx)].correct = parseInt(r.dataset.correct); });
     });
     cont.querySelectorAll('.q-emojis').forEach(inp => {
-      inp.addEventListener('input', e => {
-        q.questions[currentDiff][parseInt(inp.dataset.qidx)].emojis = e.target.value;
-      });
+      inp.addEventListener('input', e => { q.questions[currentDiff][parseInt(inp.dataset.qidx)].emojis = e.target.value; });
     });
     cont.querySelectorAll('.q-tf').forEach(sel => {
-      sel.addEventListener('change', e => {
-        q.questions[currentDiff][parseInt(sel.dataset.qidx)].correct = e.target.value === 'true';
-      });
+      sel.addEventListener('change', e => { q.questions[currentDiff][parseInt(sel.dataset.qidx)].correct = e.target.value === 'true'; });
     });
     cont.querySelectorAll('.q-correct-list').forEach(inp => {
-      inp.addEventListener('input', e => {
-        q.questions[currentDiff][parseInt(inp.dataset.qidx)].correct = e.target.value.split(',').map(x => x.trim()).filter(Boolean);
-      });
-    });
-    cont.querySelectorAll('.q-melody').forEach(inp => {
-      inp.addEventListener('input', e => {
-        q.questions[currentDiff][parseInt(inp.dataset.qidx)].melody = e.target.value.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
-      });
+      inp.addEventListener('input', e => { q.questions[currentDiff][parseInt(inp.dataset.qidx)].correct = e.target.value.split(',').map(x => x.trim()).filter(Boolean); });
     });
     cont.querySelectorAll('.match-left').forEach(inp => {
       inp.addEventListener('input', e => {
-        const qidx = parseInt(inp.dataset.qidx);
-        const pi = parseInt(inp.dataset.pi);
+        const qidx = parseInt(inp.dataset.qidx), pi = parseInt(inp.dataset.pi);
         if (!q.questions[currentDiff][qidx].pairs) q.questions[currentDiff][qidx].pairs = [];
         if (!q.questions[currentDiff][qidx].pairs[pi]) q.questions[currentDiff][qidx].pairs[pi] = ['', ''];
         q.questions[currentDiff][qidx].pairs[pi][0] = e.target.value;
@@ -2426,8 +2225,7 @@ function renderQuizEditor() {
     });
     cont.querySelectorAll('.match-right').forEach(inp => {
       inp.addEventListener('input', e => {
-        const qidx = parseInt(inp.dataset.qidx);
-        const pi = parseInt(inp.dataset.pi);
+        const qidx = parseInt(inp.dataset.qidx), pi = parseInt(inp.dataset.pi);
         if (!q.questions[currentDiff][qidx].pairs) q.questions[currentDiff][qidx].pairs = [];
         if (!q.questions[currentDiff][qidx].pairs[pi]) q.questions[currentDiff][qidx].pairs[pi] = ['', ''];
         q.questions[currentDiff][qidx].pairs[pi][1] = e.target.value;
@@ -2435,7 +2233,13 @@ function renderQuizEditor() {
     });
   }
 
-  updateQuestionList();
+  updateCurrentTabAndList();
+
+  function updateCurrentTabAndList() {
+    layout.querySelector(`.creator-tab[data-diff="easy"]`).classList.add('active');
+    currentDiff = 'easy';
+    updateQuestionList();
+  }
 }
 
 /* =========================================================
@@ -2447,18 +2251,15 @@ function renderGlobalChat() {
   const emojiBar = $('chatEmojiBar');
   if (!container) return;
 
-  // Стата
   const allUsers = Object.values(DB.users);
   const online = allUsers.filter(u => isOnline(u.username));
   $('chatOnlineBadge').textContent = `${online.length} онлайн`;
   $('chatOnlineCount').textContent = online.length;
   $('chatUsers').textContent = allUsers.length;
-
   const chat = DB.chat;
   $('chatTotalMsgs').textContent = chat.length;
   $('chatMyMsgs').textContent = chat.filter(m => m.author === currentUser.username).length;
 
-  // Emoji bar (единораз)
   if (!emojiBar.dataset.init) {
     emojiBar.innerHTML = CHAT_EMOJIS.map(e => `<button class="chat-emoji-btn" data-emoji="${e}">${e}</button>`).join('');
     emojiBar.dataset.init = '1';
@@ -2471,41 +2272,19 @@ function renderGlobalChat() {
     });
   }
 
-  // Online list
   onlineList.innerHTML = online.length
-    ? online.map(u => `
-      <div class="chat-online-user">
-        <div class="u-avatar">${u.avatar || u.username[0].toUpperCase()}</div>
-        <div class="u-name">${u.username}${u.username === currentUser.username ? ' (вы)' : ''}</div>
-        <div class="u-dot"></div>
-      </div>
-    `).join('')
+    ? online.map(u => `<div class="chat-online-user"><div class="u-avatar">${u.avatar || u.username[0].toUpperCase()}</div><div class="u-name">${u.username}${u.username === currentUser.username ? ' (вы)' : ''}</div><div class="u-dot"></div></div>`).join('')
     : '<p style="opacity:0.6;color:#c9a0dc;font-size:12px;text-align:center;padding:10px;">Никого нет</p>';
 
-  // Messages
   const wasAtBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 100;
   container.innerHTML = chat.length ? chat.map(msg => {
-    if (msg.system) {
-      return `<div class="global-msg system"><div class="msg-text">${msg.text}</div></div>`;
-    }
+    if (msg.system) return `<div class="global-msg system"><div class="msg-text">${msg.text}</div></div>`;
     const me = msg.author === currentUser.username;
     const u = DB.users[msg.author.toLowerCase()];
     const avatar = (u && u.avatar) || msg.author[0].toUpperCase();
     const level = u ? u.level : 1;
     const time = new Date(msg.t).toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
-    return `
-      <div class="global-msg ${me ? 'me' : ''}">
-        <div class="msg-avatar">${avatar}</div>
-        <div class="msg-body">
-          <div class="msg-header">
-            <span class="msg-author ${me ? 'me' : ''}">${msg.author}</span>
-            <span class="msg-level">Ур. ${level}</span>
-            <span class="msg-time">${time}</span>
-          </div>
-          <div class="msg-text">${escapeHtml(msg.text)}</div>
-        </div>
-      </div>
-    `;
+    return `<div class="global-msg ${me ? 'me' : ''}"><div class="msg-avatar">${avatar}</div><div class="msg-body"><div class="msg-header"><span class="msg-author ${me ? 'me' : ''}">${msg.author}</span><span class="msg-level">Ур. ${level}</span><span class="msg-time">${time}</span></div><div class="msg-text">${escapeHtml(msg.text)}</div></div></div>`;
   }).join('') : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:40px;">Пока нет сообщений. Будьте первым!</p>';
 
   if (wasAtBottom) container.scrollTop = container.scrollHeight;
@@ -2522,11 +2301,7 @@ function sendGlobalMessage() {
   const text = inp.value.trim();
   if (!text) return;
   const chat = DB.chat;
-  chat.push({
-    author: currentUser.username,
-    text: text,
-    t: Date.now()
-  });
+  chat.push({ author: currentUser.username, text: text, t: Date.now() });
   DB.chat = chat;
   currentUser.globalMessages = (currentUser.globalMessages || 0) + 1;
   saveUser();
@@ -2540,228 +2315,182 @@ $('globalChatSend').addEventListener('click', sendGlobalMessage);
 $('globalChatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendGlobalMessage(); });
 
 /* =========================================================
-   ACHIEVEMENTS
+   ПРОФИЛЬ (с табами: аккаунт, достижения, рейтинг, друзья, статистика)
    ========================================================= */
-function renderAchievements() {
-  const grid = $('achievementsGrid');
-  grid.innerHTML = '';
-  ACHIEVEMENTS.forEach(a => {
-    const unlocked = currentUser.achievements && currentUser.achievements.includes(a.id);
-    let progressHtml = '';
-    if (!unlocked && a.progress) {
-      const [cur, total] = a.progress(currentUser);
-      const pct = Math.min(100, (cur / total) * 100);
-      progressHtml = `<div class="progress"><div class="progress-fill" style="width:${pct}%"></div></div>
-        <div style="font-size:11px;color:#c9a0dc;margin-top:4px;">${cur} / ${total}</div>`;
-    }
-    const div = document.createElement('div');
-    div.className = 'achievement ' + (unlocked ? 'unlocked' : 'locked');
-    div.innerHTML = `<div class="achievement-icon">${a.icon}</div><h4>${a.name}</h4><p>${a.desc}</p>${progressHtml}`;
-    grid.appendChild(div);
-  });
-}
-
-function checkAchievements() {
-  if (!currentUser.achievements) currentUser.achievements = [];
-  ACHIEVEMENTS.forEach(a => {
-    if (!currentUser.achievements.includes(a.id) && a.check(currentUser)) {
-      currentUser.achievements.push(a.id);
-      showToast(`🏆 Достижение: ${a.name}`);
-      playSound('success');
-      burstConfetti(40);
-    }
-  });
-  saveUser();
-}
-
-/* =========================================================
-   LEADERBOARD
-   ========================================================= */
-function renderLeaderboard() {
-  const users = Object.values(DB.users);
-  users.sort((a, b) => (b.level * 10000 + b.xp) - (a.level * 10000 + a.xp));
-  const list = $('leaderboardList');
-  list.innerHTML = '';
-  users.forEach((u, i) => {
-    const rank = i + 1;
-    const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
-    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
-    const online = isOnline(u.username);
-    const row = document.createElement('div');
-    row.className = 'leaderboard-row' + (u.username === currentUser.username ? ' me' : '');
-    const av = u.avatar || u.username[0].toUpperCase();
-    row.innerHTML = `
-      <div class="rank ${rankClass}">${medal}</div>
-      <div class="avatar">${av}</div>
-      <div class="leaderboard-name">${u.username} ${online ? '<span style="color:#4caf50;font-size:12px;">● онлайн</span>' : ''}</div>
-      <div class="leaderboard-xp">Ур. ${u.level} • ${u.xp} XP</div>
-    `;
-    list.appendChild(row);
-  });
-}
-
-/* =========================================================
-   FRIENDS
-   ========================================================= */
-$('searchBtn').addEventListener('click', addFriendByNick);
-$('friendSearch').addEventListener('keydown', e => { if (e.key === 'Enter') addFriendByNick(); });
-
-function addFriendByNick() {
-  const nick = $('friendSearch').value.trim();
-  const res = $('searchResults');
-  res.innerHTML = '';
-  if (!nick) return;
-  const users = DB.users;
-  const target = users[nick.toLowerCase()];
-  if (!target) {
-    res.innerHTML = `<div class="friend-item" style="border-color:rgba(244,67,54,0.5);"><div class="name" style="color:#ff5c7c;">❌ Игрок "${nick}" не найден</div></div>`;
-    return;
-  }
-  if (target.username === currentUser.username) {
-    res.innerHTML = `<div class="friend-item" style="border-color:rgba(255,152,0,0.5);"><div class="name" style="color:#ffb74d;">⚠ Это вы сами 😄</div></div>`;
-    return;
-  }
-  const isFriend = (currentUser.friends || []).includes(target.username);
-  const online = isOnline(target.username);
-  const item = document.createElement('div');
-  item.className = 'friend-item';
-  const av = target.avatar || target.username[0].toUpperCase();
-  item.innerHTML = `
-    <div class="avatar">${av}</div>
-    <div class="name">${target.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${target.level}${online ? ' • ● онлайн' : ''})</span></div>
-    <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>${isFriend ? '✓ В друзьях' : '➕ Добавить'}</button>
-  `;
-  if (!isFriend) item.querySelector('button').addEventListener('click', () => addFriend(target.username));
-  res.appendChild(item);
-}
-
-function addFriend(name) {
-  if (!currentUser.friends) currentUser.friends = [];
-  if (!currentUser.friends.includes(name)) {
-    currentUser.friends.push(name);
-    saveUser();
-    showToast(`✅ ${name} добавлен!`);
-    checkAchievements();
-    renderFriends();
-    updateStatsMini();
-    $('friendSearch').value = '';
-    $('searchResults').innerHTML = '';
-  }
-}
-
-function renderFriends() {
-  const list = $('friendsList');
-  list.innerHTML = '';
-  if (!currentUser.friends || !currentUser.friends.length) {
-    list.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;">Пока никого нет. Введите никнейм друга выше!</p>';
-  } else {
-    currentUser.friends.forEach(name => {
-      const u = DB.users[name.toLowerCase()];
-      const online = isOnline(name);
-      const item = document.createElement('div');
-      item.className = 'friend-item';
-      const av = (u && u.avatar) || name[0].toUpperCase();
-      item.innerHTML = `
-        <div class="avatar">${av}</div>
-        <div class="name">${name} ${u ? `<span style="opacity:0.6;font-size:12px;">(Ур. ${u.level}${online ? ' • ● онлайн' : ''})</span>` : ''}</div>
-        <button data-remove="${name}" style="background:rgba(255,255,255,0.15);">Удалить</button>
-      `;
-      item.querySelector('[data-remove]').addEventListener('click', () => {
-        currentUser.friends = currentUser.friends.filter(f => f !== name);
-        saveUser();
-        renderFriends();
-      });
-      list.appendChild(item);
-    });
-  }
-}
-
-/* =========================================================
-   STATS
-   ========================================================= */
-function renderStatsDashboard() {
-  const dash = $('statsDashboard');
-  if (!dash) return;
+function renderProfilePage() {
+  const page = $('profilePage');
+  if (!page) return;
   initExtendedStats(currentUser);
   const u = currentUser;
+  const needed = xpForLevel(u.level);
+  const pct = Math.min(100, (u.xp / needed) * 100);
+  const online = isOnline(u.username);
+  const accCreated = new Date(u.createdAt);
+  const accAge = Math.floor((Date.now() - u.createdAt) / (1000 * 60 * 60 * 24));
   const totalGames = u.gamesPlayed || 0;
-  const totalCorrect = u.totalCorrect || 0;
   const totalQ = u.totalQuestions || 0;
-  const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0;
+  const accuracy = totalQ > 0 ? Math.round((u.totalCorrect / totalQ) * 100) : 0;
+  const achievementsUnlocked = (u.achievements || []).length;
 
-  dash.innerHTML = `
-    <div class="stats-section"><h3>📊 Общие показатели</h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;">
-        <div style="padding:16px;background:rgba(255,140,0,0.12);border-radius:14px;text-align:center;">
-          <div style="font-size:32px;">🎮</div>
-          <span style="font-size:28px;font-family:'Creepster';color:#ffb86b;display:block;">${totalGames}</span>
-          <span style="font-size:12px;color:#c9a0dc;text-transform:uppercase;">Игр</span>
-        </div>
-        <div style="padding:16px;background:rgba(255,140,0,0.12);border-radius:14px;text-align:center;">
-          <div style="font-size:32px;">🎯</div>
-          <span style="font-size:28px;font-family:'Creepster';color:#ffb86b;display:block;">${accuracy}%</span>
-          <span style="font-size:12px;color:#c9a0dc;text-transform:uppercase;">Точность</span>
-        </div>
-        <div style="padding:16px;background:rgba(255,140,0,0.12);border-radius:14px;text-align:center;">
-          <div style="font-size:32px;">⭐</div>
-          <span style="font-size:28px;font-family:'Creepster';color:#ffb86b;display:block;">${u.totalScore || 0}</span>
-          <span style="font-size:12px;color:#c9a0dc;text-transform:uppercase;">Очков</span>
-        </div>
-        <div style="padding:16px;background:rgba(255,140,0,0.12);border-radius:14px;text-align:center;">
-          <div style="font-size:32px;">💬</div>
-          <span style="font-size:28px;font-family:'Creepster';color:#ffb86b;display:block;">${u.globalMessages || 0}</span>
-          <span style="font-size:12px;color:#c9a0dc;text-transform:uppercase;">Сообщений</span>
-        </div>
-        <div style="padding:16px;background:rgba(255,140,0,0.12);border-radius:14px;text-align:center;">
-          <div style="font-size:32px;">✏️</div>
-          <span style="font-size:28px;font-family:'Creepster';color:#ffb86b;display:block;">${(u.myQuizzes||[]).length}</span>
-          <span style="font-size:12px;color:#c9a0dc;text-transform:uppercase;">Своих викторин</span>
-        </div>
-        <div style="padding:16px;background:rgba(255,140,0,0.12);border-radius:14px;text-align:center;">
-          <div style="font-size:32px;">✍️</div>
-          <span style="font-size:28px;font-family:'Creepster';color:#ffb86b;display:block;">${u.freeAnswers || 0}</span>
-          <span style="font-size:12px;color:#c9a0dc;text-transform:uppercase;">Свободных ответов</span>
+  page.innerHTML = `
+    <div class="profile-hero">
+      <div class="profile-hero-content">
+        <div class="profile-hero-avatar ${online ? 'online' : ''}">${u.avatar || u.username[0].toUpperCase()}</div>
+        <div class="profile-hero-info">
+          <div class="profile-hero-name">${u.username}</div>
+          <div class="profile-hero-level">🎓 Уровень ${u.level} • ${u.xp} / ${needed} XP</div>
+          <div class="profile-hero-bio">${u.bio || 'Покоряю все праздники мира! 🌍'}</div>
+          <div class="profile-hero-meta">
+            <span>📅 С ${accCreated.toLocaleDateString('ru')}</span>
+            <span>⏰ ${accAge} дн. с нами</span>
+            <span>🏆 ${achievementsUnlocked} достижений</span>
+            <span>👥 ${(u.friends||[]).length} друзей</span>
+          </div>
+          <div class="profile-hero-xp">
+            <div class="profile-hero-xp-label"><span>Прогресс уровня</span><span>${u.xp} / ${needed} XP</span></div>
+            <div class="profile-hero-xp-bar"><div class="profile-hero-xp-fill" style="width:${pct}%"></div></div>
+          </div>
         </div>
       </div>
+      <div class="profile-quick-stats">
+        <div class="profile-quick-stat"><div class="pq-icon">🎮</div><span class="pq-value">${totalGames}</span><span class="pq-label">Игр</span></div>
+        <div class="profile-quick-stat"><div class="pq-icon">⭐</div><span class="pq-value">${u.totalScore || 0}</span><span class="pq-label">Очков</span></div>
+        <div class="profile-quick-stat"><div class="pq-icon">🎯</div><span class="pq-value">${accuracy}%</span><span class="pq-label">Точность</span></div>
+        <div class="profile-quick-stat"><div class="pq-icon">💯</div><span class="pq-value">${u.perfectGames || 0}</span><span class="pq-label">Идеальных</span></div>
+        <div class="profile-quick-stat"><div class="pq-icon">🔥</div><span class="pq-value">${u.streak || 0}</span><span class="pq-label">Стрик</span></div>
+        <div class="profile-quick-stat"><div class="pq-icon">🏆</div><span class="pq-value">${achievementsUnlocked}</span><span class="pq-label">Достижений</span></div>
+      </div>
     </div>
+
+    <div class="profile-tabs">
+      <button class="profile-tab ${activeProfileTab === 'account' ? 'active' : ''}" data-ptab="account">👤 Аккаунт</button>
+      <button class="profile-tab ${activeProfileTab === 'achievements' ? 'active' : ''}" data-ptab="achievements">🏆 Достижения</button>
+      <button class="profile-tab ${activeProfileTab === 'rating' ? 'active' : ''}" data-ptab="rating">📊 Рейтинг</button>
+      <button class="profile-tab ${activeProfileTab === 'friends' ? 'active' : ''}" data-ptab="friends">👥 Друзья</button>
+      <button class="profile-tab ${activeProfileTab === 'stats' ? 'active' : ''}" data-ptab="stats">📈 Статистика</button>
+    </div>
+
+    <div class="profile-tab-content ${activeProfileTab === 'account' ? 'active' : ''}" id="ptab-account"></div>
+    <div class="profile-tab-content ${activeProfileTab === 'achievements' ? 'active' : ''}" id="ptab-achievements"></div>
+    <div class="profile-tab-content ${activeProfileTab === 'rating' ? 'active' : ''}" id="ptab-rating"></div>
+    <div class="profile-tab-content ${activeProfileTab === 'friends' ? 'active' : ''}" id="ptab-friends"></div>
+    <div class="profile-tab-content ${activeProfileTab === 'stats' ? 'active' : ''}" id="ptab-stats"></div>
   `;
+
+  // Рендерим все табы
+  renderAccountTab();
+  renderAchievementsInProfile();
+  renderRatingInProfile();
+  renderFriendsInProfile();
+  renderStatsInProfile();
+
+  // Обработчики переключения табов
+  page.querySelectorAll('.profile-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeProfileTab = tab.dataset.ptab;
+      page.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      page.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+      $('ptab-' + activeProfileTab).classList.add('active');
+      playSound('click');
+    });
+  });
 }
 
-/* =========================================================
-   SETTINGS
-   ========================================================= */
-function renderSettings() {
-  const layout = $('settingsLayout');
-  if (!layout) return;
-  const s = DB.settings;
-  layout.innerHTML = `
-    <div style="background:rgba(40,10,60,0.85);border:2px solid rgba(255,140,0,0.25);border-radius:20px;padding:26px;">
-      <h3 style="color:#ff8c00;margin-bottom:18px;">🎨 Внешний вид</h3>
+/* ---------- Таб: Аккаунт ---------- */
+function renderAccountTab() {
+  const container = $('ptab-account');
+  if (!container) return;
+  const u = currentUser;
+  const accCreated = new Date(u.createdAt);
+  const lastSeenStr = new Date(u.lastSeen).toLocaleString('ru');
+  container.innerHTML = `
+    <div class="profile-section">
+      <h3>📋 Информация об аккаунте</h3>
+      <div class="account-info-grid">
+        <div class="account-info-item"><div class="account-info-icon">👤</div><div class="account-info-content"><div class="account-info-label">Никнейм</div><div class="account-info-value">${u.username}</div></div></div>
+        <div class="account-info-item"><div class="account-info-icon">📧</div><div class="account-info-content"><div class="account-info-label">Email</div><div class="account-info-value ${u.email ? '' : 'mono'}">${u.email || '— не указан —'}</div></div></div>
+        <div class="account-info-item"><div class="account-info-icon">📅</div><div class="account-info-content"><div class="account-info-label">Дата регистрации</div><div class="account-info-value">${accCreated.toLocaleDateString('ru')}</div></div></div>
+        <div class="account-info-item"><div class="account-info-icon">🕐</div><div class="account-info-content"><div class="account-info-label">Последний вход</div><div class="account-info-value mono">${lastSeenStr}</div></div></div>
+        <div class="account-info-item"><div class="account-info-icon">🎮</div><div class="account-info-content"><div class="account-info-label">Всего игр</div><div class="account-info-value">${u.gamesPlayed}</div></div></div>
+        <div class="account-info-item"><div class="account-info-icon">⏱️</div><div class="account-info-content"><div class="account-info-label">Время в игре</div><div class="account-info-value">${Math.floor((u.totalTime||0)/3600)}ч ${Math.floor(((u.totalTime||0)%3600)/60)}м</div></div></div>
+        <div class="account-info-item"><div class="account-info-icon">💬</div><div class="account-info-content"><div class="account-info-label">Сообщений в чат</div><div class="account-info-value">${u.globalMessages || 0}</div></div></div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn" id="profileChangeNick">✏️ Изменить ник</button>
+        <button class="profile-action-btn" id="profileChangePassword">🔐 Сменить пароль</button>
+        <button class="profile-action-btn" id="profileChangeEmail">📧 ${u.email ? 'Изменить почту' : 'Добавить почту'}</button>
+        <button class="profile-action-btn" id="profileChangeBio">💬 Изменить статус</button>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>🎨 Оформление</h3>
+      <div class="profile-actions" style="margin-top:0;">
+        <button class="profile-action-btn" data-theme-set="halloween">🎃 Хэллоуин</button>
+        <button class="profile-action-btn" data-theme-set="christmas">🎄 Рождество</button>
+        <button class="profile-action-btn" data-theme-set="newyear">🎆 Новый год</button>
+        <button class="profile-action-btn" data-theme-set="cosmic">🌌 Космос</button>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>🔊 Настройки</h3>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px dashed rgba(255,140,0,0.15);">
         <div><div style="color:#ffb86b;font-weight:700;">🎬 Анимации</div><div style="font-size:12px;color:#c9a0dc;">Плавные переходы</div></div>
-        <label class="switch"><input type="checkbox" id="animationsToggle" ${s.animations ? 'checked' : ''}><span class="slider"></span></label>
+        <label class="switch"><input type="checkbox" id="animToggle" ${DB.settings.animations ? 'checked' : ''}><span class="slider"></span></label>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px dashed rgba(255,140,0,0.15);">
         <div><div style="color:#ffb86b;font-weight:700;">🦇 Мыши на фоне</div><div style="font-size:12px;color:#c9a0dc;">Декоративные элементы</div></div>
-        <label class="switch"><input type="checkbox" id="batsToggle" ${s.batsBg ? 'checked' : ''}><span class="slider"></span></label>
+        <label class="switch"><input type="checkbox" id="batsToggle" ${DB.settings.batsBg ? 'checked' : ''}><span class="slider"></span></label>
       </div>
-    </div>
-    <div style="background:rgba(40,10,60,0.85);border:2px solid rgba(255,140,0,0.25);border-radius:20px;padding:26px;">
-      <h3 style="color:#ff8c00;margin-bottom:18px;">🔊 Звук</h3>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;">
-        <div><div style="color:#ffb86b;font-weight:700;">Звуковые эффекты</div><div style="font-size:12px;color:#c9a0dc;">Ответы, уровни, тики</div></div>
-        <label class="switch"><input type="checkbox" id="soundToggle" ${s.sound ? 'checked' : ''}><span class="slider"></span></label>
+        <div><div style="color:#ffb86b;font-weight:700;">🔊 Звуковые эффекты</div><div style="font-size:12px;color:#c9a0dc;">Ответы, уровни, тики</div></div>
+        <label class="switch"><input type="checkbox" id="soundToggle" ${DB.settings.sound ? 'checked' : ''}><span class="slider"></span></label>
       </div>
     </div>
-    <div style="background:rgba(40,10,60,0.85);border:2px solid rgba(255,140,0,0.25);border-radius:20px;padding:26px;">
-      <h3 style="color:#ff8c00;margin-bottom:18px;">📊 Данные</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn-secondary" id="exportDataBtn" style="flex:1;min-width:150px;">📥 Экспорт</button>
-        <button class="btn-secondary" id="resetStatsBtn" style="flex:1;min-width:150px;background:rgba(244,67,54,0.15);border-color:rgba(244,67,54,0.5);color:#ef5350;">🗑 Сбросить статистику</button>
+
+    <div class="profile-section">
+      <h3>💾 Данные</h3>
+      <div class="profile-actions" style="margin-top:0;">
+        <button class="profile-action-btn" id="exportBtn">📥 Экспорт данных</button>
+        <button class="profile-action-btn" id="resetStatsBtn" style="border-color:rgba(244,67,54,0.5);color:#ef5350;">🗑 Сбросить статистику</button>
+        <button class="profile-action-btn" id="deleteAccountBtn" style="border-color:rgba(244,67,54,0.5);color:#ef5350;">❌ Удалить аккаунт</button>
       </div>
     </div>
   `;
-  $('animationsToggle').addEventListener('change', e => {
+  $('profileChangeNick').addEventListener('click', () => {
+    $('newNicknameInput').value = u.username;
+    $('nicknameError').textContent = '';
+    $('nicknameModal').classList.remove('hidden');
+  });
+  $('profileChangePassword').addEventListener('click', () => {
+    $('oldPassword').value = ''; $('newPassword').value = ''; $('newPassword2').value = '';
+    $('passwordError').textContent = '';
+    $('passwordModal').classList.remove('hidden');
+  });
+  $('profileChangeEmail').addEventListener('click', () => {
+    $('newEmailInput').value = u.email || '';
+    $('emailError').textContent = '';
+    $('emailModal').classList.remove('hidden');
+  });
+  $('profileChangeBio').addEventListener('click', () => {
+    const bio = prompt('Ваш статус (макс. 100 символов):', u.bio || '');
+    if (bio === null) return;
+    if (bio.length > 100) return showToast('❌ Слишком длинный');
+    u.bio = bio.trim();
+    saveUser();
+    showToast('✅ Статус обновлён');
+    renderProfilePage();
+  });
+  container.querySelectorAll('[data-theme-set]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyTheme(btn.dataset.themeSet);
+      showToast(`🎨 Тема: ${btn.textContent.trim()}`);
+      renderProfilePage();
+    });
+  });
+  $('animToggle').addEventListener('change', e => {
     const s = DB.settings; s.animations = e.target.checked; DB.settings = s; applySettings();
   });
   $('batsToggle').addEventListener('change', e => {
@@ -2770,7 +2499,7 @@ function renderSettings() {
   $('soundToggle').addEventListener('change', e => {
     const s = DB.settings; s.sound = e.target.checked; DB.settings = s;
   });
-  $('exportDataBtn').addEventListener('click', () => {
+  $('exportBtn').addEventListener('click', () => {
     const data = { version:1, user: currentUser, settings: DB.settings, chat: DB.chat };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -2796,54 +2525,339 @@ function renderSettings() {
     showToast('🗑 Сброшено');
     enterMain();
   });
+  $('deleteAccountBtn').addEventListener('click', () => {
+    if (!confirm('Удалить аккаунт? Это необратимо!')) return;
+    if (!confirm('Точно уверены?')) return;
+    const nick = prompt('Введите ваш никнейм для подтверждения:');
+    if (nick !== currentUser.username) return showToast('❌ Ник не совпал');
+    const users = DB.users;
+    delete users[currentUser.username.toLowerCase()];
+    DB.users = users;
+    DB.session = null;
+    const online = DB.online;
+    delete online[currentUser.username];
+    DB.online = online;
+    currentUser = null;
+    showScreen('auth');
+    showToast('❌ Аккаунт удалён');
+  });
 }
 
-function renderProfilePage() {
-  const page = $('profilePage');
-  if (!page) return;
+/* ---------- Таб: Достижения ---------- */
+function renderAchievementsInProfile() {
+  const container = $('ptab-achievements');
+  if (!container) return;
   const u = currentUser;
-  const needed = xpForLevel(u.level);
-  const pct = Math.min(100, (u.xp / needed) * 100);
-  page.innerHTML = `
-    <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:20px;">
-      <div style="background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15));border:2px solid rgba(255,180,80,0.5);border-radius:24px;padding:32px;">
-        <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;">
-          <div style="width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#ff8c00,#c72c00);display:flex;align-items:center;justify-content:center;font-size:60px;border:4px solid rgba(255,180,80,0.7);">${u.avatar || u.username[0]}</div>
-          <div style="flex:1;min-width:200px;">
-            <div style="font-size:38px;font-family:'Creepster';color:#ffb86b;">${u.username}</div>
-            <div style="font-size:14px;color:#ffd700;font-weight:700;">🎓 Уровень ${u.level} • ${u.xp} / ${needed} XP</div>
-            <div style="font-size:14px;color:#c9a0dc;margin-top:8px;">${u.bio || 'Покоряю все праздники мира! 🌍'}</div>
-          </div>
-        </div>
-        <div style="margin-top:16px;">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#c9a0dc;margin-bottom:6px;"><span>Прогресс</span><span>${u.xp} / ${needed}</span></div>
-          <div style="height:12px;background:rgba(0,0,0,0.5);border-radius:6px;overflow:hidden;border:1px solid rgba(255,140,0,0.3);">
-            <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#ff6b00,#ffb86b);"></div>
-          </div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
-          <button class="creator-btn" id="profChangeNick">✏️ Изменить ник</button>
-          <button class="creator-btn" id="profChangePassword">🔐 Сменить пароль</button>
-          <button class="creator-btn" id="profChangeEmail">📧 ${u.email ? 'Изменить почту' : 'Добавить почту'}</button>
+  const unlocked = (u.achievements || []).length;
+  const total = ACHIEVEMENTS.length;
+  const pct = Math.round((unlocked / total) * 100);
+
+  container.innerHTML = `
+    <div class="profile-section">
+      <h3>🏆 Достижения (${unlocked} / ${total})</h3>
+      <div class="ach-summary">
+        <div class="ach-summary-circle" style="--p:${pct}"><span>${pct}%</span></div>
+        <div class="ach-summary-info">
+          <div class="ach-summary-title">${unlocked} из ${total} открыто</div>
+          <div class="ach-summary-desc">${total - unlocked > 0 ? `Осталось получить ещё ${total - unlocked} достижений` : '👑 Вы получили все достижения!'}</div>
         </div>
       </div>
+      <div class="achievements-grid" id="achievementsGrid"></div>
     </div>
   `;
-  $('profChangeNick').addEventListener('click', () => {
-    $('newNicknameInput').value = u.username;
-    $('nicknameError').textContent = '';
-    $('nicknameModal').classList.remove('hidden');
+  // Наполняем сетку
+  const grid = $('achievementsGrid');
+  ACHIEVEMENTS.forEach(a => {
+    const isUnlocked = u.achievements && u.achievements.includes(a.id);
+    let progressHtml = '';
+    if (!isUnlocked && a.progress) {
+      const [cur, t] = a.progress(u);
+      const p = Math.min(100, (cur / t) * 100);
+      progressHtml = `<div class="progress"><div class="progress-fill" style="width:${p}%"></div></div><div style="font-size:11px;color:#c9a0dc;margin-top:4px;">${cur} / ${t}</div>`;
+    }
+    const div = document.createElement('div');
+    div.className = 'achievement ' + (isUnlocked ? 'unlocked' : 'locked');
+    div.innerHTML = `<div class="achievement-icon">${a.icon}</div><h4>${a.name}</h4><p>${a.desc}</p>${progressHtml}`;
+    grid.appendChild(div);
   });
-  $('profChangePassword').addEventListener('click', () => {
-    $('oldPassword').value = ''; $('newPassword').value = ''; $('newPassword2').value = '';
-    $('passwordError').textContent = '';
-    $('passwordModal').classList.remove('hidden');
+}
+
+/* ---------- Таб: Рейтинг ---------- */
+function renderRatingInProfile() {
+  const container = $('ptab-rating');
+  if (!container) return;
+  const users = Object.values(DB.users);
+  users.sort((a, b) => (b.level * 10000 + b.xp) - (a.level * 10000 + a.xp));
+  container.innerHTML = `
+    <div class="profile-section">
+      <h3>📊 Рейтинг игроков (${users.length})</h3>
+      <div class="leaderboard" id="leaderboardInProfile"></div>
+    </div>
+  `;
+  const list = $('leaderboardInProfile');
+  users.forEach((u, i) => {
+    const rank = i + 1;
+    const rankClass = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : '';
+    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+    const online = isOnline(u.username);
+    const row = document.createElement('div');
+    row.className = 'leaderboard-row' + (u.username === currentUser.username ? ' me' : '');
+    const av = u.avatar || u.username[0].toUpperCase();
+    row.innerHTML = `
+      <div class="rank ${rankClass}">${medal}</div>
+      <div class="avatar">${av}</div>
+      <div class="leaderboard-name">${u.username} ${online ? '<span style="color:#4caf50;font-size:12px;">● онлайн</span>' : ''}</div>
+      <div class="leaderboard-xp">Ур. ${u.level} • ${u.xp} XP</div>
+    `;
+    list.appendChild(row);
   });
-  $('profChangeEmail').addEventListener('click', () => {
-    $('newEmailInput').value = u.email || '';
-    $('emailError').textContent = '';
-    $('emailModal').classList.remove('hidden');
+}
+
+/* ---------- Таб: Друзья ---------- */
+function renderFriendsInProfile() {
+  const container = $('ptab-friends');
+  if (!container) return;
+  const u = currentUser;
+  container.innerHTML = `
+    <div class="profile-section">
+      <h3>🔍 Найти друга</h3>
+      <div class="search-box">
+        <input type="text" id="friendSearchInProfile" placeholder="Введите никнейм и нажмите Enter...">
+        <button id="searchBtnInProfile" class="btn-primary">🔍 Добавить</button>
+      </div>
+      <div id="searchResultsInProfile"></div>
+    </div>
+    <div class="profile-section">
+      <h3>👥 Ваши друзья (${(u.friends||[]).length})</h3>
+      <div class="friends-list" id="friendsListInProfile"></div>
+    </div>
+  `;
+
+  const list = $('friendsListInProfile');
+  if (!u.friends || !u.friends.length) {
+    list.innerHTML = '<p style="opacity:0.6;color:#c9a0dc;">Пока никого нет. Введите никнейм друга выше!</p>';
+  } else {
+    u.friends.forEach(name => {
+      const target = DB.users[name.toLowerCase()];
+      const online = isOnline(name);
+      const item = document.createElement('div');
+      item.className = 'friend-item';
+      const av = (target && target.avatar) || name[0].toUpperCase();
+      item.innerHTML = `
+        <div class="avatar">${av}</div>
+        <div class="name">${name} ${target ? `<span style="opacity:0.6;font-size:12px;">(Ур. ${target.level}${online ? ' • ● онлайн' : ''})</span>` : ''}</div>
+        <button data-remove="${name}" style="background:rgba(255,255,255,0.15);">Удалить</button>
+      `;
+      item.querySelector('[data-remove]').addEventListener('click', () => {
+        currentUser.friends = currentUser.friends.filter(f => f !== name);
+        saveUser();
+        renderFriendsInProfile();
+        updateStatsMini();
+      });
+      list.appendChild(item);
+    });
+  }
+
+  const doSearch = () => {
+    const nick = $('friendSearchInProfile').value.trim();
+    const res = $('searchResultsInProfile');
+    res.innerHTML = '';
+    if (!nick) return;
+    const target = DB.users[nick.toLowerCase()];
+    if (!target) {
+      res.innerHTML = `<div class="friend-item" style="border-color:rgba(244,67,54,0.5);"><div class="name" style="color:#ff5c7c;">❌ Игрок "${nick}" не найден</div></div>`;
+      return;
+    }
+    if (target.username === currentUser.username) {
+      res.innerHTML = `<div class="friend-item" style="border-color:rgba(255,152,0,0.5);"><div class="name" style="color:#ffb74d;">⚠ Это вы сами 😄</div></div>`;
+      return;
+    }
+    const isFriend = (currentUser.friends || []).includes(target.username);
+    const online = isOnline(target.username);
+    const item = document.createElement('div');
+    item.className = 'friend-item';
+    const av = target.avatar || target.username[0].toUpperCase();
+    item.innerHTML = `
+      <div class="avatar">${av}</div>
+      <div class="name">${target.username} <span style="opacity:0.6;font-size:12px;">(Ур. ${target.level}${online ? ' • ● онлайн' : ''})</span></div>
+      <button ${isFriend ? 'disabled style="background:rgba(255,255,255,0.15);"' : ''}>${isFriend ? '✓ В друзьях' : '➕ Добавить'}</button>
+    `;
+    if (!isFriend) item.querySelector('button').addEventListener('click', () => {
+      currentUser.friends.push(target.username);
+      saveUser();
+      showToast(`✅ ${target.username} добавлен!`);
+      checkAchievements();
+      $('friendSearchInProfile').value = '';
+      res.innerHTML = '';
+      renderFriendsInProfile();
+      updateStatsMini();
+    });
+    res.appendChild(item);
+  };
+
+  $('searchBtnInProfile').addEventListener('click', doSearch);
+  $('friendSearchInProfile').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+}
+
+/* ---------- Таб: Статистика ---------- */
+function renderStatsInProfile() {
+  const container = $('ptab-stats');
+  if (!container) return;
+  initExtendedStats(currentUser);
+  const u = currentUser;
+  const totalGames = u.gamesPlayed || 0;
+  const totalCorrect = u.totalCorrect || 0;
+  const totalWrong = u.totalWrong || 0;
+  const totalQ = u.totalQuestions || 0;
+  const accuracy = totalQ > 0 ? Math.round((totalCorrect / totalQ) * 100) : 0;
+  const avgScore = totalGames > 0 ? Math.round((u.totalScore || 0) / totalGames) : 0;
+  const avgTime = totalGames > 0 ? Math.round((u.totalTime || 0) / totalGames) : 0;
+  const perfectRate = totalGames > 0 ? Math.round((u.perfectGames / totalGames) * 100) : 0;
+  const totalMinutes = Math.round((u.totalTime || 0) / 60);
+  const totalHours = Math.floor(totalMinutes / 60);
+  const mins = totalMinutes % 60;
+  const playDays = (u.dailyStreakDates || []).length;
+  const achPercent = Math.round(((u.achievements||[]).length / ACHIEVEMENTS.length) * 100);
+
+  const allResults = Object.entries(u.completed || {}).map(([k, v]) => {
+    const [qid, diff] = k.split('_');
+    return { quizId: qid, difficulty: diff, score: v.score, quiz: QUIZZES[qid] || getAllQuizzes()[qid] };
+  }).filter(r => r.quiz).sort((a, b) => b.score - a.score).slice(0, 3);
+
+  const diffStats = { easy:{played:0,wins:0}, medium:{played:0,wins:0}, hard:{played:0,wins:0} };
+  Object.entries(u.difficultyStats || {}).forEach(([k, v]) => { if (diffStats[k]) diffStats[k] = v; });
+
+  const catProgressHtml = Object.entries(CATEGORIES).filter(([k]) => k !== 'all' && k !== 'user').map(([catKey, catInfo]) => {
+    const totalInCat = Object.values(QUIZZES).filter(q => q.category === catKey).length;
+    const playedInCat = Object.entries(u.completed || {}).filter(([k]) => {
+      const q = QUIZZES[k.split('_')[0]];
+      return q && q.category === catKey;
+    }).length;
+    const pct = totalInCat > 0 ? Math.round((playedInCat / totalInCat) * 100) : 0;
+    return `<div class="cat-progress-row"><div class="cat-icon">${catInfo.name.split(' ')[0]}</div><div class="cat-name">${catInfo.name}</div><div class="cat-bar"><div class="cat-bar-fill" style="width:${pct}%"></div></div><div class="cat-count">${playedInCat}/${totalInCat} (${pct}%)</div></div>`;
+  }).join('');
+
+  const last7 = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const dayName = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'][d.getDay()];
+    const rec = (u.dailyHistory || {})[key] || { count: 0, score: 0, time: 0 };
+    last7.push({ key, dayName, count: rec.count, isToday: i === 0 });
+  }
+  const maxCount = Math.max(1, ...last7.map(d => d.count));
+  const activityHtml = last7.map(d => {
+    const heightPct = (d.count / maxCount) * 100;
+    return `<div class="activity-day"><div class="activity-bar-wrap"><div class="activity-bar ${d.count === 0 ? 'empty' : ''}" style="height:${d.count === 0 ? 4 : Math.max(8, heightPct)}%">${d.count > 0 ? `<span class="activity-count">${d.count}</span>` : ''}</div></div><div class="activity-day-label ${d.isToday ? 'today' : ''}">${d.dayName}</div></div>`;
+  }).join('');
+
+  const topHtml = allResults.length
+    ? allResults.map((r, i) => {
+        const diffInfo = DIFFICULTIES[r.difficulty];
+        return `<div class="top-result rank-${i+1}"><div class="top-rank">${i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}</div><div class="top-emoji">${r.quiz.emoji}</div><div class="top-info"><div class="top-name">${r.quiz.name}</div><div class="top-meta">${diffInfo.icon} ${diffInfo.name}</div></div><div class="top-score">${r.score}</div></div>`;
+      }).join('')
+    : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Пройдите викторину</p>';
+
+  const recentHtml = (u.recentGames || []).length
+    ? u.recentGames.slice(0, 8).map(g => {
+        const q = QUIZZES[g.quizId] || { emoji: g.quizEmoji || '❓', name: g.quizName || 'Викторина' };
+        const cls = g.accuracy === 100 ? 'win' : (g.accuracy >= 50 ? 'partial' : 'loss');
+        const diffInfo = DIFFICULTIES[g.difficulty];
+        const d = new Date(g.date);
+        const dateStr = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        return `<div class="recent-game ${cls}"><div class="rg-emoji">${q.emoji}</div><div class="rg-info"><div class="rg-name">${q.name}</div><div class="rg-meta">${diffInfo.icon} ${diffInfo.name} • ✅ ${g.correct}/${g.total} • ⏱ ${g.timeSpent}с</div></div><div class="rg-score">${g.score}</div><div class="rg-date">${dateStr}</div></div>`;
+      }).join('')
+    : '<p style="opacity:0.6;color:#c9a0dc;text-align:center;padding:20px;">Ещё нет игр</p>';
+
+  const allUsers = Object.values(DB.users);
+  const avgLevelAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.level||1), 0) / allUsers.length) : 1;
+  const avgScoreAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.totalScore||0), 0) / allUsers.length) : 0;
+  const avgGamesAll = allUsers.length ? Math.round(allUsers.reduce((a,b) => a + (b.gamesPlayed||0), 0) / allUsers.length) : 0;
+  const totalQAll = allUsers.reduce((a,b) => a + (b.totalQuestions||0), 0);
+  const totalCAll = allUsers.reduce((a,b) => a + (b.totalCorrect||0), 0);
+  const avgAccuracyAll = totalQAll > 0 ? Math.round((totalCAll / totalQAll) * 100) : 0;
+  const cmp = (val, avg) => {
+    const d = val - avg;
+    if (d > 0) return `<span class="cmp-hint above">▲ +${d}</span>`;
+    if (d < 0) return `<span class="cmp-hint below">▼ ${d}</span>`;
+    return `<span class="cmp-hint equal">= 0</span>`;
+  };
+
+  container.innerHTML = `
+    <div class="profile-section">
+      <h3>📊 Общие показатели</h3>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon">🎮</div><span class="stat-number">${totalGames}</span><span class="stat-name">Игр</span></div>
+        <div class="stat-card"><div class="stat-icon">💯</div><span class="stat-number">${u.perfectGames || 0}</span><span class="stat-name">Идеальных</span><span class="stat-sub">${perfectRate}%</span></div>
+        <div class="stat-card"><div class="stat-icon">🎯</div><span class="stat-number">${accuracy}%</span><span class="stat-name">Точность</span><span class="stat-sub">${totalCorrect}/${totalQ}</span></div>
+        <div class="stat-card"><div class="stat-icon">⭐</div><span class="stat-number">${u.totalScore || 0}</span><span class="stat-name">Очков</span><span class="stat-sub">Ср. ${avgScore}</span></div>
+        <div class="stat-card"><div class="stat-icon">🏆</div><span class="stat-number">${(u.achievements||[]).length}</span><span class="stat-name">Достижений</span><span class="stat-sub">${achPercent}%</span></div>
+        <div class="stat-card"><div class="stat-icon">🎓</div><span class="stat-number">${u.level}</span><span class="stat-name">Уровень</span><span class="stat-sub">${u.xp} XP до ${u.level+1}</span></div>
+        <div class="stat-card"><div class="stat-icon">🔥</div><span class="stat-number">${u.streak || 0}</span><span class="stat-name">Стрик</span><span class="stat-sub">Лучший: ${u.bestStreak || 0}</span></div>
+        <div class="stat-card"><div class="stat-icon">📅</div><span class="stat-number">${playDays}</span><span class="stat-name">Дней в игре</span></div>
+        <div class="stat-card"><div class="stat-icon">⏱️</div><span class="stat-number">${totalHours > 0 ? totalHours + 'ч ' : ''}${mins}м</span><span class="stat-name">Время</span><span class="stat-sub">Ср. ${avgTime}с</span></div>
+        <div class="stat-card"><div class="stat-icon">✅</div><span class="stat-number">${totalCorrect}</span><span class="stat-name">Верных</span></div>
+        <div class="stat-card"><div class="stat-icon">❌</div><span class="stat-number">${totalWrong}</span><span class="stat-name">Ошибок</span></div>
+        <div class="stat-card"><div class="stat-icon">📝</div><span class="stat-number">${totalQ}</span><span class="stat-name">Вопросов</span></div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>🏅 Лучшие результаты</h3>
+      ${topHtml}
+    </div>
+
+    <div class="profile-section">
+      <h3>🎚️ По сложностям</h3>
+      <div class="diff-stats">
+        <div class="diff-stat easy"><div class="diff-label">🟢 ЛЕГКО</div><span class="diff-count">${diffStats.easy.played || 0}</span><div class="diff-sub">Игр • Идеальных: ${diffStats.easy.wins || 0}</div></div>
+        <div class="diff-stat medium"><div class="diff-label">🟡 СРЕДНЕ</div><span class="diff-count">${diffStats.medium.played || 0}</span><div class="diff-sub">Игр • Идеальных: ${diffStats.medium.wins || 0}</div></div>
+        <div class="diff-stat hard"><div class="diff-label">🔴 СЛОЖНО</div><span class="diff-count">${diffStats.hard.played || 0}</span><div class="diff-sub">Игр • Идеальных: ${diffStats.hard.wins || 0}</div></div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>🌍 Прогресс по категориям</h3>
+      ${catProgressHtml}
+    </div>
+
+    <div class="profile-section">
+      <h3>📈 Активность за 7 дней</h3>
+      <div class="activity-chart">${activityHtml}</div>
+    </div>
+
+    <div class="profile-section">
+      <h3>🕐 Последние игры</h3>
+      <div class="recent-games">${recentHtml}</div>
+    </div>
+
+    <div class="profile-section">
+      <h3>⚖️ Сравнение со средним</h3>
+      <div class="compare-row"><span class="cmp-label">Уровень</span><span class="cmp-value">${u.level} ${cmp(u.level, avgLevelAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Игр</span><span class="cmp-value">${totalGames} ${cmp(totalGames, avgGamesAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Очков</span><span class="cmp-value">${u.totalScore || 0} ${cmp(u.totalScore || 0, avgScoreAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Точность</span><span class="cmp-value">${accuracy}% ${cmp(accuracy, avgAccuracyAll)}</span></div>
+      <div class="compare-row"><span class="cmp-label">Всего игроков</span><span class="cmp-value">${allUsers.length}</span></div>
+      <div class="compare-row"><span class="cmp-label">Место в рейтинге</span><span class="cmp-value">${(() => { const sorted = [...allUsers].sort((a,b) => (b.level*10000+b.xp) - (a.level*10000+a.xp)); return `#${sorted.findIndex(x => x.username === currentUser.username) + 1} из ${sorted.length}`; })()}</span></div>
+    </div>
+  `;
+}
+
+/* =========================================================
+   ACHIEVEMENTS CHECK
+   ========================================================= */
+function checkAchievements() {
+  if (!currentUser.achievements) currentUser.achievements = [];
+  ACHIEVEMENTS.forEach(a => {
+    if (!currentUser.achievements.includes(a.id) && a.check(currentUser)) {
+      currentUser.achievements.push(a.id);
+      showToast(`🏆 Достижение: ${a.name}`);
+      playSound('success');
+      burstConfetti(40);
+    }
   });
+  saveUser();
 }
 
 /* =========================================================
@@ -2863,6 +2877,7 @@ $('savePasswordBtn').addEventListener('click', () => {
   saveUser();
   $('passwordModal').classList.add('hidden');
   showToast('🔐 Пароль изменён');
+  playSound('success');
 });
 
 $('cancelNicknameBtn').addEventListener('click', () => $('nicknameModal').classList.add('hidden'));
@@ -2870,10 +2885,11 @@ $('saveNicknameBtn').addEventListener('click', () => {
   const nick = $('newNicknameInput').value.trim();
   const err = $('nicknameError');
   err.textContent = '';
-  if (nick.length < 3 || nick.length > 20) return err.textContent = '3-20 символов';
+  if (nick.length < 3 || nick.length > 20) return err.textContent = 'Ник от 3 до 20 символов';
   if (!/^[a-zA-Zа-яА-Я0-9_\-]+$/.test(nick)) return err.textContent = 'Только буквы, цифры, _ и -';
   const users = DB.users;
-  if (users[nick.toLowerCase()] && nick.toLowerCase() !== currentUser.username.toLowerCase()) return err.textContent = 'Занят';
+  if (users[nick.toLowerCase()] && nick.toLowerCase() !== currentUser.username.toLowerCase()) return err.textContent = 'Этот ник занят';
+  if (nick === currentUser.username) return err.textContent = 'Это ваш текущий ник';
   const oldNick = currentUser.username;
   const oldKey = oldNick.toLowerCase();
   const newKey = nick.toLowerCase();
@@ -2892,7 +2908,16 @@ $('saveNicknameBtn').addEventListener('click', () => {
   saveUser();
   $('nicknameModal').classList.add('hidden');
   showToast('✅ Ник изменён');
+  playSound('success');
   enterMain();
+  // Возвращаемся в профиль
+  setTimeout(() => {
+    document.querySelectorAll('.nav-btn[data-view]').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    $('profileView').classList.add('active');
+    activeProfileTab = 'account';
+    renderProfilePage();
+  }, 100);
 });
 
 $('cancelEmailBtn').addEventListener('click', () => $('emailModal').classList.add('hidden'));
@@ -2903,17 +2928,20 @@ $('saveEmailBtn').addEventListener('click', () => {
   if (em && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return err.textContent = 'Неверный email';
   if (em) {
     const users = DB.users;
-    const emailExists = Object.entries(users).some(([k, u]) => 
-      u.email && u.email.toLowerCase() === em.toLowerCase() && k !== currentUser.username.toLowerCase()
-    );
-    if (emailExists) return err.textContent = 'Занят';
+    const exists = Object.entries(users).some(([k, u]) => u.email && u.email.toLowerCase() === em.toLowerCase() && k !== currentUser.username.toLowerCase());
+    if (exists) return err.textContent = 'Этот email уже используется';
   }
   currentUser.email = em;
   saveUser();
   $('emailModal').classList.add('hidden');
-  showToast('📧 Email сохранён');
+  showToast(em ? '📧 Email сохранён' : '📧 Email удалён');
+  playSound('success');
+  renderAccountTab();
 });
 
+/* =========================================================
+   AVATAR → PROFILE
+   ========================================================= */
 $('userAvatar').addEventListener('click', () => {
   document.querySelectorAll('.nav-btn[data-view]').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
