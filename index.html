@@ -72,8 +72,9 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .logo { font-size:22px; font-weight:bold; color:#ff8c00; font-family:'Creepster',cursive; letter-spacing:3px; text-shadow:0 0 15px rgba(255,140,0,0.7), 0 0 30px rgba(255,60,0,0.4); }
 .user-info { display:flex; align-items:center; gap:14px; }
 .user-info span { font-size:13px; background:rgba(255,140,0,0.15); padding:6px 14px; border-radius:20px; border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-weight:600; }
-.avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; border:2px solid rgba(255,180,80,0.6); box-shadow:0 0 15px rgba(255,140,0,0.5); color:#fff; transition:0.3s; cursor:pointer; }
-.avatar:hover { transform:scale(1.1) rotate(-5deg); }
+.avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; border:2px solid rgba(255,180,80,0.6); box-shadow:0 0 15px rgba(255,140,0,0.5); color:#fff; transition:0.3s; cursor:pointer; position:relative; }
+.avatar:hover { transform:scale(1.1) rotate(-5deg); box-shadow:0 0 25px rgba(255,140,0,0.8); }
+.avatar.has-notification::after { content:''; position:absolute; top:-2px; right:-2px; width:12px; height:12px; background:#f44336; border-radius:50%; border:2px solid rgba(40,10,60,0.95); box-shadow:0 0 10px #f44336; animation: pulse 1.5s infinite; }
 .btn-icon { background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.3); color:#ffb86b; font-size:18px; width:44px; height:44px; border-radius:50%; cursor:pointer; transition:0.3s; }
 .btn-icon:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.5); transform:scale(1.05); }
 .xp-bar-container { position:relative; width:200px; height:8px; background:rgba(0,0,0,0.5); border-radius:4px; overflow:hidden; border:1px solid rgba(255,140,0,0.3); }
@@ -145,15 +146,6 @@ h1, h2, h3 { font-family:'Creepster','Nunito',cursive; letter-spacing:2px; text-
 .quiz-actions { display:flex; gap:8px; flex-wrap:wrap; position:relative; z-index:1; }
 .quiz-card.completed::after { content:'✓ ПРОЙДЕНО'; position:absolute; top:14px; right:14px; background:linear-gradient(135deg,#4caf50,#2e7d32); padding:5px 12px; border-radius:12px; font-size:10px; font-weight:bold; letter-spacing:1px; box-shadow:0 0 15px rgba(76,175,80,0.5); z-index:2; }
 .quiz-best { position:absolute; top:14px; left:14px; background:rgba(255,215,0,0.15); color:#ffd700; padding:4px 10px; border-radius:12px; font-size:11px; border:1px solid rgba(255,215,0,0.5); z-index:2; font-weight:bold; }
-
-/* PLAYER TAGS */
-.quiz-players { display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap; align-items:center; min-height:26px; position:relative; z-index:1; }
-.quiz-players-label { font-size:11px; color:#c9a0dc; opacity:0.7; margin-right:4px; }
-.player-tag { display:flex; align-items:center; gap:5px; padding:3px 10px 3px 3px; background:rgba(255,140,0,0.12); border:1px solid rgba(255,140,0,0.35); border-radius:20px; font-size:11px; color:#ffb86b; font-weight:600; transition:0.3s; }
-.player-tag:hover { background:rgba(255,140,0,0.25); box-shadow:0 0 12px rgba(255,140,0,0.5); }
-.player-tag .mini-avatar { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; font-weight:bold; }
-.player-tag.invited { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
-.player-tag.online::before { content:''; width:6px; height:6px; border-radius:50%; background:#4caf50; box-shadow:0 0 8px #4caf50; }
 
 /* ACHIEVEMENTS */
 .achievements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px; }
@@ -374,15 +366,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .recent-game .rg-score { font-size:16px; font-weight:bold; color:#ffd700; }
 .recent-game .rg-date { font-size:10px; color:#8a7aa0; margin-left:8px; }
 
-.compare-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed rgba(255,140,0,0.15); font-size:13px; }
-.compare-row:last-child { border-bottom:none; }
-.compare-row .cmp-label { color:#c9a0dc; }
-.compare-row .cmp-value { color:#ffb86b; font-weight:bold; }
-.compare-row .cmp-hint { font-size:11px; margin-left:8px; padding:2px 8px; border-radius:8px; }
-.cmp-hint.above { background:rgba(76,175,80,0.2); color:#8bc34a; }
-.cmp-hint.below { background:rgba(244,67,54,0.2); color:#ef5350; }
-.cmp-hint.equal { background:rgba(255,255,255,0.1); color:#c9a0dc; }
-
 /* ========== НАСТРОЙКИ ========== */
 .settings-layout { max-width:900px; margin:0 auto; display:flex; flex-direction:column; gap:20px; }
 .settings-card { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:26px; transition:0.3s; }
@@ -403,7 +386,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .switch .slider:before { content:''; position:absolute; height:22px; width:22px; left:3px; bottom:3px; background:linear-gradient(135deg,#c9a0dc,#8a7aa0); border-radius:50%; transition:0.3s; box-shadow:0 2px 6px rgba(0,0,0,0.4); }
 .switch input:checked + .slider { background:linear-gradient(135deg,#ff6b00,#c72c00); border-color:transparent; box-shadow:0 0 20px rgba(255,100,0,0.5); }
 .switch input:checked + .slider:before { transform:translateX(26px); background:linear-gradient(135deg,#fff,#ffb86b); }
-.switch input:focus + .slider { box-shadow:0 0 20px rgba(255,140,0,0.6); }
 
 .theme-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; }
 .theme-preview { padding:16px; border-radius:14px; border:2px solid rgba(255,140,0,0.25); cursor:pointer; transition:0.3s; text-align:center; position:relative; overflow:hidden; background:rgba(0,0,0,0.3); }
@@ -429,24 +411,12 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .volume-control input[type=range]::-moz-range-thumb { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#ff6b00,#c72c00); cursor:pointer; border:none; box-shadow:0 0 15px rgba(255,100,0,0.6); }
 .volume-value { font-size:13px; color:#ffb86b; font-weight:bold; min-width:45px; text-align:right; }
 
-.profile-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; flex-wrap:wrap; }
-.profile-big-avatar { width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg,#ff8c00,#c72c00); display:flex; align-items:center; justify-content:center; font-size:40px; border:3px solid rgba(255,180,80,0.6); box-shadow:0 0 30px rgba(255,140,0,0.5); color:#fff; flex-shrink:0; }
-.profile-info-block { flex:1; min-width:200px; }
-.profile-info-block .profile-name { font-size:24px; font-family:'Creepster',cursive; color:#ffb86b; margin-bottom:4px; }
-.profile-info-block .profile-meta { font-size:13px; color:#c9a0dc; }
-.profile-info-block .profile-meta span { display:inline-block; margin-right:14px; margin-top:4px; }
-
 .settings-btn { padding:10px 20px; background:rgba(255,140,0,0.15); border:1px solid rgba(255,140,0,0.4); border-radius:12px; color:#ffb86b; cursor:pointer; font-size:14px; font-weight:600; transition:0.3s; display:inline-flex; align-items:center; gap:8px; }
 .settings-btn:hover { background:rgba(255,140,0,0.3); box-shadow:0 0 20px rgba(255,140,0,0.4); transform:translateY(-2px); }
 .settings-btn.danger { background:rgba(244,67,54,0.15); border-color:rgba(244,67,54,0.5); color:#ef5350; }
 .settings-btn.danger:hover { background:rgba(244,67,54,0.3); box-shadow:0 0 20px rgba(244,67,54,0.5); }
 .settings-btn.success { background:rgba(76,175,80,0.15); border-color:rgba(76,175,80,0.5); color:#8bc34a; }
 .settings-btn.success:hover { background:rgba(76,175,80,0.3); box-shadow:0 0 20px rgba(76,175,80,0.5); }
-
-.hotkeys-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
-.hotkey-item { display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,0,0,0.3); border-radius:12px; border:1px solid rgba(255,140,0,0.15); }
-.hotkey-key { padding:4px 12px; background:linear-gradient(135deg,rgba(255,140,0,0.25),rgba(199,44,0,0.2)); border:1px solid rgba(255,140,0,0.5); border-radius:8px; font-size:12px; font-family:monospace; color:#ffb86b; font-weight:bold; min-width:40px; text-align:center; }
-.hotkey-desc { font-size:13px; color:#c9a0dc; }
 
 .info-box { background:rgba(0,0,0,0.3); border-left:4px solid #ff8c00; padding:12px 16px; border-radius:8px; font-size:13px; color:#c9a0dc; line-height:1.6; margin-bottom:16px; }
 .info-box.warning { border-left-color:#ff9800; }
@@ -484,11 +454,9 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .profile-quick-stat .pq-value { font-size:28px; font-family:'Creepster',cursive; color:#ffb86b; display:block; line-height:1; text-shadow:0 0 15px rgba(255,140,0,0.6); }
 .profile-quick-stat .pq-label { font-size:11px; color:#c9a0dc; margin-top:6px; display:block; text-transform:uppercase; letter-spacing:0.5px; }
 
-/* Секции профиля */
 .profile-section { background:linear-gradient(160deg,rgba(40,10,60,0.85),rgba(20,5,35,0.95)); border:2px solid rgba(255,140,0,0.25); border-radius:20px; padding:26px; }
 .profile-section h3 { margin-bottom:18px; font-size:22px; color:#ff8c00; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:1px dashed rgba(255,140,0,0.2); }
 
-/* Информация об аккаунте */
 .account-info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
 .account-info-item { padding:16px; background:rgba(0,0,0,0.35); border:1px solid rgba(255,140,0,0.2); border-radius:14px; display:flex; align-items:center; gap:14px; transition:0.3s; }
 .account-info-item:hover { border-color:rgba(255,160,0,0.5); background:rgba(0,0,0,0.5); }
@@ -498,13 +466,11 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .account-info-value { font-size:15px; color:#ffb86b; font-weight:700; word-break:break-word; }
 .account-info-value.mono { font-family:monospace; font-size:13px; color:#ffa94d; }
 
-/* Профиль — кнопки действий */
 .profile-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
 .profile-action-btn { flex:1; min-width:180px; padding:14px 20px; background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(199,44,0,0.15)); border:2px solid rgba(255,140,0,0.4); border-radius:14px; color:#ffb86b; cursor:pointer; font-size:14px; font-weight:700; transition:0.3s; display:flex; align-items:center; justify-content:center; gap:10px; }
 .profile-action-btn:hover { background:linear-gradient(135deg,rgba(255,140,0,0.35),rgba(199,44,0,0.3)); box-shadow:0 8px 25px rgba(255,100,0,0.4); transform:translateY(-3px); border-color:rgba(255,160,0,0.7); }
 .profile-action-btn .pa-icon { font-size:20px; }
 
-/* Прогресс-бар достижений */
 .ach-summary { display:flex; align-items:center; gap:16px; padding:16px; background:rgba(0,0,0,0.3); border-radius:14px; margin-bottom:18px; border:1px solid rgba(255,140,0,0.15); }
 .ach-summary-circle { width:70px; height:70px; border-radius:50%; background:conic-gradient(#ff6b00 calc(var(--p) * 1%), rgba(0,0,0,0.4) 0); display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
 .ach-summary-circle::after { content:''; position:absolute; inset:8px; background:linear-gradient(160deg,rgba(40,10,60,1),rgba(20,5,35,1)); border-radius:50%; }
@@ -513,7 +479,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .ach-summary-title { font-size:16px; color:#ffb86b; font-weight:700; margin-bottom:4px; }
 .ach-summary-desc { font-size:12px; color:#c9a0dc; }
 
-/* Мини-достижения в профиле */
 .profile-ach-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
 .profile-ach-item { padding:14px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,140,0,0.2); border-radius:14px; text-align:center; transition:0.3s; }
 .profile-ach-item.unlocked { background:linear-gradient(160deg,rgba(255,140,0,0.15),rgba(199,44,0,0.1)); border-color:rgba(255,180,80,0.5); }
@@ -521,23 +486,13 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
 .profile-ach-item .pa-emoji { font-size:32px; line-height:1; margin-bottom:6px; filter:drop-shadow(0 0 8px rgba(255,140,0,0.5)); }
 .profile-ach-item .pa-name { font-size:12px; color:#ffb86b; font-weight:700; }
 
-/* Форма профиля */
-.profile-form { display:flex; flex-direction:column; gap:14px; }
-.profile-form-row { display:flex; flex-direction:column; gap:6px; }
-.profile-form-row label { font-size:12px; color:#c9a0dc; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
-.profile-form-row input { padding:13px 16px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,140,0,0.3); border-radius:12px; color:#ffb86b; font-size:15px; transition:0.3s; }
-.profile-form-row input:focus { outline:none; border-color:#ff8c00; box-shadow:0 0 15px rgba(255,140,0,0.4); }
-.profile-form-row input:disabled { opacity:0.5; cursor:not-allowed; }
-.profile-form-row .hint { font-size:11px; color:#8a7aa0; }
-.profile-form-actions { display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
-.profile-form-actions button { flex:1; min-width:140px; }
-
 @media (max-width:900px) { .game-body { grid-template-columns:1fr; } .chat-panel { height:340px; } }
 @media (max-width:600px) {
   .top-bar { padding:12px; flex-wrap:wrap; gap:8px; }
   .logo { font-size:13px; letter-spacing:1px; }
   .user-info span { display:none; }
   .user-info span:first-child { display:inline-block; }
+  .xp-bar-container { width:120px; }
   .auth-container { margin:16px; padding:26px; }
   .quiz-grid { grid-template-columns:1fr; }
   .nav-btn { padding:8px 14px; font-size:12px; }
@@ -556,6 +511,7 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   .profile-hero-avatar { width:90px; height:90px; font-size:44px; }
   .profile-hero-name { font-size:26px; }
   .profile-hero-content { gap:16px; }
+  .profile-action-btn { min-width:140px; font-size:13px; padding:12px 14px; }
 }
 </style>
 </head>
@@ -604,7 +560,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   </header>
   <nav class="main-nav">
     <button class="nav-btn active" data-view="quizzes">🎯 Праздники</button>
-    <button class="nav-btn" data-view="profile">👤 Профиль</button>
     <button class="nav-btn" data-view="achievements">🏆 Достижения</button>
     <button class="nav-btn" data-view="leaderboard">📊 Рейтинг</button>
     <button class="nav-btn" data-view="friends">👥 Друзья</button>
@@ -642,7 +597,7 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
       <div class="quiz-grid" id="quizGrid"></div>
     </section>
 
-    <!-- ========== ПРОФИЛЬ ========== -->
+    <!-- ПРОФИЛЬ (открывается через аватар) -->
     <section id="profileView" class="view">
       <h2>👤 Мой профиль</h2>
       <div class="profile-page" id="profilePage"></div>
@@ -823,15 +778,6 @@ body.theme-cosmic .logo { color:#e1bee7; text-shadow: 0 0 15px rgba(225,190,231,
   </div>
 </div>
 
-<!-- PROFILE MODAL (быстрый просмотр с аватара) -->
-<div id="profileModal" class="modal hidden">
-  <div class="modal-content">
-    <h2 id="profileName">Профиль</h2>
-    <div class="result-stats" id="profileStats"></div>
-    <button id="closeProfileBtn" class="btn-primary" style="width:100%;">Закрыть</button>
-  </div>
-</div>
-
 <div id="toast" class="toast hidden"></div>
 
 <script>
@@ -845,26 +791,17 @@ const QUIZZES = {
         {q:'Какого числа отмечают Новый год?', answers:['31 декабря','1 января','25 декабря','7 января'], correct:1},
         {q:'Во сколько начинают бить куранты?', answers:['21:00','22:00','00:00','01:00'], correct:2},
         {q:'Что загадывают под бой курантов?', answers:['Желание','Тосты','Песни','Стихи'], correct:0},
-        {q:'Что традиционно пьют в новогоднюю ночь?', answers:['Воду','Шампанское','Сок','Чай'], correct:1},
-        {q:'Какое дерево украшают на Новый год в России?', answers:['Дуб','Ёлка','Берёза','Сосна'], correct:1},
-        {q:'Как зовут главного новогоднего волшебника?', answers:['Санта','Дед Мороз','Николай','Морозко'], correct:1},
-        {q:'Как зовут внучку Деда Мороза?', answers:['Снежинка','Снегурочка','Метелица','Зимушка'], correct:1}
+        {q:'Что традиционно пьют в новогоднюю ночь?', answers:['Воду','Шампанское','Сок','Чай'], correct:1}
       ],
       medium: [
         {q:'В какой стране придумали традицию с оливье?', answers:['Франция','СССР','Италия','Испания'], correct:1},
-        {q:'Какого цвета традиционно Дед Мороз в России?', answers:['Красный','Синий','Зелёный','Белый'], correct:0},
         {q:'Сколько ударов курантов символизируют Новый год?', answers:['10','11','12','13'], correct:2},
-        {q:'Что традиционно кладут под ёлку?', answers:['Еду','Подарки','Цветы','Открытки'], correct:1},
-        {q:'Какая песня считается главной новогодней в России?', answers:['В лесу родилась ёлочка','Калинка','Подмосковные вечера','Ой, мороз'], correct:0},
         {q:'Откуда пришла традиция украшать ёлку?', answers:['Германия','Франция','Англия','Италия'], correct:0}
       ],
       hard: [
         {q:'В каком году Пётр I ввёл празднование Нового года 1 января?', answers:['1699','1700','1701','1705'], correct:0},
         {q:'В какой стране встречают Новый год первыми?', answers:['Япония','Новая Зеландия','Австралия','Россия'], correct:1},
-        {q:'Как называется новогодний персонаж в Италии?', answers:['Баббо Натале','Ла Бефана','Пэр Ноэль','Юлебукк'], correct:1},
-        {q:'Что традиционно едят в Испании под бой курантов?', answers:['Конфеты','Виноград','Печенье','Орехи'], correct:1},
-        {q:'Как называется главная площадь Москвы, где встречают Новый год?', answers:['Красная','Манежная','Пушкинская','Лубянская'], correct:0},
-        {q:'Сколько стран официально празднуют Новый год 1 января?', answers:['~100','~150','~180','~200'], correct:2}
+        {q:'Что традиционно едят в Испании под бой курантов?', answers:['Конфеты','Виноград','Печенье','Орехи'], correct:1}
       ]
     }
   },
@@ -916,7 +853,7 @@ const QUIZZES = {
       medium: [
         {q:'Сколько оленей у Санта-Клауса?', answers:['6','7','8','9'], correct:2},
         {q:'Как зовут главного оленя?', answers:['Рудольф','Дансер','Прэнсер','Купид'], correct:0},
-        {q:'Какого цвета омела приносит удачу?', answers:['Красного','Зелёного','Белого','Синего'], correct:1}
+        {q:'Какая страна подарила традицию ёлки?', answers:['Германия','Франция','Англия','Италия'], correct:0}
       ],
       hard: [
         {q:'Как называют 12 дней после Рождества?', answers:['Коляды','Святки','Адвент','Пост'], correct:1},
@@ -963,25 +900,6 @@ const QUIZZES = {
       ]
     }
   },
-  newYear2: { id:'newYear2', name:'Старый Новый год', emoji:'🌙', category:'russian', description:'Уникальный русский праздник 13-14 января!', accent:'#9c27b0',
-    questions: {
-      easy: [
-        {q:'Какого числа отмечают Старый Новый год?', answers:['1 января','7 января','13-14 января','25 января'], correct:2},
-        {q:'По какому календарю отмечают Старый Новый год?', answers:['Юлианскому','Григорианскому','Лунному','Китайскому'], correct:0},
-        {q:'Старый Новый год отмечают только...', answers:['В России','В Европе','В странах СНГ','В Азии'], correct:2}
-      ],
-      medium: [
-        {q:'Как по-другому называется Старый Новый год?', answers:['Второй Новый год','Новый год по старому стилю','Зимний праздник','Январский'], correct:1},
-        {q:'Что традиционно готовят в ночь на Старый Новый год?', answers:['Вареники с сюрпризами','Блины','Пельмени','Пироги'], correct:0},
-        {q:'В каком году Россия перешла на новый календарь?', answers:['1900','1918','1925','1945'], correct:1}
-      ],
-      hard: [
-        {q:'На сколько дней расходится юлианский календарь с григорианским сейчас?', answers:['10','13','14','18'], correct:1},
-        {q:'Кто ввёл Юлианский календарь?', answers:['Юлий Цезарь','Август','Константин','Пётр I'], correct:0},
-        {q:'Что такое "щедровки"?', answers:['Песни','Подарки','Блюда','Танцы'], correct:0}
-      ]
-    }
-  },
   easter: { id:'easter', name:'Пасха', emoji:'🥚', category:'russian', description:'Светлое Христово Воскресение', accent:'#e91e63',
     questions: {
       easy: [
@@ -997,7 +915,7 @@ const QUIZZES = {
       hard: [
         {q:'Как называется неделя перед Пасхой?', answers:['Страстная','Светлая','Красная','Тёмная'], correct:0},
         {q:'Какой день недели перед Пасхой называется Чистый?', answers:['Понедельник','Вторник','Среда','Четверг'], correct:3},
-        {q:'Что происходит в Страстную пятницу?', answers:['Распятие Христа','Воскресение','Рождение','Крещение'], correct:0}
+        {q:'Сколько дней продолжается празднование Пасхи?', answers:['1','7','40','50'], correct:2}
       ]
     }
   },
@@ -1053,8 +971,8 @@ const QUIZZES = {
       ],
       hard: [
         {q:'Кто был первым наркомом по военным делам?', answers:['Троцкий','Ленин','Сталин','Фрунзе'], correct:0},
-        {q:'Как называлась армия в 1918 году?', answers:['Красная','Советская','Русская','Царская'], correct:0},
-        {q:'Когда 23 февраля стал выходным?', answers:['1922','1925','1945','2002'], correct:3}
+        {q:'Когда 23 февраля стал выходным?', answers:['1922','1925','1945','2002'], correct:3},
+        {q:'Какой указ сделал 23 февраля нерабочим днём?', answers:['Президентский','Правительственный','Государственный','Царский'], correct:0}
       ]
     }
   },
@@ -1087,12 +1005,12 @@ const QUIZZES = {
       medium: [
         {q:'В каком году Гагарин полетел в космос?', answers:['1957','1960','1961','1965'], correct:2},
         {q:'Сколько длился полёт Гагарина?', answers:['30 мин','108 мин','5 часов','сутки'], correct:1},
-        {q:'С какого космодрома стартовал Гагарин?', answers:['Байконур','Плесецк','Восточный','Канаверал'], correct:0}
+        {q:'Кто первая женщина-космонавт?', answers:['Терешкова','Савицкая','Кондакова','Серова'], correct:0}
       ],
       hard: [
         {q:'Кто был главным конструктором ракет?', answers:['Королёв','Циолковский','Глушко','Челомей'], correct:0},
         {q:'Когда запустили первый спутник?', answers:['1955','1957','1961','1965'], correct:1},
-        {q:'Как назывался первый спутник?', answers:['Спутник-1','Восток-1','Молния-1','Зенит-1'], correct:0}
+        {q:'Сколько витков вокруг Земли сделал Гагарин?', answers:['1','2','3','5'], correct:0}
       ]
     }
   },
@@ -1106,12 +1024,12 @@ const QUIZZES = {
       medium: [
         {q:'Как называется первый день в школе?', answers:['День знаний','День учителя','День школы','1 сентября'], correct:0},
         {q:'Как отмечают День знаний?', answers:['Линейкой','Концертом','Дискотекой','Парадом'], correct:0},
-        {q:'Что носят первоклассники?', answers:['Портфели','Рюкзаки','Сумки','Всё вышеперечисленное'], correct:3}
+        {q:'Кто проводит линейку 1 сентября?', answers:['Директор','Учитель','Ученики','Родители'], correct:0}
       ],
       hard: [
         {q:'В каком году 1 сентября стало официальным праздником?', answers:['1930','1935','1984','1990'], correct:2},
         {q:'Как раньше назывался День знаний?', answers:['Первый день школы','День учителя','День знаний','Учебный день'], correct:0},
-        {q:'Что делают в День знаний после линейки?', answers:['Классный час','Контрольную','Домашку','Уроки'], correct:0}
+        {q:'В каком году 1 сентября стало выходным?', answers:['1935','1984','1990','2000'], correct:1}
       ]
     }
   },
@@ -1201,7 +1119,7 @@ const QUIZZES = {
       medium: [
         {q:'В каком году впервые отметили?', answers:['1960','1970','1980','1990'], correct:1},
         {q:'В какой стране начали?', answers:['США','Франция','Англия','Германия'], correct:0},
-        {q:'Как называется международный документ по защите?', answers:['Парижское соглашение','Женевская конвенция','Устав ООН','Киотский протокол'], correct:0}
+        {q:'Сколько стран отмечают?', answers:['~50','~100','~150','~190'], correct:3}
       ],
       hard: [
         {q:'Кто основал День Земли?', answers:['Гейлорд Нельсон','Альберт Гор','Линдон Джонсон','Барак Обама'], correct:0},
@@ -1219,13 +1137,13 @@ const QUIZZES = {
       ],
       medium: [
         {q:'В каком году учреждён ЮНЕСКО?', answers:['1966','1994','2000','2010'], correct:1},
-        {q:'Какая дата стала основанием?', answers:['Подписание документа','Основание школы','Рождение педагога','Открытие ЮНЕСКО'], correct:0},
-        {q:'Какой документ подписан в 1966?', answers:['О статусе учителя','О школе','О детях','О знаниях'], correct:0}
+        {q:'Какой документ подписан в 1966?', answers:['О статусе учителя','О школе','О детях','О знаниях'], correct:0},
+        {q:'Сколько стран отмечают?', answers:['~50','~100','~150','~200'], correct:1}
       ],
       hard: [
         {q:'Какая организация учредила праздник?', answers:['ЮНЕСКО','ООН','ВОЗ','Красный Крест'], correct:0},
-        {q:'Что принято в 1997 году?', answers:['Рекомендация о статусе','Декларация','Закон','Устав'], correct:0},
-        {q:'В какой стране День учителя 1 сентября?', answers:['Россия','Китай','Франция','Англия'], correct:0}
+        {q:'В какой стране День учителя 1 сентября?', answers:['Россия','Китай','Франция','Англия'], correct:0},
+        {q:'Сколько учителей в мире?', answers:['~30 млн','~50 млн','~80 млн','~100 млн'], correct:2}
       ]
     }
   },
@@ -1239,7 +1157,7 @@ const QUIZZES = {
       medium: [
         {q:'В какой стране впервые?', answers:['США','Англия','Франция','Германия'], correct:0},
         {q:'В каком году в России?', answers:['1998','2000','2005','2010'], correct:0},
-        {q:'Как отмечают?', answers:['Дарят подарки','Работают','Постятся','Учатся'], correct:0}
+        {q:'Кто учредил в России?', answers:['Ельцин','Путин','Медведев','Горбачёв'], correct:0}
       ],
       hard: [
         {q:'Кто основала День матери в США?', answers:['Анна Джарвис','Клара Цеткин','Мэри Кюри','Элеонора Рузвельт'], correct:0},
@@ -1371,23 +1289,16 @@ const ACHIEVEMENTS = [
   {id:'perfect', icon:'💯', name:'Идеально!', desc:'Пройдите викторину без ошибок', check:u => u.perfectGames>=1, progress:u => [Math.min(u.perfectGames,1), 1]},
   {id:'five_perfect', icon:'⭐', name:'Перфекционист', desc:'5 викторин без ошибок', check:u => u.perfectGames>=5, progress:u => [Math.min(u.perfectGames,5), 5]},
   {id:'ten_perfect', icon:'🌟', name:'Гений', desc:'10 викторин без ошибок', check:u => u.perfectGames>=10, progress:u => [Math.min(u.perfectGames,10), 10]},
-  {id:'all_quizzes', icon:'👑', name:'Коллекционер', desc:'Пройдите все викторины', check:u => Object.keys(u.completed||{}).length >= Object.keys(QUIZZES).length, progress:u => [Object.keys(u.completed||{}).length, Object.keys(QUIZZES).length]},
   {id:'level_5', icon:'📈', name:'Растущий', desc:'Достигните 5 уровня', check:u => u.level>=5, progress:u => [Math.min(u.level,5), 5]},
   {id:'level_10', icon:'🌟', name:'Звезда', desc:'Достигните 10 уровня', check:u => u.level>=10, progress:u => [Math.min(u.level,10), 10]},
   {id:'level_25', icon:'💫', name:'Суперзвезда', desc:'Достигните 25 уровня', check:u => u.level>=25, progress:u => [Math.min(u.level,25), 25]},
-  {id:'level_50', icon:'🌠', name:'Космос', desc:'Достигните 50 уровня', check:u => u.level>=50, progress:u => [Math.min(u.level,50), 50]},
   {id:'friends_3', icon:'👥', name:'Компания', desc:'Добавьте 3 друзей', check:u => (u.friends||[]).length>=3, progress:u => [Math.min((u.friends||[]).length,3), 3]},
   {id:'friends_10', icon:'🎊', name:'Тусовка', desc:'Добавьте 10 друзей', check:u => (u.friends||[]).length>=10, progress:u => [Math.min((u.friends||[]).length,10), 10]},
   {id:'social', icon:'💬', name:'Болтун', desc:'Отправьте 10 сообщений', check:u => (u.messagesSent||0)>=10, progress:u => [Math.min(u.messagesSent||0,10), 10]},
-  {id:'social_100', icon:'🗣️', name:'Говорун', desc:'Отправьте 100 сообщений', check:u => (u.messagesSent||0)>=100, progress:u => [Math.min(u.messagesSent||0,100), 100]},
   {id:'streak_3', icon:'🔥', name:'На огне', desc:'3 дня подряд', check:u => (u.streak||0)>=3, progress:u => [Math.min(u.streak||0,3), 3]},
   {id:'streak_7', icon:'🌋', name:'Несокрушимый', desc:'7 дней подряд', check:u => (u.streak||0)>=7, progress:u => [Math.min(u.streak||0,7), 7]},
-  {id:'streak_30', icon:'💎', name:'Бриллиант', desc:'30 дней подряд', check:u => (u.streak||0)>=30, progress:u => [Math.min(u.streak||0,30), 30]},
   {id:'daily_done', icon:'⚡', name:'Молния', desc:'Ежедневный вызов пройден', check:u => (u.dailyDone||0)>=1, progress:u => [Math.min(u.dailyDone||0,1), 1]},
-  {id:'daily_5', icon:'🗲', name:'Гроза', desc:'5 ежедневных вызовов', check:u => (u.dailyDone||0)>=5, progress:u => [Math.min(u.dailyDone||0,5), 5]},
-  {id:'daily_30', icon:'⚡', name:'Электрик', desc:'30 ежедневных вызовов', check:u => (u.dailyDone||0)>=30, progress:u => [Math.min(u.dailyDone||0,30), 30]},
   {id:'hard_win', icon:'💪', name:'Смельчак', desc:'Пройдите викторину на сложном', check:u => (u.hardWins||0)>=1, progress:u => [Math.min(u.hardWins||0,1), 1]},
-  {id:'hard_10', icon:'🏋️', name:'Тяжелоатлет', desc:'10 сложных викторин', check:u => (u.hardWins||0)>=10, progress:u => [Math.min(u.hardWins||0,10), 10]},
   {id:'link_invite', icon:'🔗', name:'Связист', desc:'Пригласите по ссылке', check:u => (u.linkInvites||0)>=1, progress:u => [Math.min(u.linkInvites||0,1), 1]},
   {id:'score_1000', icon:'💰', name:'Богач', desc:'Наберите 1000 очков', check:u => (u.totalScore||0)>=1000, progress:u => [Math.min(u.totalScore||0,1000), 1000]},
   {id:'score_10000', icon:'💎', name:'Миллионер', desc:'Наберите 10000 очков', check:u => (u.totalScore||0)>=10000, progress:u => [Math.min(u.totalScore||0,10000), 10000]},
@@ -1405,14 +1316,11 @@ const DB = {
   set invites(v) { localStorage.setItem('hq_invites', JSON.stringify(v)); },
   get online() { return JSON.parse(localStorage.getItem('hq_online') || '{}'); },
   set online(v) { localStorage.setItem('hq_online', JSON.stringify(v)); },
-  get lobbies() { return JSON.parse(localStorage.getItem('hq_lobbies') || '{}'); },
-  set lobbies(v) { localStorage.setItem('hq_lobbies', JSON.stringify(v)); },
   get settings() {
     return Object.assign({
       sound:true, theme:'halloween', volume:0.7,
       animations:true, batsBg:true,
-      autosave:true, notifications:true,
-      avatar:'😀'
+      notifications:true
     }, JSON.parse(localStorage.getItem('hq_settings') || '{}'));
   },
   set settings(v) { localStorage.setItem('hq_settings', JSON.stringify(v)); }
@@ -1425,7 +1333,7 @@ function defaultUser(name, email = '') {
     gamesPlayed: 0, perfectGames: 0, messagesSent: 0,
     hardWins: 0, linkInvites: 0, dailyDone: 0,
     totalScore: 0, bestStreak: 0,
-    streak: 0, lastPlayDate: null,
+    streak: 0, lastPlayDate: null, lastDaily: null,
     completed: {}, friends: [], achievements: [], createdAt: Date.now(),
     lastSeen: Date.now(), totalTime: 0,
     categoryStats: {}, difficultyStats: {}, dailyHistory: {},
@@ -1457,8 +1365,6 @@ let timerInterval = null;
 let selectedDifficulty = {};
 Object.keys(QUIZZES).forEach(id => selectedDifficulty[id] = 'easy');
 let pendingInvite = null;
-let currentLobby = null;
-let lobbyInterval = null;
 let gameStartTime = 0;
 let dailyChallenge = null;
 let currentFilter = { cat: 'all', search: '' };
@@ -1467,7 +1373,7 @@ let currentFilter = { cat: 'all', search: '' };
    DOM
    ========================================================= */
 const $ = id => document.getElementById(id);
-const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen'), lobby: $('lobbyScreen') };
+const screens = { auth: $('authScreen'), main: $('mainScreen'), game: $('gameScreen') };
 
 function showScreen(name) {
   Object.values(screens).forEach(s => s.classList.remove('active'));
@@ -1567,7 +1473,7 @@ function updateDailyCard() {
 
 $('dailyStartBtn').addEventListener('click', () => {
   if (!dailyChallenge || currentUser.lastDaily === dailyChallenge.key) return;
-  startGame(dailyChallenge.quizId, dailyChallenge.difficulty, null, true);
+  startGame(dailyChallenge.quizId, dailyChallenge.difficulty, true);
 });
 
 /* =========================================================
@@ -1597,7 +1503,6 @@ setInterval(() => {
       if ($('statsView').classList.contains('active')) renderStatsDashboard();
       if ($('profileView').classList.contains('active')) renderProfilePage();
     }
-    if (currentLobby) updateLobby();
     checkInvites();
   }
 }, 4000);
@@ -1632,7 +1537,6 @@ $('registerForm').addEventListener('submit', e => {
   const users = DB.users;
   if (users[u.toLowerCase()]) return err.textContent = 'Имя занято';
 
-  // Проверяем email на занятость
   if (em) {
     const emailExists = Object.values(users).some(user => user.email && user.email.toLowerCase() === em.toLowerCase());
     if (emailExists) return err.textContent = 'Этот email уже используется';
@@ -1657,13 +1561,10 @@ $('loginForm').addEventListener('submit', e => {
   err.textContent = '';
 
   const users = DB.users;
-
-  // Ищем по нику или email
   let userKey = input.toLowerCase();
   let user = users[userKey];
 
   if (!user) {
-    // Ищем по email
     const found = Object.entries(users).find(([k, u]) => u.email && u.email.toLowerCase() === input.toLowerCase());
     if (found) {
       userKey = found[0];
@@ -1806,7 +1707,6 @@ document.querySelectorAll('.nav-btn[data-view]').forEach(btn => {
     if (btn.dataset.view === 'achievements') renderAchievements();
     if (btn.dataset.view === 'friends') renderFriends();
     if (btn.dataset.view === 'stats') renderStatsDashboard();
-    if (btn.dataset.view === 'profile') renderProfilePage();
     if (btn.dataset.view === 'settings') renderSettings();
   });
 });
@@ -1834,7 +1734,6 @@ $('filterSearch').addEventListener('input', e => {
 function renderQuizzes() {
   const grid = $('quizGrid');
   grid.innerHTML = '';
-  const friends = currentUser.friends || [];
 
   let quizzes = Object.values(QUIZZES);
   if (currentFilter.cat !== 'all') quizzes = quizzes.filter(q => q.category === currentFilter.cat);
@@ -1909,7 +1808,7 @@ $('quizGrid').addEventListener('click', e => {
 /* =========================================================
    GAME
    ========================================================= */
-function startGame(quizId, difficulty = 'easy', lobbyPlayers = null, isDaily = false) {
+function startGame(quizId, difficulty = 'easy', isDaily = false) {
   const quiz = QUIZZES[quizId];
   const diff = DIFFICULTIES[difficulty];
   const questions = [...quiz.questions[difficulty]];
@@ -1928,12 +1827,8 @@ function startGame(quizId, difficulty = 'easy', lobbyPlayers = null, isDaily = f
     quizId, quiz, difficulty, questions,
     round: 0, score: 0, correct: 0, wrong: 0,
     answered: false, timeLeft: diff.timer,
-    participants: [], isDaily, answersHistory: []
+    isDaily, answersHistory: []
   };
-
-  game.participants.push({ name: currentUser.username, me: true, online: true });
-  const friends = (currentUser.friends || []).sort((a, b) => isOnline(b) - isOnline(a));
-  friends.slice(0, 3).forEach(f => game.participants.push({ name: f, me: false, online: isOnline(f) }));
 
   $('gameQuizName').textContent = (isDaily ? '⚡ ' : '') + quiz.emoji + ' ' + quiz.name;
   const badge = $('gameDifficultyBadge');
@@ -1941,7 +1836,6 @@ function startGame(quizId, difficulty = 'easy', lobbyPlayers = null, isDaily = f
   badge.textContent = diff.icon + ' ' + diff.name;
 
   $('chatMessages').innerHTML = '';
-  renderChatParticipants();
   renderProgressStrip();
   addChat('system', `🎉 Игра началась! Сложность: ${diff.name}. Удачи!`);
 
@@ -1967,17 +1861,6 @@ function renderProgressStrip() {
     if (hist === true) dot.classList.add('correct');
     else if (hist === false) dot.classList.add('wrong');
     strip.appendChild(dot);
-  });
-}
-
-function renderChatParticipants() {
-  const cont = $('chatParticipants');
-  cont.innerHTML = '';
-  game.participants.forEach(p => {
-    const chip = document.createElement('div');
-    chip.className = 'participant-chip' + (p.me ? ' me' : '');
-    chip.innerHTML = `<div class="mini-avatar">${p.name[0].toUpperCase()}</div><span>${p.name}${p.me ? ' (вы)' : ''}</span>`;
-    cont.appendChild(chip);
   });
 }
 
@@ -2305,7 +2188,6 @@ function addFriend(name) {
     showToast(`✅ ${name} добавлен!`);
     checkAchievements();
     renderFriends();
-    renderQuizzes();
     updateStatsMini();
     renderProfilePage();
     $('friendSearch').value = '';
@@ -2473,26 +2355,24 @@ function renderInvites() {
 }
 
 /* =========================================================
-   👤 СТРАНИЦА ПРОФИЛЯ
+   👤 СТРАНИЦА ПРОФИЛЯ (открывается через аватар)
    ========================================================= */
 function renderProfilePage() {
   const page = $('profilePage');
   if (!page) return;
   initExtendedStats(currentUser);
   const u = currentUser;
-  const now = Date.now();
 
   const needed = xpForLevel(u.level);
   const pct = Math.min(100, (u.xp / needed) * 100);
   const online = isOnline(u.username);
   const accCreated = new Date(u.createdAt);
-  const accAge = Math.floor((now - u.createdAt) / (1000 * 60 * 60 * 24));
+  const accAge = Math.floor((Date.now() - u.createdAt) / (1000 * 60 * 60 * 24));
   const lastSeenStr = new Date(u.lastSeen).toLocaleString('ru');
 
   const totalGames = u.gamesPlayed || 0;
   const totalQ = u.totalQuestions || 0;
   const accuracy = totalQ > 0 ? Math.round((u.totalCorrect / totalQ) * 100) : 0;
-  const perfectRate = totalGames > 0 ? Math.round((u.perfectGames / totalGames) * 100) : 0;
 
   const achievementsUnlocked = (u.achievements || []).length;
   const achPercent = Math.round((achievementsUnlocked / ACHIEVEMENTS.length) * 100);
@@ -2503,10 +2383,15 @@ function renderProfilePage() {
     unlocked: (u.achievements || []).includes(a.id)
   }));
 
-  // Недавние игры (топ-3)
+  // Недавние игры (3)
   const recentGames = (u.recentGames || []).slice(0, 3);
 
   page.innerHTML = `
+    <!-- КНОПКА НАЗАД -->
+    <div style="margin-bottom:20px;">
+      <button class="settings-btn" id="profileBackBtn">← Назад к викторинам</button>
+    </div>
+
     <!-- HERO -->
     <div class="profile-hero">
       <div class="profile-hero-content">
@@ -2672,6 +2557,9 @@ function renderProfilePage() {
   `;
 
   // Обработчики
+  $('profileBackBtn')?.addEventListener('click', () => {
+    document.querySelector('.nav-btn[data-view="quizzes"]').click();
+  });
   $('profileChangeNick')?.addEventListener('click', () => {
     $('newNicknameInput').value = u.username;
     $('nicknameError').textContent = '';
@@ -2871,6 +2759,16 @@ function renderSettings() {
           <span class="volume-value" id="volumeValue">${Math.round(s.volume * 100)}%</span>
         </div>
       </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-title">🔔 Уведомления</div>
+          <div class="setting-desc">Всплывающие уведомления о приглашениях</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="notificationsToggle" ${s.notifications ? 'checked' : ''}>
+          <span class="slider"></span>
+        </label>
+      </div>
     </div>
 
     <div class="settings-card">
@@ -2949,6 +2847,9 @@ function renderSettings() {
     const v = parseInt(e.target.value);
     $('volumeValue').textContent = v + '%';
     const s = DB.settings; s.volume = v / 100; DB.settings = s;
+  });
+  $('notificationsToggle').addEventListener('change', e => {
+    const s = DB.settings; s.notifications = e.target.checked; DB.settings = s;
   });
   $('exportDataBtn').addEventListener('click', exportData);
   $('importDataBtn').addEventListener('click', () => {
@@ -3042,7 +2943,6 @@ $('saveNicknameBtn').addEventListener('click', () => {
   DB.users = users;
   DB.session = newKey;
 
-  // Обновляем ссылки у других игроков
   Object.keys(users).forEach(k => {
     if (Array.isArray(users[k].friends)) {
       const idx = users[k].friends.indexOf(oldNick);
@@ -3117,14 +3017,16 @@ function deleteAccount() {
 }
 
 /* =========================================================
-   PROFILE MODAL (быстрый просмотр с аватара в шапке)
+   АВАТАР → ПРОФИЛЬ
    ========================================================= */
 $('userAvatar').addEventListener('click', () => {
-  // Переключаемся на вкладку профиля
-  document.querySelector('.nav-btn[data-view="profile"]').click();
+  // Переключаемся на страницу профиля
+  document.querySelectorAll('.nav-btn[data-view]').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  $('profileView').classList.add('active');
+  renderProfilePage();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
-$('closeProfileBtn').addEventListener('click', () => $('profileModal').classList.add('hidden'));
 
 /* =========================================================
    INIT
